@@ -25,7 +25,7 @@
     }
     .hero-content {
       position: relative; z-index: 2;
-      padding: 0 72px 72px;
+      padding: 0 72px 36px;
       max-width: 900px;
       text-align: left;
     }
@@ -162,7 +162,7 @@
 
     /* ── TAGLINE BAND ── */
     .tagline-band {
-      background: var(--dark); padding: 90px 40px; text-align: center;
+      background: var(--space); padding: 90px 40px; text-align: center;
     }
     .tagline-band h3 {
       font-family: var(--serif); font-size: clamp(28px, 4.5vw, 58px);
@@ -173,45 +173,51 @@
 
     /* ── PLAYFUL MICRO-INTERACTIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(48px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .fade-up {
       opacity: 0;
+      transform: translateY(48px);
     }
     .fade-up.visible {
-      animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
-    .fade-up:nth-child(2).visible { animation-delay: 0.1s; }
-    .fade-up:nth-child(3).visible { animation-delay: 0.2s; }
 
     .provider-card {
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+      border-radius: 4px;
     }
     .provider-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(110, 63, 141, 0.18);
     }
-    .provider-card:hover .provider-photo img { transform: scale(1.04); }
+    .provider-card:hover .provider-photo img { transform: scale(1.05); }
+    .provider-name { transition: color 0.2s; }
+    .provider-card:hover .provider-name { color: #6E3F8D; }
 
     .service-card {
       transition: box-shadow 0.25s, border-color 0.25s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(28,24,22,0.1); border-color: rgba(28,24,22,0.18);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(110, 63, 141, 0.13);
+      border-color: #6E3F8D;
     }
+    .service-info h4 { transition: color 0.2s; }
+    .service-card:hover .service-info h4 { color: #6E3F8D; }
 
     .btn-hero {
-      transition: background 0.25s, transform 0.2s;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
     }
-    .btn-hero:hover { background: #ADCD52; color: #1c1816; transform: scale(1.03); }
+    .btn-hero:hover { background: #6E3F8D; color: #faf7f2; transform: scale(1.04); box-shadow: 0 6px 20px rgba(110,63,141,0.35); }
     .btn-hero:active { transform: scale(0.98); }
 
     .about-image {
       transition: box-shadow 0.35s;
     }
     .about-image:hover {
-      box-shadow: 0 12px 40px rgba(28,24,22,0.12);
+      box-shadow: 0 16px 48px rgba(110, 63, 141, 0.15);
     }
     .about-image img {
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -224,7 +230,7 @@
       .providers-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
       .services-grid { grid-template-columns: 1fr; }
       .hero-badge img { height: 60px; }
-      .hero-content { padding: 0 24px 56px; }
+      .hero-content { padding: 0 24px 28px; }
       .tagline-band { padding: 70px 24px; }
     }
     @media (max-width: 480px) {
@@ -430,7 +436,7 @@
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 <script>

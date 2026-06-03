@@ -74,62 +74,13 @@
 
     /* ── RIGHT FORM PANEL ── */
     .contact-form-wrap {
-      padding: 80px 40px 80px 64px;
+      padding: 0;
       background: var(--cream);
     }
-    .contact-form-wrap h2 {
-      font-family: var(--serif); font-size: 32px; font-weight: 400;
-      margin-bottom: 8px; letter-spacing: -0.01em;
+    .contact-form-wrap iframe {
+      width: 100%; height: 100%; min-height: calc(100vh - var(--nav-h));
+      border: none; display: block;
     }
-    .contact-form-wrap > p {
-      font-size: 15px; color: var(--muted); margin-bottom: 36px; line-height: 1.65;
-    }
-
-    .form-group { margin-bottom: 20px; }
-    .form-group label {
-      display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%; padding: 14px 16px; border-radius: 4px;
-      border: 1.5px solid var(--border); background: var(--warm-white);
-      font-family: var(--sans); font-size: 15px; font-weight: 300;
-      color: var(--dark); outline: none; appearance: none;
-      transition: border-color 0.2s;
-      box-sizing: border-box;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--dark);
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: var(--muted); }
-    .form-group textarea { resize: vertical; min-height: 130px; }
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7f7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 16px center;
-      padding-right: 40px; cursor: pointer;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-submit {
-      width: 100%; padding: 16px; border-radius: 100px;
-      background: var(--dark); color: var(--cream); border: none;
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.09em; text-transform: uppercase; cursor: pointer;
-      transition: background 0.2s; margin-top: 8px;
-    }
-    .form-submit:hover { background: oklch(62% 0.14 25); }
-    .form-success {
-      display: none; text-align: center; padding: 40px 20px;
-    }
-    .form-success h3 {
-      font-family: var(--serif); font-size: 28px; font-weight: 400;
-      margin-bottom: 10px;
-    }
-    .form-success p { font-size: 16px; color: var(--muted); line-height: 1.65; }
 
     /* ── FAQ STRIP ── */
     .faq-section { background: var(--warm-white); padding: 80px 40px; border-top: 1px solid var(--border); }
@@ -176,6 +127,7 @@
       .faq-section { padding: 64px 24px; }
     }
   </style>
+<script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
 </head>
 <body>
 <nav>
@@ -259,55 +211,9 @@
       </div>
     </div>
 
-    <!-- RIGHT: Form -->
+    <!-- RIGHT: Mangomint contact form -->
     <div class="contact-form-wrap">
-      <h2>Send us a message</h2>
-      <p>We typically respond within one business day. For faster answers, call or text us at (919) 229-9555.</p>
-
-      <form id="contactForm" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="fname" placeholder="First name" required />
-          </div>
-          <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lname" placeholder="Last name" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone (optional)</label>
-          <input type="tel" id="phone" name="phone" placeholder="(919) 000-0000" />
-        </div>
-        <div class="form-group">
-          <label for="subject">What can we help with?</label>
-          <select id="subject" name="subject" required>
-            <option value="" disabled selected>Select a topic…</option>
-            <option value="booking">Booking help</option>
-            <option value="services">Questions about services</option>
-            <option value="onsite">On-site chair massage inquiry</option>
-            <option value="membership">Membership information</option>
-            <option value="careers">Careers</option>
-            <option value="accessibility">Accessibility &amp; accommodations</option>
-            <option value="feedback">Feedback</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us more…" required></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message</button>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <h3>Message sent!</h3>
-        <p>Thank you for reaching out. We'll be in touch within one business day.</p>
-      </div>
+      <iframe src="https://mangomint.co/upVrOz" title="Contact form"></iframe>
     </div>
 
   </div>
@@ -435,13 +341,6 @@
       document.body.style.overflow = '';
     });
   });
-
-  // Form
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(btn => {

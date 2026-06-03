@@ -171,6 +171,53 @@
     .tagline-band h3 em { font-style: italic; }
     .tagline-band .btn-hero { margin-top: 36px; }
 
+    /* ── PLAYFUL MICRO-INTERACTIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0;
+    }
+    .fade-up.visible {
+      animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .fade-up:nth-child(2).visible { animation-delay: 0.1s; }
+    .fade-up:nth-child(3).visible { animation-delay: 0.2s; }
+
+    .provider-card {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .provider-card:hover {
+      transform: translateY(-6px);
+    }
+    .provider-card:hover .provider-photo img { transform: scale(1.04); }
+
+    .service-card {
+      transition: box-shadow 0.25s, border-color 0.25s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(28,24,22,0.1); border-color: rgba(28,24,22,0.18);
+    }
+
+    .btn-hero {
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-hero:hover { background: #ADCD52; color: #1c1816; transform: scale(1.03); }
+    .btn-hero:active { transform: scale(0.98); }
+
+    .about-image {
+      transition: box-shadow 0.35s;
+    }
+    .about-image:hover {
+      box-shadow: 0 12px 40px rgba(28,24,22,0.12);
+    }
+    .about-image img {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .about-image:hover img { transform: scale(1.03); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -240,7 +287,7 @@
 <div class="rainbow-bar"></div>
 
 <!-- ABOUT -->
-<section class="about">
+<section class="about fade-up">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image">
@@ -258,7 +305,7 @@
 </section>
 
 <!-- NEW PROVIDERS -->
-<section class="providers">
+<section class="providers fade-up">
   <div class="section-inner">
     <p class="section-label">New Providers</p>
     <div class="providers-grid">
@@ -285,7 +332,7 @@
 </section>
 
 <!-- NEW SERVICES PREVIEW -->
-<section class="services-preview">
+<section class="services-preview fade-up">
   <div class="section-inner">
     <p class="section-label">New Services</p>
     <div class="services-grid">
@@ -330,7 +377,7 @@
 </section>
 
 <!-- TAGLINE BAND -->
-<div class="tagline-band">
+<div class="tagline-band fade-up">
   <h3>Services As Diverse<br><em>As Our Community</em></h3>
   <a class="btn-hero" href="services.html">View All Services</a>
 </div>
@@ -380,6 +427,12 @@
 </footer>
 
 <script src="shared.js"></script>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 <script>
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');

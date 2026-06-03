@@ -48,15 +48,17 @@ nav {
   color: var(--mid); text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--dark); }
-.btn-book {
+.btn-book,
+.nav-links a.btn-book {
   display: inline-flex; align-items: center;
   padding: 10px 22px; border-radius: 100px;
-  background: var(--waves); color: rgb(255, 255, 255);
+  background: var(--waves); color: #fff !important;
   font-family: var(--sans); font-size: 12px; font-weight: 400;
   letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
   transition: background 0.2s; white-space: nowrap;
 }
-.btn-book:hover { background: var(--spark); color: var(--dark); }
+.btn-book:hover,
+.nav-links a.btn-book:hover { background: var(--space); color: #fff !important; }
 
 /* hamburger */
 .nav-hamburger {

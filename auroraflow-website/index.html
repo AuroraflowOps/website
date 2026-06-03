@@ -25,7 +25,7 @@
     }
     .hero-content {
       position: relative; z-index: 2;
-      padding: 0 72px 72px;
+      padding: 0 72px 36px;
       max-width: 900px;
       text-align: left;
     }
@@ -162,7 +162,7 @@
 
     /* ── TAGLINE BAND ── */
     .tagline-band {
-      background: var(--dark); padding: 90px 40px; text-align: center;
+      background: var(--space); padding: 90px 40px; text-align: center;
     }
     .tagline-band h3 {
       font-family: var(--serif); font-size: clamp(28px, 4.5vw, 58px);
@@ -171,13 +171,66 @@
     .tagline-band h3 em { font-style: italic; }
     .tagline-band .btn-hero { margin-top: 36px; }
 
+    /* ── PLAYFUL MICRO-INTERACTIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(48px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(48px);
+    }
+    .fade-up.visible {
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .provider-card {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+      border-radius: 4px;
+    }
+    .provider-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(110, 63, 141, 0.18);
+    }
+    .provider-card:hover .provider-photo img { transform: scale(1.05); }
+    .provider-name { transition: color 0.2s; }
+    .provider-card:hover .provider-name { color: #6E3F8D; }
+
+    .service-card {
+      transition: box-shadow 0.25s, border-color 0.25s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(110, 63, 141, 0.13);
+      border-color: #6E3F8D;
+    }
+    .service-info h4 { transition: color 0.2s; }
+    .service-card:hover .service-info h4 { color: #6E3F8D; }
+
+    .btn-hero {
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    }
+    .btn-hero:hover { background: #6E3F8D; color: #faf7f2; transform: scale(1.04); box-shadow: 0 6px 20px rgba(110,63,141,0.35); }
+    .btn-hero:active { transform: scale(0.98); }
+
+    .about-image {
+      transition: box-shadow 0.35s;
+    }
+    .about-image:hover {
+      box-shadow: 0 16px 48px rgba(110, 63, 141, 0.15);
+    }
+    .about-image img {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .about-image:hover img { transform: scale(1.03); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
       .providers-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
       .services-grid { grid-template-columns: 1fr; }
       .hero-badge img { height: 60px; }
-      .hero-content { padding: 0 24px 56px; }
+      .hero-content { padding: 0 24px 28px; }
       .tagline-band { padding: 70px 24px; }
     }
     @media (max-width: 480px) {
@@ -240,7 +293,7 @@
 <div class="rainbow-bar"></div>
 
 <!-- ABOUT -->
-<section class="about">
+<section class="about fade-up">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image">
@@ -258,7 +311,7 @@
 </section>
 
 <!-- NEW PROVIDERS -->
-<section class="providers">
+<section class="providers fade-up">
   <div class="section-inner">
     <p class="section-label">New Providers</p>
     <div class="providers-grid">
@@ -285,7 +338,7 @@
 </section>
 
 <!-- NEW SERVICES PREVIEW -->
-<section class="services-preview">
+<section class="services-preview fade-up">
   <div class="section-inner">
     <p class="section-label">New Services</p>
     <div class="services-grid">
@@ -330,7 +383,7 @@
 </section>
 
 <!-- TAGLINE BAND -->
-<div class="tagline-band">
+<div class="tagline-band fade-up">
   <h3>Services As Diverse<br><em>As Our Community</em></h3>
   <a class="btn-hero" href="services.html">View All Services</a>
 </div>
@@ -380,6 +433,12 @@
 </footer>
 
 <script src="shared.js"></script>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 <script>
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');

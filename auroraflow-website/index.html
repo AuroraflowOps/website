@@ -12,22 +12,40 @@
     /* ── HERO ── */
     .hero {
       position: relative; height: 100vh; min-height: 640px;
-      display: flex; align-items: flex-end; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    @keyframes heroZoom {
+      0%   { transform: scale(1)    translateZ(0); }
+      50%  { transform: scale(1.07) translateZ(0); }
+      100% { transform: scale(1)    translateZ(0); }
     }
     .hero video {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      animation: heroZoom 45s ease-in-out infinite;
+      transform-origin: center center;
+      will-change: transform;
+      transform: translateZ(0);
     }
     .hero-overlay {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to right, rgba(18,115,109,0.55) 0%, transparent 65%),
-        linear-gradient(to top, rgba(28,24,22,0.92) 0%, rgba(28,24,22,0.3) 50%, rgba(28,24,22,0.1) 100%);
+        /* vignette — softened, just a gentle edge burn */
+        radial-gradient(ellipse at center, transparent 50%, rgba(13,9,25,0.35) 100%),
+        /* bold dark base so aurora reads through without washing out text */
+        linear-gradient(to top, rgba(13,9,25,0.96) 0%, rgba(13,9,25,0.55) 40%, rgba(13,9,25,0.20) 75%, rgba(13,9,25,0.08) 100%),
+        /* deep purple atmospheric tint */
+        linear-gradient(160deg, rgba(54,57,113,0.45) 0%, rgba(110,63,141,0.20) 50%, transparent 75%);
+    }
+    /* aurora-toned sparkle glow for home hero */
+    .hero .hero-sparkle {
+      filter: drop-shadow(0 0 5px rgba(173,205,82,0.7))
+              drop-shadow(0 0 16px rgba(110,63,141,0.55));
     }
     .hero-content {
       position: relative; z-index: 2;
-      padding: 0 72px 48px;
-      max-width: 900px;
-      text-align: left;
+      padding: 0 40px;
+      max-width: 860px; width: 100%;
+      text-align: center;
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -48,10 +66,11 @@
     .hero-content p {
       font-size: clamp(15px, 1.6vw, 18px); font-weight: 300;
       color: rgba(250,247,242,0.75); line-height: 1.7;
-      margin-bottom: 24px; max-width: 520px;
+      margin-bottom: 36px; max-width: 520px;
+      margin-left: auto; margin-right: auto;
     }
     .hero-actions {
-      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;
     }
     .btn-hero {
       display: inline-flex; align-items: center;
@@ -201,6 +220,97 @@
       .service-card { flex-direction: column; }
       .service-thumb { width: 100%; height: 180px; }
     }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: linear-gradient(160deg, #0d0919 0%, #150e28 45%, #0c1320 100%);
+      padding: 72px 40px 64px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    /* service room photo — very low opacity texture */
+    .testimonials::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url('assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png');
+      background-size: cover; background-position: center center;
+      opacity: 0.28;
+    }
+    /* dark gradient overlay keeps text fully legible */
+    .testimonials::after {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(110,63,141,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(54,57,113,0.14) 0%, transparent 50%),
+        linear-gradient(160deg, rgba(13,9,25,0.72) 0%, rgba(21,14,40,0.68) 100%);
+    }
+    .testimonials-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
+
+    .testimonials-slider { display: grid; min-height: 220px; }
+    .testimonial-card {
+      grid-area: 1 / 1;
+      display: flex; flex-direction: column; align-items: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2,0.7,0.2,1);
+      pointer-events: none;
+    }
+    .testimonial-card.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    .testimonial-stars {
+      color: #FBBC04; font-size: 15px; letter-spacing: 5px; margin-bottom: 24px;
+      filter: drop-shadow(0 0 5px rgba(251,188,4,0.4));
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2vw, 25px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.65; color: rgba(250,247,242,0.90);
+      max-width: 700px; position: relative; padding-top: 16px;
+    }
+    .testimonial-quote::before {
+      content: '\201C';
+      position: absolute; top: -28px; left: 50%; transform: translateX(-50%);
+      font-size: 110px; line-height: 1;
+      color: var(--accent); opacity: 0.2;
+      font-family: Georgia, serif; pointer-events: none;
+    }
+
+    .testimonials-nav {
+      display: flex; justify-content: center; align-items: center;
+      gap: 7px; margin-top: 40px;
+    }
+    .testimonials-nav button {
+      width: 7px; height: 7px; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.15); background: transparent;
+      cursor: pointer; padding: 0;
+      transition: background 0.3s, width 0.35s cubic-bezier(0.2,0.7,0.2,1),
+                  border-color 0.3s, box-shadow 0.3s;
+    }
+    .testimonials-nav button.active {
+      background: var(--accent); border-color: var(--accent);
+      width: 28px; box-shadow: 0 0 8px rgba(173,205,82,0.5);
+    }
+
+    .reviews-google-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      margin-top: 28px;
+      font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
+      color: rgba(250,247,242,0.4);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .reviews-google-link:hover { color: rgba(250,247,242,0.75); }
+    .reviews-google-link::before {
+      content: '★★★★★';
+      color: #FBBC04; font-size: 11px; letter-spacing: 2px;
+      filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
+    }
+    @media (max-width: 640px) {
+      .testimonials { padding: 56px 24px 52px; }
+    }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
 </head>
@@ -234,9 +344,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop playsinline
-    poster="assets/img/64d1b5f61b89c16edafd997e_Massage-Video-2-transcode.mp4.jpg">
-    <source src="assets/img/64d1b5f61b89c16edafd997e_Massage-Video-2-transcode.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline id="heroVideo">
+    <source src="assets/aurora-hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -251,6 +360,76 @@
           alt="Best Massage in the Triangle" />
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+
+    <div class="testimonials-slider" id="testimonialSlider">
+
+      <div class="testimonial-card active">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I booked a 90-minute blended relaxation massage with reflexology, and it was honestly one of the best massages I've ever had. Izzy has the BEST hands. The pressure was perfect, the transitions were seamless, and I left feeling grounded, relaxed, and fully reset. If you're looking for a queer-affirming, peaceful, and truly skilled massage experience in Durham — Aurora Flow is it.</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Their space is so creative and relaxing, and all of the art featured is for purchase if you want to take some home with you. The receptionist was very warm and welcoming. I will definitely visit in the future.</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I cannot emphasize enough how wonderful and patient Brandy is. She has magic hands that know how much pressure to use and can sense where tense spots live in one's body. She always makes my day better — if I could afford a membership I'd be there every month!</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">This was the best body work/massage experience I have ever had — from start to finish. The space is so welcoming and warm. I received a massage from Brandy and it was seriously transformative! Loved the Blue Ridge massage room, the music, the aromatherapy.</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I had an absolutely fabulous massage experience with Patience! They were so considerate and mindful of my needs, frequently checking in and asking for feedback. They also spent time with me after my service to go over tips I can do myself to keep my body healthy. I can't recommend Auroraflow and Patience enough!</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">The space is beautiful, inclusive and artsy — a perfect spa setting. Most of all, I experienced the most glorious magical massage of my life!</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Carissa did an amazing job on my facial! My skin looks and feels incredible, and the entire experience was so relaxing. The environment was kind, welcoming, and friendly — which made it even better. I loved it so much that I ended up purchasing a membership. Highly recommend!</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I had a wonderful therapeutic massage from Cleo! I have chronic pain and her slow but firm pressure was exactly what I needed. I also appreciated that they offer the option of requesting providers to wear masks — so I could feel safer as an immunocompromised person. After the massage I felt so relaxed that I slept for 11 hours that night!</p>
+
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">My first ever massage with Taylor was nothing but life changing. They went out of their way to make sure I was comfortable and really listened to where my pain was. My body feels like one giant endorphin. Do yourself a life changing favor — see Taylor. Become the cloud you were born to be.</p>
+
+      </div>
+
+    </div>
+
+    <div class="testimonials-nav" id="testimonialNav"></div>
+    <a class="reviews-google-link" href="https://www.google.com/search?q=Auroraflow+Durham+NC+reviews" target="_blank" rel="noopener">
+      See 400+ five-star reviews on Google
+    </a>
+
   </div>
 </section>
 
@@ -332,12 +511,6 @@
   </div>
 </section>
 
-<!-- TAGLINE BAND -->
-<div class="tagline-band">
-  <h3>Services As Diverse<br><em>As Our Community</em></h3>
-  <a class="btn-hero" href="services.html">View All Services</a>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -384,6 +557,49 @@
 
 <script src="shared.js"></script>
 <script>
+  /* ── Testimonials auto-slider ── */
+  (function () {
+    const slider = document.getElementById('testimonialSlider');
+    const navEl  = document.getElementById('testimonialNav');
+    if (!slider || !navEl) return;
+
+    const cards = Array.from(slider.querySelectorAll('.testimonial-card'));
+    let current = 0;
+    let timer;
+
+    cards.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', 'Review ' + (i + 1));
+      if (i === 0) btn.classList.add('active');
+      btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+      navEl.appendChild(btn);
+    });
+
+    const dots = Array.from(navEl.querySelectorAll('button'));
+
+    function goTo(idx) {
+      cards[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = ((idx % cards.length) + cards.length) % cards.length;
+      cards[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 5200); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    slider.addEventListener('mouseenter', () => clearInterval(timer));
+    slider.addEventListener('mouseleave', startTimer);
+
+    startTimer();
+  })();
+
+  const heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    heroVideo.playbackRate = 0.35;
+    heroVideo.addEventListener('canplay', () => { heroVideo.playbackRate = 0.35; });
+  }
+
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {

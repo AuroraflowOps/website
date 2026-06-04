@@ -40,139 +40,152 @@
       border: none; margin: 0; padding: 0;
     }
 
+    /* ── STAR BACKGROUND (shared by dark sections) ── */
+    .values-section,
+    .about-cta {
+      background:
+        /* small dim stars */
+        radial-gradient(circle at  4%  9%, rgba(255,255,255,0.65) 0, rgba(255,255,255,0.65) 1px, transparent 1.5px),
+        radial-gradient(circle at  9% 52%, rgba(255,255,255,0.45) 0, rgba(255,255,255,0.45) 1px, transparent 1.5px),
+        radial-gradient(circle at 13% 27%, rgba(255,255,255,0.60) 0, rgba(255,255,255,0.60) 1px, transparent 1.5px),
+        radial-gradient(circle at 19% 74%, rgba(255,255,255,0.40) 0, rgba(255,255,255,0.40) 1px, transparent 1.5px),
+        radial-gradient(circle at 23% 14%, rgba(255,255,255,0.70) 0, rgba(255,255,255,0.70) 1px, transparent 1.5px),
+        radial-gradient(circle at 29% 88%, rgba(255,255,255,0.35) 0, rgba(255,255,255,0.35) 1px, transparent 1.5px),
+        radial-gradient(circle at 34% 40%, rgba(255,255,255,0.55) 0, rgba(255,255,255,0.55) 1px, transparent 1.5px),
+        radial-gradient(circle at 40%  3%, rgba(255,255,255,0.60) 0, rgba(255,255,255,0.60) 1px, transparent 1.5px),
+        radial-gradient(circle at 44% 68%, rgba(255,255,255,0.45) 0, rgba(255,255,255,0.45) 1px, transparent 1.5px),
+        radial-gradient(circle at 49% 35%, rgba(255,255,255,0.65) 0, rgba(255,255,255,0.65) 1px, transparent 1.5px),
+        radial-gradient(circle at 54% 82%, rgba(255,255,255,0.40) 0, rgba(255,255,255,0.40) 1px, transparent 1.5px),
+        radial-gradient(circle at 59% 18%, rgba(255,255,255,0.70) 0, rgba(255,255,255,0.70) 1px, transparent 1.5px),
+        radial-gradient(circle at 65% 55%, rgba(255,255,255,0.35) 0, rgba(255,255,255,0.35) 1px, transparent 1.5px),
+        radial-gradient(circle at 70% 92%, rgba(255,255,255,0.55) 0, rgba(255,255,255,0.55) 1px, transparent 1.5px),
+        radial-gradient(circle at 74% 10%, rgba(255,255,255,0.50) 0, rgba(255,255,255,0.50) 1px, transparent 1.5px),
+        radial-gradient(circle at 79% 42%, rgba(255,255,255,0.60) 0, rgba(255,255,255,0.60) 1px, transparent 1.5px),
+        radial-gradient(circle at 84% 65%, rgba(255,255,255,0.40) 0, rgba(255,255,255,0.40) 1px, transparent 1.5px),
+        radial-gradient(circle at 88% 22%, rgba(255,255,255,0.65) 0, rgba(255,255,255,0.65) 1px, transparent 1.5px),
+        radial-gradient(circle at 93% 78%, rgba(255,255,255,0.50) 0, rgba(255,255,255,0.50) 1px, transparent 1.5px),
+        radial-gradient(circle at 97% 48%, rgba(255,255,255,0.55) 0, rgba(255,255,255,0.55) 1px, transparent 1.5px),
+        /* medium bright stars */
+        radial-gradient(circle at 16% 46%, rgba(255,255,255,0.92) 0, rgba(255,255,255,0.92) 1.5px, transparent 2.5px),
+        radial-gradient(circle at 52%  7%, rgba(255,255,255,0.88) 0, rgba(255,255,255,0.88) 1.5px, transparent 2.5px),
+        radial-gradient(circle at 72% 70%, rgba(255,255,255,0.92) 0, rgba(255,255,255,0.92) 1.5px, transparent 2.5px),
+        radial-gradient(circle at 35% 60%, rgba(255,255,255,0.82) 0, rgba(255,255,255,0.82) 1.5px, transparent 2.5px),
+        radial-gradient(circle at 88% 35%, rgba(255,255,255,0.88) 0, rgba(255,255,255,0.88) 1.5px, transparent 2.5px),
+        /* brand accent star specks */
+        radial-gradient(circle at 28% 22%, rgba(173,205,82,0.85) 0, rgba(173,205,82,0.85) 1px, transparent 3px),
+        radial-gradient(circle at 62% 85%, rgba(18,115,109,0.80) 0, rgba(18,115,109,0.80) 1px, transparent 3px),
+        radial-gradient(circle at 78% 18%, rgba(110,63,141,0.90) 0, rgba(110,63,141,0.90) 1.5px, transparent 4px),
+        /* nebula glow */
+        radial-gradient(ellipse at 20% 35%, rgba(110,63,141,0.20) 0%, transparent 50%),
+        radial-gradient(ellipse at 78% 65%, rgba(54,57,113,0.22) 0%, transparent 45%),
+        /* base */
+        linear-gradient(160deg, #0d0919 0%, #150e28 45%, #0c1320 100%);
+    }
+
     /* ── VALUES ── */
-    .values-section { background: var(--warm-white); padding: 100px 40px; }
-    .values-inner { max-width: 1200px; margin: 0 auto; }
+    .values-section {
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .values-section::before {
+      content: "";
+      position: absolute;
+      top: -30%; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse, rgba(173,205,82,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .values-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
     .values-inner h2 {
       font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px);
       font-weight: 400; margin-bottom: 56px; letter-spacing: -0.01em;
+      color: var(--cream);
     }
-    .values-inner h2 em { font-style: italic; }
-    .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .values-inner h2 em { font-style: italic; color: var(--accent); }
+    .values-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
 
-    /* interactive card */
     .value-item {
-      position: relative;
-      padding: 32px 28px 28px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
+      display: flex; flex-direction: column;
+      padding: 36px 22px 32px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
       cursor: pointer;
-      transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
-                  box-shadow 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
-                  background 0.35s ease,
-                  border-color 0.35s ease;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1),
+                  box-shadow 0.4s cubic-bezier(0.2,0.7,0.2,1),
+                  border-color 0.35s ease,
+                  background 0.35s ease;
     }
-    /* accent stripe, grows down from the top on hover */
     .value-item::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
-    }
-    /* soft warm wash that fades in on hover */
-    .value-item::after {
-      content: "";
-      position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right,
-        rgba(217, 119, 87, 0.08) 0%,
-        transparent 60%);
+      background: radial-gradient(circle at top center,
+        rgba(173,205,82,0.13) 0%, transparent 65%);
       opacity: 0;
-      transition: opacity 0.45s ease;
+      transition: opacity 0.4s ease;
       pointer-events: none;
     }
     .value-item:hover,
     .value-item:focus-within {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px -20px rgba(28, 24, 22, 0.22),
-                  0 6px 14px -8px rgba(28, 24, 22, 0.12);
-      border-color: rgba(217, 119, 87, 0.25);
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(173,205,82,0.4);
+      box-shadow: 0 28px 64px -20px rgba(0,0,0,0.6),
+                  0 0 0 1px rgba(173,205,82,0.14);
     }
     .value-item:hover::before,
-    .value-item:focus-within::before { transform: scaleX(1); }
-    .value-item:hover::after,
-    .value-item:focus-within::after { opacity: 1; }
+    .value-item:focus-within::before { opacity: 1; }
 
-    .value-number {
-      font-family: var(--serif); font-size: 42px; font-weight: 300;
-      color: var(--border);
-      line-height: 1; margin-bottom: 18px; letter-spacing: -0.02em;
-      display: flex; align-items: baseline; gap: 14px;
-      transition: color 0.45s ease, transform 0.45s ease;
+    .value-icon {
+      width: 54px; height: 54px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+      box-shadow: 0 4px 18px rgba(173,205,82,0.25);
+      transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1),
+                  box-shadow 0.35s ease;
     }
-    /* trailing rule on the number, animates wider on hover */
-    .value-number::after {
-      content: "";
-      flex: 0 0 auto;
-      width: 28px; height: 1px;
-      background: var(--border);
-      transform: translateY(-12px);
-      transition: width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
-                  background 0.4s ease;
-    }
-    .value-item:hover .value-number,
-    .value-item:focus-within .value-number {
-      color: var(--accent);
-    }
-    .value-item:hover .value-number::after,
-    .value-item:focus-within .value-number::after {
-      width: 56px; background: var(--accent);
+    .value-item:hover .value-icon,
+    .value-item:focus-within .value-icon {
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 8px 28px rgba(173,205,82,0.4);
     }
 
     .value-item h4 {
-      font-family: var(--serif); font-size: 24px; font-weight: 400;
-      margin-bottom: 12px; letter-spacing: 0.01em;
+      font-family: var(--serif); font-size: 21px; font-weight: 400;
+      color: var(--cream); margin-bottom: 12px; letter-spacing: 0.01em;
       position: relative; z-index: 1;
-      transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.4s ease;
+      transition: color 0.35s ease;
     }
     .value-item:hover h4,
-    .value-item:focus-within h4 { transform: translateX(2px); color: var(--accent); }
+    .value-item:focus-within h4 { color: var(--accent); }
 
     .value-item p {
-      font-size: 15px; line-height: 1.75; color: var(--mid);
+      font-size: 13.5px; line-height: 1.72;
+      color: rgba(250,247,242,0.5);
       position: relative; z-index: 1;
     }
 
-    /* subtle arrow that slides in on hover, hinting at interactivity */
-    .value-arrow {
-      position: absolute;
-      bottom: 22px; right: 24px;
-      width: 28px; height: 28px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent);
-      opacity: 0;
-      transform: translateX(-6px);
-      transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
-      pointer-events: none;
-    }
-    .value-item:hover .value-arrow,
-    .value-item:focus-within .value-arrow {
-      opacity: 1; transform: translateX(0);
-    }
-    .value-arrow svg { width: 18px; height: 18px; }
-
-    @media (max-width: 900px) {
-      .values-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 960px) {
+      .values-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 600px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 420px) {
       .values-grid { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .value-item,
-      .value-item::before,
-      .value-item::after,
-      .value-number,
-      .value-number::after,
-      .value-item h4,
-      .value-arrow {
-        transition: none !important;
-        animation: none !important;
+      .value-item, .value-item::before, .value-item h4, .value-icon {
+        transition: none !important; animation: none !important;
       }
     }
 
@@ -221,7 +234,7 @@
     .community-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── CTA ── */
-    .about-cta { background: var(--dark); padding: 100px 40px; text-align: center; }
+    .about-cta { padding: 100px 40px; text-align: center; position: relative; overflow: hidden; }
     .about-cta h3 {
       font-family: var(--serif); font-size: clamp(28px, 4vw, 54px);
       font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.15;
@@ -249,11 +262,9 @@
     @media (max-width: 960px) {
       .story-inner, .community-inner { grid-template-columns: 1fr; gap: 40px; }
       .founders-grid { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
       .story-section, .mission-band, .values-section, .founders-section, .community-section, .about-cta { padding: 72px 24px; }
     }
     @media (max-width: 560px) {
-      .values-grid { grid-template-columns: 1fr; }
       .founder-card { flex-direction: column; }
       .founder-photo { width: 120px; height: 120px; }
     }
@@ -307,9 +318,12 @@
     </div>
     <div class="story-text">
       <h2>Our <em>story</em></h2>
-      <p>Caring for the body was historically communal. Roman bathhouses welcomed citizens of every class. The Black Panther Party built free health clinics because they understood that self-care was survival. Audre Lorde wrote in 1988 that caring for herself was "not self-indulgence, it is self-preservation." Wellness was never meant to be a luxury, but modern capitalism made it one, repackaging it in white walls, price points, and a culture that quietly told most people they didn't belong.</p>
-      <p>We started Auroraflow because we were tired of watching our community make themselves smaller just to get through the door. When we looked at the wellness industry, it didn't look like our community. That wasn't a business opportunity. It was an obligation. At the heart of Durham, we've built the space we all wished existed, a sanctuary grounded in inclusivity where wellness is within reach for the rest of us. Our team are dedicated professionals who don't just offer treatments, they craft experiences, and our community, from longtime clients to the artists who've painted our story on our walls, are the spirit that keeps it all going.</p>
-      <p>Every detail is a deliberate choice, running through every service we offer, from therapeutic massage and reflexology to facials, energy healing, and gender-affirming waxing. Your identity isn't something to explain, your body isn't something to apologize for, and your time in our care belongs entirely to you.</p>
+      <p>At the heart of Durham, we built Auroraflow because we wanted a wellness space that felt like it was actually made for our community.</p>
+      <p>Not just the people who already felt comfortable walking into a spa. Not just the people who knew the language, fit the image, or could afford to treat care like a luxury. We wanted a place where people could show up as they are and feel taken care of without having to explain themselves first.</p>
+      <p>Care has always been bigger than beauty or self-improvement. At its best, it is communal. It helps people survive, reconnect with their bodies, and keep going. That belief has shaped Auroraflow from the beginning.</p>
+      <p>Founded by Castle Frame and Lauren McCullough, Auroraflow is a wellness center, but it is also a response to an industry that has made too many people feel like they do not belong.</p>
+      <p>Our team is the heart of this place. Our clients, neighbors, artists, and community are the spirit of it. Every service we offer, from therapeutic massage and facials to reflexology, energy healing, and gender-affirming waxing, is built around the same promise:</p>
+      <p><em>You do not have to apologize for your body here. You do not have to explain your identity here. You just get to be cared for.</em></p>
     </div>
   </div>
 </div>
@@ -325,23 +339,32 @@
 <!-- VALUES -->
 <div class="values-section">
   <div class="values-inner">
-    <h2>What we <em>stand for</em></h2>
+    <h2>Guiding <em>Principles</em></h2>
     <div class="values-grid">
       <div class="value-item">
-        <h4>Everyone's actually welcome</h4>
-        <p>Not "all are welcome" on a sign by the door: welcome in the way the room is built. Affirming intake, no weight limits on the tables, ramps where you'd expect stairs. If you've had to brace yourself walking into a spa before, that's the feeling we set out to remove.</p>
+        <div class="value-icon">🫶</div>
+        <h4>Be Respectful</h4>
+        <p>We are kind to those around us, even if we don't share the same views or opinions.</p>
       </div>
       <div class="value-item">
-        <h4>Care shouldn't be a luxury</h4>
-        <p>We run Pay What You Can days twice a month and keep membership pricing honest, because rest isn't a reward for the people who can already afford it.</p>
+        <div class="value-icon">✊</div>
+        <h4>Be Bold</h4>
+        <p>We maintain the courage to take on difficult challenges that further our mission.</p>
       </div>
       <div class="value-item">
-        <h4>We ask before we assume</h4>
-        <p>Every session opens with a real check-in. Your preferences get written down and remembered, and "no" is a complete answer at any point, no explanation owed.</p>
+        <div class="value-icon">🎯</div>
+        <h4>Be Intentional</h4>
+        <p>We focus on our "why" and strive to be purposeful in both word and action.</p>
       </div>
       <div class="value-item">
-        <h4>Our team comes first too</h4>
-        <p>Fair pay, a culture that doesn't ask anyone to code-switch, and room to keep learning. People take better care of others when they're cared for, so we start there.</p>
+        <div class="value-icon">👥</div>
+        <h4>Be Inclusive</h4>
+        <p>We make investments in ensuring that we provide accessible and welcoming spaces and services.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🫂</div>
+        <h4>Be YOU</h4>
+        <p>We show up as our authentic selves, and encourage you to do the same.</p>
       </div>
     </div>
   </div>
@@ -355,6 +378,7 @@
     <div class="community-text">
       <h2>Rooted in <em>Durham</em></h2>
       <p>607 William Vickers Ave sits in the heart of downtown Durham, a city that has always made room for the people the rest of the world has tried to push out. We chose Durham intentionally, and Durham has given back tenfold.</p>
+      <p>Our home is the <em><a href="https://www.opendurham.org/buildings/607-vickers-ave-petty-house" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Petty House</a></em> — a Four Square built around 1900, one of the last remaining homes from the early character of this block. It was once the home of Clara O. Petty, a teacher at West Durham School, and her family. When the Durham Freeway cut through in 1967 and took the entire west side of the 600 block with it, this house stood. While decades of commercial development reshaped everything around it, the Petty House remained. We think about that a lot — a building that survived because it refused to disappear, now home to a space built for the people this city has too often overlooked.</p>
       <p>We partner with local organizations, host community events, and run Pay What You Can days every second and fourth Thursday to ensure our services are accessible regardless of financial circumstances.</p>
       <p>Auroraflow was built <em>by</em> this community and <em>for</em> this community, and that will never change.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
@@ -363,7 +387,7 @@
       </div>
     </div>
     <div class="community-img">
-      <img src="assets/img/durham-skyline.jpg" alt="Durham skyline" />
+      <img src="assets/petty-house-historic.jpg" alt="The Petty House at 607 Vickers Ave, circa 1969 — a historic Four Square home and Auroraflow's home in Durham, NC" />
     </div>
   </div>
 </div>

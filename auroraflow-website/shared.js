@@ -2,44 +2,75 @@
 (function () {
   /* Inject decorative sparkles into every .page-hero (subpage header).
      Honors prefers-reduced-motion. */
+  function injectSparkles(hero, positions, contentSelector) {
+    if (hero.querySelector('.hero-sparkles')) return;
+    const layer = document.createElement('div');
+    layer.className = 'hero-sparkles';
+    layer.setAttribute('aria-hidden', 'true');
+    positions.forEach(([top, left, size, delay, twinkle]) => {
+      const s = document.createElement('span');
+      s.className = 'hero-sparkle';
+      s.style.top    = top  + '%';
+      s.style.left   = left + '%';
+      s.style.width  = size + 'px';
+      s.style.height = size + 'px';
+      s.style.setProperty('--delay', delay + 's');
+      s.style.setProperty('--twinkle', twinkle + 's');
+      layer.appendChild(s);
+    });
+    const anchor = hero.querySelector(contentSelector);
+    if (anchor) hero.insertBefore(layer, anchor); else hero.appendChild(layer);
+  }
+
   function addSparkles() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* ── Sub-page heroes (.page-hero) ── */
+    /* Hand-tuned positions (top%, left%, size px, delay s, twinkle s) — avoids the
+       center where the headline sits, clusters around the eyebrow + edges.
+       Twinkle durations vary so sparkles never blink in unison. */
+    const PAGE_HERO_POSITIONS = [
+      [22, 14,  14, 0.55, 2.4],
+      [34, 23,   8, 1.10, 3.1],
+      [18, 78,  16, 0.70, 2.7],
+      [42, 88,  10, 1.25, 3.6],
+      [62, 12,  11, 1.40, 2.2],
+      [70, 80,  13, 0.95, 2.9],
+      [82, 30,   9, 1.55, 3.3],
+      [78, 62,  12, 1.20, 2.5],
+      [12, 48,   7, 1.65, 3.8],
+      [55, 50,   6, 1.85, 2.1]
+    ];
     document.querySelectorAll('.page-hero').forEach((hero) => {
-      if (hero.querySelector('.hero-sparkles')) return;
-      const layer = document.createElement('div');
-      layer.className = 'hero-sparkles';
-      layer.setAttribute('aria-hidden', 'true');
+      injectSparkles(hero, PAGE_HERO_POSITIONS, '.page-hero-content');
+    });
 
-      /* Hand-tuned positions (top%, left%, size px, delay s, twinkle s) — avoids the
-         center where the headline sits, clusters around the eyebrow + edges.
-         Twinkle durations vary so sparkles never blink in unison. */
-      const POSITIONS = [
-        [22, 14,  14, 0.55, 2.4],
-        [34, 23,   8, 1.10, 3.1],
-        [18, 78,  16, 0.70, 2.7],
-        [42, 88,  10, 1.25, 3.6],
-        [62, 12,  11, 1.40, 2.2],
-        [70, 80,  13, 0.95, 2.9],
-        [82, 30,   9, 1.55, 3.3],
-        [78, 62,  12, 1.20, 2.5],
-        [12, 48,   7, 1.65, 3.8],
-        [55, 50,   6, 1.85, 2.1]
-      ];
-
-      POSITIONS.forEach(([top, left, size, delay, twinkle]) => {
-        const s = document.createElement('span');
-        s.className = 'hero-sparkle';
-        s.style.top    = top  + '%';
-        s.style.left   = left + '%';
-        s.style.width  = size + 'px';
-        s.style.height = size + 'px';
-        s.style.setProperty('--delay', delay + 's');
-        s.style.setProperty('--twinkle', twinkle + 's');
-        layer.appendChild(s);
-      });
-
-      /* layer should sit above the gradient/vignette but below the text */
-      hero.insertBefore(layer, hero.querySelector('.page-hero-content'));
+    /* ── Home hero (.hero) — full-height aurora background ── */
+    /* Positions avoid the centered text block (roughly 30–70% top, 20–80% left).
+       Clustered toward edges, corners, and sky so they read like real stars. */
+    const HOME_HERO_POSITIONS = [
+      [ 7,  8,  16, 0.30, 2.5],
+      [ 9, 42,  10, 0.80, 3.2],
+      [11, 78,  14, 0.50, 2.8],
+      [ 6, 90,  11, 1.10, 3.5],
+      [14, 22,   8, 1.40, 2.2],
+      [18, 62,  13, 0.65, 3.0],
+      [25, 94,  10, 1.20, 2.6],
+      [38,  4,  12, 0.90, 3.4],
+      [50,  2,   8, 1.50, 2.3],
+      [62,  6,  15, 0.70, 3.1],
+      [75,  8,  10, 1.30, 2.7],
+      [25, 96,  14, 0.45, 3.6],
+      [50, 97,   9, 1.00, 2.4],
+      [65, 93,  13, 1.60, 3.3],
+      [80, 18,  16, 0.40, 2.9],
+      [84, 52,   9, 1.05, 3.3],
+      [87, 84,  12, 0.55, 2.4],
+      [77, 70,  11, 1.65, 3.7],
+      [72, 32,   8, 1.15, 2.8],
+    ];
+    document.querySelectorAll('section.hero').forEach((hero) => {
+      injectSparkles(hero, HOME_HERO_POSITIONS, '.hero-content');
     });
   }
 

@@ -15,37 +15,52 @@
       display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     @keyframes heroZoom {
-      0%   { transform: scale(1)    translateZ(0); }
-      50%  { transform: scale(1.07) translateZ(0); }
-      100% { transform: scale(1)    translateZ(0); }
+      0%   { transform: scale(1.08) translateZ(0); }
+      50%  { transform: scale(1.14) translateZ(0); }
+      100% { transform: scale(1.08) translateZ(0); }
     }
     .hero video {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      object-position: center 25%;
       animation: heroZoom 45s ease-in-out infinite;
-      transform-origin: center center;
+      transform-origin: center 30%;
       will-change: transform;
       transform: translateZ(0);
     }
     .hero-overlay {
       position: absolute; inset: 0;
       background:
-        /* vignette — softened, just a gentle edge burn */
-        radial-gradient(ellipse at center, transparent 50%, rgba(13,9,25,0.35) 100%),
-        /* bold dark base so aurora reads through without washing out text */
-        linear-gradient(to top, rgba(13,9,25,0.96) 0%, rgba(13,9,25,0.55) 40%, rgba(13,9,25,0.20) 75%, rgba(13,9,25,0.08) 100%),
+        /* strong corner vignette — edges burn to near-black, center aurora pops forward */
+        radial-gradient(ellipse 72% 72% at center, transparent 28%, rgba(5,3,12,0.78) 100%),
+        /* top bar — frames the sky and anchors the composition */
+        linear-gradient(to bottom, rgba(5,3,12,0.45) 0%, transparent 20%),
+        /* bold bottom fade into testimonials */
+        linear-gradient(to top, rgba(13,9,25,1) 0%, rgba(13,9,25,0.85) 18%, rgba(13,9,25,0.40) 42%, rgba(13,9,25,0.10) 75%, transparent 100%),
         /* deep purple atmospheric tint */
-        linear-gradient(160deg, rgba(54,57,113,0.45) 0%, rgba(110,63,141,0.20) 50%, transparent 75%);
+        linear-gradient(160deg, rgba(54,57,113,0.50) 0%, rgba(110,63,141,0.25) 50%, transparent 75%);
     }
     /* aurora-toned sparkle glow for home hero */
     .hero .hero-sparkle {
       filter: drop-shadow(0 0 5px rgba(173,205,82,0.7))
               drop-shadow(0 0 16px rgba(110,63,141,0.55));
     }
+    @keyframes heroIntro {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+    @keyframes heroBreathe {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.022); }
+    }
     .hero-content {
       position: relative; z-index: 2;
       padding: 0 40px;
       max-width: 860px; width: 100%;
       text-align: center;
+      opacity: 0;
+      animation:
+        heroIntro   0.4s ease-out    0s forwards,
+        heroBreathe 5s  ease-in-out  2s infinite;
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -121,77 +136,199 @@
     .hero-badge.hidden { display: none !important; }
 
     /* ── ABOUT ── */
-    .about { background: var(--warm-white); }
+    .about {
+      background: linear-gradient(160deg, #0a1318 0%, #0e0a1e 55%, #0a0d1a 100%);
+      position: relative; overflow: hidden;
+      padding-top: 100px; padding-bottom: 100px;
+    }
+    .about::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 80% at 12% 55%, rgba(110,63,141,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 88% 25%, rgba(18,115,109,0.10) 0%, transparent 55%);
+    }
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      display: grid; grid-template-columns: 42fr 58fr; gap: 72px; align-items: center;
+      position: relative; z-index: 1;
     }
     .about-image {
-      border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; position: relative;
+      border-radius: 6px; overflow: hidden; aspect-ratio: 3/4; position: relative;
+      box-shadow:
+        0 0 0 1px rgba(18,115,109,0.4),
+        0 40px 100px rgba(5,3,12,0.7),
+        0 0 80px rgba(110,63,141,0.18);
     }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-image img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      object-position: center top;
+    }
+    .about-eyebrow {
+      display: block;
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #ADCD52; margin-bottom: 20px;
+    }
     .about-text h2 {
       font-family: var(--serif); font-size: clamp(30px, 3.5vw, 52px);
-      font-weight: 400; line-height: 1.2; margin-bottom: 24px;
+      font-weight: 400; line-height: 1.2; margin-bottom: 28px;
+      color: #faf7f2;
     }
-    .about-text h2 em { font-style: italic; }
+    .about-h2-light {
+      font-weight: 300; font-style: italic;
+      color: rgba(250,247,242,0.55);
+    }
+    .about-text h2 strong {
+      font-weight: 700; color: #faf7f2;
+      display: block; margin-top: 6px;
+    }
     .about-text p {
-      font-size: 16px; line-height: 1.78; color: var(--mid); margin-bottom: 20px;
+      font-size: 16px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
     }
-    .about-text p:last-of-type { margin-bottom: 32px; }
+    .about-text p a { color: #ADCD52 !important; }
+    .about-text p:last-of-type { margin-bottom: 36px; }
+    .about .btn-outline {
+      border-color: rgba(250,247,242,0.4); color: #faf7f2;
+      padding: 14px 32px;
+    }
+    .about .btn-outline:hover { background: #faf7f2; color: #0e0a1e; border-color: #faf7f2; }
 
-    /* ── PROVIDERS ── */
-    .providers { background: var(--cream); }
-    .providers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    .provider-card { text-decoration: none; color: inherit; display: block; }
-    .provider-photo {
-      aspect-ratio: 1/1; border-radius: 4px; overflow: hidden; margin-bottom: 14px;
-      background: #e0d8d0;
+    /* ── SPARKLE STARS ── */
+    @keyframes starTwinkle {
+      0%, 100% { opacity: 0; transform: scale(0.4); }
+      45%, 55% { opacity: var(--star-opacity, 0.75); transform: scale(1); }
     }
-    .provider-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.45s ease;
+    .sparkle-star {
+      position: absolute; border-radius: 50%;
+      background: #fff; pointer-events: none; z-index: 0;
+      width: var(--star-size, 1.5px); height: var(--star-size, 1.5px);
+      animation: starTwinkle var(--star-dur, 3s) ease-in-out var(--star-delay, 0s) infinite;
     }
-    .provider-card:hover .provider-photo img { transform: scale(1.04); }
-    .provider-name {
-      font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: 0.01em;
+
+    /* ── ANNOUNCEMENTS ── */
+    .announcements {
+      background: linear-gradient(160deg, #0a1318 0%, #0e0a1e 55%, #0a0d1a 100%);
+      position: relative; overflow: hidden;
+    }
+    .announcements .section-label { color: rgba(250,247,242,0.45); }
+    .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
+    .announcement-card {
+      grid-area: 1 / 1;
+      display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: center;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+    .announcement-card.active {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    .announcement-logo {
+      border-radius: 10px; overflow: hidden; aspect-ratio: 4/3;
+      box-shadow: 0 0 0 1px rgba(18,115,109,0.35), 0 24px 60px rgba(5,3,12,0.65);
+    }
+    .announcement-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .announcement-eyebrow {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #ADCD52; margin-bottom: 14px; display: block;
+    }
+    .announcement-card h3 {
+      font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px);
+      font-weight: 400; line-height: 1.2; margin-bottom: 16px;
+      background: linear-gradient(120deg, #faf7f2 20%, #ADCD52 55%, #52BCA3 80%, #faf7f2 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% auto;
+    }
+    .announcement-card p {
+      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
+      margin-bottom: 20px; max-width: 480px;
+    }
+    .announcement-card ul {
+      list-style: none; padding: 0; margin: 0 0 28px;
+    }
+    .announcement-card ul li {
+      font-size: 14px; line-height: 1.65; color: rgba(250,247,242,0.6);
+      padding: 6px 0 6px 20px; position: relative;
+    }
+    .announcement-card ul li::before {
+      content: "→"; position: absolute; left: 0;
+      color: #ADCD52; font-size: 12px;
+    }
+    .announcement-accent {
+      border-radius: 10px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      padding: 32px 24px; text-align: center;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(5,3,12,0.55);
+    }
+    .announcement-accent .accent-icon {
+      font-size: 42px; line-height: 1;
+    }
+    .announcement-accent .accent-label {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(250,247,242,0.7);
+    }
+    .announcement-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; border-radius: 100px;
+      border: 1.5px solid rgba(250,247,242,0.35); color: #faf7f2;
+      font-family: var(--sans); font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .announcement-link:hover { background: rgba(250,247,242,0.1); border-color: #faf7f2; }
+    .announcements-nav {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 36px; position: relative; z-index: 1;
+    }
+    .announcements-nav button {
+      width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer;
+      background: rgba(250,247,242,0.25); transition: background 0.25s, transform 0.25s;
+    }
+    .announcements-nav button.active {
+      background: #ADCD52; transform: scale(1.3);
     }
 
     /* ── FEATURED SERVICES ── */
-    .services-preview { background: var(--warm-white); }
-    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .services-preview {
+      background: linear-gradient(160deg, #0a1318 0%, #0e0a1e 55%, #0a0d1a 100%);
+      position: relative; overflow: hidden;
+    }
+    .services-preview .section-label { color: rgba(250,247,242,0.45); }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; z-index: 1; }
     .service-card {
       display: flex; flex-direction: column;
-      border-radius: 8px; overflow: hidden; background: var(--cream);
+      border-radius: 8px; overflow: hidden;
+      background: rgba(255,255,255,0.04);
       text-decoration: none; color: inherit;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.09);
       transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
     }
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(28,24,22,0.12);
+      box-shadow: 0 20px 50px rgba(5,3,12,0.6), 0 0 30px rgba(110,63,141,0.18);
     }
     .service-thumb {
       width: 100%; height: 260px;
-      overflow: hidden; background: #e0d8d0; flex-shrink: 0;
+      overflow: hidden; background: rgba(255,255,255,0.05); flex-shrink: 0;
     }
     .service-thumb img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
     }
     .service-card:hover .service-thumb img { transform: scale(1.05); }
-    .service-info {
-      padding: 24px 28px 28px;
-    }
+    .service-info { padding: 24px 28px 28px; }
     .service-info h4 {
       font-family: var(--serif); font-size: 22px; font-weight: 400;
-      margin-bottom: 10px; line-height: 1.2;
+      margin-bottom: 10px; line-height: 1.2; color: #faf7f2;
     }
-    .service-info p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+    .service-info p { font-size: 14px; line-height: 1.7; color: rgba(250,247,242,0.58); }
     .service-link {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 16px; font-size: 11px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--space); text-decoration: none;
+      color: #ADCD52; text-decoration: none;
     }
 
     /* ── TAGLINE BAND ── */
@@ -228,6 +365,8 @@
       text-align: center;
       overflow: hidden;
       position: relative;
+      margin-top: -80px;
+      padding-top: 152px;
     }
     /* service room photo — very low opacity texture */
     .testimonials::before {
@@ -236,12 +375,17 @@
       background-image: url('assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png');
       background-size: cover; background-position: center center;
       opacity: 0.28;
+      /* mask the image out at the top so it doesn't break the blend */
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
     }
     /* dark gradient overlay keeps text fully legible */
     .testimonials::after {
       content: "";
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
       background:
+        /* solid cap at the very top to match hero bottom exactly */
+        linear-gradient(to bottom, rgba(13,9,25,1) 0%, transparent 18%),
         radial-gradient(ellipse at 30% 60%, rgba(110,63,141,0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 75% 30%, rgba(54,57,113,0.14) 0%, transparent 50%),
         linear-gradient(160deg, rgba(13,9,25,0.72) 0%, rgba(21,14,40,0.68) 100%);
@@ -363,6 +507,8 @@
   </div>
 </section>
 
+<div class="rainbow-bar"></div>
+
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="testimonials-inner">
@@ -435,49 +581,100 @@
 
 <div class="rainbow-bar"></div>
 
+<!-- ANNOUNCEMENTS -->
+<section class="announcements">
+  <div class="section-inner">
+    <div class="announcements-slider" id="announcementsSlider">
+
+      <div class="announcement-card active">
+        <div class="announcement-logo">
+          <img src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">New Partnership</span>
+          <h3>Real primary care. No insurance required.</h3>
+          <p>Community Love DPC puts the relationship back in healthcare. Flat-rate memberships built around you, not your insurer.</p>
+          <ul>
+            <li>Flexible visits: in-clinic, telehealth, SMS, or home</li>
+            <li>Affordable memberships for individuals &amp; families, sliding scale available</li>
+            <li>Wholesale labs, imaging &amp; procedures at wholesale costs, no middleman</li>
+          </ul>
+          <a class="announcement-link" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-accent" style="background: linear-gradient(145deg, #0e0c20, #141030);">
+          <div class="accent-icon">🌿</div>
+          <div class="accent-label">Effective July 1st</div>
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Team Update</span>
+          <h3>Nurturing our team: a modest price adjustment</h3>
+          <p>To fairly compensate our therapists, who are constantly growing, training, and showing up for you, we're making a small pricing update on July 1st.</p>
+          <ul>
+            <li>Massage &amp; Skincare Services: +$10</li>
+            <li>Waxing Services: +$5</li>
+            <li>This change supports our team's livelihood and continued investment in their craft</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-accent" style="background: linear-gradient(145deg, #0e0c20, #141030);">
+          <div class="accent-icon">💚</div>
+          <div class="accent-label">New Initiative</div>
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Community</span>
+          <h3>Introducing the Auroraflow Community Fund</h3>
+          <p>Wellness belongs to everyone. Our new donation-based fund supports clients who face financial barriers to care, with no judgment and no limit on applications.</p>
+          <ul>
+            <li>Apply anytime via a brief consideration form</li>
+            <li>Monthly spots announced via newsletter &amp; social, first-come, first-served</li>
+            <li>Everyone who applies gets a personal follow-up from our team</li>
+            <li>Want to give? Donate to support a neighbor's care</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-accent" style="background: linear-gradient(145deg, #0e0c20, #141030);">
+          <div class="accent-icon">📋</div>
+          <div class="accent-label">Policy Update</div>
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Policy</span>
+          <h3>New: Dementia &amp; Cognitive Conditions Policy</h3>
+          <p>To protect client safety, practitioner safety, and ensure clear consent practices, we've added a new policy for clients with dementia, Alzheimer's, or other cognitive conditions.</p>
+          <ul>
+            <li>A caregiver must be present in the treatment room or on-site for the full session</li>
+            <li>The caregiver is required to sign consent forms on behalf of the client</li>
+          </ul>
+          <a class="announcement-link" href="policies.html">View Full Policies →</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="announcements-nav" id="announcementsNav"></div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image">
-        <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg"
-          alt="Rainbow mural and massage tables at Auroraflow" />
+        <img src="assets/img/759A0003.jpg"
+          alt="Client receiving a facial at Auroraflow" />
       </div>
       <div class="about-text">
-        <h2>They say wellness is a luxury.<br><em>We believe it's a human right.</em></h2>
+        <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
+        <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
         <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
-        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our Community Fund and our <a href="pay-what-you-can.html" style="color:var(--accent2);text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="color:var(--accent2);text-decoration:underline">memberships</a> for both individuals and businesses.</p>
-        <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:8px 16px;border-radius:100px;border:1.5px solid var(--space);color:var(--space);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;">✨ Queerly Owned &amp; Operated ✨</div>
-        <br>
+        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our Community Fund and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
         <a class="btn-outline" href="about.html">Learn More About Us</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEW PROVIDERS -->
-<section class="providers">
-  <div class="section-inner">
-    <p class="section-label">New Providers</p>
-    <div class="providers-grid">
-      <a class="provider-card" href="team.html">
-        <div class="provider-photo">
-          <img src="assets/img/6893923ca6c2d2cc6188bde0_Untitled-design-50-.png" alt="Brandon Hu" />
-        </div>
-        <div class="provider-name">Brandon Hu</div>
-      </a>
-      <a class="provider-card" href="team.html">
-        <div class="provider-photo">
-          <img src="assets/img/6893956b4420df3dbf1612ef_Untitled-design-51-.png" alt="Omer Unluata" />
-        </div>
-        <div class="provider-name">Omer Unluata</div>
-      </a>
-      <a class="provider-card" href="team.html">
-        <div class="provider-photo">
-          <img src="assets/img/6748ed21e5ab6934a8ab842a_IMG_1165-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-1-.png" alt="Carissa Bovee" />
-        </div>
-        <div class="provider-name">Carissa Bovee</div>
-      </a>
     </div>
   </div>
 </section>
@@ -598,6 +795,19 @@
   if (heroVideo) {
     heroVideo.playbackRate = 0.35;
     heroVideo.addEventListener('canplay', () => { heroVideo.playbackRate = 0.35; });
+    heroVideo.addEventListener('timeupdate', () => {
+      const t = heroVideo.currentTime;
+      const d = heroVideo.duration;
+      if (!d) return;
+      const fade = 0.9; // video-time seconds to fade over
+      if (d - t < fade) {
+        heroVideo.style.opacity = Math.max(0, (d - t) / fade);
+      } else if (t < fade) {
+        heroVideo.style.opacity = Math.min(1, t / fade);
+      } else {
+        heroVideo.style.opacity = 1;
+      }
+    });
   }
 
   const hamburger = document.getElementById('hamburger');
@@ -613,6 +823,55 @@
       hamburger.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+
+  // Announcements slider
+  (() => {
+    const slider = document.getElementById('announcementsSlider');
+    const navEl  = document.getElementById('announcementsNav');
+    if (!slider || !navEl) return;
+    const cards = Array.from(slider.querySelectorAll('.announcement-card'));
+    let current = 0, timer;
+    cards.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', 'Announcement ' + (i + 1));
+      if (i === 0) btn.classList.add('active');
+      btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+      navEl.appendChild(btn);
+    });
+    const dots = Array.from(navEl.querySelectorAll('button'));
+    function goTo(idx) {
+      cards[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = ((idx % cards.length) + cards.length) % cards.length;
+      cards[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 7000); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+    slider.addEventListener('mouseenter', () => clearInterval(timer));
+    slider.addEventListener('mouseleave', startTimer);
+    startTimer();
+  })();
+
+  // Sparkle star field for all dark sections
+  document.querySelectorAll('.testimonials, .about, .announcements, .services-preview').forEach(section => {
+    const area = section.offsetWidth * Math.max(section.offsetHeight, 300);
+    const count = Math.min(Math.floor(area / 7000), 55);
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle-star';
+      const size = 0.8 + Math.random() * 2;
+      s.style.cssText = [
+        `left:${(Math.random() * 96 + 2)}%`,
+        `top:${(Math.random() * 96 + 2)}%`,
+        `--star-size:${size}px`,
+        `--star-opacity:${0.35 + Math.random() * 0.65}`,
+        `--star-dur:${2.5 + Math.random() * 4.5}s`,
+        `--star-delay:${Math.random() * 6}s`
+      ].join(';');
+      section.appendChild(s);
+    }
   });
 </script>
 </body>

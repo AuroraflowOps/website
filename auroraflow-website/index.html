@@ -137,28 +137,43 @@
       font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: 0.01em;
     }
 
-    /* ── SERVICES PREVIEW ── */
+    /* ── FEATURED SERVICES ── */
     .services-preview { background: var(--warm-white); }
-    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .service-card {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 24px; border-radius: 4px; background: var(--cream);
-      text-decoration: none; color: inherit; border: 1px solid var(--border);
-      transition: box-shadow 0.2s, border-color 0.2s;
+      display: flex; flex-direction: column;
+      border-radius: 8px; overflow: hidden; background: var(--cream);
+      text-decoration: none; color: inherit;
+      border: 1px solid var(--border);
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
     }
     .service-card:hover {
-      box-shadow: 0 4px 20px rgba(28,24,22,0.07); border-color: rgba(28,24,22,0.18);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(28,24,22,0.12);
     }
     .service-thumb {
-      width: 86px; height: 86px; border-radius: 3px;
-      flex-shrink: 0; overflow: hidden; background: #e0d8d0;
+      width: 100%; height: 260px;
+      overflow: hidden; background: #e0d8d0; flex-shrink: 0;
     }
-    .service-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .service-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .service-card:hover .service-thumb img { transform: scale(1.05); }
+    .service-info {
+      padding: 24px 28px 28px;
+    }
     .service-info h4 {
-      font-family: var(--serif); font-size: 19px; font-weight: 400;
-      margin-bottom: 6px; line-height: 1.25;
+      font-family: var(--serif); font-size: 22px; font-weight: 400;
+      margin-bottom: 10px; line-height: 1.2;
     }
-    .service-info p { font-size: 13px; line-height: 1.65; color: var(--muted); }
+    .service-info p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 16px; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--space); text-decoration: none;
+    }
 
     /* ── TAGLINE BAND ── */
     .tagline-band {
@@ -176,6 +191,7 @@
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
       .providers-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
       .services-grid { grid-template-columns: 1fr; }
+      .service-thumb { height: 220px; }
       .hero-badge img { height: 60px; }
       .hero-content { padding: 0 24px 56px; }
       .tagline-band { padding: 70px 24px; }
@@ -298,6 +314,7 @@
         <div class="service-info">
           <h4>BIPOC Specific Clinical Facial &amp; Consultation</h4>
           <p>Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color.</p>
+          <span class="service-link">Learn More →</span>
         </div>
       </a>
       <a class="service-card" href="services/blended-massage-energy-healing.html">
@@ -307,6 +324,7 @@
         <div class="service-info">
           <h4>Blended Massage &amp; Energy Healing</h4>
           <p>Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
+          <span class="service-link">Learn More →</span>
         </div>
       </a>
     </div>

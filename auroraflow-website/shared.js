@@ -80,3 +80,37 @@
     addSparkles();
   }
 })();
+
+// Star field dots for dark sections across all pages
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function injectStarDots(section) {
+    if (section.querySelector('.sparkle-star')) return;
+    const count = Math.min(Math.floor(section.offsetWidth * Math.max(section.offsetHeight, 200) / 7000), 55);
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle-star';
+      const size = 0.8 + Math.random() * 2;
+      s.style.cssText = [
+        'left:'   + (Math.random() * 96 + 2) + '%',
+        'top:'    + (Math.random() * 96 + 2) + '%',
+        '--star-size:'    + size + 'px',
+        '--star-opacity:' + (0.35 + Math.random() * 0.65),
+        '--star-dur:'     + (2.5 + Math.random() * 4.5) + 's',
+        '--star-delay:'   + (Math.random() * 6) + 's'
+      ].join(';');
+      section.appendChild(s);
+    }
+  }
+
+  function addStarDots() {
+    document.querySelectorAll('.page-hero, .schedule-section, .corp-form-section, .corp-intro, .corp-plans, .join-band, .values-section, .about-cta, .confirm-hero, .expect-section, .gift-band').forEach(injectStarDots);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addStarDots);
+  } else {
+    addStarDots();
+  }
+})();

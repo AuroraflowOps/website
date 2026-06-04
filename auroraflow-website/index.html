@@ -35,7 +35,7 @@
         /* top bar — frames the sky and anchors the composition */
         linear-gradient(to bottom, rgba(5,3,12,0.45) 0%, transparent 20%),
         /* bold bottom fade into testimonials */
-        linear-gradient(to top, rgba(13,9,25,1) 0%, rgba(13,9,25,0.85) 18%, rgba(13,9,25,0.40) 42%, rgba(13,9,25,0.10) 75%, transparent 100%),
+        linear-gradient(to top, rgba(12,14,29,1) 0%, rgba(12,14,29,0.85) 18%, rgba(12,14,29,0.40) 42%, rgba(12,14,29,0.10) 75%, transparent 100%),
         /* deep purple atmospheric tint */
         linear-gradient(160deg, rgba(54,57,113,0.50) 0%, rgba(110,63,141,0.25) 50%, transparent 75%);
     }
@@ -137,7 +137,7 @@
 
     /* ── ABOUT ── */
     .about {
-      background: linear-gradient(160deg, #0a1318 0%, #0e0a1e 55%, #0a0d1a 100%);
+      background: #0c0e1d;
       position: relative; overflow: hidden;
       padding-top: 100px; padding-bottom: 100px;
     }
@@ -193,21 +193,9 @@
     }
     .about .btn-outline:hover { background: #faf7f2; color: #0e0a1e; border-color: #faf7f2; }
 
-    /* ── SPARKLE STARS ── */
-    @keyframes starTwinkle {
-      0%, 100% { opacity: 0; transform: scale(0.4); }
-      45%, 55% { opacity: var(--star-opacity, 0.75); transform: scale(1); }
-    }
-    .sparkle-star {
-      position: absolute; border-radius: 50%;
-      background: #fff; pointer-events: none; z-index: 0;
-      width: var(--star-size, 1.5px); height: var(--star-size, 1.5px);
-      animation: starTwinkle var(--star-dur, 3s) ease-in-out var(--star-delay, 0s) infinite;
-    }
-
     /* ── ANNOUNCEMENTS ── */
     .announcements {
-      background: linear-gradient(160deg, #0a1318 0%, #0e0a1e 55%, #0a0d1a 100%);
+      background: #0c0e1d;
       position: relative; overflow: hidden;
     }
     .announcements .section-label { color: rgba(250,247,242,0.45); }
@@ -292,7 +280,7 @@
 
     /* ── FEATURED SERVICES ── */
     .services-preview {
-      background: linear-gradient(160deg, #0a1318 0%, #0e0a1e 55%, #0a0d1a 100%);
+      background: #0c0e1d;
       position: relative; overflow: hidden;
     }
     .services-preview .section-label { color: rgba(250,247,242,0.45); }
@@ -360,7 +348,7 @@
 
     /* ── TESTIMONIALS ── */
     .testimonials {
-      background: linear-gradient(160deg, #0d0919 0%, #150e28 45%, #0c1320 100%);
+      background: #0c0e1d;
       padding: 72px 40px 64px;
       text-align: center;
       overflow: hidden;
@@ -385,7 +373,7 @@
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
       background:
         /* solid cap at the very top to match hero bottom exactly */
-        linear-gradient(to bottom, rgba(13,9,25,1) 0%, transparent 18%),
+        linear-gradient(to bottom, rgba(12,14,29,1) 0%, transparent 18%),
         radial-gradient(ellipse at 30% 60%, rgba(110,63,141,0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 75% 30%, rgba(54,57,113,0.14) 0%, transparent 50%),
         linear-gradient(160deg, rgba(13,9,25,0.72) 0%, rgba(21,14,40,0.68) 100%);

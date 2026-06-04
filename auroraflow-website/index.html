@@ -20,8 +20,8 @@
     .hero-overlay {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to right, rgba(18,115,109,0.55) 0%, transparent 65%),
-        linear-gradient(to top, rgba(28,24,22,0.92) 0%, rgba(28,24,22,0.3) 50%, rgba(28,24,22,0.1) 100%);
+        linear-gradient(to right, rgba(54,57,113,0.35) 0%, transparent 60%),
+        linear-gradient(to top, rgba(13,9,25,0.88) 0%, rgba(13,9,25,0.25) 50%, rgba(13,9,25,0.05) 100%);
     }
     .hero-content {
       position: relative; z-index: 2;
@@ -217,9 +217,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop playsinline
-    poster="assets/img/64d1b5f61b89c16edafd997e_Massage-Video-2-transcode.mp4.jpg">
-    <source src="assets/img/64d1b5f61b89c16edafd997e_Massage-Video-2-transcode.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline id="heroVideo">
+    <source src="assets/aurora-hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -365,6 +364,12 @@
 
 <script src="shared.js"></script>
 <script>
+  const heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    heroVideo.playbackRate = 0.6;
+    heroVideo.addEventListener('canplay', () => { heroVideo.playbackRate = 0.6; });
+  }
+
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {

@@ -49,6 +49,7 @@
     }
     .values-inner h2 em { font-style: italic; }
     .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .value-item:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 12px); margin-left: auto; margin-right: auto; }
 
     /* interactive card */
     .value-item {
@@ -98,6 +99,10 @@
     .value-item:focus-within::before { transform: scaleX(1); }
     .value-item:hover::after,
     .value-item:focus-within::after { opacity: 1; }
+
+    .value-icon {
+      font-size: 32px; line-height: 1; margin-bottom: 16px;
+    }
 
     .value-number {
       font-family: var(--serif); font-size: 42px; font-weight: 300;
@@ -324,23 +329,32 @@
 <!-- VALUES -->
 <div class="values-section">
   <div class="values-inner">
-    <h2>What we <em>stand for</em></h2>
+    <h2>Guiding <em>Principles</em></h2>
     <div class="values-grid">
       <div class="value-item">
-        <h4>Everyone's actually welcome</h4>
-        <p>Not "all are welcome" on a sign by the door: welcome in the way the room is built. Affirming intake, no weight limits on the tables, ramps where you'd expect stairs. If you've had to brace yourself walking into a spa before, that's the feeling we set out to remove.</p>
+        <div class="value-icon">🫶</div>
+        <h4>Be Respectful</h4>
+        <p>We are kind to those around us, even if we don't share the same views or opinions.</p>
       </div>
       <div class="value-item">
-        <h4>Care shouldn't be a luxury</h4>
-        <p>We run Pay What You Can days twice a month and keep membership pricing honest, because rest isn't a reward for the people who can already afford it.</p>
+        <div class="value-icon">✊</div>
+        <h4>Be Bold</h4>
+        <p>We maintain the courage to take on difficult challenges that further our mission.</p>
       </div>
       <div class="value-item">
-        <h4>We ask before we assume</h4>
-        <p>Every session opens with a real check-in. Your preferences get written down and remembered, and "no" is a complete answer at any point, no explanation owed.</p>
+        <div class="value-icon">🎯</div>
+        <h4>Be Intentional</h4>
+        <p>We focus on our "why" and strive to be purposeful in both word and action.</p>
       </div>
       <div class="value-item">
-        <h4>Our team comes first too</h4>
-        <p>Fair pay, a culture that doesn't ask anyone to code-switch, and room to keep learning. People take better care of others when they're cared for, so we start there.</p>
+        <div class="value-icon">👥</div>
+        <h4>Be Inclusive</h4>
+        <p>We make investments in ensuring that we provide accessible and welcoming spaces and services.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🫂</div>
+        <h4>Be YOU</h4>
+        <p>We show up as our authentic selves, and encourage you to do the same.</p>
       </div>
     </div>
   </div>
@@ -354,6 +368,7 @@
     <div class="community-text">
       <h2>Rooted in <em>Durham</em></h2>
       <p>607 William Vickers Ave sits in the heart of downtown Durham, a city that has always made room for the people the rest of the world has tried to push out. We chose Durham intentionally, and Durham has given back tenfold.</p>
+      <p>Our home is the <em>Petty House</em> — a Four Square built around 1900, one of the last remaining homes from the early character of this block. It was once the home of Clara O. Petty, a teacher at West Durham School, and her family. When the Durham Freeway cut through in 1967 and took the entire west side of the 600 block with it, this house stood. While decades of commercial development reshaped everything around it, the Petty House remained. We think about that a lot — a building that survived because it refused to disappear, now home to a space built for the people this city has too often overlooked.</p>
       <p>We partner with local organizations, host community events, and run Pay What You Can days every second and fourth Thursday to ensure our services are accessible regardless of financial circumstances.</p>
       <p>Auroraflow was built <em>by</em> this community and <em>for</em> this community, and that will never change.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">

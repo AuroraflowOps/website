@@ -12,22 +12,37 @@
     /* ── HERO ── */
     .hero {
       position: relative; height: 100vh; min-height: 640px;
-      display: flex; align-items: flex-end; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    @keyframes heroZoom {
+      0%   { transform: scale(1);    }
+      100% { transform: scale(1.12); }
     }
     .hero video {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      animation: heroZoom 28s ease-in-out infinite alternate;
+      transform-origin: center center;
     }
     .hero-overlay {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to right, rgba(54,57,113,0.35) 0%, transparent 60%),
-        linear-gradient(to top, rgba(13,9,25,0.88) 0%, rgba(13,9,25,0.25) 50%, rgba(13,9,25,0.05) 100%);
+        /* vignette — softened, just a gentle edge burn */
+        radial-gradient(ellipse at center, transparent 50%, rgba(13,9,25,0.35) 100%),
+        /* bold dark base so aurora reads through without washing out text */
+        linear-gradient(to top, rgba(13,9,25,0.96) 0%, rgba(13,9,25,0.55) 40%, rgba(13,9,25,0.20) 75%, rgba(13,9,25,0.08) 100%),
+        /* deep purple atmospheric tint */
+        linear-gradient(160deg, rgba(54,57,113,0.45) 0%, rgba(110,63,141,0.20) 50%, transparent 75%);
+    }
+    /* aurora-toned sparkle glow for home hero */
+    .hero .hero-sparkle {
+      filter: drop-shadow(0 0 5px rgba(173,205,82,0.7))
+              drop-shadow(0 0 16px rgba(110,63,141,0.55));
     }
     .hero-content {
       position: relative; z-index: 2;
-      padding: 0 72px 72px;
-      max-width: 900px;
-      text-align: left;
+      padding: 0 40px;
+      max-width: 860px; width: 100%;
+      text-align: center;
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -49,9 +64,10 @@
       font-size: clamp(15px, 1.6vw, 18px); font-weight: 300;
       color: rgba(250,247,242,0.75); line-height: 1.7;
       margin-bottom: 36px; max-width: 520px;
+      margin-left: auto; margin-right: auto;
     }
     .hero-actions {
-      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;
     }
     .btn-hero {
       display: inline-flex; align-items: center;
@@ -185,6 +201,102 @@
       .service-card { flex-direction: column; }
       .service-thumb { width: 100%; height: 180px; }
     }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--cream);
+      padding: 96px 40px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .testimonials-inner { max-width: 840px; margin: 0 auto; }
+
+    .reviews-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 64px;
+      padding: 18px 36px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      box-shadow: 0 2px 16px rgba(28,24,22,0.06);
+    }
+    .reviews-stat-stars { color: #FBBC04; font-size: 20px; letter-spacing: 3px; line-height: 1; }
+    .reviews-stat-divider { width: 1px; height: 32px; background: var(--border); flex-shrink: 0; }
+    .reviews-stat-count {
+      font-family: var(--serif); font-size: 40px; font-weight: 400;
+      color: var(--dark); line-height: 1;
+    }
+    .reviews-stat-label {
+      font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--mid); text-align: left; line-height: 1.55;
+    }
+    .reviews-stat-label strong { display: block; color: var(--dark); font-weight: 500; font-size: 13px; }
+
+    .testimonials-slider {
+      display: grid;
+      min-height: 320px;
+    }
+    .testimonial-card {
+      grid-area: 1 / 1;
+      display: flex; flex-direction: column; align-items: center;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.2,0.7,0.2,1);
+      pointer-events: none;
+    }
+    .testimonial-card.active {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    .testimonial-stars {
+      color: #FBBC04; font-size: 18px; letter-spacing: 4px; margin-bottom: 28px;
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: clamp(17px, 2vw, 23px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.65; color: var(--dark);
+      margin-bottom: 28px; max-width: 720px;
+      position: relative; padding-top: 24px;
+    }
+    .testimonial-quote::before {
+      content: '\201C';
+      position: absolute; top: -8px; left: -4px;
+      font-size: 96px; line-height: 1;
+      color: var(--accent2); opacity: 0.18;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .testimonial-credit {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .testimonial-credit::before,
+    .testimonial-credit::after {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--border);
+    }
+
+    .testimonials-nav {
+      display: flex; justify-content: center; align-items: center;
+      gap: 8px; margin-top: 48px;
+    }
+    .testimonials-nav button {
+      width: 8px; height: 8px; border-radius: 4px;
+      border: none; background: rgba(28,24,22,0.15);
+      cursor: pointer; padding: 0;
+      transition: background 0.3s ease, width 0.35s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .testimonials-nav button.active {
+      background: var(--accent2); width: 28px;
+    }
+    @media (max-width: 640px) {
+      .reviews-stat { gap: 14px; padding: 14px 22px; }
+      .reviews-stat-count { font-size: 30px; }
+      .testimonials { padding: 72px 24px 64px; }
+    }
   </style>
 </head>
 <body>
@@ -233,6 +345,83 @@
           alt="Best Massage in the Triangle" />
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+
+    <div class="reviews-stat">
+      <div class="reviews-stat-stars">★★★★★</div>
+      <div class="reviews-stat-divider"></div>
+      <div class="reviews-stat-count">400+</div>
+      <div class="reviews-stat-label">
+        <strong>Five-Star Reviews</strong>
+        via Google
+      </div>
+    </div>
+
+    <div class="testimonials-slider" id="testimonialSlider">
+
+      <div class="testimonial-card active">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I booked a 90-minute blended relaxation massage with reflexology, and it was honestly one of the best massages I've ever had. Izzy has the BEST hands. The pressure was perfect, the transitions were seamless, and I left feeling grounded, relaxed, and fully reset. If you're looking for a queer-affirming, peaceful, and truly skilled massage experience in Durham — Aurora Flow is it.</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Their space is so creative and relaxing, and all of the art featured is for purchase if you want to take some home with you. The receptionist was very warm and welcoming. I will definitely visit in the future.</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I cannot emphasize enough how wonderful and patient Brandy is. She has magic hands that know how much pressure to use and can sense where tense spots live in one's body. She always makes my day better — if I could afford a membership I'd be there every month!</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">This was the best body work/massage experience I have ever had — from start to finish. The space is so welcoming and warm. I received a massage from Brandy and it was seriously transformative! Loved the Blue Ridge massage room, the music, the aromatherapy.</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I had an absolutely fabulous massage experience with Patience! They were so considerate and mindful of my needs, frequently checking in and asking for feedback. They also spent time with me after my service to go over tips I can do myself to keep my body healthy. I can't recommend Auroraflow and Patience enough!</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">The space is beautiful, inclusive and artsy — a perfect spa setting. Most of all, I experienced the most glorious magical massage of my life!</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Carissa did an amazing job on my facial! My skin looks and feels incredible, and the entire experience was so relaxing. The environment was kind, welcoming, and friendly — which made it even better. I loved it so much that I ended up purchasing a membership. Highly recommend!</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I had a wonderful therapeutic massage from Cleo! I have chronic pain and her slow but firm pressure was exactly what I needed. I also appreciated that they offer the option of requesting providers to wear masks — so I could feel safer as an immunocompromised person. After the massage I felt so relaxed that I slept for 11 hours that night!</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">My first ever massage with Taylor was nothing but life changing. They went out of their way to make sure I was comfortable and really listened to where my pain was. My body feels like one giant endorphin. Do yourself a life changing favor — see Taylor. Become the cloud you were born to be.</p>
+        <div class="testimonial-credit">Google Review</div>
+      </div>
+
+    </div>
+
+    <div class="testimonials-nav" id="testimonialNav"></div>
+
   </div>
 </section>
 
@@ -364,6 +553,43 @@
 
 <script src="shared.js"></script>
 <script>
+  /* ── Testimonials auto-slider ── */
+  (function () {
+    const slider = document.getElementById('testimonialSlider');
+    const navEl  = document.getElementById('testimonialNav');
+    if (!slider || !navEl) return;
+
+    const cards = Array.from(slider.querySelectorAll('.testimonial-card'));
+    let current = 0;
+    let timer;
+
+    cards.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', 'Review ' + (i + 1));
+      if (i === 0) btn.classList.add('active');
+      btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+      navEl.appendChild(btn);
+    });
+
+    const dots = Array.from(navEl.querySelectorAll('button'));
+
+    function goTo(idx) {
+      cards[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = ((idx % cards.length) + cards.length) % cards.length;
+      cards[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 5200); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    slider.addEventListener('mouseenter', () => clearInterval(timer));
+    slider.addEventListener('mouseleave', startTimer);
+
+    startTimer();
+  })();
+
   const heroVideo = document.getElementById('heroVideo');
   if (heroVideo) {
     heroVideo.playbackRate = 0.6;

@@ -472,48 +472,29 @@
     .testimonial-card[data-pos="5"],
     .testimonial-card[data-pos="6"],
     .testimonial-card[data-pos="7"],
-    .testimonial-card[data-pos="8"] {
+    .testimonial-card[data-pos="8"],
+    .testimonial-card[data-pos="9"],
+    .testimonial-card[data-pos="10"] {
       transform: scale(0.85) translateY(-90px);
       opacity: 0; z-index: 0; pointer-events: none;
     }
     /* Card inner layout */
-    .tc-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .tc-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; margin-bottom: 18px;
+    }
     .tc-avatar {
       width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
       font-family: var(--sans); font-size: 14px; font-weight: 600; color: #fff;
       letter-spacing: 0.02em;
     }
-    .tc-name {
-      display: block; font-family: var(--sans); font-size: 15px; font-weight: 500;
-      color: #faf7f2; line-height: 1.2;
-    }
-    .tc-role {
-      display: block; font-size: 12px; color: rgba(250,247,242,0.45);
-      margin-top: 3px; letter-spacing: 0.03em;
-    }
     .tc-quote {
       font-family: var(--serif); font-size: clamp(15px, 1.7vw, 18px);
       font-weight: 300; font-style: italic; line-height: 1.7;
-      color: rgba(250,247,242,0.88); margin-bottom: 20px;
-      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+      color: rgba(250,247,242,0.88); margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
       overflow: hidden;
-    }
-    .tc-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.09); padding-top: 16px;
-      gap: 12px; flex-wrap: wrap;
-    }
-    .tc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tc-tag {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
-      padding: 3px 10px; border-radius: 6px; text-transform: uppercase;
-      background: rgba(255,255,255,0.08); color: rgba(250,247,242,0.6);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .tc-tag--featured {
-      background: rgba(173,205,82,0.15); color: #ADCD52;
-      border-color: rgba(173,205,82,0.3);
     }
     .tc-stars {
       color: #FBBC04; font-size: 12px; letter-spacing: 3px; flex-shrink: 0;
@@ -615,110 +596,90 @@
 
       <div class="testimonial-card" data-pos="0">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#52BCA3)">JM</div>
-          <div><span class="tc-name">Jordan M.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">I booked a 90-minute blended relaxation massage with reflexology, and it was honestly one of the best massages I've ever had. Izzy has the BEST hands. The pressure was perfect, the transitions were seamless, and I left feeling grounded, relaxed, and fully reset. If you're looking for a queer-affirming, peaceful, and truly skilled massage experience in Durham. Aurora Flow is it.</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag tc-tag--featured">Massage</span><span class="tc-tag">Reflexology</span><span class="tc-tag">Queer-Affirming</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#52BCA3)">LL</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">this was the best body work/massage experience I have ever had - from start to finish. The space is so welcoming and warm - the front desk staff were so kind. I received a massage from Brandy and it was seriously transformative! Loved the blue ridge massage room, the music, the aromatherapy. Brandy was responsive, so skilled, and really put me at ease. I will absolutely be back!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="1">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#9B6BC0)">TK</div>
-          <div><span class="tc-name">Taylor K.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">Their space is so creative and relaxing, and all of the art featured is for purchase if you want to take some home with you. The receptionist was very warm and welcoming. I will definitely visit in the future.</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag">First Visit</span><span class="tc-tag">Spa Experience</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#9B6BC0)">LB</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">I've been to Auroraflow a few times for massages and TMJ tuneups- the staff are always so welcoming and lovely - and the massages are great. After my TMJ sessions with both Hayley and Brandon I finally had some relief in my jaw joints. Definitely recommend either of them!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="2">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#ADCD52,#12736D)">AP</div>
-          <div><span class="tc-name">Alex P.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">I cannot emphasize enough how wonderful and patient Brandy is. She has magic hands that know how much pressure to use and can sense where tense spots live in one's body. She always makes my day better, and if I could afford a membership I'd be there every month!</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag tc-tag--featured">Massage</span><span class="tc-tag">Deep Tissue</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#ADCD52,#12736D)">JB</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">I had an absolutely fabulous massage experience with Patience! They were so considerate and mindful of my needs and preferences-frequently checking in and asking for feedback. They also spent time with me after my service to go over tips that I can do myself to keep my body healthy along with gathering more feedback. I can't recommend Auroraflow and Patience enough!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="3">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#363971,#585BA7)">SR</div>
-          <div><span class="tc-name">Sam R.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">This was the best body work/massage experience I have ever had, from start to finish. The space is so welcoming and warm. I received a massage from Brandy and it was seriously transformative! Loved the Blue Ridge massage room, the music, the aromatherapy.</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag tc-tag--featured">Best Ever</span><span class="tc-tag">Aromatherapy</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#363971,#585BA7)">AR</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">My husband purchased a gift certificate for me as a birthday present. It had been far too long since I'd had a massage, and I really needed it. First of all, the space is beautiful,, inclusive and artsy! A perfect spa setting. Most of all, I experienced the most glorious magical massage of my life!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="4">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#BA7EC9)">CL</div>
-          <div><span class="tc-name">Casey L.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">I had an absolutely fabulous massage experience with Patience! They were so considerate and mindful of my needs, frequently checking in and asking for feedback. They also spent time with me after my service to go over tips I can do myself to keep my body healthy. I can't recommend Auroraflow and Patience enough!</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag">Therapeutic</span><span class="tc-tag">Wellness</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#BA7EC9)">MB</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">Carissa did an amazing job on my facial! My skin looks and feels incredible, and the entire experience was so relaxing. The environment was kind, welcoming, and friendly, which made it even better. I loved it so much that I ended up purchasing a membership. Highly recommend Carissa and this spa!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="5">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#6E3F8D)">RT</div>
-          <div><span class="tc-name">Robin T.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">The space is beautiful, inclusive and artsy. A perfect spa setting. Most of all, I experienced the most glorious magical massage of my life!</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag tc-tag--featured">Transformative</span><span class="tc-tag">Massage</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#363971)">MZ</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">I started coming here after getting annoyed with how pushy a certain chain waxing center was about trying to upsell me (iykyk lol). Adorable little locally-owned spa filled with beautiful art and wall murals by local artists. Carissa did an awesome job on my eyebrow tint + wax and was super non-judgemental. I will definitely be back!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="6">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#ADCD52,#52BCA3)">MB</div>
-          <div><span class="tc-name">Morgan B.</span><span class="tc-role">Verified Client · Member</span></div>
-        </div>
-        <blockquote class="tc-quote">Carissa did an amazing job on my facial! My skin looks and feels incredible, and the entire experience was so relaxing. The environment was kind, welcoming, and friendly, which made it even better. I loved it so much that I ended up purchasing a membership. Highly recommend!</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag tc-tag--featured">Facial</span><span class="tc-tag">Member</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#ADCD52,#52BCA3)">JM</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">I had a wonderful therapeutic massage from Cleo! She did a great job checking in with me when needed while also allowing me to just relax to the soothing music. I have chronic pain and her slow but firm pressure was exactly what I needed. I also appreciated that she (and the practice in general) offer the option of requesting providers to wear masks so I could feel safer in the space as an immunocompromised person. After the massage I felt so relaxed that I slept for 11 hours that night! Highly recommend!</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="7">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#363971,#12736D)">DH</div>
-          <div><span class="tc-name">Drew H.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">I had a wonderful therapeutic massage from Cleo! I have chronic pain and her slow but firm pressure was exactly what I needed. I also appreciated that they offer the option of requesting providers to wear masks so I could feel safer as an immunocompromised person. After the massage I felt so relaxed that I slept for 11 hours that night!</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag">Therapeutic</span><span class="tc-tag">Accessible</span><span class="tc-tag">Chronic Pain</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#363971,#12736D)">EG</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">Had my first ever massage with Taylor today. The experience was nothing but life changing and amazing. They went out of their way to make sure I was comfortable and took time to really listen and understand where my pain was. Amazing facility, amazing people, I feel great. Like a cloud freshly born from cloud making factory in a Good Night night book by Dr. Seuss. My body feels like one giant endorphin. Do yourself a life changing favor and book yourself time here. See Taylor. Become the cloud you were born to be.</blockquote>
       </div>
 
       <div class="testimonial-card" data-pos="8">
         <div class="tc-header">
-          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#363971)">QW</div>
-          <div><span class="tc-name">Quinn W.</span><span class="tc-role">Verified Client</span></div>
-        </div>
-        <blockquote class="tc-quote">My first ever massage with Taylor was nothing but life changing. They went out of their way to make sure I was comfortable and really listened to where my pain was. My body feels like one giant endorphin. Do yourself a life changing favor: see Taylor. Become the cloud you were born to be.</blockquote>
-        <div class="tc-footer">
-          <div class="tc-tags"><span class="tc-tag tc-tag--featured">Life-Changing</span><span class="tc-tag">Deep Tissue</span></div>
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#363971)">MB</div>
           <span class="tc-stars">★★★★★</span>
         </div>
+        <blockquote class="tc-quote">Ive never had a massage before, I was gifted this experience by my Husband and let me tell you! It was so cozy. I was highly nervous, and didnt know what to expect but Taylor explained the process and made the environment super welcoming so I didnt "feel" like I was lost. I got the 60 minute full body massage 💆‍♀️ I felt like I was walking on a cloud after! Im recommending this place to all my friends (who also never get massages but deserve them!) Particularly for the welcoming environment.</blockquote>
+      </div>
+
+      <div class="testimonial-card" data-pos="9">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#52BCA3,#ADCD52)">EL</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Fantastic place for a high quality massage. Love their values and mission as an organization and Brendon is the bomb at a deep tissue massage!! I became a monthly member, which gives you a discount on a monthly massage, and would highly suggest others do the same. The vibes are also immaculate.</blockquote>
+      </div>
+
+      <div class="testimonial-card" data-pos="10">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#6E3F8D)">CD</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Fantastic relaxing experience. The staff made it from start to finish. Calm atmosphere. Brandy did an excellent job of finding out what I needed and talking me through what she was going to do, with periodic check ins during the session.</blockquote>
       </div>
 
     </div>
@@ -784,7 +745,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/6619c189ec5a99999d8203e9_Massage-Therapist.jpeg" alt="Auroraflow massage therapist at work" />
+          <img src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
         </div>
         <div>
           <span class="announcement-eyebrow">Team Update</span>
@@ -817,7 +778,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/65eb7cba66520ea5d64bd4ed_Relaxing-Back-Treatment-Auroraflow.jpg" alt="Auroraflow relaxing back treatment" />
+          <img src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
         </div>
         <div>
           <span class="announcement-eyebrow">Policy</span>

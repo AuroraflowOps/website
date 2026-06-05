@@ -213,7 +213,7 @@
     .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
     .announcement-card {
       grid-area: 1 / 1;
-      display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: center;
+      display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: stretch;
       opacity: 0; transform: translateY(10px);
       transition: opacity 0.6s ease, transform 0.6s ease;
       pointer-events: none;
@@ -222,7 +222,8 @@
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
     .announcement-logo {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; position: relative;
+      border-radius: 24px; overflow: hidden; position: relative;
+      min-height: 240px;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
     }
     .announcement-logo::after {

@@ -105,7 +105,7 @@
   }
 
   function addStarDots() {
-    document.querySelectorAll('.page-hero, .schedule-section, .corp-form-section, .corp-intro, .corp-plans, .join-band, .values-section, .about-cta, .confirm-hero, .expect-section, .gift-band, .svc-details, .svc-providers-section, .svc-related').forEach(injectStarDots);
+    document.querySelectorAll('.page-hero, .schedule-section, .corp-form-section, .corp-intro, .corp-plans, .join-band, .values-section, .about-cta, .confirm-hero, .expect-section, .gift-band, .svc-hero, .svc-details, .svc-providers-section, .svc-related').forEach(injectStarDots);
   }
 
   if (document.readyState === 'loading') {

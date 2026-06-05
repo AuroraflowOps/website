@@ -4,7 +4,7 @@
 .svc-hero {
   padding-top: var(--nav-h);
   background: #0c0e1d;
-  position: relative; overflow: hidden;
+  position: relative;
 }
 .svc-hero::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;

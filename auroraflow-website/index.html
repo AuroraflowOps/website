@@ -213,7 +213,7 @@
     .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
     .announcement-card {
       grid-area: 1 / 1;
-      display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: stretch;
+      display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: center;
       opacity: 0; transform: translateY(10px);
       transition: opacity 0.6s ease, transform 0.6s ease;
       pointer-events: none;
@@ -222,8 +222,7 @@
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
     .announcement-logo {
-      border-radius: 24px; overflow: hidden; position: relative;
-      min-height: 240px;
+      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
     }
     .announcement-logo::after {
@@ -244,7 +243,7 @@
     }
     .announcement-card p {
       font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
-      margin-bottom: 20px; max-width: 480px;
+      margin-bottom: 20px;
     }
     .announcement-card ul {
       list-style: none; padding: 0; margin: 0 0 28px;
@@ -555,7 +554,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop playsinline preload="auto" id="heroVideo">
+  <video autoplay muted playsinline preload="auto" id="heroVideo">
     <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -807,7 +806,7 @@
         <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
         <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
         <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
-        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our Community Fund and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
+        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our <a href="community-fund.html" style="text-decoration:underline">Community Fund</a> and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
         <a class="btn-outline" href="about.html">Learn More About Us</a>
       </div>
     </div>
@@ -946,24 +945,12 @@
 
   const heroVideo = document.getElementById('heroVideo');
   if (heroVideo) {
-    heroVideo.playbackRate = 0.35;
+    heroVideo.playbackRate = 0.5;
     let videoRevealed = false;
     heroVideo.addEventListener('canplay', () => {
-      heroVideo.playbackRate = 0.35;
+      heroVideo.playbackRate = 0.5;
       if (!videoRevealed) {
         videoRevealed = true;
-        heroVideo.style.opacity = '1';
-      }
-    });
-    heroVideo.addEventListener('timeupdate', () => {
-      if (!videoRevealed) return;
-      const t = heroVideo.currentTime;
-      const d = heroVideo.duration;
-      if (!d) return;
-      const fade = 0.9; // video-time seconds to fade over loop seam
-      if (d - t < fade) {
-        heroVideo.style.opacity = Math.max(0, (d - t) / fade);
-      } else if (t > fade) {
         heroVideo.style.opacity = '1';
       }
     });

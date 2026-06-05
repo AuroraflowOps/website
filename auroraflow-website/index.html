@@ -13,39 +13,57 @@
     .hero {
       position: relative; height: 100vh; min-height: 640px;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
+      background: #0c0e1d;
     }
     @keyframes heroZoom {
-      0%   { transform: scale(1)    translateZ(0); }
-      50%  { transform: scale(1.07) translateZ(0); }
-      100% { transform: scale(1)    translateZ(0); }
+      0%   { transform: scale(1.08) translateZ(0); }
+      50%  { transform: scale(1.14) translateZ(0); }
+      100% { transform: scale(1.08) translateZ(0); }
     }
     .hero video {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      object-position: center 25%;
       animation: heroZoom 45s ease-in-out infinite;
-      transform-origin: center center;
+      transform-origin: center 30%;
       will-change: transform;
       transform: translateZ(0);
+      opacity: 0;
+      transition: opacity 1.2s ease;
     }
     .hero-overlay {
       position: absolute; inset: 0;
       background:
-        /* vignette — softened, just a gentle edge burn */
-        radial-gradient(ellipse at center, transparent 50%, rgba(13,9,25,0.35) 100%),
-        /* bold dark base so aurora reads through without washing out text */
-        linear-gradient(to top, rgba(13,9,25,0.96) 0%, rgba(13,9,25,0.55) 40%, rgba(13,9,25,0.20) 75%, rgba(13,9,25,0.08) 100%),
+        /* strong corner vignette — edges burn to near-black, center aurora pops forward */
+        radial-gradient(ellipse 72% 72% at center, transparent 28%, rgba(5,3,12,0.78) 100%),
+        /* top bar — frames the sky and anchors the composition */
+        linear-gradient(to bottom, rgba(5,3,12,0.45) 0%, transparent 20%),
+        /* bold bottom fade into testimonials */
+        linear-gradient(to top, rgba(12,14,29,1) 0%, rgba(12,14,29,0.85) 18%, rgba(12,14,29,0.40) 42%, rgba(12,14,29,0.10) 75%, transparent 100%),
         /* deep purple atmospheric tint */
-        linear-gradient(160deg, rgba(54,57,113,0.45) 0%, rgba(110,63,141,0.20) 50%, transparent 75%);
+        linear-gradient(160deg, rgba(54,57,113,0.50) 0%, rgba(110,63,141,0.25) 50%, transparent 75%);
     }
     /* aurora-toned sparkle glow for home hero */
     .hero .hero-sparkle {
       filter: drop-shadow(0 0 5px rgba(173,205,82,0.7))
               drop-shadow(0 0 16px rgba(110,63,141,0.55));
     }
+    @keyframes heroIntro {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+    @keyframes heroBreathe {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.022); }
+    }
     .hero-content {
       position: relative; z-index: 2;
       padding: 0 40px;
       max-width: 860px; width: 100%;
       text-align: center;
+      opacity: 0;
+      animation:
+        heroIntro   0.4s ease-out    0s forwards,
+        heroBreathe 5s  ease-in-out  2s infinite;
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -121,77 +139,207 @@
     .hero-badge.hidden { display: none !important; }
 
     /* ── ABOUT ── */
-    .about { background: var(--warm-white); }
+    .about {
+      background: #0c0e1d;
+      position: relative; overflow: hidden;
+      padding-top: 100px; padding-bottom: 100px;
+    }
+    .about::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 80% at 12% 55%, rgba(110,63,141,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 88% 25%, rgba(18,115,109,0.10) 0%, transparent 55%);
+    }
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      display: grid; grid-template-columns: 42fr 58fr; gap: 72px; align-items: center;
+      position: relative; z-index: 1;
     }
     .about-image {
-      border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; position: relative;
+      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.14),
+        0 40px 100px rgba(5,3,12,0.7),
+        0 0 80px rgba(110,63,141,0.22);
     }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-image::after {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none;
+      background: rgba(255,255,255,0.05);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        inset 0 -1px 0 rgba(255,255,255,0.06);
+    }
+    .about-image img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      object-position: center top;
+    }
+    .about-eyebrow {
+      display: block;
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #ADCD52; margin-bottom: 20px;
+    }
     .about-text h2 {
       font-family: var(--serif); font-size: clamp(30px, 3.5vw, 52px);
-      font-weight: 400; line-height: 1.2; margin-bottom: 24px;
+      font-weight: 400; line-height: 1.2; margin-bottom: 28px;
+      color: #faf7f2;
     }
-    .about-text h2 em { font-style: italic; }
+    .about-h2-light {
+      font-weight: 300; font-style: italic;
+      color: rgba(250,247,242,0.55);
+    }
+    .about-text h2 strong {
+      font-weight: 700; color: #faf7f2;
+      display: block; margin-top: 6px;
+    }
     .about-text p {
-      font-size: 16px; line-height: 1.78; color: var(--mid); margin-bottom: 20px;
+      font-size: 16px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
     }
-    .about-text p:last-of-type { margin-bottom: 32px; }
+    .about-text p a { color: #ADCD52 !important; }
+    .about-text p:last-of-type { margin-bottom: 36px; }
+    .about .btn-outline {
+      border-color: rgba(250,247,242,0.4); color: #faf7f2;
+      padding: 14px 32px;
+    }
+    .about .btn-outline:hover { background: #faf7f2; color: #0e0a1e; border-color: #faf7f2; }
 
-    /* ── PROVIDERS ── */
-    .providers { background: var(--cream); }
-    .providers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    .provider-card { text-decoration: none; color: inherit; display: block; }
-    .provider-photo {
-      aspect-ratio: 1/1; border-radius: 4px; overflow: hidden; margin-bottom: 14px;
-      background: #e0d8d0;
+    /* ── ANNOUNCEMENTS ── */
+    .announcements {
+      background: #0c0e1d;
+      position: relative; overflow: hidden;
     }
-    .provider-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.45s ease;
+    .announcements .section-label { color: rgba(250,247,242,0.45); }
+    .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
+    .announcement-card {
+      grid-area: 1 / 1;
+      display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: center;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
     }
-    .provider-card:hover .provider-photo img { transform: scale(1.04); }
-    .provider-name {
-      font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: 0.01em;
+    .announcement-card.active {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    .announcement-logo {
+      border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; position: relative;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
+    }
+    .announcement-logo::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
+    }
+    .announcement-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .announcement-eyebrow {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #ADCD52; margin-bottom: 14px; display: block;
+    }
+    .announcement-card h3 {
+      font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px);
+      font-weight: 400; line-height: 1.2; margin-bottom: 16px;
+      color: #faf7f2;
+    }
+    .announcement-card p {
+      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
+      margin-bottom: 20px; max-width: 480px;
+    }
+    .announcement-card ul {
+      list-style: none; padding: 0; margin: 0 0 28px;
+    }
+    .announcement-card ul li {
+      font-size: 14px; line-height: 1.65; color: rgba(250,247,242,0.6);
+      padding: 6px 0 6px 20px; position: relative;
+    }
+    .announcement-card ul li::before {
+      content: "→"; position: absolute; left: 0;
+      color: #ADCD52; font-size: 12px;
+    }
+    .announcement-accent {
+      border-radius: 24px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      padding: 32px 24px; text-align: center; position: relative;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.55), 0 0 60px rgba(110,63,141,0.18);
+    }
+    .announcement-accent::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
+    }
+    .announcement-accent .accent-icon {
+      font-size: 42px; line-height: 1;
+    }
+    .announcement-accent .accent-label {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(250,247,242,0.7);
+    }
+    .announcement-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; border-radius: 100px;
+      border: 1.5px solid rgba(250,247,242,0.35); color: #faf7f2;
+      font-family: var(--sans); font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .announcement-link:hover { background: rgba(250,247,242,0.1); border-color: #faf7f2; }
+    .announcements-nav {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 36px; position: relative; z-index: 1;
+    }
+    .announcements-nav button {
+      width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer;
+      background: rgba(250,247,242,0.25); transition: background 0.25s, transform 0.25s;
+    }
+    .announcements-nav button.active {
+      background: #ADCD52; transform: scale(1.3);
     }
 
     /* ── FEATURED SERVICES ── */
-    .services-preview { background: var(--warm-white); }
-    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .services-preview {
+      background: #0c0e1d;
+      position: relative; overflow: hidden;
+    }
+    .services-preview .section-label { color: rgba(250,247,242,0.45); }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; z-index: 1; }
     .service-card {
-      display: flex; flex-direction: column;
-      border-radius: 8px; overflow: hidden; background: var(--cream);
+      display: flex; flex-direction: column; position: relative;
+      border-radius: 24px; overflow: hidden;
+      background: rgba(255,255,255,0.04);
       text-decoration: none; color: inherit;
-      border: 1px solid var(--border);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
       transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+    }
+    .service-card::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(28,24,22,0.12);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 20px 50px rgba(5,3,12,0.6), 0 0 30px rgba(110,63,141,0.22);
     }
     .service-thumb {
       width: 100%; height: 260px;
-      overflow: hidden; background: #e0d8d0; flex-shrink: 0;
+      overflow: hidden; background: rgba(255,255,255,0.05); flex-shrink: 0;
     }
     .service-thumb img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
     }
     .service-card:hover .service-thumb img { transform: scale(1.05); }
-    .service-info {
-      padding: 24px 28px 28px;
-    }
+    .service-info { padding: 24px 28px 28px; }
     .service-info h4 {
       font-family: var(--serif); font-size: 22px; font-weight: 400;
-      margin-bottom: 10px; line-height: 1.2;
+      margin-bottom: 10px; line-height: 1.2; color: #faf7f2;
     }
-    .service-info p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+    .service-info p { font-size: 14px; line-height: 1.7; color: rgba(250,247,242,0.58); }
     .service-link {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 16px; font-size: 11px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--space); text-decoration: none;
+      color: #ADCD52; text-decoration: none;
     }
 
     /* ── TAGLINE BAND ── */
@@ -223,21 +371,21 @@
 
     /* ── TESTIMONIALS ── */
     .testimonials {
-      background: linear-gradient(160deg, #0d0919 0%, #150e28 45%, #0c1320 100%);
-      padding: 72px 40px 64px;
-      text-align: center;
+      background: #0c0e1d;
+      padding: 88px 40px;
       overflow: hidden;
       position: relative;
     }
-    /* service room photo — very low opacity texture */
+    .rainbow-bar-hero { height: 8px; }
     .testimonials::before {
       content: "";
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
       background-image: url('assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png');
       background-size: cover; background-position: center center;
       opacity: 0.28;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
     }
-    /* dark gradient overlay keeps text fully legible */
     .testimonials::after {
       content: "";
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
@@ -246,70 +394,132 @@
         radial-gradient(ellipse at 75% 30%, rgba(54,57,113,0.14) 0%, transparent 50%),
         linear-gradient(160deg, rgba(13,9,25,0.72) 0%, rgba(21,14,40,0.68) 100%);
     }
-    .testimonials-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
-
-    .testimonials-slider { display: grid; min-height: 220px; }
+    .testimonials-inner {
+      max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1.65fr; gap: 80px; align-items: start;
+    }
+    /* Left column — heading + callout */
+    .testimonials-header { padding-top: 80px; }
+    .testimonials-header .section-label { color: rgba(250,247,242,0.45); margin-bottom: 16px; }
+    .testimonials-header h2 {
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400; line-height: 1.1; color: #faf7f2;
+      letter-spacing: -0.01em; margin-bottom: 20px;
+    }
+    .testimonials-header h2 em { font-style: italic; color: var(--accent); }
+    .testimonials-header p {
+      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.55);
+      margin-bottom: 32px; max-width: 320px;
+    }
+    .reviews-google-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
+      color: rgba(250,247,242,0.45); text-decoration: none; transition: color 0.25s;
+    }
+    .reviews-google-link:hover { color: rgba(250,247,242,0.8); }
+    .reviews-google-link::before {
+      content: '★★★★★'; color: #FBBC04; font-size: 11px; letter-spacing: 2px;
+      filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
+    }
+    /* Stack container — padding-top gives room for peeking back cards */
+    .testimonials-slider {
+      display: grid;
+      grid-template-areas: 'stack';
+      position: relative;
+      padding-top: 80px;
+    }
+    /* Glass card base */
     .testimonial-card {
-      grid-area: 1 / 1;
-      display: flex; flex-direction: column; align-items: center;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2,0.7,0.2,1);
-      pointer-events: none;
+      grid-area: stack;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 20px 50px rgba(5,3,12,0.5);
+      padding: 28px 28px 24px;
+      text-align: left;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease, box-shadow 0.3s;
+      user-select: none;
     }
-    .testimonial-card.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
-
-    .testimonial-stars {
-      color: #FBBC04; font-size: 15px; letter-spacing: 5px; margin-bottom: 24px;
-      filter: drop-shadow(0 0 5px rgba(251,188,4,0.4));
+    /* Active / front card */
+    .testimonial-card[data-pos="0"] {
+      transform: translateX(var(--drag-x,0px)) translateY(0) scale(1);
+      opacity: 1; z-index: 9; cursor: grab;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        0 0 0 1px rgba(255,255,255,0.1),
+        0 32px 80px rgba(5,3,12,0.65),
+        0 0 60px rgba(110,63,141,0.22);
     }
-    .testimonial-quote {
-      font-family: var(--serif);
-      font-size: clamp(18px, 2vw, 25px);
-      font-weight: 300; font-style: italic;
-      line-height: 1.65; color: rgba(250,247,242,0.90);
-      max-width: 700px; position: relative; padding-top: 16px;
+    .testimonial-card[data-pos="0"].is-dragging { cursor: grabbing; transition: none; }
+    /* Back card 1 */
+    .testimonial-card[data-pos="1"] {
+      transform: scale(0.95) translateY(-40px);
+      opacity: 0.72; z-index: 8; pointer-events: none;
     }
-    .testimonial-quote::before {
-      content: '\201C';
-      position: absolute; top: -28px; left: 50%; transform: translateX(-50%);
-      font-size: 110px; line-height: 1;
-      color: var(--accent); opacity: 0.2;
-      font-family: Georgia, serif; pointer-events: none;
+    /* Back card 2 */
+    .testimonial-card[data-pos="2"] {
+      transform: scale(0.90) translateY(-80px);
+      opacity: 0.45; z-index: 7; pointer-events: none;
     }
-
+    /* Hidden cards */
+    .testimonial-card[data-pos="3"],
+    .testimonial-card[data-pos="4"],
+    .testimonial-card[data-pos="5"],
+    .testimonial-card[data-pos="6"],
+    .testimonial-card[data-pos="7"],
+    .testimonial-card[data-pos="8"],
+    .testimonial-card[data-pos="9"],
+    .testimonial-card[data-pos="10"] {
+      transform: scale(0.85) translateY(-90px);
+      opacity: 0; z-index: 0; pointer-events: none;
+    }
+    /* Card inner layout */
+    .tc-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; margin-bottom: 18px;
+    }
+    .tc-avatar {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sans); font-size: 14px; font-weight: 600; color: #fff;
+      letter-spacing: 0.02em;
+    }
+    .tc-quote {
+      font-family: var(--serif); font-size: clamp(15px, 1.7vw, 18px);
+      font-weight: 300; font-style: italic; line-height: 1.7;
+      color: rgba(250,247,242,0.88); margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .tc-stars {
+      color: #FBBC04; font-size: 12px; letter-spacing: 3px; flex-shrink: 0;
+      filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
+    }
+    /* Nav */
     .testimonials-nav {
       display: flex; justify-content: center; align-items: center;
-      gap: 7px; margin-top: 40px;
+      gap: 7px; margin-top: 32px;
     }
     .testimonials-nav button {
       width: 7px; height: 7px; border-radius: 4px;
       border: 1px solid rgba(255,255,255,0.15); background: transparent;
       cursor: pointer; padding: 0;
-      transition: background 0.3s, width 0.35s cubic-bezier(0.2,0.7,0.2,1),
-                  border-color 0.3s, box-shadow 0.3s;
+      transition: background 0.3s, width 0.35s cubic-bezier(0.2,0.7,0.2,1), border-color 0.3s;
     }
     .testimonials-nav button.active {
       background: var(--accent); border-color: var(--accent);
       width: 28px; box-shadow: 0 0 8px rgba(173,205,82,0.5);
     }
-
-    .reviews-google-link {
-      display: inline-flex; align-items: center; gap: 7px;
-      margin-top: 28px;
-      font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
-      color: rgba(250,247,242,0.4);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .reviews-google-link:hover { color: rgba(250,247,242,0.75); }
-    .reviews-google-link::before {
-      content: '★★★★★';
-      color: #FBBC04; font-size: 11px; letter-spacing: 2px;
-      filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
+    @media (max-width: 900px) {
+      .testimonials-inner { grid-template-columns: 1fr; gap: 48px; }
+      .testimonials-header { padding-top: 0; }
+      .testimonials-header p { max-width: 100%; }
     }
     @media (max-width: 640px) {
-      .testimonials { padding: 56px 24px 52px; }
+      .testimonials { padding: 56px 24px; }
+      .tc-quote { -webkit-line-clamp: 5; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -344,8 +554,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop playsinline id="heroVideo">
-    <source src="assets/aurora-hero.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline preload="auto" id="heroVideo">
+    <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -363,129 +573,125 @@
   </div>
 </section>
 
+<div class="rainbow-bar rainbow-bar-hero"></div>
+
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="testimonials-inner">
 
+    <!-- Left: heading -->
+    <div class="testimonials-header">
+      <p class="section-label">Client Reviews</p>
+      <h2>Love letters<br><em>from clients</em></h2>
+      <p>Over 400 five-star reviews. Here's what our community says about their experience at Auroraflow.</p>
+      <a class="reviews-google-link" href="https://www.google.com/search?q=Auroraflow+Durham+NC+reviews" target="_blank" rel="noopener">See all reviews on Google</a>
+    </div>
+
+    <!-- Right: stacked cards -->
+    <div>
     <div class="testimonials-slider" id="testimonialSlider">
 
-      <div class="testimonial-card active">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">I booked a 90-minute blended relaxation massage with reflexology, and it was honestly one of the best massages I've ever had. Izzy has the BEST hands. The pressure was perfect, the transitions were seamless, and I left feeling grounded, relaxed, and fully reset. If you're looking for a queer-affirming, peaceful, and truly skilled massage experience in Durham — Aurora Flow is it.</p>
-
+      <div class="testimonial-card" data-pos="0">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#52BCA3)">LL</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">this was the best body work/massage experience I have ever had - from start to finish. The space is so welcoming and warm - the front desk staff were so kind. I received a massage from Brandy and it was seriously transformative! Loved the blue ridge massage room, the music, the aromatherapy. Brandy was responsive, so skilled, and really put me at ease. I will absolutely be back!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">Their space is so creative and relaxing, and all of the art featured is for purchase if you want to take some home with you. The receptionist was very warm and welcoming. I will definitely visit in the future.</p>
-
+      <div class="testimonial-card" data-pos="1">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#9B6BC0)">LB</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">I've been to Auroraflow a few times for massages and TMJ tuneups- the staff are always so welcoming and lovely - and the massages are great. After my TMJ sessions with both Hayley and Brandon I finally had some relief in my jaw joints. Definitely recommend either of them!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">I cannot emphasize enough how wonderful and patient Brandy is. She has magic hands that know how much pressure to use and can sense where tense spots live in one's body. She always makes my day better — if I could afford a membership I'd be there every month!</p>
-
+      <div class="testimonial-card" data-pos="2">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#ADCD52,#12736D)">JB</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">I had an absolutely fabulous massage experience with Patience! They were so considerate and mindful of my needs and preferences-frequently checking in and asking for feedback. They also spent time with me after my service to go over tips that I can do myself to keep my body healthy along with gathering more feedback. I can't recommend Auroraflow and Patience enough!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">This was the best body work/massage experience I have ever had — from start to finish. The space is so welcoming and warm. I received a massage from Brandy and it was seriously transformative! Loved the Blue Ridge massage room, the music, the aromatherapy.</p>
-
+      <div class="testimonial-card" data-pos="3">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#363971,#585BA7)">AR</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">My husband purchased a gift certificate for me as a birthday present. It had been far too long since I'd had a massage, and I really needed it. First of all, the space is beautiful,, inclusive and artsy! A perfect spa setting. Most of all, I experienced the most glorious magical massage of my life!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">I had an absolutely fabulous massage experience with Patience! They were so considerate and mindful of my needs, frequently checking in and asking for feedback. They also spent time with me after my service to go over tips I can do myself to keep my body healthy. I can't recommend Auroraflow and Patience enough!</p>
-
+      <div class="testimonial-card" data-pos="4">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#BA7EC9)">MB</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Carissa did an amazing job on my facial! My skin looks and feels incredible, and the entire experience was so relaxing. The environment was kind, welcoming, and friendly, which made it even better. I loved it so much that I ended up purchasing a membership. Highly recommend Carissa and this spa!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">The space is beautiful, inclusive and artsy — a perfect spa setting. Most of all, I experienced the most glorious magical massage of my life!</p>
-
+      <div class="testimonial-card" data-pos="5">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#363971)">MZ</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">I started coming here after getting annoyed with how pushy a certain chain waxing center was about trying to upsell me (iykyk lol). Adorable little locally-owned spa filled with beautiful art and wall murals by local artists. Carissa did an awesome job on my eyebrow tint + wax and was super non-judgemental. I will definitely be back!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">Carissa did an amazing job on my facial! My skin looks and feels incredible, and the entire experience was so relaxing. The environment was kind, welcoming, and friendly — which made it even better. I loved it so much that I ended up purchasing a membership. Highly recommend!</p>
-
+      <div class="testimonial-card" data-pos="6">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#ADCD52,#52BCA3)">JM</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">I had a wonderful therapeutic massage from Cleo! She did a great job checking in with me when needed while also allowing me to just relax to the soothing music. I have chronic pain and her slow but firm pressure was exactly what I needed. I also appreciated that she (and the practice in general) offer the option of requesting providers to wear masks so I could feel safer in the space as an immunocompromised person. After the massage I felt so relaxed that I slept for 11 hours that night! Highly recommend!</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">I had a wonderful therapeutic massage from Cleo! I have chronic pain and her slow but firm pressure was exactly what I needed. I also appreciated that they offer the option of requesting providers to wear masks — so I could feel safer as an immunocompromised person. After the massage I felt so relaxed that I slept for 11 hours that night!</p>
-
+      <div class="testimonial-card" data-pos="7">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#363971,#12736D)">EG</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Had my first ever massage with Taylor today. The experience was nothing but life changing and amazing. They went out of their way to make sure I was comfortable and took time to really listen and understand where my pain was. Amazing facility, amazing people, I feel great. Like a cloud freshly born from cloud making factory in a Good Night night book by Dr. Seuss. My body feels like one giant endorphin. Do yourself a life changing favor and book yourself time here. See Taylor. Become the cloud you were born to be.</blockquote>
       </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">My first ever massage with Taylor was nothing but life changing. They went out of their way to make sure I was comfortable and really listened to where my pain was. My body feels like one giant endorphin. Do yourself a life changing favor — see Taylor. Become the cloud you were born to be.</p>
+      <div class="testimonial-card" data-pos="8">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#6E3F8D,#363971)">MB</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Ive never had a massage before, I was gifted this experience by my Husband and let me tell you! It was so cozy. I was highly nervous, and didnt know what to expect but Taylor explained the process and made the environment super welcoming so I didnt "feel" like I was lost. I got the 60 minute full body massage 💆‍♀️ I felt like I was walking on a cloud after! Im recommending this place to all my friends (who also never get massages but deserve them!) Particularly for the welcoming environment.</blockquote>
+      </div>
 
+      <div class="testimonial-card" data-pos="9">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#52BCA3,#ADCD52)">EL</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Fantastic place for a high quality massage. Love their values and mission as an organization and Brendon is the bomb at a deep tissue massage!! I became a monthly member, which gives you a discount on a monthly massage, and would highly suggest others do the same. The vibes are also immaculate.</blockquote>
+      </div>
+
+      <div class="testimonial-card" data-pos="10">
+        <div class="tc-header">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#12736D,#6E3F8D)">CD</div>
+          <span class="tc-stars">★★★★★</span>
+        </div>
+        <blockquote class="tc-quote">Fantastic relaxing experience. The staff made it from start to finish. Calm atmosphere. Brandy did an excellent job of finding out what I needed and talking me through what she was going to do, with periodic check ins during the session.</blockquote>
       </div>
 
     </div>
 
     <div class="testimonials-nav" id="testimonialNav"></div>
-    <a class="reviews-google-link" href="https://www.google.com/search?q=Auroraflow+Durham+NC+reviews" target="_blank" rel="noopener">
-      See 400+ five-star reviews on Google
-    </a>
+    </div><!-- end right column -->
 
   </div>
 </section>
 
 <div class="rainbow-bar"></div>
 
-<!-- ABOUT -->
-<section class="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-image">
-        <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg"
-          alt="Rainbow mural and massage tables at Auroraflow" />
-      </div>
-      <div class="about-text">
-        <h2>They say wellness is a luxury.<br><em>We believe it's a human right.</em></h2>
-        <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
-        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our Community Fund and our <a href="pay-what-you-can.html" style="color:var(--accent2);text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="color:var(--accent2);text-decoration:underline">memberships</a> for both individuals and businesses.</p>
-        <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:8px 16px;border-radius:100px;border:1.5px solid var(--space);color:var(--space);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;">✨ Queerly Owned &amp; Operated ✨</div>
-        <br>
-        <a class="btn-outline" href="about.html">Learn More About Us</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEW PROVIDERS -->
-<section class="providers">
-  <div class="section-inner">
-    <p class="section-label">New Providers</p>
-    <div class="providers-grid">
-      <a class="provider-card" href="team.html">
-        <div class="provider-photo">
-          <img src="assets/img/6893923ca6c2d2cc6188bde0_Untitled-design-50-.png" alt="Brandon Hu" />
-        </div>
-        <div class="provider-name">Brandon Hu</div>
-      </a>
-      <a class="provider-card" href="team.html">
-        <div class="provider-photo">
-          <img src="assets/img/6893956b4420df3dbf1612ef_Untitled-design-51-.png" alt="Omer Unluata" />
-        </div>
-        <div class="provider-name">Omer Unluata</div>
-      </a>
-      <a class="provider-card" href="team.html">
-        <div class="provider-photo">
-          <img src="assets/img/6748ed21e5ab6934a8ab842a_IMG_1165-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-1-.png" alt="Carissa Bovee" />
-        </div>
-        <div class="provider-name">Carissa Bovee</div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- FEATURED SERVICES PREVIEW -->
 <section class="services-preview">
   <div class="section-inner">
-    <p class="section-label">Featured Services</p>
     <div class="services-grid">
       <a class="service-card" href="services/bipoc-clinical-facial.html">
         <div class="service-thumb">
@@ -511,6 +717,102 @@
   </div>
 </section>
 
+<!-- ANNOUNCEMENTS -->
+<section class="announcements">
+  <div class="section-inner">
+    <div class="announcements-slider" id="announcementsSlider">
+
+      <div class="announcement-card active">
+        <div class="announcement-logo">
+          <img src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Community</span>
+          <h3>Introducing the Auroraflow Community Fund</h3>
+          <p>Wellness belongs to everyone. Our new donation-based fund supports clients who face financial barriers to care, with no judgment and no limit on applications.</p>
+          <ul>
+            <li>Apply anytime via a brief consideration form</li>
+            <li>Monthly spots announced via newsletter &amp; social, first-come, first-served</li>
+            <li>Everyone who applies gets a personal follow-up from our team</li>
+            <li>Want to give? Donate to support a neighbor's care</li>
+          </ul>
+          <a class="announcement-link" href="community-fund.html">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">New Partnership</span>
+          <h3>Real primary care. No insurance required.</h3>
+          <p>Community Love DPC puts the relationship back in healthcare. Flat-rate memberships built around you, not your insurer.</p>
+          <ul>
+            <li>Flexible visits: in-clinic, telehealth, SMS, or home</li>
+            <li>Affordable memberships for individuals &amp; families, sliding scale available</li>
+            <li>Wholesale labs, imaging &amp; procedures at wholesale costs, no middleman</li>
+          </ul>
+          <a class="announcement-link" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Team Update</span>
+          <h3>Nurturing our team: a modest price adjustment</h3>
+          <p>To fairly compensate our therapists, who are constantly growing, training, and showing up for you, we're making a small pricing update on July 1st.</p>
+          <ul>
+            <li>Massage &amp; Skincare Services: +$10</li>
+            <li>Waxing Services: +$5</li>
+            <li>This change supports our team's livelihood and continued investment in their craft</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Policy</span>
+          <h3>New: Dementia &amp; Cognitive Conditions Policy</h3>
+          <p>To protect client safety, practitioner safety, and ensure clear consent practices, we've added a new policy for clients with dementia, Alzheimer's, or other cognitive conditions.</p>
+          <ul>
+            <li>A caregiver must be present in the treatment room or on-site for the full session</li>
+            <li>The caregiver is required to sign consent forms on behalf of the client</li>
+          </ul>
+          <a class="announcement-link" href="policies.html">View Full Policies →</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="announcements-nav" id="announcementsNav"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="assets/img/759A0003.jpg"
+          alt="Client receiving a facial at Auroraflow" />
+      </div>
+      <div class="about-text">
+        <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
+        <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
+        <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
+        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our Community Fund and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
+        <a class="btn-outline" href="about.html">Learn More About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -524,7 +826,6 @@
           <li><a href="classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
           <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Careers</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="policies.html">Policies</a></li>
@@ -558,15 +859,18 @@
 <script src="shared.js"></script>
 <script>
   /* ── Testimonials auto-slider ── */
+  // Glass testimonial stack — drag + auto-advance
   (function () {
     const slider = document.getElementById('testimonialSlider');
     const navEl  = document.getElementById('testimonialNav');
     if (!slider || !navEl) return;
 
     const cards = Array.from(slider.querySelectorAll('.testimonial-card'));
-    let current = 0;
-    let timer;
+    const total = cards.length;
+    let current = 0, timer;
+    let dragStart = null, dragOffset = 0, isDragging = false;
 
+    // Build dots
     cards.forEach((_, i) => {
       const btn = document.createElement('button');
       btn.setAttribute('aria-label', 'Review ' + (i + 1));
@@ -574,30 +878,94 @@
       btn.addEventListener('click', () => { goTo(i); resetTimer(); });
       navEl.appendChild(btn);
     });
-
     const dots = Array.from(navEl.querySelectorAll('button'));
 
+    function setPositions() {
+      cards.forEach((card, i) => {
+        const pos = ((i - current) + total) % total;
+        card.setAttribute('data-pos', pos);
+      });
+    }
+
     function goTo(idx) {
-      cards[current].classList.remove('active');
       dots[current].classList.remove('active');
-      current = ((idx % cards.length) + cards.length) % cards.length;
-      cards[current].classList.add('active');
+      current = ((idx % total) + total) % total;
+      setPositions();
       dots[current].classList.add('active');
+    }
+
+    // Drag-to-swipe on the active card
+    function getX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+
+    slider.addEventListener('mousedown', startDrag);
+    slider.addEventListener('touchstart', startDrag, { passive: true });
+
+    function startDrag(e) {
+      const active = slider.querySelector('[data-pos="0"]');
+      if (!active || !active.contains(e.target)) return;
+      isDragging = true;
+      dragStart = getX(e);
+      active.classList.add('is-dragging');
+    }
+
+    window.addEventListener('mousemove', onDrag);
+    window.addEventListener('touchmove', onDrag, { passive: true });
+    function onDrag(e) {
+      if (!isDragging) return;
+      dragOffset = getX(e) - dragStart;
+      const active = slider.querySelector('[data-pos="0"]');
+      if (active) active.style.setProperty('--drag-x', dragOffset + 'px');
+    }
+
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      const active = slider.querySelector('[data-pos="0"]');
+      if (active) {
+        active.classList.remove('is-dragging');
+        active.style.removeProperty('--drag-x');
+      }
+      if (Math.abs(dragOffset) > 60) {
+        goTo(current + (dragOffset < 0 ? 1 : -1));
+        resetTimer();
+      }
+      dragOffset = 0; dragStart = null;
     }
 
     function startTimer() { timer = setInterval(() => goTo(current + 1), 5200); }
     function resetTimer() { clearInterval(timer); startTimer(); }
-
     slider.addEventListener('mouseenter', () => clearInterval(timer));
     slider.addEventListener('mouseleave', startTimer);
 
+    setPositions();
     startTimer();
   })();
 
   const heroVideo = document.getElementById('heroVideo');
   if (heroVideo) {
     heroVideo.playbackRate = 0.35;
-    heroVideo.addEventListener('canplay', () => { heroVideo.playbackRate = 0.35; });
+    let videoRevealed = false;
+    heroVideo.addEventListener('canplay', () => {
+      heroVideo.playbackRate = 0.35;
+      if (!videoRevealed) {
+        videoRevealed = true;
+        heroVideo.style.opacity = '1';
+      }
+    });
+    heroVideo.addEventListener('timeupdate', () => {
+      if (!videoRevealed) return;
+      const t = heroVideo.currentTime;
+      const d = heroVideo.duration;
+      if (!d) return;
+      const fade = 0.9; // video-time seconds to fade over loop seam
+      if (d - t < fade) {
+        heroVideo.style.opacity = Math.max(0, (d - t) / fade);
+      } else if (t > fade) {
+        heroVideo.style.opacity = '1';
+      }
+    });
   }
 
   const hamburger = document.getElementById('hamburger');
@@ -613,6 +981,55 @@
       hamburger.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+
+  // Announcements slider
+  (() => {
+    const slider = document.getElementById('announcementsSlider');
+    const navEl  = document.getElementById('announcementsNav');
+    if (!slider || !navEl) return;
+    const cards = Array.from(slider.querySelectorAll('.announcement-card'));
+    let current = 0, timer;
+    cards.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', 'Announcement ' + (i + 1));
+      if (i === 0) btn.classList.add('active');
+      btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+      navEl.appendChild(btn);
+    });
+    const dots = Array.from(navEl.querySelectorAll('button'));
+    function goTo(idx) {
+      cards[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = ((idx % cards.length) + cards.length) % cards.length;
+      cards[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 7000); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+    slider.addEventListener('mouseenter', () => clearInterval(timer));
+    slider.addEventListener('mouseleave', startTimer);
+    startTimer();
+  })();
+
+  // Sparkle star field for all dark sections
+  document.querySelectorAll('.testimonials').forEach(section => {
+    const area = section.offsetWidth * Math.max(section.offsetHeight, 300);
+    const count = Math.min(Math.floor(area / 7000), 55);
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle-star';
+      const size = 0.8 + Math.random() * 2;
+      s.style.cssText = [
+        `left:${(Math.random() * 96 + 2)}%`,
+        `top:${(Math.random() * 96 + 2)}%`,
+        `--star-size:${size}px`,
+        `--star-opacity:${0.35 + Math.random() * 0.65}`,
+        `--star-dur:${2.5 + Math.random() * 4.5}s`,
+        `--star-delay:${Math.random() * 6}s`
+      ].join(';');
+      section.appendChild(s);
+    }
   });
 </script>
 </body>

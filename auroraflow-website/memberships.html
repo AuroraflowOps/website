@@ -101,9 +101,6 @@
     }
     .individual-form-wrap h3 em { font-style: italic; }
     .individual-form-wrap > p { font-size: 15px; color: var(--muted); margin-bottom: 32px; line-height: 1.65; }
-    .individual-form-wrap iframe {
-      width: 100%; min-height: 700px; border: none; display: block; border-radius: 4px;
-    }
 
     /* ── HOW IT WORKS ── */
     .how-section { background: var(--warm-white); padding: 96px 40px; }
@@ -153,7 +150,8 @@
 
     /* ── CORPORATE DIVIDER ── */
     .corp-intro {
-      background: var(--dark); padding: 96px 40px; text-align: center;
+      background: #0c0e1d; padding: 96px 40px; text-align: center;
+      position: relative; overflow: hidden;
     }
     .corp-intro .section-label { color: rgba(250,247,242,0.45); margin-bottom: 16px; }
     .corp-intro h2 {
@@ -178,8 +176,8 @@
     .corp-stat-label { font-size: 13px; color: rgba(250,247,242,0.5); letter-spacing: 0.06em; }
 
     /* ── CORPORATE PLANS ── */
-    .corp-plans { background: #161210; padding: 96px 40px; }
-    .corp-plans-inner { max-width: 1200px; margin: 0 auto; }
+    .corp-plans { background: #0c0e1d; padding: 96px 40px; position: relative; overflow: hidden; }
+    .corp-plans-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
     .corp-plans-inner .section-label { color: rgba(250,247,242,0.4); margin-bottom: 12px; }
     .corp-plans-inner > h2 {
       font-family: var(--serif); font-size: clamp(26px, 3.5vw, 44px);
@@ -252,9 +250,9 @@
     .corp-note { font-size: 12px; color: rgba(250,247,242,0.35); text-align: center; margin-top: 10px; }
 
     /* ── CORP INQUIRY FORM ── */
-    .corp-form-section { background: #1e1916; padding: 96px 40px; }
+    .corp-form-section { background: #0c0e1d; padding: 96px 40px; position: relative; overflow: hidden; }
     .corp-form-inner {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
     .corp-form-text .section-label { color: rgba(250,247,242,0.4); margin-bottom: 14px; }
@@ -471,9 +469,9 @@
     </div>
 
     <div class="individual-form-wrap">
-      <h3>Request an <em>individual membership</em></h3>
-      <p>Fill out the form below and we'll get you set up within one business day.</p>
-      <iframe src="https://mangomint.co/oN18Mh" title="Individual membership request form"></iframe>
+      <h3>Ready to <em>get started?</em></h3>
+      <p>Fill out our membership request form and we'll get you set up within one business day.</p>
+      <a class="plan-btn plan-btn-dark" href="https://mangomint.co/oN18Mh" target="_blank" rel="noopener">Request a Membership →</a>
     </div>
 
   </div>
@@ -651,60 +649,7 @@
       </address>
     </div>
     <div>
-      <form class="corp-form" id="corpForm" onsubmit="handleCorpSubmit(event)">
-        <div class="corp-form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="First name" required />
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Last name" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Company Name</label>
-          <input type="text" placeholder="Your company" required />
-        </div>
-        <div class="form-group">
-          <label>Work Email</label>
-          <input type="email" placeholder="you@company.com" required />
-        </div>
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" placeholder="(919) 000-0000" />
-        </div>
-        <div class="form-group">
-          <label>Team Size</label>
-          <select required>
-            <option value="" disabled selected>Select team size…</option>
-            <option>1–10 employees</option>
-            <option>11–25 employees</option>
-            <option>26–50 employees</option>
-            <option>51–100 employees</option>
-            <option>100+ employees</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Program Interest</label>
-          <select required>
-            <option value="" disabled selected>Select a program…</option>
-            <option>Chair Massage ($1,200/yr)</option>
-            <option>Member Credits ($3,500/yr)</option>
-            <option>Hybrid: Custom Program</option>
-            <option>Not sure, let's talk</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Tell us more (optional)</label>
-          <textarea placeholder="Any details about your team, goals, or questions…"></textarea>
-        </div>
-        <button type="submit" class="corp-submit">Request a Proposal</button>
-      </form>
-      <div class="corp-form-success" id="corpSuccess">
-        <h3>Request received!</h3>
-        <p>We'll be in touch within one business day with a custom proposal for your team.</p>
-      </div>
+      <iframe src="https://mangomint.co/2MUPOQ" title="Corporate membership request form" style="width:100%; min-height:700px; border:none; display:block; border-radius:6px;"></iframe>
     </div>
   </div>
 </div>

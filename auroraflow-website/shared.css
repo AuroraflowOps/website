@@ -50,15 +50,32 @@ nav {
 .nav-links a:hover, .nav-links a.active { color: var(--dark); }
 .btn-book,
 .nav-links a.btn-book {
+  position: relative; isolation: isolate;
   display: inline-flex; align-items: center;
   padding: 10px 22px; border-radius: 100px;
-  background: var(--space); color: #fff !important;
+  background: rgba(12,14,29,0.92); color: #faf7f2 !important;
+  border: 1px solid rgba(255,255,255,0.12);
   font-family: var(--sans); font-size: 12px; font-weight: 700;
   letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
-  transition: background 0.2s; white-space: nowrap;
+  transition: background 0.25s; white-space: nowrap;
+}
+.btn-book::before,
+.nav-links a.btn-book::before {
+  content: '';
+  position: absolute; inset: -2px; border-radius: 100px;
+  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
+  opacity: 0.72; filter: blur(8px);
+  z-index: -1; pointer-events: none;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 .btn-book:hover,
-.nav-links a.btn-book:hover { background: var(--deep); color: #fff !important; }
+.nav-links a.btn-book:hover {
+  background: rgba(12,14,29,0.72); color: #fff !important;
+}
+.btn-book:hover::before,
+.nav-links a.btn-book:hover::before {
+  opacity: 1; filter: blur(12px);
+}
 
 /* hamburger */
 .nav-hamburger {
@@ -88,12 +105,24 @@ nav {
 }
 .nav-mobile-menu a:hover { color: var(--accent); }
 .nav-mobile-menu .btn-book-mobile {
+  position: relative; isolation: isolate;
   margin-top: 32px; display: inline-flex; align-items: center; justify-content: center;
   padding: 16px 36px; border-radius: 100px;
-  background: var(--dark); color: var(--cream);
+  background: rgba(12,14,29,0.92); color: var(--cream);
+  border: 1px solid rgba(255,255,255,0.12);
   font-family: var(--sans); font-size: 13px; font-weight: 400;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-  border: none;
+}
+.nav-mobile-menu .btn-book-mobile::before {
+  content: '';
+  position: absolute; inset: -2px; border-radius: 100px;
+  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
+  opacity: 0.72; filter: blur(8px);
+  z-index: -1; pointer-events: none;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.nav-mobile-menu .btn-book-mobile:hover::before {
+  opacity: 1; filter: blur(12px);
 }
 
 /* ── RAINBOW BAR ── */
@@ -216,6 +245,21 @@ nav {
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-sparkles { display: none; }
+}
+
+/* ── STAR FIELD DOTS (injected by shared.js into dark sections) ── */
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  45%, 55%  { opacity: var(--star-opacity, 0.75); transform: scale(1); }
+}
+.sparkle-star {
+  position: absolute; border-radius: 50%;
+  background: #fff; pointer-events: none; z-index: 0;
+  width: var(--star-size, 1.5px); height: var(--star-size, 1.5px);
+  animation: starTwinkle var(--star-dur, 3s) ease-in-out var(--star-delay, 0s) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-star { display: none; }
 }
 /* staggered entrance for hero content */
 .page-hero-content > * {

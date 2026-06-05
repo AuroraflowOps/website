@@ -7,128 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
-  <style>
-    .svc-hero { padding-top: var(--nav-h); background: var(--warm-white); }
-    .svc-hero-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start; padding: 72px 40px 80px;
-    }
-    .svc-img-wrap { border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; background: #e0d8d0; }
-    .svc-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .svc-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted); text-decoration: none;
-      margin-bottom: 28px; transition: color 0.2s;
-    }
-    .svc-back:hover { color: var(--dark); }
-    .svc-cat {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
-    }
-    .svc-name {
-      font-family: var(--serif); font-size: clamp(30px, 4vw, 56px);
-      font-weight: 400; line-height: 1.1; margin-bottom: 10px; letter-spacing: -0.01em;
-    }
-    .svc-price-row {
-      display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; align-items: center;
-    }
-    .svc-price {
-      font-size: 18px; font-weight: 400; color: var(--dark); letter-spacing: -0.01em;
-    }
-    .svc-duration {
-      font-size: 13px; color: var(--muted); letter-spacing: 0.04em;
-      padding: 5px 14px; border-radius: 100px; border: 1px solid var(--border);
-    }
-    .svc-divider { height: 1px; background: var(--border); margin-bottom: 28px; }
-    .svc-desc { font-size: 17px; line-height: 1.82; color: var(--mid); margin-bottom: 24px; }
-    .svc-book-btn {
-      display: inline-flex; align-items: center;
-      padding: 15px 36px; border-radius: 100px;
-      background: var(--dark); color: var(--cream);
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
-      transition: background 0.2s; margin-bottom: 12px;
-    }
-    .svc-book-btn:hover { background: oklch(62% 0.14 25); }
-    .svc-consult {
-      display: block; font-size: 13px; color: var(--muted);
-    }
-    .svc-consult a { color: var(--dark); }
-
-    /* Detail sections */
-    .svc-details { background: var(--cream); padding: 72px 40px; }
-    .svc-details-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
-    .svc-detail-block h4 {
-      font-family: var(--sans); font-size: 11px; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
-      margin-bottom: 14px;
-    }
-    .svc-detail-block ul { list-style: none; padding: 0; }
-    .svc-detail-block li {
-      font-size: 15px; line-height: 1.7; color: var(--mid);
-      padding: 7px 0; border-bottom: 1px solid var(--border);
-    }
-    .svc-detail-block li:last-child { border-bottom: none; }
-
-    /* Providers */
-    .svc-providers-section { background: var(--warm-white); padding: 72px 40px; }
-    .svc-providers-inner { max-width: 1200px; margin: 0 auto; }
-    .svc-providers-inner h3 {
-      font-family: var(--serif); font-size: 34px; font-weight: 400;
-      margin-bottom: 32px; letter-spacing: -0.01em;
-    }
-    .svc-providers-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
-    .svc-provider-card { display: block; text-decoration: none; color: inherit; }
-    .svc-provider-photo {
-      aspect-ratio: 1/1; border-radius: 4px; overflow: hidden;
-      background: #e0d8d0; margin-bottom: 12px;
-    }
-    .svc-provider-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.4s ease;
-    }
-    .svc-provider-card:hover .svc-provider-photo img { transform: scale(1.04); }
-    .svc-provider-name { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 3px; }
-    .svc-provider-role { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-
-    /* Related */
-    .svc-related { background: var(--cream); padding: 72px 40px; }
-    .svc-related-inner { max-width: 1200px; margin: 0 auto; }
-    .svc-related-inner h3 {
-      font-family: var(--serif); font-size: 34px; font-weight: 400;
-      margin-bottom: 32px; letter-spacing: -0.01em;
-    }
-    .svc-related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .svc-related-card {
-      display: flex; flex-direction: column; text-decoration: none; color: inherit;
-      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
-      background: var(--warm-white); transition: box-shadow 0.2s, border-color 0.2s;
-    }
-    .svc-related-card:hover { box-shadow: 0 4px 20px rgba(28,24,22,0.08); border-color: rgba(28,24,22,0.2); }
-    .svc-related-img { aspect-ratio: 3/2; overflow: hidden; background: #e0d8d0; }
-    .svc-related-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
-    .svc-related-card:hover .svc-related-img img { transform: scale(1.04); }
-    .svc-related-body { padding: 18px 20px 20px; }
-    .svc-related-name { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 4px; }
-    .svc-related-price { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
-
-    @media (max-width: 960px) {
-      .svc-hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 48px 24px 60px; }
-      .svc-details-inner { grid-template-columns: 1fr; gap: 28px; }
-      .svc-details { padding: 56px 24px; }
-      .svc-providers-grid { grid-template-columns: repeat(2,1fr); }
-      .svc-providers-section { padding: 56px 24px; }
-      .svc-related-grid { grid-template-columns: repeat(2,1fr); }
-      .svc-related { padding: 56px 24px; }
-    }
-    @media (max-width: 560px) {
-      .svc-providers-grid { grid-template-columns: 1fr 1fr; }
-      .svc-related-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-<script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
+  <link rel="stylesheet" href="../services.css">
+  <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
 </head>
 <body>
 <nav>
@@ -137,6 +17,7 @@
     <li><a href="../about.html">About</a></li>
     <li><a href="../team.html">Team</a></li>
     <li><a href="../services.html" class="active">Services</a></li>
+    <li><a href="../memberships.html">Memberships</a></li>
     <li><a href="../journal.html">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
@@ -149,6 +30,7 @@
   <a href="../about.html">About</a>
   <a href="../team.html">Team</a>
   <a href="../services.html">Services</a>
+  <a href="../memberships.html">Memberships</a>
   <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
@@ -261,11 +143,13 @@
         <ul class="footer-links">
           <li><a href="../about.html">About Us</a></li>
           <li><a href="../team.html">Team</a></li>
-          <li><a href="#">Memberships</a></li>
+          <li><a href="../memberships.html">Memberships</a></li>
+          <li><a href="../classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
           <li><a href="../journal.html">Journal</a></li>
-          <li><a href="#">Careers</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../pay-what-you-can.html">Pay What You Can</a></li>
+          <li><a href="../policies.html">Policies</a></li>
         </ul>
         <div class="footer-address">
           607 William Vickers Ave Durham, NC 27701<br>
@@ -306,5 +190,6 @@
     });
   });
 </script>
+<script src="../shared.js"></script>
 </body>
 </html>

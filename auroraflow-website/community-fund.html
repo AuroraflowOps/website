@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Fund | Auroraflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── INTRO ── */
+    .intro-section { background: var(--warm-white); padding: 96px 40px; }
+    .intro-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .intro-text h2 {
+      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400; line-height: 1.15; margin-bottom: 24px; letter-spacing: -0.01em;
+    }
+    .intro-text h2 em { font-style: italic; }
+    .intro-text p {
+      font-size: 16px; line-height: 1.82; color: var(--mid); margin-bottom: 18px;
+    }
+    .intro-img {
+      border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; background: #e0d8d0;
+    }
+    .intro-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── PULL QUOTE ── */
+    .quote-section {
+      background: var(--cream); padding: 80px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .quote-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+    .quote-stars {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      margin-bottom: 28px;
+    }
+    .quote-star {
+      color: var(--accent2); font-size: 18px; opacity: 0.8;
+    }
+    .quote-rule { width: 48px; height: 1px; background: var(--border); }
+    .quote-inner blockquote {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.5vw, 44px);
+      font-weight: 400; font-style: italic;
+      line-height: 1.22; letter-spacing: -0.01em;
+      color: var(--dark);
+    }
+    .quote-inner blockquote em { font-style: normal; color: var(--accent2); }
+    .quote-attr {
+      margin-top: 24px;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--warm-white); padding: 96px 40px; }
+    .how-inner { max-width: 1200px; margin: 0 auto; }
+    .how-inner > h2 {
+      font-family: var(--serif); font-size: clamp(26px, 3vw, 44px);
+      font-weight: 400; margin-bottom: 56px; letter-spacing: -0.01em;
+    }
+    .how-inner > h2 em { font-style: italic; }
+    .how-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .how-card {
+      padding: 36px 32px; border-radius: 4px;
+      border: 1px solid var(--border); background: var(--cream);
+      border-top: 3px solid var(--accent2);
+      transition: box-shadow 0.2s;
+    }
+    .how-card:hover { box-shadow: 0 4px 24px rgba(28,24,22,0.07); }
+    .how-card-top {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .how-card-num {
+      font-family: var(--serif); font-size: 40px; font-weight: 300;
+      color: #ddd5cc; line-height: 1;
+    }
+    .how-card-star { color: var(--accent2); font-size: 20px; }
+    .how-card h4 {
+      font-family: var(--serif); font-size: 22px; font-weight: 400;
+      margin-bottom: 12px; letter-spacing: 0.01em;
+    }
+    .how-card p { font-size: 15px; line-height: 1.78; color: var(--mid); }
+
+    /* ── APPLY ── */
+    .apply-section {
+      background: linear-gradient(135deg, #1a2a1e 0%, #0c1a1a 50%, #0c0e1d 100%);
+      padding: 96px 40px; position: relative; overflow: hidden;
+    }
+    .apply-inner {
+      max-width: 800px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .apply-text h3 {
+      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 300; color: var(--cream); line-height: 1.12;
+      margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .apply-text h3 em { font-style: italic; }
+    .apply-text p { font-size: 15px; line-height: 1.78; color: rgba(250,247,242,0.65); }
+    .apply-action { text-align: center; }
+    .apply-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 18px 48px; border-radius: 100px;
+      background: var(--cream); color: var(--dark);
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .apply-cta:hover { opacity: 0.88; transform: translateY(-2px); }
+    .apply-note {
+      margin-top: 16px; font-size: 12px;
+      color: rgba(250,247,242,0.4); line-height: 1.6;
+    }
+
+    /* ── SUPPORT ── */
+    .support-section { background: #0c0e1d; padding: 96px 40px; position: relative; overflow: hidden; }
+    .support-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+    .support-header { text-align: center; margin-bottom: 48px; }
+    .support-header h2 {
+      font-family: var(--serif); font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 300; color: var(--cream); margin-bottom: 16px; line-height: 1.2;
+    }
+    .support-header h2 em { font-style: italic; }
+    .support-header > p {
+      font-size: 16px; color: rgba(250,247,242,0.65); line-height: 1.72;
+      max-width: 640px; margin: 0 auto 24px;
+    }
+    .support-impact {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 20px; border-radius: 100px;
+      background: rgba(18,115,109,0.2); border: 1px solid rgba(18,115,109,0.4);
+      font-size: 13px; color: rgba(250,247,242,0.85); letter-spacing: 0.02em;
+    }
+    .support-impact-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+    .support-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .support-way {
+      border: 1px solid rgba(250,247,242,0.12); border-radius: 4px;
+      padding: 32px 32px; background: rgba(250,247,242,0.04);
+    }
+    .support-way-num {
+      font-family: var(--serif); font-size: 40px; font-weight: 300;
+      color: rgba(250,247,242,0.12); line-height: 1; margin-bottom: 14px;
+    }
+    .support-way h5 {
+      font-family: var(--serif); font-size: 20px; font-weight: 400;
+      color: rgba(250,247,242,0.92); margin-bottom: 12px; letter-spacing: 0.01em;
+    }
+    .support-way p { font-size: 15px; line-height: 1.78; color: rgba(250,247,242,0.65); }
+    .support-way a { color: rgba(250,247,242,0.9); text-decoration: underline; text-underline-offset: 3px; }
+    .support-way a:hover { color: #fff; }
+
+    @media (max-width: 960px) {
+      .intro-inner { grid-template-columns: 1fr; gap: 40px; }
+      .how-grid { grid-template-columns: 1fr; }
+      .apply-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+      .apply-text { text-align: center; }
+      .support-ways { grid-template-columns: 1fr; }
+      .intro-section, .how-section, .quote-section, .apply-section, .support-section { padding: 72px 24px; }
+    }
+  </style>
+<script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html"><img src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="memberships.html">Memberships</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="about.html">About</a>
+  <a href="team.html">Team</a>
+  <a href="services.html">Services</a>
+  <a href="memberships.html">Memberships</a>
+  <a href="journal.html">Journal</a>
+  <a href="contact.html">Contact</a>
+  <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="assets/img/community-fund-cupping.png" alt="Cupping therapy at Auroraflow" />
+  </div>
+  <div class="page-hero-content">
+    <p class="section-label">Community Access</p>
+    <h1>The Community<br><em>Fund.</em></h1>
+    <p>A donation-supported fund designed to help community members access the wellness care they deserve, no matter the season.</p>
+    <div class="page-hero-actions">
+      <a class="btn-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdPu65Y7O1uCQtNVcop4g1uxqw6YsgBsAodue19c0xQ75XUwQ/viewform" target="_blank" rel="noopener">Apply for the Fund</a>
+      <a class="btn-ghost" href="#support">Support the Fund</a>
+    </div>
+  </div>
+</div>
+<div class="rainbow-bar"></div>
+
+<!-- INTRO -->
+<div class="intro-section">
+  <div class="intro-inner">
+    <div class="intro-text">
+      <h2>Accessibility has always been<br><em>core to who we are.</em></h2>
+      <p>The Auroraflow Community Fund is a donation-based fund that supports clients who may not be able to afford some or all of the costs associated with their wellness needs.</p>
+      <p>The Community Fund, in addition to our Pay What You Can days, is the next step in Auroraflow's efforts to uphold our principles of creating inclusive and accessible care for all.</p>
+    </div>
+    <div class="intro-img">
+      <img src="assets/img/66214889abfb8f3a6ed61090_IMG_0065.jpg" alt="Inside Auroraflow" />
+    </div>
+  </div>
+</div>
+
+<!-- PULL QUOTE -->
+<div class="quote-section">
+  <div class="quote-inner">
+    <div class="quote-stars">
+      <span class="quote-rule"></span>
+      <span class="quote-star">✦</span>
+      <span class="quote-star">✦</span>
+      <span class="quote-star">✦</span>
+      <span class="quote-rule"></span>
+    </div>
+    <blockquote>We know that life changes.<br>Support should be <em>allowed to change too.</em></blockquote>
+    <p class="quote-attr">The Auroraflow Community Fund</p>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div class="how-inner">
+    <h2>Here's how it <em>works</em></h2>
+    <div class="how-grid">
+
+      <div class="how-card">
+        <div class="how-card-top">
+          <span class="how-card-num">01</span>
+          <span class="how-card-star">✦</span>
+        </div>
+        <h4>Submit a Consideration Form</h4>
+        <p>Clients must submit a consideration form expressing why they wish to have access to the Community Fund. You will receive a decision via email from Auroraflow staff upon review. Pending approval, you will be added to our Community Fund Friends list.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-card-top">
+          <span class="how-card-num">02</span>
+          <span class="how-card-star">✦</span>
+        </div>
+        <h4>Community Fund Friends List</h4>
+        <p>Only clients who've been added to the Community Fund Friends list may access funds for Auroraflow services. As financial situations are open to fluctuation, there is no limit to how many times someone may submit a consideration form to be added to the list.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-card-top">
+          <span class="how-card-num">03</span>
+          <span class="how-card-star">✦</span>
+        </div>
+        <h4>Monthly Appointment Openings</h4>
+        <p>Each month, we'll note how many Community Fund appointments are available in our email newsletter and on social media. Since the fund is donation-based, the number of available spots may change each month. Appointments are offered on a first-come, first-served basis.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-card-top">
+          <span class="how-card-num">04</span>
+          <span class="how-card-star">✦</span>
+        </div>
+        <h4>Everyone Hears Back</h4>
+        <p>Clients will be responded to in the order we receive their expressed interest for a particular appointment. All clients should expect to receive correspondence from Auroraflow's staff, no matter whether they receive their desired appointment.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- APPLY -->
+<div class="apply-section">
+  <div class="apply-inner">
+    <div class="apply-text">
+      <h3>Ready to<br><em>apply?</em></h3>
+      <p>Fill out a brief consideration form and our team will review it and be in touch via email. There's no limit to how many times you can apply — everyone who reaches out receives a personal response from our staff.</p>
+    </div>
+    <div class="apply-action">
+      <a class="apply-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdPu65Y7O1uCQtNVcop4g1uxqw6YsgBsAodue19c0xQ75XUwQ/viewform" target="_blank" rel="noopener" target="_blank">Apply for the Fund</a>
+      <p class="apply-note">Takes just a few minutes.<br>No documentation required.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT -->
+<div class="support-section" id="support">
+  <div class="support-inner">
+    <div class="support-header">
+      <h2>Help a neighbor <em>access care.</em></h2>
+      <p>The Community Fund is only possible because of the generosity of our clients and community. Every contribution, large or small, directly funds a wellness appointment for someone who needs it.</p>
+      <div class="support-impact">
+        <span class="support-impact-dot"></span>
+        100% of donations go directly to Community Fund appointments
+      </div>
+    </div>
+    <div class="support-ways">
+      <div class="support-way">
+        <div class="support-way-num">01</div>
+        <h5>Round Up at Checkout</h5>
+        <p>During your next visit, simply round up your appointment cost or add any donation amount at checkout. Our front desk team can apply it to the Community Fund on the spot. No minimums, no sign-up required.</p>
+      </div>
+      <div class="support-way">
+        <div class="support-way-num">02</div>
+        <h5>Donate by Email</h5>
+        <p>Email our Front Desk Manager, Sascha De la Sabia, at <a href="mailto:sascha@auroraflow.com">sascha@auroraflow.com</a> with your name and the amount you'd like to give. Your credit card on file will be charged for your contribution. This option works great for one-time or recurring gifts.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Auroraflow</div>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="memberships.html">Memberships</a></li>
+          <li><a href="classes.html">Classes</a></li>
+          <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
+          <li><a href="community-fund.html">Community Fund</a></li>
+          <li><a href="policies.html">Policies</a></li>
+        </ul>
+        <div class="footer-address">
+          607 William Vickers Ave Durham, NC 27701<br>
+          <a href="tel:9192299555">(919) 229-9555</a><br>
+          Mon 9am–6pm &nbsp;·&nbsp; Tue–Fri 9am–8pm &nbsp;·&nbsp; Sat &amp; Sun 9am–6pm
+        </div>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/auroraflowmassage" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/auroraflowmassage/" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/company/auroraflow-massage/" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 2-3z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Auroraflow</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

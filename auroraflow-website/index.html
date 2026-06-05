@@ -156,11 +156,19 @@
       position: relative; z-index: 1;
     }
     .about-image {
-      border-radius: 6px; overflow: hidden; aspect-ratio: 3/4; position: relative;
+      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
       box-shadow:
-        0 0 0 1px rgba(18,115,109,0.4),
+        0 0 0 1px rgba(255,255,255,0.14),
         0 40px 100px rgba(5,3,12,0.7),
-        0 0 80px rgba(110,63,141,0.18);
+        0 0 80px rgba(110,63,141,0.22);
+    }
+    .about-image::after {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none;
+      background: rgba(255,255,255,0.05);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .about-image img {
       width: 100%; height: 100%; object-fit: cover; display: block;
@@ -214,8 +222,13 @@
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
     .announcement-logo {
-      border-radius: 10px; overflow: hidden; aspect-ratio: 4/3;
-      box-shadow: 0 0 0 1px rgba(18,115,109,0.35), 0 24px 60px rgba(5,3,12,0.65);
+      border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; position: relative;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
+    }
+    .announcement-logo::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .announcement-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .announcement-eyebrow {
@@ -247,10 +260,15 @@
       color: #ADCD52; font-size: 12px;
     }
     .announcement-accent {
-      border-radius: 10px; display: flex; flex-direction: column;
+      border-radius: 24px; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 12px;
-      padding: 32px 24px; text-align: center;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(5,3,12,0.55);
+      padding: 32px 24px; text-align: center; position: relative;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.55), 0 0 60px rgba(110,63,141,0.18);
+    }
+    .announcement-accent::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .announcement-accent .accent-icon {
       font-size: 42px; line-height: 1;
@@ -289,16 +307,21 @@
     .services-preview .section-label { color: rgba(250,247,242,0.45); }
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; z-index: 1; }
     .service-card {
-      display: flex; flex-direction: column;
-      border-radius: 8px; overflow: hidden;
+      display: flex; flex-direction: column; position: relative;
+      border-radius: 24px; overflow: hidden;
       background: rgba(255,255,255,0.04);
       text-decoration: none; color: inherit;
-      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
       transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+    }
+    .service-card::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(5,3,12,0.6), 0 0 30px rgba(110,63,141,0.18);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 20px 50px rgba(5,3,12,0.6), 0 0 30px rgba(110,63,141,0.22);
     }
     .service-thumb {
       width: 100%; height: 260px;
@@ -352,13 +375,12 @@
     /* ── TESTIMONIALS ── */
     .testimonials {
       background: #0c0e1d;
-      padding: 72px 40px 64px;
+      padding: 80px 40px;
       text-align: center;
       overflow: hidden;
       position: relative;
-      margin-top: -80px;
-      padding-top: 152px;
     }
+    .rainbow-bar-hero { height: 8px; }
     /* service room photo — very low opacity texture */
     .testimonials::before {
       content: "";
@@ -375,8 +397,6 @@
       content: "";
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
       background:
-        /* solid cap at the very top to match hero bottom exactly */
-        linear-gradient(to bottom, rgba(12,14,29,1) 0%, transparent 18%),
         radial-gradient(ellipse at 30% 60%, rgba(110,63,141,0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 75% 30%, rgba(54,57,113,0.14) 0%, transparent 50%),
         linear-gradient(160deg, rgba(13,9,25,0.72) 0%, rgba(21,14,40,0.68) 100%);
@@ -444,7 +464,7 @@
       filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
     }
     @media (max-width: 640px) {
-      .testimonials { padding: 56px 24px 52px; }
+      .testimonials { padding: 56px 24px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -498,7 +518,7 @@
   </div>
 </section>
 
-<div class="rainbow-bar"></div>
+<div class="rainbow-bar rainbow-bar-hero"></div>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
@@ -712,7 +732,6 @@
           <li><a href="classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
           <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Careers</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="policies.html">Policies</a></li>

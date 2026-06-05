@@ -18,9 +18,8 @@
       font-size: 12px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
       cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--dark); color: var(--cream); border-color: var(--dark);
-    }
+    .filter-btn:hover { background: rgba(28,24,22,0.06); color: var(--dark); border-color: rgba(28,24,22,0.3); }
+    .filter-btn.active { background: var(--space); color: #faf7f2; border-color: var(--space); }
     .consult-note {
       text-align: center; padding: 16px 40px 0;
       font-size: 14px; color: var(--muted);
@@ -41,7 +40,8 @@
       transition: box-shadow 0.25s, border-color 0.25s;
     }
     .svc-card:hover {
-      box-shadow: 0 6px 28px rgba(28,24,22,0.09); border-color: rgba(28,24,22,0.2);
+      box-shadow: 0 8px 32px rgba(28,24,22,0.12), 0 0 0 1.5px var(--space);
+      border-color: transparent;
     }
     .svc-card[data-hidden="true"] { display: none; }
     .svc-img {
@@ -55,8 +55,8 @@
       line-height: 1.25; margin-bottom: 8px;
     }
     .svc-price {
-      font-size: 12px; letter-spacing: 0.06em; color: var(--muted);
-      text-transform: uppercase; margin-bottom: 12px; font-weight: 400;
+      font-size: 12px; letter-spacing: 0.06em; color: var(--accent2);
+      text-transform: uppercase; margin-bottom: 12px; font-weight: 500;
     }
     .svc-desc {
       font-size: 14px; line-height: 1.7; color: var(--mid); flex: 1; margin-bottom: 20px;

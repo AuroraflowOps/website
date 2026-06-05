@@ -239,10 +239,7 @@
     .announcement-card h3 {
       font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px);
       font-weight: 400; line-height: 1.2; margin-bottom: 16px;
-      background: linear-gradient(120deg, #faf7f2 20%, #ADCD52 55%, #52BCA3 80%, #faf7f2 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 200% auto;
+      color: #faf7f2;
     }
     .announcement-card p {
       font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
@@ -695,7 +692,7 @@
 <!-- FEATURED SERVICES PREVIEW -->
 <section class="services-preview">
   <div class="section-inner">
-    <p class="section-label">Featured Services</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,42px);font-weight:400;color:#faf7f2;margin-bottom:32px;letter-spacing:-0.01em;">Services worth <em style="font-style:italic;color:var(--accent2);">exploring</em></h2>
     <div class="services-grid">
       <a class="service-card" href="services/bipoc-clinical-facial.html">
         <div class="service-thumb">
@@ -1016,7 +1013,7 @@
   })();
 
   // Sparkle star field for all dark sections
-  document.querySelectorAll('.testimonials, .about, .announcements, .services-preview').forEach(section => {
+  document.querySelectorAll('.testimonials').forEach(section => {
     const area = section.offsetWidth * Math.max(section.offsetHeight, 300);
     const count = Math.min(Math.floor(area / 7000), 55);
     for (let i = 0; i < count; i++) {

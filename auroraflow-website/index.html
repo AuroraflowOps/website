@@ -11,24 +11,36 @@
   <style>
     /* ── HERO ── */
     .hero {
-      position: relative; height: 100vh; min-height: 640px;
+      position: relative; height: 100vh; min-height: 580px;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
       background: #0c0e1d;
+    }
+    @supports (height: 100svh) {
+      /* svh = stable viewport height — excludes mobile browser chrome so hero doesn't clip */
+      .hero { height: 100svh; }
     }
     @keyframes heroZoom {
       0%   { transform: scale(1.08) translateZ(0); }
       50%  { transform: scale(1.14) translateZ(0); }
       100% { transform: scale(1.08) translateZ(0); }
     }
-    .hero video {
+    .hero video, .hero-img-mobile {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
       object-position: center 25%;
+    }
+    .hero video {
       animation: heroZoom 45s ease-in-out infinite;
       transform-origin: center 30%;
       will-change: transform;
       transform: translateZ(0);
       opacity: 0;
       transition: opacity 1.2s ease;
+    }
+    .hero-img-mobile { display: none; }
+    @media (max-width: 900px) {
+      /* skip the video on mobile — static image loads instantly on cellular */
+      .hero video { display: none; }
+      .hero-img-mobile { display: block; opacity: 1; }
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -82,7 +94,7 @@
       display: block;
     }
     .hero-content p {
-      font-size: clamp(15px, 1.6vw, 18px); font-weight: 300;
+      font-size: clamp(16px, 1.6vw, 19px); font-weight: 300;
       color: rgba(250,247,242,0.75); line-height: 1.7;
       margin-bottom: 36px; max-width: 520px;
       margin-left: auto; margin-right: auto;
@@ -194,7 +206,7 @@
       display: block; margin-top: 6px;
     }
     .about-text p {
-      font-size: 16px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
+      font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
     }
     .about-text p a { color: #ADCD52 !important; }
     .about-text p:last-of-type { margin-bottom: 36px; }
@@ -242,14 +254,14 @@
       color: #faf7f2;
     }
     .announcement-card p {
-      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
+      font-size: 16px; line-height: 1.75; color: rgba(250,247,242,0.65);
       margin-bottom: 20px;
     }
     .announcement-card ul {
       list-style: none; padding: 0; margin: 0 0 28px;
     }
     .announcement-card ul li {
-      font-size: 14px; line-height: 1.65; color: rgba(250,247,242,0.6);
+      font-size: 15px; line-height: 1.65; color: rgba(250,247,242,0.6);
       padding: 6px 0 6px 20px; position: relative;
     }
     .announcement-card ul li::before {
@@ -332,12 +344,17 @@
     .service-info { padding: 24px 28px 28px; }
     .service-info h4 {
       font-family: var(--serif); font-size: 22px; font-weight: 400;
-      margin-bottom: 10px; line-height: 1.2; color: #faf7f2;
+      margin-bottom: 8px; line-height: 1.2; color: #faf7f2;
     }
-    .service-info p { font-size: 14px; line-height: 1.7; color: rgba(250,247,242,0.58); }
+    .service-price {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      color: #ADCD52; letter-spacing: 0.04em;
+      margin-bottom: 10px; display: block;
+    }
+    .service-info p { font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.58); }
     .service-link {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 16px; font-size: 11px; font-weight: 500;
+      margin-top: 16px; font-size: 12px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: #ADCD52; text-decoration: none;
     }
@@ -363,10 +380,20 @@
       .hero-content { padding: 0 24px 56px; }
       .tagline-band { padding: 70px 24px; }
     }
+    @media (max-width: 720px) {
+      /* stack announcement image above text */
+      .announcement-card { grid-template-columns: 1fr; gap: 24px; }
+      .announcement-logo { width: 140px; }
+    }
+    @media (max-width: 540px) {
+      /* hide award badge from button row — it wraps awkwardly on small phones */
+      .hero-badge.pos-inline { display: none; }
+    }
     @media (max-width: 480px) {
       .providers-grid { grid-template-columns: 1fr; }
       .service-card { flex-direction: column; }
       .service-thumb { width: 100%; height: 180px; }
+      .tagline-band { padding: 52px 20px; }
     }
 
     /* ── TESTIMONIALS ── */
@@ -521,13 +548,59 @@
       .testimonials { padding: 56px 24px; }
       .tc-quote { -webkit-line-clamp: 5; }
     }
+
+    /* ── HERO PROOF LINE ── */
+    .hero-proof {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      color: rgba(250,247,242,0.62); letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+    .hero-proof-stars { color: #FBBC04; font-size: 11px; letter-spacing: 2px; }
+    .hero-link {
+      font-family: var(--sans); font-size: 12px; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(250,247,242,0.48); text-decoration: none;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .hero-link:hover { color: rgba(250,247,242,0.85); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: #0c0e1d;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 0 24px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .trust-bar::-webkit-scrollbar { display: none; }
+    .trust-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      height: 48px; white-space: nowrap; gap: 0;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--sans); font-size: 11px; font-weight: 400;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(250,247,242,0.52);
+      padding: 0 20px;
+    }
+    .trust-item-stars { color: #FBBC04; font-size: 10px; letter-spacing: 2px; }
+    .trust-divider { width: 1px; height: 16px; flex-shrink: 0; background: rgba(255,255,255,0.12); }
+
+
+    @media (max-width: 540px) {
+      .hero-actions { flex-direction: column; align-items: center; gap: 14px; }
+      .btn-hero { width: 100%; max-width: 320px; justify-content: center; font-size: 14px; padding: 18px 24px; }
+    }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html"><img src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
+  <a class="nav-logo" href="index.html"><img loading="lazy" src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
@@ -545,6 +618,7 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
+  <a class="nav-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -568,23 +642,71 @@
   <video autoplay muted playsinline preload="auto" id="heroVideo">
     <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
+  <img class="hero-img-mobile" src="assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
     <h1 style="font-weight: 700">Feel at home in your own body</h1>
+    <div class="hero-proof">
+      <span class="hero-proof-stars">★★★★★</span>
+      <span>400+ reviews · Best Massage in the Triangle</span>
+    </div>
     <p>Durham's award winning spa and wellness center designed to provide you with a safe, welcoming space for massage, skincare, and more.</p>
     <div class="hero-actions">
-      <a class="btn-hero" href="services.html">Explore Services</a>
-      <a class="btn-hero-ghost" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
-      <div class="hero-badge pos-inline" id="heroBadge">
-        <img src="assets/img/695d02be17e983c000368553_Best-of-25.png"
-          alt="Best Massage in the Triangle" />
-      </div>
+      <a class="btn-hero" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
+      <a class="hero-link" href="services.html">Explore Services →</a>
     </div>
   </div>
 </section>
 
 <div class="rainbow-bar rainbow-bar-hero"></div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="trust-item-stars">★★★★★</span> 400+ Five-Star Reviews</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">🏆 Best Massage in the Triangle</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">🏳️‍🌈 LGBTQ-Owned &amp; Operated</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">📍 Downtown Durham, NC</div>
+  </div>
+</div>
+
+
+
+<!-- FEATURED SERVICES PREVIEW -->
+<section class="services-preview">
+  <div class="section-inner">
+    <div class="services-grid">
+      <a class="service-card" href="services/bipoc-clinical-facial.html">
+        <div class="service-thumb">
+          <img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.png" alt="BIPOC Specific Clinical Facial" loading="lazy" />
+        </div>
+        <div class="service-info">
+          <h4>BIPOC Specific Clinical Facial &amp; Consultation</h4>
+          <span class="service-price">$200 · 105 min</span>
+          <p>Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color.</p>
+          <span class="service-link">Learn More →</span>
+        </div>
+      </a>
+      <a class="service-card" href="services/blended-massage-energy-healing.html">
+        <div class="service-thumb">
+          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.png" alt="Blended Massage and Energy Healing" loading="lazy" />
+        </div>
+        <div class="service-info">
+          <h4>Blended Massage &amp; Energy Healing</h4>
+          <span class="service-price">From $115 · 60 min</span>
+          <p>Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
+          <span class="service-link">Learn More →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
@@ -700,30 +822,21 @@
 
 <div class="rainbow-bar"></div>
 
-<!-- FEATURED SERVICES PREVIEW -->
-<section class="services-preview">
+<!-- ABOUT -->
+<section class="about">
   <div class="section-inner">
-    <div class="services-grid">
-      <a class="service-card" href="services/bipoc-clinical-facial.html">
-        <div class="service-thumb">
-          <img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.png" alt="BIPOC Specific Clinical Facial" />
-        </div>
-        <div class="service-info">
-          <h4>BIPOC Specific Clinical Facial &amp; Consultation</h4>
-          <p>Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color.</p>
-          <span class="service-link">Learn More →</span>
-        </div>
-      </a>
-      <a class="service-card" href="services/blended-massage-energy-healing.html">
-        <div class="service-thumb">
-          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.png" alt="Blended Massage and Energy Healing" />
-        </div>
-        <div class="service-info">
-          <h4>Blended Massage &amp; Energy Healing</h4>
-          <p>Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
-          <span class="service-link">Learn More →</span>
-        </div>
-      </a>
+    <div class="about-grid">
+      <div class="about-image">
+        <img loading="lazy" src="assets/img/759A0003.jpg"
+          alt="Client receiving a facial at Auroraflow" />
+      </div>
+      <div class="about-text">
+        <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
+        <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
+        <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
+        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our <a href="community-fund.html" style="text-decoration:underline">Community Fund</a> and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
+        <a class="btn-outline" href="about.html">Learn More About Us</a>
+      </div>
     </div>
   </div>
 </section>
@@ -735,7 +848,7 @@
 
       <div class="announcement-card active">
         <div class="announcement-logo">
-          <img src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
+          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
         </div>
         <div>
           <span class="announcement-eyebrow">Community</span>
@@ -753,7 +866,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
+          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
         </div>
         <div>
           <span class="announcement-eyebrow">New Partnership</span>
@@ -770,7 +883,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
+          <img loading="lazy" src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
         </div>
         <div>
           <span class="announcement-eyebrow">Team Update</span>
@@ -786,7 +899,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
+          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
         </div>
         <div>
           <span class="announcement-eyebrow">Policy</span>
@@ -802,25 +915,6 @@
 
     </div>
     <div class="announcements-nav" id="announcementsNav"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-image">
-        <img src="assets/img/759A0003.jpg"
-          alt="Client receiving a facial at Auroraflow" />
-      </div>
-      <div class="about-text">
-        <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
-        <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
-        <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
-        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our <a href="community-fund.html" style="text-decoration:underline">Community Fund</a> and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
-        <a class="btn-outline" href="about.html">Learn More About Us</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -972,6 +1066,7 @@
   hamburger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
     hamburger.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
   mobileMenu.querySelectorAll('a').forEach(a => {
@@ -1008,6 +1103,17 @@
     function resetTimer() { clearInterval(timer); startTimer(); }
     slider.addEventListener('mouseenter', () => clearInterval(timer));
     slider.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support
+    let touchStartX = null;
+    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      if (touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
+      touchStartX = null;
+    });
+
     startTimer();
   })();
 
@@ -1031,5 +1137,7 @@
     }
   });
 </script>
+
+
 </body>
 </html>

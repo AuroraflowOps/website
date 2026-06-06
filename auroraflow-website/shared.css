@@ -20,7 +20,7 @@
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; }
+body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; font-size: 17px; -webkit-font-smoothing: antialiased; }
 
 /* ── NAV ── */
 nav {
@@ -113,6 +113,11 @@ nav {
 .btn-book:hover::before,
 .nav-links a.btn-book:hover::before {
   opacity: 1; filter: blur(12px);
+}
+
+/* mobile-only Book Now pill in the nav bar */
+.nav-book-mobile {
+  display: none;
 }
 
 /* hamburger */
@@ -500,9 +505,23 @@ footer {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
+  .nav-book-mobile {
+    display: inline-flex; align-items: center;
+    padding: 8px 18px; border-radius: 100px;
+    background: rgba(12,14,29,0.92); color: #faf7f2 !important;
+    font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
+    white-space: nowrap; border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.2s;
+  }
+  .nav-book-mobile:hover { background: #12736D; }
   section { padding: 60px 24px; }
   .page-header { padding: 120px 24px 60px; }
   footer { padding: 50px 24px 32px; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-social { flex-direction: row; }
+}
+@media (max-width: 480px) {
+  section { padding: 48px 20px; }
+  footer { padding: 40px 20px 28px; }
 }

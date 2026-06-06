@@ -96,7 +96,7 @@
     .hero-content p {
       font-size: clamp(16px, 1.6vw, 19px); font-weight: 300;
       color: rgba(250,247,242,0.75); line-height: 1.7;
-      margin-bottom: 36px; max-width: 520px;
+      margin-bottom: 16px; max-width: 520px;
       margin-left: auto; margin-right: auto;
     }
     .hero-actions {
@@ -386,8 +386,7 @@
       .announcement-logo { width: 140px; }
     }
     @media (max-width: 540px) {
-      /* hide award badge from button row — it wraps awkwardly on small phones */
-      .hero-badge.pos-inline { display: none; }
+      .hero-badge img { height: 52px; }
     }
     @media (max-width: 480px) {
       .providers-grid { grid-template-columns: 1fr; }
@@ -554,7 +553,7 @@
       display: flex; align-items: center; justify-content: center; gap: 8px;
       font-family: var(--sans); font-size: 13px; font-weight: 400;
       color: rgba(250,247,242,0.62); letter-spacing: 0.04em;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .hero-proof-stars { color: #FBBC04; font-size: 11px; letter-spacing: 2px; }
     .hero-link {
@@ -647,34 +646,22 @@
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
     <h1 style="font-weight: 700">Feel at home in your own body</h1>
+    <p>Durham's award winning spa and wellness center designed to provide you with a safe, welcoming space for massage, skincare, and more.</p>
     <div class="hero-proof">
       <span class="hero-proof-stars">★★★★★</span>
-      <span>400+ reviews · Best Massage in the Triangle</span>
+      <span>400+ five-star reviews</span>
     </div>
-    <p>Durham's award winning spa and wellness center designed to provide you with a safe, welcoming space for massage, skincare, and more.</p>
     <div class="hero-actions">
       <a class="btn-hero" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
       <a class="hero-link" href="services.html">Explore Services →</a>
+      <div class="hero-badge pos-inline" id="heroBadge">
+        <img src="assets/img/695d02be17e983c000368553_Best-of-25.png" alt="Best Massage in the Triangle" />
+      </div>
     </div>
   </div>
 </section>
 
 <div class="rainbow-bar rainbow-bar-hero"></div>
-
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <div class="trust-item"><span class="trust-item-stars">★★★★★</span> 400+ Five-Star Reviews</div>
-    <div class="trust-divider"></div>
-    <div class="trust-item">🏆 Best Massage in the Triangle</div>
-    <div class="trust-divider"></div>
-    <div class="trust-item">🏳️‍🌈 LGBTQ-Owned &amp; Operated</div>
-    <div class="trust-divider"></div>
-    <div class="trust-item">📍 Downtown Durham, NC</div>
-  </div>
-</div>
-
-
 
 <!-- FEATURED SERVICES PREVIEW -->
 <section class="services-preview">

@@ -359,6 +359,49 @@
       color: #ADCD52; text-decoration: none;
     }
 
+    /* ── SEE OUR SPACE ── */
+    .space-peek {
+      position: relative; overflow: hidden;
+      min-height: 520px;
+      display: flex; align-items: flex-end;
+    }
+    .space-peek-bg {
+      position: absolute; inset: 0;
+    }
+    .space-peek-bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      object-position: center 30%;
+    }
+    .space-peek-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(12,14,29,0.94) 0%,
+        rgba(12,14,29,0.52) 45%,
+        rgba(12,14,29,0.12) 100%
+      );
+    }
+    .space-peek-content {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      padding: 0 40px 72px;
+      text-align: center;
+    }
+    .space-peek-content .section-label { color: rgba(250,247,242,0.5); }
+    .space-peek-content h2 {
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 58px);
+      font-weight: 300; color: #faf7f2; line-height: 1.1; margin-bottom: 20px;
+    }
+    .space-peek-content h2 em { font-style: italic; }
+    .space-peek-content p {
+      font-size: 16px; color: rgba(250,247,242,0.7); line-height: 1.72;
+      max-width: 480px; margin: 0 auto 32px;
+    }
+    @media (max-width: 900px) {
+      .space-peek { min-height: 440px; }
+      .space-peek-content { padding: 0 24px 56px; }
+    }
+
     /* ── TAGLINE BAND ── */
     .tagline-band {
       background: var(--dark); padding: 90px 40px; text-align: center;
@@ -617,7 +660,14 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
-  <a class="nav-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
+  <a class="nav-book-mobile" href="https://booking.mangomint.com/814946" target="_blank" aria-label="Book Now">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+  </a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -638,10 +688,10 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted playsinline preload="auto" id="heroVideo">
+  <video autoplay muted playsinline preload="auto" poster="assets/aurora-hero-poster.jpg" id="heroVideo">
     <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
-  <img class="hero-img-mobile" src="assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png" alt="" aria-hidden="true">
+  <img class="hero-img-mobile" src="assets/aurora-hero-poster.jpg" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
@@ -657,38 +707,6 @@
       <div class="hero-badge pos-inline" id="heroBadge">
         <img src="assets/img/695d02be17e983c000368553_Best-of-25.png" alt="Best Massage in the Triangle" />
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="rainbow-bar rainbow-bar-hero"></div>
-
-<!-- FEATURED SERVICES PREVIEW -->
-<section class="services-preview">
-  <div class="section-inner">
-    <div class="services-grid">
-      <a class="service-card" href="services/bipoc-clinical-facial.html">
-        <div class="service-thumb">
-          <img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.png" alt="BIPOC Specific Clinical Facial" loading="lazy" />
-        </div>
-        <div class="service-info">
-          <h4>BIPOC Specific Clinical Facial &amp; Consultation</h4>
-          <span class="service-price">$200 · 105 min</span>
-          <p>Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color.</p>
-          <span class="service-link">Learn More →</span>
-        </div>
-      </a>
-      <a class="service-card" href="services/blended-massage-energy-healing.html">
-        <div class="service-thumb">
-          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.png" alt="Blended Massage and Energy Healing" loading="lazy" />
-        </div>
-        <div class="service-info">
-          <h4>Blended Massage &amp; Energy Healing</h4>
-          <span class="service-price">From $115 · 60 min</span>
-          <p>Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
-          <span class="service-link">Learn More →</span>
-        </div>
-      </a>
     </div>
   </div>
 </section>
@@ -809,24 +827,38 @@
 
 <div class="rainbow-bar"></div>
 
-<!-- ABOUT -->
-<section class="about">
+<!-- FEATURED SERVICES PREVIEW -->
+<section class="services-preview">
   <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-image">
-        <img loading="lazy" src="assets/img/759A0003.jpg"
-          alt="Client receiving a facial at Auroraflow" />
-      </div>
-      <div class="about-text">
-        <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
-        <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
-        <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
-        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our <a href="community-fund.html" style="text-decoration:underline">Community Fund</a> and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
-        <a class="btn-outline" href="about.html">Learn More About Us</a>
-      </div>
+    <p class="section-label">Featured Services</p>
+    <div class="services-grid">
+      <a class="service-card" href="services/bipoc-clinical-facial.html">
+        <div class="service-thumb">
+          <img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.png" alt="BIPOC Specific Clinical Facial" loading="lazy" />
+        </div>
+        <div class="service-info">
+          <h4>BIPOC Specific Clinical Facial &amp; Consultation</h4>
+          <span class="service-price">$200 · 105 min</span>
+          <p>Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color.</p>
+          <span class="service-link">Learn More →</span>
+        </div>
+      </a>
+      <a class="service-card" href="services/blended-massage-energy-healing.html">
+        <div class="service-thumb">
+          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.png" alt="Blended Massage and Energy Healing" loading="lazy" />
+        </div>
+        <div class="service-info">
+          <h4>Blended Massage &amp; Energy Healing</h4>
+          <span class="service-price">From $115 · 60 min</span>
+          <p>Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
+          <span class="service-link">Learn More →</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
+
+<div class="rainbow-bar"></div>
 
 <!-- ANNOUNCEMENTS -->
 <section class="announcements">
@@ -902,6 +934,42 @@
 
     </div>
     <div class="announcements-nav" id="announcementsNav"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image">
+        <img loading="lazy" src="assets/img/759A0003.jpg"
+          alt="Client receiving a facial at Auroraflow" />
+      </div>
+      <div class="about-text">
+        <span class="about-eyebrow">✨ Queerly Owned &amp; Operated ✨</span>
+        <h2><span class="about-h2-light">They say wellness is a luxury.</span><strong>We believe it's a human right.</strong></h2>
+        <p>Auroraflow was built on the premise that everyone deserves a safe, affirming space for self-care.</p>
+        <p>Based in Downtown Durham, our staff is dedicated to deep, compassionate client care while striving to support our broader community through events, partnerships, and socially conscious initiatives. We do our best to address financial barriers via our <a href="community-fund.html" style="text-decoration:underline">Community Fund</a> and our <a href="pay-what-you-can.html" style="text-decoration:underline">Pay What You Can Days</a>, as well as <a href="memberships.html" style="text-decoration:underline">memberships</a> for both individuals and businesses.</p>
+        <a class="btn-outline" href="about.html">Learn More About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- SEE OUR SPACE -->
+<section class="space-peek">
+  <div class="space-peek-bg">
+    <img loading="lazy" src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg"
+      alt="Massage room with rainbow mural at Auroraflow" />
+  </div>
+  <div class="space-peek-overlay"></div>
+  <div class="space-peek-content">
+    <p class="section-label">Our Space</p>
+    <h2>Step inside<br><em>before you arrive.</em></h2>
+    <p>Warm rooms, natural light, and a team that makes you feel at home.</p>
+    <a class="btn-hero" href="https://maps.app.goo.gl/GKhtkFqhU2D4HyRr8" target="_blank" rel="noopener noreferrer">View Our Space &rarr;</a>
   </div>
 </section>
 

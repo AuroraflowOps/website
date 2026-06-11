@@ -85,13 +85,16 @@
     }
     .hero-content h1 {
       font-family: var(--serif);
-      font-size: clamp(44px, 6.5vw, 88px);
+      font-size: clamp(46px, 6.5vw, 92px);
       font-weight: 400; color: #faf7f2; line-height: 1.05;
-      letter-spacing: -0.01em; margin-bottom: 16px;
+      letter-spacing: -0.02em; margin-bottom: 16px;
     }
     .hero-content h1 .accent {
-      color: #12736D;
-      display: block;
+      display: inline;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     .hero-content p {
       font-size: clamp(16px, 1.6vw, 19px); font-weight: 300;
@@ -108,18 +111,27 @@
       background: #12736D; color: #faf7f2;
       font-family: var(--sans); font-size: 13px;
       font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; transition: background 0.25s;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
-    .btn-hero:hover { background: #ADCD52; color: #1c1816; }
+    .btn-hero:hover {
+      background: #ADCD52; color: #1c1816;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px -10px rgba(173,205,82,0.55);
+    }
     .btn-hero-ghost {
       display: inline-flex; align-items: center;
       padding: 16px 32px; border-radius: 100px;
       border: 1.5px solid rgba(250,247,242,0.4);
       color: #faf7f2; font-family: var(--sans); font-size: 13px;
       font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; transition: border-color 0.25s, background 0.25s;
+      text-decoration: none;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1);
     }
-    .btn-hero-ghost:hover { border-color: #faf7f2; background: rgba(250,247,242,0.1); }
+    .btn-hero-ghost:hover {
+      border-color: #faf7f2; background: rgba(250,247,242,0.1);
+      transform: translateY(-3px);
+    }
     .hero-badge {
       display: flex; align-items: center; gap: 10px;
       transition: transform 0.3s ease;
@@ -161,14 +173,15 @@
       position: absolute; inset: 0; pointer-events: none;
       background:
         radial-gradient(ellipse 55% 80% at 12% 55%, rgba(110,63,141,0.14) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 55% at 88% 25%, rgba(18,115,109,0.10) 0%, transparent 55%);
+        radial-gradient(ellipse 45% 55% at 88% 25%, rgba(18,115,109,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 38% 45% at 78% 92%, rgba(173,205,82,0.08) 0%, transparent 55%);
     }
     .about-grid {
       display: grid; grid-template-columns: 42fr 58fr; gap: 72px; align-items: center;
       position: relative; z-index: 1;
     }
     .about-image {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
+      border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; position: relative;
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.14),
         0 40px 100px rgba(5,3,12,0.7),
@@ -195,6 +208,7 @@
     .about-text h2 {
       font-family: var(--serif); font-size: clamp(30px, 3.5vw, 52px);
       font-weight: 400; line-height: 1.2; margin-bottom: 28px;
+      letter-spacing: -0.01em;
       color: #faf7f2;
     }
     .about-h2-light {
@@ -221,6 +235,13 @@
       background: #0c0e1d;
       position: relative; overflow: hidden;
     }
+    .announcements::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 90% 10%, rgba(110,63,141,0.16) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 50% at 8% 95%, rgba(173,205,82,0.08) 0%, transparent 55%);
+    }
     .announcements .section-label { color: rgba(250,247,242,0.45); }
     .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
     .announcement-card {
@@ -234,7 +255,7 @@
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
     .announcement-logo {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
+      border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
     }
     .announcement-logo::after {
@@ -251,6 +272,7 @@
     .announcement-card h3 {
       font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px);
       font-weight: 400; line-height: 1.2; margin-bottom: 16px;
+      letter-spacing: -0.01em;
       color: #faf7f2;
     }
     .announcement-card p {
@@ -269,13 +291,13 @@
       color: #ADCD52; font-size: 12px;
     }
     .announcement-accent {
-      border-radius: 24px; display: flex; flex-direction: column;
+      border-radius: var(--radius-lg); display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 12px;
       padding: 32px 24px; text-align: center; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.55), 0 0 60px rgba(110,63,141,0.18);
     }
     .announcement-accent::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 24px;
+      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radius-lg);
       background: rgba(255,255,255,0.05);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
@@ -313,23 +335,41 @@
       background: #0c0e1d;
       position: relative; overflow: hidden;
     }
+    .services-preview::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 55% at 12% 12%, rgba(18,115,109,0.16) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 50% at 92% 88%, rgba(110,63,141,0.14) 0%, transparent 55%);
+    }
     .services-preview .section-label { color: rgba(250,247,242,0.45); }
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; z-index: 1; }
     .service-card {
       display: flex; flex-direction: column; position: relative;
-      border-radius: 24px; overflow: hidden;
+      border-radius: var(--radius-lg); overflow: hidden;
       background: rgba(255,255,255,0.04);
       text-decoration: none; color: inherit;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
-      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+      transition: transform 0.3s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.3s;
     }
+    .service-card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 4px; z-index: 3;
+      background: linear-gradient(to right,
+        #ADCD52, #12736D, #363971, #6E3F8D,
+        #BA7EC9, #585BA7, #52BCA3, #D9E493
+      );
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
     .service-card::after {
       content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
       background: rgba(255,255,255,0.05);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .service-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 20px 50px rgba(5,3,12,0.6), 0 0 30px rgba(110,63,141,0.22);
     }
     .service-thumb {
@@ -344,7 +384,7 @@
     .service-info { padding: 24px 28px 28px; }
     .service-info h4 {
       font-family: var(--serif); font-size: 22px; font-weight: 400;
-      margin-bottom: 8px; line-height: 1.2; color: #faf7f2;
+      margin-bottom: 8px; line-height: 1.2; letter-spacing: -0.01em; color: #faf7f2;
     }
     .service-price {
       font-family: var(--sans); font-size: 13px; font-weight: 500;
@@ -391,8 +431,15 @@
     .space-peek-content h2 {
       font-family: var(--serif); font-size: clamp(32px, 4vw, 58px);
       font-weight: 300; color: #faf7f2; line-height: 1.1; margin-bottom: 20px;
+      letter-spacing: -0.01em;
     }
-    .space-peek-content h2 em { font-style: italic; }
+    .space-peek-content h2 em {
+      font-style: italic;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     .space-peek-content p {
       font-size: 16px; color: rgba(250,247,242,0.7); line-height: 1.72;
       max-width: 480px; margin: 0 auto 32px;
@@ -473,7 +520,7 @@
     .testimonials-header h2 {
       font-family: var(--serif); font-size: clamp(32px, 4vw, 56px);
       font-weight: 400; line-height: 1.1; color: #faf7f2;
-      letter-spacing: -0.01em; margin-bottom: 20px;
+      letter-spacing: -0.02em; margin-bottom: 20px;
     }
     .testimonials-header h2 em { font-style: italic; color: var(--accent); }
     .testimonials-header p {
@@ -695,7 +742,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
-    <h1 style="font-weight: 700">Feel at home in your own body</h1>
+    <h1 style="font-weight: 700">Feel at home in <span class="accent">your own body</span></h1>
     <p>Durham's award winning spa and wellness center designed to provide you with a safe, welcoming space for massage, skincare, and more.</p>
     <div class="hero-proof">
       <span class="hero-proof-stars">★★★★★</span>

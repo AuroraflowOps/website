@@ -17,6 +17,12 @@
   --serif: 'Poiret One', Georgia, sans-serif;
   --sans: 'Roboto', sans-serif;
   --nav-h: 72px;
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 12px rgba(28,24,22,0.06);
+  --shadow-md: 0 12px 32px rgba(28,24,22,0.10);
+  --shadow-lift: 0 16px 40px rgba(28,24,22,0.14);
 }
 
 html { scroll-behavior: smooth; }
@@ -69,7 +75,7 @@ nav {
   transform: translateX(-50%) translateY(-6px);
   background: rgba(255,255,255,0.99);
   border: 1px solid var(--border);
-  border-radius: 12px; padding: 6px 0; list-style: none;
+  border-radius: var(--radius); padding: 6px 0; list-style: none;
   min-width: 188px; opacity: 0; visibility: hidden;
   transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
   box-shadow: 0 8px 32px rgba(0,0,0,0.10); z-index: 210;
@@ -448,9 +454,12 @@ section { padding: 80px 40px; }
   border: 1.5px solid var(--dark); color: var(--dark);
   font-family: var(--sans); font-size: 12px; font-weight: 400;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
 }
-.btn-outline:hover { background: var(--dark); color: var(--cream); }
+.btn-outline:hover {
+  background: var(--dark); color: var(--cream);
+  transform: translateY(-2px); box-shadow: var(--shadow-md);
+}
 
 /* ── FOOTER ── */
 footer {
@@ -476,9 +485,12 @@ footer {
   width: 36px; height: 36px; border-radius: 50%;
   border: 1px solid var(--border); display: flex; align-items: center;
   justify-content: center; color: var(--mid); text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
 }
-.footer-social a:hover { background: var(--dark); border-color: var(--dark); color: var(--cream); }
+.footer-social a:hover {
+  background: var(--dark); border-color: var(--dark); color: var(--cream);
+  transform: translateY(-2px); box-shadow: var(--shadow-sm);
+}
 .footer-social svg { width: 14px; height: 14px; }
 .footer-bottom {
   border-top: 1px solid var(--border); padding-top: 24px;

@@ -16,7 +16,7 @@
       align-items: center; text-decoration: none; color: inherit;
     }
     .featured-img {
-      aspect-ratio: 4/3; border-radius: 4px; overflow: hidden; background: #e0d8d0;
+      aspect-ratio: 4/3; border-radius: var(--radius-sm); overflow: hidden; background: #e0d8d0;
     }
     .featured-img img {
       width: 100%; height: 100%; object-fit: cover; display: block;
@@ -68,11 +68,25 @@
     .article-card {
       display: flex; flex-direction: column;
       text-decoration: none; color: inherit;
+      transition: transform 0.3s cubic-bezier(0.2,0.7,0.2,1);
     }
+    .article-card:hover { transform: translateY(-4px); }
     .article-img {
-      aspect-ratio: 3/2; border-radius: 4px; overflow: hidden;
+      aspect-ratio: 3/2; border-radius: var(--radius-sm); overflow: hidden;
       background: #e0d8d0; margin-bottom: 18px; flex-shrink: 0;
+      position: relative;
     }
+    .article-img::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 4px; z-index: 1;
+      background: linear-gradient(to right,
+        #ADCD52, #12736D, #363971, #6E3F8D,
+        #BA7EC9, #585BA7, #52BCA3, #D9E493
+      );
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .article-card:hover .article-img::before { transform: scaleX(1); }
     .article-img img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.45s ease;

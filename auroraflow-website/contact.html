@@ -52,7 +52,7 @@
 
     /* Map embed */
     .map-wrap {
-      margin-top: 40px; border-radius: 4px; overflow: hidden;
+      margin-top: 40px; border-radius: var(--radius-sm); overflow: hidden;
       height: 220px; background: #e0d8d0;
     }
     .map-wrap iframe {
@@ -65,10 +65,11 @@
       width: 40px; height: 40px; border-radius: 50%;
       border: 1px solid var(--border); display: flex; align-items: center;
       justify-content: center; color: var(--mid); text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
     .contact-social a:hover {
       background: var(--dark); border-color: var(--dark); color: var(--cream);
+      transform: translateY(-2px); box-shadow: var(--shadow-sm);
     }
     .contact-social svg { width: 15px; height: 15px; }
 

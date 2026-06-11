@@ -16,7 +16,7 @@
       align-items: center; text-decoration: none; color: inherit;
     }
     .featured-img {
-      aspect-ratio: 4/3; border-radius: 4px; overflow: hidden; background: #e0d8d0;
+      aspect-ratio: 4/3; border-radius: var(--radius-sm); overflow: hidden; background: #e0d8d0;
     }
     .featured-img img {
       width: 100%; height: 100%; object-fit: cover; display: block;
@@ -68,11 +68,25 @@
     .article-card {
       display: flex; flex-direction: column;
       text-decoration: none; color: inherit;
+      transition: transform 0.3s cubic-bezier(0.2,0.7,0.2,1);
     }
+    .article-card:hover { transform: translateY(-4px); }
     .article-img {
-      aspect-ratio: 3/2; border-radius: 4px; overflow: hidden;
+      aspect-ratio: 3/2; border-radius: var(--radius-sm); overflow: hidden;
       background: #e0d8d0; margin-bottom: 18px; flex-shrink: 0;
+      position: relative;
     }
+    .article-img::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 4px; z-index: 1;
+      background: linear-gradient(to right,
+        #ADCD52, #12736D, #363971, #6E3F8D,
+        #BA7EC9, #585BA7, #52BCA3, #D9E493
+      );
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .article-card:hover .article-img::before { transform: scaleX(1); }
     .article-img img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.45s ease;
@@ -118,7 +132,15 @@
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="memberships.html">Memberships</a></li>
+    <li class="nav-dropdown">
+      <a href="javascript:void(0)" class="nav-dropdown-toggle">Programs</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="community-fund.html">Community Fund</a></li>
+        <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
+        <li><a href="memberships.html">Memberships</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+    </li>
     <li><a href="journal.html" class="active">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
@@ -132,7 +154,10 @@
   <a href="about.html">About</a>
   <a href="team.html">Team</a>
   <a href="services.html">Services</a>
+  <a href="community-fund.html">Community Fund</a>
+  <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
+  <a href="classes.html">Classes</a>
   <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>

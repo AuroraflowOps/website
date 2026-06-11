@@ -11,7 +11,7 @@
     /* pwyc-hero now uses shared .page-hero */
 
     /* ── WHAT IS IT ── */
-    .what-section { background: var(--warm-white); padding: 96px 40px; }
+    .what-section { background: var(--warm-white); padding: 80px 40px; }
     .what-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -22,15 +22,15 @@
     }
     .what-text h2 em { font-style: italic; }
     .what-text p {
-      font-size: 16px; line-height: 1.82; color: var(--mid); margin-bottom: 18px;
+      font-size: 16px; line-height: 1.7; color: var(--mid); margin-bottom: 16px;
     }
     .what-img {
-      border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; background: #e0d8d0;
+      border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4/3; background: #e0d8d0;
     }
     .what-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── HOW IT WORKS ── */
-    .how-section { background: var(--cream); padding: 96px 40px; }
+    .how-section { background: var(--cream); padding: 80px 40px; }
     .how-inner { max-width: 1200px; margin: 0 auto; }
     .how-inner h2 {
       font-family: var(--serif); font-size: clamp(26px, 3vw, 44px);
@@ -49,48 +49,8 @@
     }
     .how-step p { font-size: 15px; line-height: 1.78; color: var(--mid); }
 
-    /* ── SCHEDULE STRIP ── */
-    .schedule-section { background: #0c0e1d; padding: 72px 40px; position: relative; overflow: hidden; }
-    .schedule-inner { max-width: 860px; margin: 0 auto; text-align: center; }
-    .schedule-inner h3 {
-      font-family: var(--serif); font-size: clamp(26px, 3.5vw, 44px);
-      font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.2;
-    }
-    .schedule-inner h3 em { font-style: italic; }
-    .schedule-inner > p {
-      font-size: 16px; color: rgba(250,247,242,0.6); margin-bottom: 40px; line-height: 1.65;
-    }
-    .schedule-cards {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px;
-    }
-    .schedule-card {
-      border: 1px solid rgba(250,247,242,0.12); border-radius: 4px;
-      padding: 24px 28px; text-align: left;
-      background: rgba(250,247,242,0.04);
-    }
-    .schedule-card .day {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
-      text-transform: uppercase; color: rgba(250,247,242,0.4); margin-bottom: 6px;
-    }
-    .schedule-card .time {
-      font-family: var(--serif); font-size: 28px; font-weight: 400;
-      color: var(--cream); line-height: 1.1;
-    }
-    .schedule-card .note {
-      font-size: 13px; color: rgba(250,247,242,0.45); margin-top: 6px;
-    }
-    .schedule-cta {
-      display: inline-flex; align-items: center;
-      padding: 15px 38px; border-radius: 100px;
-      background: var(--cream); color: var(--dark);
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .schedule-cta:hover { opacity: 0.88; }
-
     /* ── VALUES ── */
-    .values-section { background: var(--warm-white); padding: 96px 40px; }
+    .values-section { background: var(--warm-white); padding: 80px 40px; }
     .values-inner { max-width: 1200px; margin: 0 auto; }
     .values-inner h2 {
       font-family: var(--serif); font-size: clamp(26px, 3vw, 44px);
@@ -99,8 +59,13 @@
     .values-inner h2 em { font-style: italic; }
     .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .value-card {
-      padding: 32px; border-radius: 4px;
+      padding: 32px; border-radius: var(--radius-sm);
       border: 1px solid var(--border); background: var(--cream);
+      transition: transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
+    }
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
     }
     .value-card h4 {
       font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 10px;
@@ -108,7 +73,7 @@
     .value-card p { font-size: 15px; line-height: 1.75; color: var(--mid); }
 
     /* ── FAQ ── */
-    .faq-section { background: var(--cream); padding: 96px 40px; }
+    .faq-section { background: var(--cream); padding: 80px 40px; }
     .faq-inner { max-width: 860px; margin: 0 auto; }
     .faq-inner h2 {
       font-family: var(--serif); font-size: clamp(26px, 3vw, 40px);
@@ -140,9 +105,8 @@
     @media (max-width: 960px) {
       .what-inner { grid-template-columns: 1fr; gap: 40px; }
       .how-steps { grid-template-columns: 1fr; gap: 32px; }
-      .schedule-cards { grid-template-columns: 1fr; }
       .values-grid { grid-template-columns: 1fr; }
-      .what-section, .how-section, .schedule-section, .values-section, .faq-section { padding: 72px 24px; }
+      .what-section, .how-section, .values-section, .faq-section { padding: 56px 24px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -154,7 +118,15 @@
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="memberships.html">Memberships</a></li>
+    <li class="nav-dropdown">
+      <a href="javascript:void(0)" class="nav-dropdown-toggle">Programs</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="community-fund.html">Community Fund</a></li>
+        <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
+        <li><a href="memberships.html">Memberships</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+    </li>
     <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
@@ -167,7 +139,10 @@
   <a href="about.html">About</a>
   <a href="team.html">Team</a>
   <a href="services.html">Services</a>
+  <a href="community-fund.html">Community Fund</a>
+  <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
+  <a href="classes.html">Classes</a>
   <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
@@ -176,16 +151,12 @@
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-img">
-    <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg" alt="" />
+    <img src="assets/img/65eb7cba66520ea5d64bd4ed_Relaxing-Back-Treatment-Auroraflow.jpg" alt="Relaxing massage treatment at Auroraflow" />
   </div>
   <div class="page-hero-content">
     <p class="section-label">Community Access</p>
     <h1>Pay what<br>you <em>can.</em></h1>
-    <p>Wellness is a fundamental right, not a luxury. Every second and fourth Thursday, we open our doors with sliding-scale pricing so financial circumstances never stand between you and the care you deserve.</p>
-    <div class="page-hero-badge">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span>Every <strong>2nd &amp; 4th Thursday</strong> of the month</span>
-    </div>
+    <p>Wellness is a fundamental right, not a luxury. We regularly open our doors with sliding-scale pricing so financial circumstances never stand between you and the care you deserve.</p>
   </div>
 </div>
 <div class="rainbow-bar"></div>
@@ -195,12 +166,11 @@
   <div class="what-inner">
     <div class="what-text">
       <h2>Wellness for<br><em>everyone.</em></h2>
-      <p>We know that in the current American environment, massage and professional wellness services are often treated as luxuries, things you do when you can afford them. We fundamentally disagree with that framing.</p>
-      <p>Stress affects everyone. Bodies need care. And the people who most need a moment of rest and healing are often the ones who can least afford it.</p>
-      <p>Pay What You Can days are our commitment to changing that, even just a little, right here in Durham. Spots are limited, so we ask that if you are able to pay full price, you do. That generosity helps us keep this program running for those who truly need it.</p>
+      <p>Massage and professional wellness are too often treated as luxuries, things you do once you can afford them. We disagree. Stress affects everyone, and the people who most need rest and healing are often the ones who can least afford it.</p>
+      <p>Pay What You Can days are our commitment to changing that, right here in Durham. Spots are limited, so if you're able to pay full price, we ask that you do. It helps us keep this program running for those who truly need it.</p>
     </div>
     <div class="what-img">
-      <img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.png" alt="Auroraflow community" />
+      <img src="assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png" alt="Massage treatment at Auroraflow" />
     </div>
   </div>
 </div>
@@ -212,41 +182,20 @@
     <div class="how-steps">
       <div class="how-step">
         <div class="step-num">01</div>
-        <h4>Check the schedule</h4>
-        <p>Pay What You Can days happen every second and fourth Thursday of the month. Follow our Instagram or check back here for specific dates and any updates.</p>
+        <h4>Find the next date</h4>
+        <p>PWYC days don't run on a fixed schedule, but happen about twice a month. Follow us on Instagram <a href="https://www.instagram.com/auroraflowmassage/" target="_blank">@auroraflowmassage</a>, or call or text us at <a href="tel:9192299555">(919) 229-9555</a>, to find out when the next one is.</p>
       </div>
       <div class="how-step">
         <div class="step-num">02</div>
         <h4>Book your spot</h4>
-        <p>Spots are limited. We recommend booking in advance. Call us at (919) 229-9555 or use our online booking system. Let us know you're booking for a Pay What You Can day.</p>
+        <p>Spots are limited, so book early online or by phone. In your booking note, write "PWYC" along with the amount you plan to pay ($20 minimum).</p>
       </div>
       <div class="how-step">
         <div class="step-num">03</div>
         <h4>Come in &amp; pay what you can</h4>
-        <p>At checkout, pay the amount that works for you. No questions, no judgment. If you are able to pay full price or more, we deeply appreciate it. It directly supports this program.</p>
+        <p>At checkout, pay the amount you noted when booking. No questions, no judgment. If you're able to pay full price or more, we deeply appreciate it, it directly supports this program.</p>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- SCHEDULE -->
-<div class="schedule-section">
-  <div class="schedule-inner">
-    <h3>Mark your <em>calendar.</em></h3>
-    <p>Pay What You Can days happen on a recurring schedule every month. Spots fill up. Book early.</p>
-    <div class="schedule-cards">
-      <div class="schedule-card">
-        <div class="day">2nd Thursday of the month</div>
-        <div class="time">Every Month</div>
-        <div class="note">Recurring · Limited spots available</div>
-      </div>
-      <div class="schedule-card">
-        <div class="day">4th Thursday of the month</div>
-        <div class="time">Every Month</div>
-        <div class="note">Recurring · Limited spots available</div>
-      </div>
-    </div>
-    <a class="schedule-cta" href="https://booking.mangomint.com/814946" target="_blank">Book a Spot</a>
   </div>
 </div>
 
@@ -257,19 +206,19 @@
     <div class="values-grid">
       <div class="value-card">
         <h4>Stress doesn't discriminate</h4>
-        <p>Chronic stress disproportionately affects marginalized communities: BIPOC individuals, low-income families, and those with less economic security. We believe that access to healing shouldn't follow the same inequities.</p>
+        <p>Chronic stress disproportionately affects marginalized communities, including BIPOC individuals and families with less economic security. Access to healing shouldn't follow the same inequities.</p>
       </div>
       <div class="value-card">
         <h4>Community is our why</h4>
-        <p>Auroraflow was built by and for the Durham community. Pay What You Can days are one concrete way we put that value into practice, not just as a statement, but as a recurring commitment.</p>
+        <p>Auroraflow was built by and for the Durham community. PWYC days are one concrete way we put that value into practice, again and again.</p>
       </div>
       <div class="value-card">
         <h4>It takes all of us</h4>
-        <p>This program works because clients who can pay full price or more help subsidize access for those who can't. Every time you choose Auroraflow, you're part of that ecosystem of community care.</p>
+        <p>This program works because clients who can pay full price help subsidize access for those who can't. Every booking is part of that ecosystem of community care.</p>
       </div>
       <div class="value-card">
         <h4>No questions asked</h4>
-        <p>We don't ask you to prove financial need, fill out a form, or explain yourself. You decide what to pay. We trust you. That trust is part of what makes this space feel different.</p>
+        <p>We won't ask you to prove financial need or explain yourself. You decide what to pay, and we trust you.</p>
       </div>
     </div>
   </div>
@@ -293,7 +242,7 @@
         <span>Is there a minimum amount I need to pay?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </button>
-      <div class="faq-a">There is no enforced minimum. We ask that you pay what is genuinely accessible to you, and that you be honest with yourself about what that is. If you can pay full price, we ask that you do, it helps us keep this program sustainable.</div>
+      <div class="faq-a">Yes, $20. When you book, add "PWYC" and the amount you plan to pay to your booking note. If you're able to pay more, or full price, we deeply appreciate it, it helps us keep this program sustainable.</div>
     </div>
 
     <div class="faq-item">
@@ -301,7 +250,7 @@
         <span>Do I need to book in advance?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </button>
-      <div class="faq-a">Yes, spots are limited and we strongly recommend booking in advance. You can book online or call us at (919) 229-9555. Walk-ins are welcome if spots are still available, but we can't guarantee availability.</div>
+      <div class="faq-a">Yes, spots are limited and we strongly recommend booking in advance, online or by calling/texting <a href="tel:9192299555">(919) 229-9555</a>. Walk-ins are welcome if spots are still available, but we can't guarantee availability.</div>
     </div>
 
     <div class="faq-item">
@@ -310,14 +259,6 @@
         <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </button>
       <div class="faq-a">Membership credits and Pay What You Can pricing are separate programs. PWYC days are intended for those who need financial assistance. We ask members to save their credits for regular appointments so PWYC spots stay available for the community.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">
-        <span>How do I stay updated on upcoming dates?</span>
-        <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      </button>
-      <div class="faq-a">Follow us on Instagram <a href="https://www.instagram.com/auroraflowmassage/" target="_blank">@auroraflowmassage</a> for the most current updates and any schedule changes. You can also follow us on our social media for the latest updates.</div>
     </div>
   </div>
 </div>

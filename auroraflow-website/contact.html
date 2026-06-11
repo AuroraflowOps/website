@@ -52,7 +52,7 @@
 
     /* Map embed */
     .map-wrap {
-      margin-top: 40px; border-radius: 4px; overflow: hidden;
+      margin-top: 40px; border-radius: var(--radius-sm); overflow: hidden;
       height: 220px; background: #e0d8d0;
     }
     .map-wrap iframe {
@@ -65,10 +65,11 @@
       width: 40px; height: 40px; border-radius: 50%;
       border: 1px solid var(--border); display: flex; align-items: center;
       justify-content: center; color: var(--mid); text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
     .contact-social a:hover {
       background: var(--dark); border-color: var(--dark); color: var(--cream);
+      transform: translateY(-2px); box-shadow: var(--shadow-sm);
     }
     .contact-social svg { width: 15px; height: 15px; }
 
@@ -136,7 +137,15 @@
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="memberships.html">Memberships</a></li>
+    <li class="nav-dropdown">
+      <a href="javascript:void(0)" class="nav-dropdown-toggle">Programs</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="community-fund.html">Community Fund</a></li>
+        <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
+        <li><a href="memberships.html">Memberships</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+    </li>
     <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
@@ -149,7 +158,10 @@
   <a href="about.html">About</a>
   <a href="team.html">Team</a>
   <a href="services.html">Services</a>
+  <a href="community-fund.html">Community Fund</a>
+  <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
+  <a href="classes.html">Classes</a>
   <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
@@ -269,7 +281,7 @@
         <span>Do you offer Pay What You Can pricing?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </button>
-      <div class="faq-a">Yes, every second and fourth Thursday we offer Pay What You Can days. We believe wellness should be accessible regardless of financial circumstances. Spots are limited; contact us or watch our social media for details.</div>
+      <div class="faq-a">Yes! We typically offer Pay What You Can services at least twice a month — follow us on Instagram for the latest updates, or give us a call at (919) 229-9555 to find out what's coming up. We believe wellness should be accessible regardless of financial circumstances, and spots are limited.</div>
     </div>
 
     <div class="faq-item">

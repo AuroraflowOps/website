@@ -17,10 +17,16 @@
   --serif: 'Poiret One', Georgia, sans-serif;
   --sans: 'Roboto', sans-serif;
   --nav-h: 72px;
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 12px rgba(28,24,22,0.06);
+  --shadow-md: 0 12px 32px rgba(28,24,22,0.10);
+  --shadow-lift: 0 16px 40px rgba(28,24,22,0.14);
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; }
+body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; font-size: 17px; -webkit-font-smoothing: antialiased; }
 
 /* ── NAV ── */
 nav {
@@ -48,6 +54,44 @@ nav {
   color: var(--mid); text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+
+/* Programs dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: inline-flex !important; align-items: center; gap: 4px; cursor: default;
+}
+.nav-dropdown-toggle::after {
+  content: '';
+  display: inline-block; width: 5px; height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  transition: transform 0.2s; margin-top: 1px;
+}
+.nav-dropdown:hover .nav-dropdown-toggle { color: var(--dark); }
+.nav-dropdown:hover .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(2px); }
+.nav-dropdown-menu {
+  position: absolute; top: calc(100% + 14px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(255,255,255,0.99);
+  border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 6px 0; list-style: none;
+  min-width: 188px; opacity: 0; visibility: hidden;
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10); z-index: 210;
+}
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu li a {
+  display: block; padding: 10px 20px;
+  font-family: var(--sans); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--mid); text-decoration: none; white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-dropdown-menu li a:hover { color: var(--dark); background: rgba(0,0,0,0.035); }
+
 .btn-book,
 .nav-links a.btn-book {
   position: relative; isolation: isolate;
@@ -75,6 +119,11 @@ nav {
 .btn-book:hover::before,
 .nav-links a.btn-book:hover::before {
   opacity: 1; filter: blur(12px);
+}
+
+/* mobile-only Book Now pill in the nav bar */
+.nav-book-mobile {
+  display: none;
 }
 
 /* hamburger */
@@ -405,9 +454,12 @@ section { padding: 80px 40px; }
   border: 1.5px solid var(--dark); color: var(--dark);
   font-family: var(--sans); font-size: 12px; font-weight: 400;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
 }
-.btn-outline:hover { background: var(--dark); color: var(--cream); }
+.btn-outline:hover {
+  background: var(--dark); color: var(--cream);
+  transform: translateY(-2px); box-shadow: var(--shadow-md);
+}
 
 /* ── FOOTER ── */
 footer {
@@ -433,15 +485,25 @@ footer {
   width: 36px; height: 36px; border-radius: 50%;
   border: 1px solid var(--border); display: flex; align-items: center;
   justify-content: center; color: var(--mid); text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
 }
-.footer-social a:hover { background: var(--dark); border-color: var(--dark); color: var(--cream); }
+.footer-social a:hover {
+  background: var(--dark); border-color: var(--dark); color: var(--cream);
+  transform: translateY(-2px); box-shadow: var(--shadow-sm);
+}
 .footer-social svg { width: 14px; height: 14px; }
 .footer-bottom {
   border-top: 1px solid var(--border); padding-top: 24px;
   display: flex; justify-content: space-between; align-items: center;
 }
 .footer-copy { font-size: 12px; color: var(--muted); }
+
+/* ── SERVICE DESCRIPTION LISTS ── */
+.svc-desc-list {
+  font-size: 17px; line-height: 1.82; color: var(--mid);
+  margin: 0 0 24px 20px; padding: 0;
+}
+.svc-desc-list li { margin-bottom: 4px; }
 
 /* ── PLACEHOLDER ── */
 .img-placeholder {
@@ -462,9 +524,21 @@ footer {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
+  .nav-book-mobile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: var(--waves); color: #faf7f2;
+    text-decoration: none; transition: background 0.2s, color 0.2s;
+  }
+  .nav-book-mobile svg { width: 17px; height: 17px; }
+  .nav-book-mobile:hover { background: var(--spark); color: var(--dark); }
   section { padding: 60px 24px; }
   .page-header { padding: 120px 24px 60px; }
   footer { padding: 50px 24px 32px; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-social { flex-direction: row; }
+}
+@media (max-width: 480px) {
+  section { padding: 48px 20px; }
+  footer { padding: 40px 20px 28px; }
 }

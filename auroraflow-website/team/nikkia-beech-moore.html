@@ -16,12 +16,12 @@
     }
     .bio-photo-wrap { position: sticky; top: calc(var(--nav-h) + 24px); }
     .bio-photo {
-      border-radius: 4px; overflow: hidden;
+      border-radius: var(--radius-sm); overflow: hidden;
       aspect-ratio: 1/1; background: #e0d8d0;
     }
     .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
-    .bio-lifestyle img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 4px; display: block; }
+    .bio-lifestyle img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius-sm); display: block; }
     .bio-back {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
@@ -63,20 +63,40 @@
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
     .bio-svc {
-      display: block; padding: 20px 22px; border-radius: 4px;
+      display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
       text-decoration: none; color: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1);
     }
-    .bio-svc:hover { border-color: var(--dark); box-shadow: 0 4px 16px rgba(28,24,22,0.07); }
+    .bio-svc:hover {
+      border-color: var(--dark); box-shadow: 0 4px 16px rgba(28,24,22,0.07);
+      transform: translateY(-3px);
+    }
     .bio-svc-name { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 4px; }
     .bio-svc-price { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
-    .bio-cta { background: var(--dark); padding: 90px 40px; text-align: center; }
+    .bio-cta {
+      background: var(--dark); padding: 90px 40px; text-align: center;
+      position: relative; overflow: hidden; z-index: 0;
+    }
+    .bio-cta::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(ellipse 50% 70% at 85% 15%, rgba(110,63,141,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 60% at 10% 90%, rgba(173,205,82,0.10) 0%, transparent 55%);
+    }
     .bio-cta h3 {
       font-family: var(--serif); font-size: clamp(26px,3.5vw,46px);
       font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.2;
+      letter-spacing: -0.01em;
     }
-    .bio-cta h3 em { font-style: italic; }
+    .bio-cta h3 em {
+      font-style: italic;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     .bio-cta p { font-size: 16px; color: rgba(250,247,242,0.65); margin-bottom: 32px; line-height: 1.6; }
     .btn-cta {
       display: inline-flex; align-items: center;
@@ -84,7 +104,7 @@
       background: var(--cream); color: var(--dark);
       font-family: var(--sans); font-size: 13px; font-weight: 400;
       letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
     .btn-book-hero {
       display: inline-flex; align-items: center;
@@ -92,10 +112,14 @@
       background: var(--accent2); color: var(--cream);
       font-family: var(--sans); font-size: 12px; font-weight: 500;
       letter-spacing: 0.09em; text-transform: uppercase;
-      text-decoration: none; transition: background 0.2s;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
-    .btn-book-hero:hover { background: var(--accent); color: var(--dark); }
-    .btn-cta:hover { opacity: 0.85; }
+    .btn-book-hero:hover {
+      background: var(--accent); color: var(--dark);
+      transform: translateY(-2px); box-shadow: var(--shadow-md);
+    }
+    .btn-cta:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: var(--shadow-md); }
     @media (max-width: 960px) {
       .bio-hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 60px; }
       .bio-photo-wrap { position: static; max-width: 320px; }
@@ -117,7 +141,15 @@
     <li><a href="../about.html">About</a></li>
     <li><a href="../team.html" class="active">Team</a></li>
     <li><a href="../services.html">Services</a></li>
-    <li><a href="../memberships.html">Memberships</a></li>
+    <li class="nav-dropdown">
+      <a href="javascript:void(0)" class="nav-dropdown-toggle">Programs</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="../community-fund.html">Community Fund</a></li>
+        <li><a href="../pay-what-you-can.html">Pay What You Can</a></li>
+        <li><a href="../memberships.html">Memberships</a></li>
+        <li><a href="../classes.html">Classes</a></li>
+      </ul>
+    </li>
     <li><a href="../journal.html">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
@@ -130,7 +162,10 @@
   <a href="../about.html">About</a>
   <a href="../team.html">Team</a>
   <a href="../services.html">Services</a>
+  <a href="../community-fund.html">Community Fund</a>
+  <a href="../pay-what-you-can.html">Pay What You Can</a>
   <a href="../memberships.html">Memberships</a>
+  <a href="../classes.html">Classes</a>
   <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
@@ -159,7 +194,7 @@
       <div class="bio-title">Esthetician</div>
       <div class="bio-divider"></div>
       <a class="btn-book-hero" href="https://booking.mangomint.com/814946?staffId=28" target="_blank">Book Now</a>
-      <div class="bio-body"><p>Nikkia, or "Nik," is a Personal Skin Curator and Brow Sculptor looking to magnify the innate essence in her clients. A New York native who has been living in North Carolina since 2008, she graduated from Bennett College for Women and received training from the Health & Style Institute.</p><p>Nikkia specializes in healthy and customized skin care and likes to educate her clients on how to love their skin while addressing acne, hyperpigmentation, and the changes that come with the aging process. She is committed to promoting Skin Equity for all individuals, regardless of their budget or background.</p><p>"I want my clients to know that my passion for skin care is much deeper than vanity; it is about self-preservation and self-care through caring for the largest organ in their bodies." Nik has completed hands-on training with world-renowned Joelle on chemical peels specifically for skin of color.</p><p>In addition to her love for skincare, she is a cocktail connoisseur, super foodie, and avid traveler. She is also a proud fur mama to Coltrane and Kendall.</p></div>
+      <div class="bio-body"><p>Nikkia, or "Nik," (<strong>E24104</strong>) is YOUR Personal Skin Curator and Brow Sculptor looking to magnify the innate essence in her clients. A New York native who has been living in North Carolina since 2008, she graduated from Bennett College for Women and received training from the Health & Style Institute.</p><p>Nikkia specializes in healthy, transformative, and customized skincare and likes to educate her clients on how to be intentional when addressing acne, hyperpigmentation, and the changes that come with the aging process. She is committed to promoting Skin Equity for all individuals, regardless of their budget, access, background, or skin's current status.</p><p>"I want my clients to know that my passion for skin care is much deeper than vanity; it is about self-preservation and self-care through intentionally loving the largest organ we have because we only get one!" Nik has completed hands-on training with world-renowned Joelle Lee on chemical peels specifically for skin of color.</p><p>In addition to her love for skincare, she is a cocktail connoisseur, super foodie, and loves to stamp her passport at every chance with her wife or family & friends. She is also a proud fur mama to Coltrane and Kendall.</p></div>
     </div>
   </div>
 </div>

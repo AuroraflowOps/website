@@ -11,24 +11,36 @@
   <style>
     /* ── HERO ── */
     .hero {
-      position: relative; height: 100vh; min-height: 640px;
+      position: relative; height: 100vh; min-height: 580px;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
       background: #0c0e1d;
+    }
+    @supports (height: 100svh) {
+      /* svh = stable viewport height — excludes mobile browser chrome so hero doesn't clip */
+      .hero { height: 100svh; }
     }
     @keyframes heroZoom {
       0%   { transform: scale(1.08) translateZ(0); }
       50%  { transform: scale(1.14) translateZ(0); }
       100% { transform: scale(1.08) translateZ(0); }
     }
-    .hero video {
+    .hero video, .hero-img-mobile {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
       object-position: center 25%;
+    }
+    .hero video {
       animation: heroZoom 45s ease-in-out infinite;
       transform-origin: center 30%;
       will-change: transform;
       transform: translateZ(0);
       opacity: 0;
       transition: opacity 1.2s ease;
+    }
+    .hero-img-mobile { display: none; }
+    @media (max-width: 900px) {
+      /* skip the video on mobile — static image loads instantly on cellular */
+      .hero video { display: none; }
+      .hero-img-mobile { display: block; opacity: 1; }
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -73,18 +85,21 @@
     }
     .hero-content h1 {
       font-family: var(--serif);
-      font-size: clamp(44px, 6.5vw, 88px);
+      font-size: clamp(46px, 6.5vw, 92px);
       font-weight: 400; color: #faf7f2; line-height: 1.05;
-      letter-spacing: -0.01em; margin-bottom: 16px;
+      letter-spacing: -0.02em; margin-bottom: 16px;
     }
     .hero-content h1 .accent {
-      color: #12736D;
-      display: block;
+      display: inline;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     .hero-content p {
-      font-size: clamp(15px, 1.6vw, 18px); font-weight: 300;
+      font-size: clamp(16px, 1.6vw, 19px); font-weight: 300;
       color: rgba(250,247,242,0.75); line-height: 1.7;
-      margin-bottom: 36px; max-width: 520px;
+      margin-bottom: 16px; max-width: 520px;
       margin-left: auto; margin-right: auto;
     }
     .hero-actions {
@@ -96,18 +111,27 @@
       background: #12736D; color: #faf7f2;
       font-family: var(--sans); font-size: 13px;
       font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; transition: background 0.25s;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
-    .btn-hero:hover { background: #ADCD52; color: #1c1816; }
+    .btn-hero:hover {
+      background: #ADCD52; color: #1c1816;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px -10px rgba(173,205,82,0.55);
+    }
     .btn-hero-ghost {
       display: inline-flex; align-items: center;
       padding: 16px 32px; border-radius: 100px;
       border: 1.5px solid rgba(250,247,242,0.4);
       color: #faf7f2; font-family: var(--sans); font-size: 13px;
       font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; transition: border-color 0.25s, background 0.25s;
+      text-decoration: none;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1);
     }
-    .btn-hero-ghost:hover { border-color: #faf7f2; background: rgba(250,247,242,0.1); }
+    .btn-hero-ghost:hover {
+      border-color: #faf7f2; background: rgba(250,247,242,0.1);
+      transform: translateY(-3px);
+    }
     .hero-badge {
       display: flex; align-items: center; gap: 10px;
       transition: transform 0.3s ease;
@@ -149,14 +173,15 @@
       position: absolute; inset: 0; pointer-events: none;
       background:
         radial-gradient(ellipse 55% 80% at 12% 55%, rgba(110,63,141,0.14) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 55% at 88% 25%, rgba(18,115,109,0.10) 0%, transparent 55%);
+        radial-gradient(ellipse 45% 55% at 88% 25%, rgba(18,115,109,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 38% 45% at 78% 92%, rgba(173,205,82,0.08) 0%, transparent 55%);
     }
     .about-grid {
       display: grid; grid-template-columns: 42fr 58fr; gap: 72px; align-items: center;
       position: relative; z-index: 1;
     }
     .about-image {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
+      border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; position: relative;
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.14),
         0 40px 100px rgba(5,3,12,0.7),
@@ -183,6 +208,7 @@
     .about-text h2 {
       font-family: var(--serif); font-size: clamp(30px, 3.5vw, 52px);
       font-weight: 400; line-height: 1.2; margin-bottom: 28px;
+      letter-spacing: -0.01em;
       color: #faf7f2;
     }
     .about-h2-light {
@@ -194,7 +220,7 @@
       display: block; margin-top: 6px;
     }
     .about-text p {
-      font-size: 16px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
+      font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
     }
     .about-text p a { color: #ADCD52 !important; }
     .about-text p:last-of-type { margin-bottom: 36px; }
@@ -209,6 +235,13 @@
       background: #0c0e1d;
       position: relative; overflow: hidden;
     }
+    .announcements::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 90% 10%, rgba(110,63,141,0.16) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 50% at 8% 95%, rgba(173,205,82,0.08) 0%, transparent 55%);
+    }
     .announcements .section-label { color: rgba(250,247,242,0.45); }
     .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
     .announcement-card {
@@ -222,7 +255,7 @@
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
     .announcement-logo {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 1/1; position: relative;
+      border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
     }
     .announcement-logo::after {
@@ -239,17 +272,18 @@
     .announcement-card h3 {
       font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px);
       font-weight: 400; line-height: 1.2; margin-bottom: 16px;
+      letter-spacing: -0.01em;
       color: #faf7f2;
     }
     .announcement-card p {
-      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
+      font-size: 16px; line-height: 1.75; color: rgba(250,247,242,0.65);
       margin-bottom: 20px;
     }
     .announcement-card ul {
       list-style: none; padding: 0; margin: 0 0 28px;
     }
     .announcement-card ul li {
-      font-size: 14px; line-height: 1.65; color: rgba(250,247,242,0.6);
+      font-size: 15px; line-height: 1.65; color: rgba(250,247,242,0.6);
       padding: 6px 0 6px 20px; position: relative;
     }
     .announcement-card ul li::before {
@@ -257,13 +291,13 @@
       color: #ADCD52; font-size: 12px;
     }
     .announcement-accent {
-      border-radius: 24px; display: flex; flex-direction: column;
+      border-radius: var(--radius-lg); display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 12px;
       padding: 32px 24px; text-align: center; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.55), 0 0 60px rgba(110,63,141,0.18);
     }
     .announcement-accent::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 24px;
+      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radius-lg);
       background: rgba(255,255,255,0.05);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
@@ -301,23 +335,41 @@
       background: #0c0e1d;
       position: relative; overflow: hidden;
     }
+    .services-preview::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 55% at 12% 12%, rgba(18,115,109,0.16) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 50% at 92% 88%, rgba(110,63,141,0.14) 0%, transparent 55%);
+    }
     .services-preview .section-label { color: rgba(250,247,242,0.45); }
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; z-index: 1; }
     .service-card {
       display: flex; flex-direction: column; position: relative;
-      border-radius: 24px; overflow: hidden;
+      border-radius: var(--radius-lg); overflow: hidden;
       background: rgba(255,255,255,0.04);
       text-decoration: none; color: inherit;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
-      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+      transition: transform 0.3s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.3s;
     }
+    .service-card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 4px; z-index: 3;
+      background: linear-gradient(to right,
+        #ADCD52, #12736D, #363971, #6E3F8D,
+        #BA7EC9, #585BA7, #52BCA3, #D9E493
+      );
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
     .service-card::after {
       content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
       background: rgba(255,255,255,0.05);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
     }
     .service-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 20px 50px rgba(5,3,12,0.6), 0 0 30px rgba(110,63,141,0.22);
     }
     .service-thumb {
@@ -332,14 +384,69 @@
     .service-info { padding: 24px 28px 28px; }
     .service-info h4 {
       font-family: var(--serif); font-size: 22px; font-weight: 400;
-      margin-bottom: 10px; line-height: 1.2; color: #faf7f2;
+      margin-bottom: 8px; line-height: 1.2; letter-spacing: -0.01em; color: #faf7f2;
     }
-    .service-info p { font-size: 14px; line-height: 1.7; color: rgba(250,247,242,0.58); }
+    .service-price {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      color: #ADCD52; letter-spacing: 0.04em;
+      margin-bottom: 10px; display: block;
+    }
+    .service-info p { font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.58); }
     .service-link {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 16px; font-size: 11px; font-weight: 500;
+      margin-top: 16px; font-size: 12px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: #ADCD52; text-decoration: none;
+    }
+
+    /* ── SEE OUR SPACE ── */
+    .space-peek {
+      position: relative; overflow: hidden;
+      min-height: 520px;
+      display: flex; align-items: flex-end;
+    }
+    .space-peek-bg {
+      position: absolute; inset: 0;
+    }
+    .space-peek-bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      object-position: center 30%;
+    }
+    .space-peek-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(12,14,29,0.94) 0%,
+        rgba(12,14,29,0.52) 45%,
+        rgba(12,14,29,0.12) 100%
+      );
+    }
+    .space-peek-content {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      padding: 0 40px 72px;
+      text-align: center;
+    }
+    .space-peek-content .section-label { color: rgba(250,247,242,0.5); }
+    .space-peek-content h2 {
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 58px);
+      font-weight: 300; color: #faf7f2; line-height: 1.1; margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .space-peek-content h2 em {
+      font-style: italic;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .space-peek-content p {
+      font-size: 16px; color: rgba(250,247,242,0.7); line-height: 1.72;
+      max-width: 480px; margin: 0 auto 32px;
+    }
+    @media (max-width: 900px) {
+      .space-peek { min-height: 440px; }
+      .space-peek-content { padding: 0 24px 56px; }
     }
 
     /* ── TAGLINE BAND ── */
@@ -363,10 +470,19 @@
       .hero-content { padding: 0 24px 56px; }
       .tagline-band { padding: 70px 24px; }
     }
+    @media (max-width: 720px) {
+      /* stack announcement image above text */
+      .announcement-card { grid-template-columns: 1fr; gap: 24px; }
+      .announcement-logo { width: 140px; }
+    }
+    @media (max-width: 540px) {
+      .hero-badge img { height: 52px; }
+    }
     @media (max-width: 480px) {
       .providers-grid { grid-template-columns: 1fr; }
       .service-card { flex-direction: column; }
       .service-thumb { width: 100%; height: 180px; }
+      .tagline-band { padding: 52px 20px; }
     }
 
     /* ── TESTIMONIALS ── */
@@ -404,7 +520,7 @@
     .testimonials-header h2 {
       font-family: var(--serif); font-size: clamp(32px, 4vw, 56px);
       font-weight: 400; line-height: 1.1; color: #faf7f2;
-      letter-spacing: -0.01em; margin-bottom: 20px;
+      letter-spacing: -0.02em; margin-bottom: 20px;
     }
     .testimonials-header h2 em { font-style: italic; color: var(--accent); }
     .testimonials-header p {
@@ -521,22 +637,84 @@
       .testimonials { padding: 56px 24px; }
       .tc-quote { -webkit-line-clamp: 5; }
     }
+
+    /* ── HERO PROOF LINE ── */
+    .hero-proof {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      color: rgba(250,247,242,0.62); letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+    .hero-proof-stars { color: #FBBC04; font-size: 11px; letter-spacing: 2px; }
+    .hero-link {
+      font-family: var(--sans); font-size: 12px; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(250,247,242,0.48); text-decoration: none;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .hero-link:hover { color: rgba(250,247,242,0.85); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: #0c0e1d;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 0 24px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .trust-bar::-webkit-scrollbar { display: none; }
+    .trust-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      height: 48px; white-space: nowrap; gap: 0;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--sans); font-size: 11px; font-weight: 400;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(250,247,242,0.52);
+      padding: 0 20px;
+    }
+    .trust-item-stars { color: #FBBC04; font-size: 10px; letter-spacing: 2px; }
+    .trust-divider { width: 1px; height: 16px; flex-shrink: 0; background: rgba(255,255,255,0.12); }
+
+
+    @media (max-width: 540px) {
+      .hero-actions { flex-direction: column; align-items: center; gap: 14px; }
+      .btn-hero { width: 100%; max-width: 320px; justify-content: center; font-size: 14px; padding: 18px 24px; }
+    }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html"><img src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
+  <a class="nav-logo" href="index.html"><img loading="lazy" src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="memberships.html">Memberships</a></li>
+    <li class="nav-dropdown">
+      <a href="javascript:void(0)" class="nav-dropdown-toggle">Programs</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="community-fund.html">Community Fund</a></li>
+        <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
+        <li><a href="memberships.html">Memberships</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+    </li>
     <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
+  <a class="nav-book-mobile" href="https://booking.mangomint.com/814946" target="_blank" aria-label="Book Now">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+  </a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -546,7 +724,10 @@
   <a href="about.html">About</a>
   <a href="team.html">Team</a>
   <a href="services.html">Services</a>
+  <a href="community-fund.html">Community Fund</a>
+  <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
+  <a href="classes.html">Classes</a>
   <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
@@ -554,26 +735,30 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted playsinline preload="auto" id="heroVideo">
+  <video autoplay muted playsinline preload="auto" poster="assets/aurora-hero-poster.jpg" id="heroVideo">
     <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
+  <img class="hero-img-mobile" src="assets/aurora-hero-poster.jpg" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
-    <h1 style="font-weight: 700">Feel at home in your own body</h1>
+    <h1 style="font-weight: 700">Feel at home in <span class="accent">your own body</span></h1>
     <p>Durham's award winning spa and wellness center designed to provide you with a safe, welcoming space for massage, skincare, and more.</p>
+    <div class="hero-proof">
+      <span class="hero-proof-stars">★★★★★</span>
+      <span>400+ five-star reviews</span>
+    </div>
     <div class="hero-actions">
-      <a class="btn-hero" href="services.html">Explore Services</a>
-      <a class="btn-hero-ghost" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
+      <a class="btn-hero" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
+      <a class="hero-link" href="services.html">Explore Services →</a>
       <div class="hero-badge pos-inline" id="heroBadge">
-        <img src="assets/img/695d02be17e983c000368553_Best-of-25.png"
-          alt="Best Massage in the Triangle" />
+        <img src="assets/img/695d02be17e983c000368553_Best-of-25.png" alt="Best Massage in the Triangle" />
       </div>
     </div>
   </div>
 </section>
 
-<div class="rainbow-bar rainbow-bar-hero"></div>
+<div class="rainbow-bar"></div>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
@@ -692,23 +877,26 @@
 <!-- FEATURED SERVICES PREVIEW -->
 <section class="services-preview">
   <div class="section-inner">
+    <p class="section-label">Featured Services</p>
     <div class="services-grid">
       <a class="service-card" href="services/bipoc-clinical-facial.html">
         <div class="service-thumb">
-          <img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.png" alt="BIPOC Specific Clinical Facial" />
+          <img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.png" alt="BIPOC Specific Clinical Facial" loading="lazy" />
         </div>
         <div class="service-info">
           <h4>BIPOC Specific Clinical Facial &amp; Consultation</h4>
+          <span class="service-price">$200 · 105 min</span>
           <p>Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color.</p>
           <span class="service-link">Learn More →</span>
         </div>
       </a>
       <a class="service-card" href="services/blended-massage-energy-healing.html">
         <div class="service-thumb">
-          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.png" alt="Blended Massage and Energy Healing" />
+          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.png" alt="Blended Massage and Energy Healing" loading="lazy" />
         </div>
         <div class="service-info">
           <h4>Blended Massage &amp; Energy Healing</h4>
+          <span class="service-price">From $115 · 60 min</span>
           <p>Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
           <span class="service-link">Learn More →</span>
         </div>
@@ -724,7 +912,7 @@
 
       <div class="announcement-card active">
         <div class="announcement-logo">
-          <img src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
+          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
         </div>
         <div>
           <span class="announcement-eyebrow">Community</span>
@@ -742,7 +930,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
+          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
         </div>
         <div>
           <span class="announcement-eyebrow">New Partnership</span>
@@ -759,7 +947,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
+          <img loading="lazy" src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
         </div>
         <div>
           <span class="announcement-eyebrow">Team Update</span>
@@ -775,7 +963,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
+          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
         </div>
         <div>
           <span class="announcement-eyebrow">Policy</span>
@@ -799,7 +987,7 @@
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image">
-        <img src="assets/img/759A0003.jpg"
+        <img loading="lazy" src="assets/img/759A0003.jpg"
           alt="Client receiving a facial at Auroraflow" />
       </div>
       <div class="about-text">
@@ -810,6 +998,23 @@
         <a class="btn-outline" href="about.html">Learn More About Us</a>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- SEE OUR SPACE -->
+<section class="space-peek">
+  <div class="space-peek-bg">
+    <img loading="lazy" src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg"
+      alt="Massage room with rainbow mural at Auroraflow" />
+  </div>
+  <div class="space-peek-overlay"></div>
+  <div class="space-peek-content">
+    <p class="section-label">Our Space</p>
+    <h2>Step inside<br><em>before you arrive.</em></h2>
+    <p>Warm rooms, natural light, and a team that makes you feel at home.</p>
+    <a class="btn-hero" href="https://maps.app.goo.gl/GKhtkFqhU2D4HyRr8" target="_blank" rel="noopener noreferrer">View Our Space &rarr;</a>
   </div>
 </section>
 
@@ -961,6 +1166,7 @@
   hamburger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
     hamburger.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
   mobileMenu.querySelectorAll('a').forEach(a => {
@@ -997,6 +1203,17 @@
     function resetTimer() { clearInterval(timer); startTimer(); }
     slider.addEventListener('mouseenter', () => clearInterval(timer));
     slider.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support
+    let touchStartX = null;
+    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      if (touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
+      touchStartX = null;
+    });
+
     startTimer();
   })();
 
@@ -1020,5 +1237,7 @@
     }
   });
 </script>
+
+
 </body>
 </html>

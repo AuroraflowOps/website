@@ -17,7 +17,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
     .story-img {
-      border-radius: 4px; overflow: hidden; aspect-ratio: 4/5; background: #e0d8d0;
+      border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4/5; background: #e0d8d0;
     }
     .story-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .story-text h2 {
@@ -200,7 +200,7 @@
     .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
     .founder-card { display: flex; gap: 28px; align-items: flex-start; }
     .founder-photo {
-      width: 160px; height: 160px; border-radius: 4px; overflow: hidden;
+      width: 160px; height: 160px; border-radius: var(--radius-sm); overflow: hidden;
       background: #e0d8d0; flex-shrink: 0;
     }
     .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -229,7 +229,7 @@
       font-size: 16px; line-height: 1.82; color: var(--mid); margin-bottom: 18px;
     }
     .community-img {
-      border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; background: #e0d8d0;
+      border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4/3; background: #e0d8d0;
     }
     .community-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -239,7 +239,13 @@
       font-family: var(--serif); font-size: clamp(28px, 4vw, 54px);
       font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.15;
     }
-    .about-cta h3 em { font-style: italic; }
+    .about-cta h3 em {
+      font-style: italic;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     .about-cta p { font-size: 17px; color: rgba(250,247,242,0.65); margin-bottom: 36px; line-height: 1.65; max-width: 520px; margin-inline: auto; }
     .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-light {
@@ -278,7 +284,15 @@
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="memberships.html">Memberships</a></li>
+    <li class="nav-dropdown">
+      <a href="javascript:void(0)" class="nav-dropdown-toggle">Programs</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="community-fund.html">Community Fund</a></li>
+        <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
+        <li><a href="memberships.html">Memberships</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+    </li>
     <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
@@ -291,7 +305,10 @@
   <a href="about.html">About</a>
   <a href="team.html">Team</a>
   <a href="services.html">Services</a>
+  <a href="community-fund.html">Community Fund</a>
+  <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
+  <a href="classes.html">Classes</a>
   <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
@@ -379,7 +396,7 @@
       <h2>Rooted in <em>Durham</em></h2>
       <p>607 William Vickers Ave sits in the heart of downtown Durham, a city that has always made room for the people the rest of the world has tried to push out. We chose Durham intentionally, and Durham has given back tenfold.</p>
       <p>Our home is the <em><a href="https://www.opendurham.org/buildings/607-vickers-ave-petty-house" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Petty House</a></em>, a Four Square built around 1900, one of the last remaining homes from the early character of this block. It was once the home of Clara O. Petty, a teacher at West Durham School, and her family. When the Durham Freeway cut through in 1967 and took the entire west side of the 600 block with it, this house stood. While decades of commercial development reshaped everything around it, the Petty House remained. We think about that a lot: a building that survived because it refused to disappear, now home to a space built for the people this city has too often overlooked.</p>
-      <p>We partner with local organizations, host community events, and run Pay What You Can days every second and fourth Thursday to ensure our services are accessible regardless of financial circumstances.</p>
+      <p>We partner with local organizations, host community events, and run Pay What You Can days to ensure our services are accessible regardless of financial circumstances. We typically offer these at least twice a month — follow us on Instagram for the latest updates, or give us a call at (919) 229-9555 to find out what's coming up.</p>
       <p>Auroraflow was built <em>by</em> this community and <em>for</em> this community, and that will never change.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
         <a class="btn-outline" href="team.html">Meet Our Team</a>

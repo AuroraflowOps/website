@@ -649,37 +649,3 @@ footer {
   .footer-top { grid-template-columns: 1fr; }
   .footer-social { flex-direction: row; }
 }
-
-/* ── FLOATING BOOK PILL (mobile, injected by shared.js) ──
-   Rises in after the hero scrolls past; breathes with the rest of the site. */
-.book-float {
-  position: fixed; left: 50%; bottom: max(18px, env(safe-area-inset-bottom));
-  z-index: 180;
-  transform: translate(-50%, calc(100% + 28px));
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 16px 34px; border-radius: 100px;
-  background: rgba(12,14,29,0.94); color: #faf7f2;
-  border: 1px solid rgba(255,255,255,0.16);
-  font-family: var(--sans); font-size: 13px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-  isolation: isolate;
-  opacity: 0;
-  transition: transform 0.7s var(--ease-calm), opacity 0.7s var(--ease-calm);
-}
-.book-float::before {
-  content: '';
-  position: absolute; inset: -2px; border-radius: 100px;
-  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
-  opacity: 0.7; filter: blur(9px);
-  z-index: -1; pointer-events: none;
-  animation: auraBreathe var(--breath) ease-in-out infinite;
-}
-.book-float.show { transform: translate(-50%, 0); opacity: 1; }
-body.menu-open .book-float { transform: translate(-50%, calc(100% + 28px)); opacity: 0; }
-@media (min-width: 901px) {
-  .book-float { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .book-float { transition: opacity 0.3s; transform: translate(-50%, 0); }
-  .book-float::before { animation: none; }
-}

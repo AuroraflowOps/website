@@ -155,11 +155,6 @@
       }
     }
 
-    /* keep body.menu-open in sync with the panel so the floating Book pill
-       can tuck away — pages each have their own toggle script, so observe */
-    new MutationObserver(() => {
-      document.body.classList.toggle('menu-open', menu.classList.contains('open'));
-    }).observe(menu, { attributes: true, attributeFilter: ['class'] });
   }
 
   if (document.readyState === 'loading') {
@@ -220,33 +215,3 @@
   }
 })();
 
-// Floating Book Now pill — mobile only, rises in once the visitor settles past the hero
-(function () {
-  function addBookFloat() {
-    if (document.querySelector('.book-float')) return;
-    const pill = document.createElement('a');
-    pill.className = 'book-float';
-    pill.href = 'https://booking.mangomint.com/814946';
-    pill.target = '_blank';
-    pill.rel = 'noopener';
-    pill.textContent = 'Book Now';
-    document.body.appendChild(pill);
-
-    let shown = false;
-    function onScroll() {
-      const past = window.scrollY > Math.min(window.innerHeight * 0.7, 520);
-      if (past !== shown) {
-        shown = past;
-        pill.classList.toggle('show', shown);
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addBookFloat);
-  } else {
-    addBookFloat();
-  }
-})();

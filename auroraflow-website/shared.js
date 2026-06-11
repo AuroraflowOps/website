@@ -114,3 +114,88 @@
     addStarDots();
   }
 })();
+
+// Mobile menu: night-sky stars, Programs grouping, body.menu-open sync
+(function () {
+  function enhanceMobileMenu() {
+    const menu = document.querySelector('.nav-mobile-menu');
+    if (!menu) return;
+
+    /* group program pages under a small label so the long flat list reads
+       as two calm clusters instead of nine equal items */
+    const PROGRAM_HREFS = ['community-fund.html', 'pay-what-you-can.html', 'memberships.html', 'classes.html'];
+    const links = Array.from(menu.querySelectorAll('a'));
+    const programLinks = links.filter((a) => {
+      const href = (a.getAttribute('href') || '').split('/').pop();
+      return PROGRAM_HREFS.includes(href);
+    });
+    if (programLinks.length && !menu.querySelector('.nav-mobile-group-label')) {
+      const label = document.createElement('span');
+      label.className = 'nav-mobile-group-label';
+      label.textContent = 'Programs';
+      menu.insertBefore(label, programLinks[0]);
+      programLinks.forEach((a) => a.classList.add('nav-mobile-sub'));
+    }
+
+    /* sprinkle stars into the dark panel (skip for reduced motion) */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+        !menu.querySelector('.sparkle-star')) {
+      for (let i = 0; i < 26; i++) {
+        const s = document.createElement('span');
+        s.className = 'sparkle-star';
+        s.style.cssText = [
+          'left:'   + (Math.random() * 96 + 2) + '%',
+          'top:'    + (Math.random() * 96 + 2) + '%',
+          '--star-size:'    + (0.8 + Math.random() * 2) + 'px',
+          '--star-opacity:' + (0.35 + Math.random() * 0.65),
+          '--star-dur:'     + (2.5 + Math.random() * 4.5) + 's',
+          '--star-delay:'   + (Math.random() * 6) + 's'
+        ].join(';');
+        menu.appendChild(s);
+      }
+    }
+
+    /* keep body.menu-open in sync with the panel so the floating Book pill
+       can tuck away — pages each have their own toggle script, so observe */
+    new MutationObserver(() => {
+      document.body.classList.toggle('menu-open', menu.classList.contains('open'));
+    }).observe(menu, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhanceMobileMenu);
+  } else {
+    enhanceMobileMenu();
+  }
+})();
+
+// Floating Book Now pill — mobile only, rises in once the visitor settles past the hero
+(function () {
+  function addBookFloat() {
+    if (document.querySelector('.book-float')) return;
+    const pill = document.createElement('a');
+    pill.className = 'book-float';
+    pill.href = 'https://booking.mangomint.com/814946';
+    pill.target = '_blank';
+    pill.rel = 'noopener';
+    pill.textContent = 'Book Now';
+    document.body.appendChild(pill);
+
+    let shown = false;
+    function onScroll() {
+      const past = window.scrollY > Math.min(window.innerHeight * 0.7, 520);
+      if (past !== shown) {
+        shown = past;
+        pill.classList.toggle('show', shown);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addBookFloat);
+  } else {
+    addBookFloat();
+  }
+})();

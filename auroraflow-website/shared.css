@@ -23,16 +23,23 @@
   --shadow-sm: 0 2px 12px rgba(28,24,22,0.06);
   --shadow-md: 0 12px 32px rgba(28,24,22,0.10);
   --shadow-lift: 0 16px 40px rgba(28,24,22,0.14);
+  /* brand rhythm — one slow inhale–exhale; shared so the whole page breathes together */
+  --breath: 9.5s;
+  --ease-calm: cubic-bezier(0.37, 0, 0.18, 1);
+  /* fluid spacing — scales smoothly from phone to desktop, no breakpoint jumps */
+  --space-section-y: clamp(48px, 9vw, 80px);
+  --space-page-x: clamp(20px, 5vw, 40px);
 }
 
 html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; font-size: 17px; -webkit-font-smoothing: antialiased; }
 
 /* ── NAV ── */
+/* mobile-first: links hidden, hamburger + book pill shown; desktop layers up at 901px */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: var(--nav-h);
+  padding: 0 var(--space-page-x); height: var(--nav-h);
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -46,7 +53,10 @@ nav {
   height: 52px; width: auto; display: block;
 }
 .nav-links {
-  display: flex; align-items: center; gap: 28px; list-style: none;
+  display: none; align-items: center; gap: 28px; list-style: none;
+}
+@media (min-width: 901px) {
+  .nav-links { display: flex; }
 }
 .nav-links a {
   font-family: var(--sans); font-size: 12px; font-weight: 400;
@@ -111,6 +121,15 @@ nav {
   opacity: 0.72; filter: blur(8px);
   z-index: -1; pointer-events: none;
   transition: opacity 0.3s ease, filter 0.3s ease;
+  /* the aura inhales and exhales on the site-wide breath rhythm */
+  animation: auraBreathe var(--breath) ease-in-out infinite;
+}
+@keyframes auraBreathe {
+  0%, 100% { opacity: 0.5; }
+  42%      { opacity: 0.92; } /* unhurried inhale, longer exhale */
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-book::before, .nav-links a.btn-book::before { animation: none; }
 }
 .btn-book:hover,
 .nav-links a.btn-book:hover {
@@ -118,18 +137,30 @@ nav {
 }
 .btn-book:hover::before,
 .nav-links a.btn-book:hover::before {
-  opacity: 1; filter: blur(12px);
+  animation: none; opacity: 1; filter: blur(12px);
 }
 
 /* mobile-only Book Now pill in the nav bar */
 .nav-book-mobile {
-  display: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: var(--waves); color: #faf7f2;
+  text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.nav-book-mobile svg { width: 17px; height: 17px; }
+.nav-book-mobile:hover { background: var(--spark); color: var(--dark); }
+@media (min-width: 901px) {
+  .nav-book-mobile { display: none; }
 }
 
 /* hamburger */
 .nav-hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
+  display: flex; flex-direction: column; gap: 5px; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  padding: 4px; min-width: 44px; min-height: 44px; align-items: center;
+}
+@media (min-width: 901px) {
+  .nav-hamburger { display: none; }
 }
 .nav-hamburger span {
   display: block; width: 22px; height: 1.5px;
@@ -139,28 +170,85 @@ nav {
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* mobile menu overlay */
+/* mobile menu overlay — a night-sky moment, not a fallback list.
+   Fades in on the calm easing; links rise one breath apart. */
 .nav-mobile-menu {
-  display: none; position: fixed; inset: var(--nav-h) 0 0 0; z-index: 190;
-  background: var(--cream); flex-direction: column;
-  padding: 40px 32px; gap: 0; overflow-y: auto;
+  display: flex; position: fixed; inset: var(--nav-h) 0 0 0; z-index: 190;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 90%, rgba(110,63,141,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 45% at 90% 15%, rgba(18,115,109,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 35% at 80% 80%, rgba(173,205,82,0.08) 0%, transparent 55%),
+    #0c0e1d;
+  flex-direction: column;
+  padding: 44px 32px 40px; gap: 0; overflow-y: auto;
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition:
+    opacity 0.55s var(--ease-calm),
+    transform 0.55s var(--ease-calm),
+    visibility 0s linear 0.55s;
 }
-.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu.open {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition:
+    opacity 0.55s var(--ease-calm),
+    transform 0.55s var(--ease-calm),
+    visibility 0s;
+}
 .nav-mobile-menu a {
-  font-family: var(--serif); font-size: 32px; font-weight: 300;
-  color: var(--dark); text-decoration: none; padding: 14px 0;
-  border-bottom: 1px solid var(--border); letter-spacing: 0.01em;
-  transition: color 0.2s;
+  position: relative; z-index: 1;
+  font-family: var(--serif); font-size: clamp(28px, 7.5vw, 34px); font-weight: 300;
+  color: var(--cream); text-decoration: none; padding: 15px 0;
+  border-bottom: 1px solid rgba(250,247,242,0.10); letter-spacing: 0.01em;
+  transition: color 0.3s, padding-left 0.4s var(--ease-calm);
+  min-height: 44px;
 }
-.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu a:not(.btn-book-mobile):hover { color: var(--accent); padding-left: 8px; }
+/* nested program links injected by shared.js */
+.nav-mobile-menu .nav-mobile-group-label {
+  position: relative; z-index: 1;
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); padding: 26px 0 6px;
+}
+.nav-mobile-menu a.nav-mobile-sub {
+  font-size: clamp(21px, 5.5vw, 25px);
+  padding: 12px 0 12px 16px;
+  color: rgba(250,247,242,0.82);
+}
+/* staggered rise — each link arrives a beat after the last */
+.nav-mobile-menu > * { opacity: 0; transform: translateY(14px); }
+.nav-mobile-menu.open > * {
+  animation: menuLinkRise 0.7s var(--ease-calm) forwards;
+}
+.nav-mobile-menu.open > *:nth-child(1)  { animation-delay: 0.08s; }
+.nav-mobile-menu.open > *:nth-child(2)  { animation-delay: 0.14s; }
+.nav-mobile-menu.open > *:nth-child(3)  { animation-delay: 0.20s; }
+.nav-mobile-menu.open > *:nth-child(4)  { animation-delay: 0.26s; }
+.nav-mobile-menu.open > *:nth-child(5)  { animation-delay: 0.32s; }
+.nav-mobile-menu.open > *:nth-child(6)  { animation-delay: 0.38s; }
+.nav-mobile-menu.open > *:nth-child(7)  { animation-delay: 0.44s; }
+.nav-mobile-menu.open > *:nth-child(8)  { animation-delay: 0.50s; }
+.nav-mobile-menu.open > *:nth-child(9)  { animation-delay: 0.56s; }
+.nav-mobile-menu.open > *:nth-child(10) { animation-delay: 0.62s; }
+.nav-mobile-menu.open > *:nth-child(11) { animation-delay: 0.68s; }
+.nav-mobile-menu.open > *:nth-child(12) { animation-delay: 0.74s; }
+@keyframes menuLinkRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-mobile-menu { transition: none; transform: none; }
+  .nav-mobile-menu > * { opacity: 1; transform: none; animation: none !important; }
+}
+.nav-mobile-menu .sparkle-star { z-index: 0; position: absolute; }
 .nav-mobile-menu .btn-book-mobile {
-  position: relative; isolation: isolate;
-  margin-top: 32px; display: inline-flex; align-items: center; justify-content: center;
-  padding: 16px 36px; border-radius: 100px;
-  background: rgba(12,14,29,0.92); color: var(--cream);
-  border: 1px solid rgba(255,255,255,0.12);
-  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  position: relative; isolation: isolate; z-index: 1;
+  margin-top: 36px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 18px 36px; border-radius: 100px;
+  background: rgba(12,14,29,0.92); color: var(--cream) !important;
+  border: 1px solid rgba(255,255,255,0.18);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
 }
 .nav-mobile-menu .btn-book-mobile::before {
   content: '';
@@ -169,9 +257,10 @@ nav {
   opacity: 0.72; filter: blur(8px);
   z-index: -1; pointer-events: none;
   transition: opacity 0.3s ease, filter 0.3s ease;
+  animation: auraBreathe var(--breath) ease-in-out infinite;
 }
 .nav-mobile-menu .btn-book-mobile:hover::before {
-  opacity: 1; filter: blur(12px);
+  animation: none; opacity: 1; filter: blur(12px);
 }
 
 /* ── RAINBOW BAR ── */
@@ -418,7 +507,7 @@ nav {
 }
 
 /* ── SECTION ── */
-section { padding: 80px 40px; }
+section { padding: var(--space-section-y) var(--space-page-x); }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 .section-label {
   font-family: var(--sans); font-size: 11px; font-weight: 500;
@@ -436,9 +525,10 @@ section { padding: 80px 40px; }
     .svc-card,
     .team-card,
     .article-card {
-      animation: sectionReveal linear both;
+      /* longer range = a slower, exhale-paced arrival as you scroll */
+      animation: sectionReveal var(--ease-calm) both;
       animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+      animation-range: entry 0% entry 72%;
     }
     @keyframes sectionReveal {
       from { opacity: 0; transform: translateY(28px); }
@@ -463,7 +553,8 @@ section { padding: 80px 40px; }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--warm-white); padding: 60px 40px 40px;
+  background: var(--warm-white);
+  padding: clamp(40px, 6vw, 60px) var(--space-page-x) clamp(28px, 4vw, 40px);
   border-top: 1px solid var(--border);
 }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
@@ -474,6 +565,7 @@ footer {
 .footer-logo { font-family: var(--serif); font-size: 26px; font-weight: 400; margin-bottom: 20px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; margin-bottom: 20px; }
 .footer-links a {
+  display: inline-block; padding: 6px 0; /* comfortable tap target */
   font-size: 13px; font-weight: 400; letter-spacing: 0.05em;
   color: var(--mid); text-decoration: none; transition: color 0.2s;
 }
@@ -519,26 +611,45 @@ footer {
   border-radius: 3px; text-align: center;
 }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE ──
+   Spacing is fluid (clamp) so the old per-breakpoint padding patches are gone.
+   Only layout reflows remain here. */
 @media (max-width: 900px) {
-  nav { padding: 0 24px; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  .nav-book-mobile {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-    background: var(--waves); color: #faf7f2;
-    text-decoration: none; transition: background 0.2s, color 0.2s;
-  }
-  .nav-book-mobile svg { width: 17px; height: 17px; }
-  .nav-book-mobile:hover { background: var(--spark); color: var(--dark); }
-  section { padding: 60px 24px; }
-  .page-header { padding: 120px 24px 60px; }
-  footer { padding: 50px 24px 32px; }
+  .page-header { padding: 120px var(--space-page-x) 60px; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-social { flex-direction: row; }
 }
-@media (max-width: 480px) {
-  section { padding: 48px 20px; }
-  footer { padding: 40px 20px 28px; }
+
+/* ── FLOATING BOOK PILL (mobile, injected by shared.js) ──
+   Rises in after the hero scrolls past; breathes with the rest of the site. */
+.book-float {
+  position: fixed; left: 50%; bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 180;
+  transform: translate(-50%, calc(100% + 28px));
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 34px; border-radius: 100px;
+  background: rgba(12,14,29,0.94); color: #faf7f2;
+  border: 1px solid rgba(255,255,255,0.16);
+  font-family: var(--sans); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  isolation: isolate;
+  opacity: 0;
+  transition: transform 0.7s var(--ease-calm), opacity 0.7s var(--ease-calm);
+}
+.book-float::before {
+  content: '';
+  position: absolute; inset: -2px; border-radius: 100px;
+  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
+  opacity: 0.7; filter: blur(9px);
+  z-index: -1; pointer-events: none;
+  animation: auraBreathe var(--breath) ease-in-out infinite;
+}
+.book-float.show { transform: translate(-50%, 0); opacity: 1; }
+body.menu-open .book-float { transform: translate(-50%, calc(100% + 28px)); opacity: 0; }
+@media (min-width: 901px) {
+  .book-float { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .book-float { transition: opacity 0.3s; transform: translate(-50%, 0); }
+  .book-float::before { animation: none; }
 }

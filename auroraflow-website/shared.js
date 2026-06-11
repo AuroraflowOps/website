@@ -114,3 +114,104 @@
     addStarDots();
   }
 })();
+
+// Mobile menu: night-sky stars, Programs grouping, body.menu-open sync
+(function () {
+  function enhanceMobileMenu() {
+    const menu = document.querySelector('.nav-mobile-menu');
+    if (!menu) return;
+
+    /* group program pages under a small label so the long flat list reads
+       as two calm clusters instead of nine equal items */
+    const PROGRAM_HREFS = ['community-fund.html', 'pay-what-you-can.html', 'memberships.html', 'classes.html'];
+    const links = Array.from(menu.querySelectorAll('a'));
+    const programLinks = links.filter((a) => {
+      const href = (a.getAttribute('href') || '').split('/').pop();
+      return PROGRAM_HREFS.includes(href);
+    });
+    if (programLinks.length && !menu.querySelector('.nav-mobile-group-label')) {
+      const label = document.createElement('span');
+      label.className = 'nav-mobile-group-label';
+      label.textContent = 'Programs';
+      menu.insertBefore(label, programLinks[0]);
+      programLinks.forEach((a) => a.classList.add('nav-mobile-sub'));
+    }
+
+    /* sprinkle stars into the dark panel (skip for reduced motion) */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+        !menu.querySelector('.sparkle-star')) {
+      for (let i = 0; i < 26; i++) {
+        const s = document.createElement('span');
+        s.className = 'sparkle-star';
+        s.style.cssText = [
+          'left:'   + (Math.random() * 96 + 2) + '%',
+          'top:'    + (Math.random() * 96 + 2) + '%',
+          '--star-size:'    + (0.8 + Math.random() * 2) + 'px',
+          '--star-opacity:' + (0.35 + Math.random() * 0.65),
+          '--star-dur:'     + (2.5 + Math.random() * 4.5) + 's',
+          '--star-delay:'   + (Math.random() * 6) + 's'
+        ].join(';');
+        menu.appendChild(s);
+      }
+    }
+
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhanceMobileMenu);
+  } else {
+    enhanceMobileMenu();
+  }
+})();
+
+// Gift card buttons — desktop pill beside Book Now, mobile icon beside the calendar
+(function () {
+  var GIFT_URL = 'https://clients.mangomint.com/gift-cards/814946';
+  var GIFT_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<polyline points="20 12 20 22 4 22 4 12"/>' +
+    '<rect x="2" y="7" width="20" height="5"/>' +
+    '<line x1="12" y1="22" x2="12" y2="7"/>' +
+    '<path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>' +
+    '<path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>' +
+    '</svg>';
+
+  function addGiftButtons() {
+    /* desktop: ghost pill in the nav links, just before Book Now */
+    var bookLi = document.querySelector('.nav-links a.btn-book');
+    if (bookLi && !document.querySelector('.nav-links .btn-gift')) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.className = 'btn-gift';
+      a.href = GIFT_URL;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.innerHTML = GIFT_SVG + '<span>Gift Cards</span>';
+      li.appendChild(a);
+      bookLi.parentElement.parentElement.insertBefore(li, bookLi.parentElement);
+    }
+    /* mobile: gift icon circle beside the calendar button */
+    var bookMobile = document.querySelector('.nav-book-mobile');
+    if (bookMobile && !document.querySelector('.nav-gift-mobile')) {
+      var wrap = document.createElement('div');
+      wrap.className = 'nav-mobile-actions';
+      bookMobile.parentElement.insertBefore(wrap, bookMobile);
+      var g = document.createElement('a');
+      g.className = 'nav-gift-mobile';
+      g.href = GIFT_URL;
+      g.target = '_blank';
+      g.rel = 'noopener';
+      g.setAttribute('aria-label', 'Gift Cards');
+      g.innerHTML = GIFT_SVG;
+      wrap.appendChild(g);
+      wrap.appendChild(bookMobile);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addGiftButtons);
+  } else {
+    addGiftButtons();
+  }
+})();
+

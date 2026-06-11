@@ -73,9 +73,10 @@
       max-width: 860px; width: 100%;
       text-align: center;
       opacity: 0;
+      /* breathes on the site-wide rhythm — slow enough to settle a visitor's own pace */
       animation:
         heroIntro   0.4s ease-out    0s forwards,
-        heroBreathe 5s  ease-in-out  2s infinite;
+        heroBreathe var(--breath) ease-in-out 2s infinite;
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -248,7 +249,7 @@
       grid-area: 1 / 1;
       display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: center;
       opacity: 0; transform: translateY(10px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.9s var(--ease-calm), transform 0.9s var(--ease-calm);
       pointer-events: none;
     }
     .announcement-card.active {
@@ -738,7 +739,7 @@
   <video autoplay muted playsinline preload="auto" poster="assets/aurora-hero-poster.jpg" id="heroVideo">
     <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
-  <img class="hero-img-mobile" src="assets/aurora-hero-poster.jpg" alt="" aria-hidden="true">
+  <img class="hero-img-mobile" src="assets/aurora-hero-poster-mobile.jpg" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
@@ -1139,7 +1140,7 @@
       dragOffset = 0; dragStart = null;
     }
 
-    function startTimer() { timer = setInterval(() => goTo(current + 1), 5200); }
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 8000); }
     function resetTimer() { clearInterval(timer); startTimer(); }
     slider.addEventListener('mouseenter', () => clearInterval(timer));
     slider.addEventListener('mouseleave', startTimer);
@@ -1199,7 +1200,7 @@
       cards[current].classList.add('active');
       dots[current].classList.add('active');
     }
-    function startTimer() { timer = setInterval(() => goTo(current + 1), 7000); }
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 9500); }
     function resetTimer() { clearInterval(timer); startTimer(); }
     slider.addEventListener('mouseenter', () => clearInterval(timer));
     slider.addEventListener('mouseleave', startTimer);

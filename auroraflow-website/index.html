@@ -41,8 +41,14 @@
       /* skip the video on mobile — static image loads instantly on cellular */
       .hero video { display: none; }
       .hero-img-mobile { display: block; opacity: 1; }
-      /* keep hero content clear of the fixed nav bar */
-      .hero { padding-top: var(--nav-h); }
+      /* keep hero content clear of the fixed nav bar — top-align with a
+         fixed gap so the eyebrow always clears the nav regardless of
+         viewport height (mobile browser chrome varies a lot) */
+      .hero {
+        align-items: flex-start;
+        padding-top: calc(var(--nav-h) + 16px);
+        padding-bottom: 16px;
+      }
     }
     .hero-overlay {
       position: absolute; inset: 0;

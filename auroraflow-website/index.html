@@ -41,6 +41,8 @@
       /* skip the video on mobile — static image loads instantly on cellular */
       .hero video { display: none; }
       .hero-img-mobile { display: block; opacity: 1; }
+      /* keep hero content clear of the fixed nav bar */
+      .hero { padding-top: var(--nav-h); }
     }
     .hero-overlay {
       position: absolute; inset: 0;

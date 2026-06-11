@@ -16,7 +16,7 @@
     }
     .bio-photo-wrap { position: sticky; top: calc(var(--nav-h) + 24px); }
     .bio-photo {
-      border-radius: 4px; overflow: hidden;
+      border-radius: var(--radius-sm); overflow: hidden;
       aspect-ratio: 1/1; background: #e0d8d0;
     }
     .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -50,12 +50,29 @@
     }
     .bio-body a { color: var(--dark); }
     .bio-body strong { font-weight: 500; color: var(--dark); }
-    .bio-cta { background: var(--dark); padding: 90px 40px; text-align: center; }
+    .bio-cta {
+      background: var(--dark); padding: 90px 40px; text-align: center;
+      position: relative; overflow: hidden; z-index: 0;
+    }
+    .bio-cta::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        radial-gradient(ellipse 50% 70% at 85% 15%, rgba(110,63,141,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 60% at 10% 90%, rgba(173,205,82,0.10) 0%, transparent 55%);
+    }
     .bio-cta h3 {
       font-family: var(--serif); font-size: clamp(26px,3.5vw,46px);
       font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.2;
+      letter-spacing: -0.01em;
     }
-    .bio-cta h3 em { font-style: italic; }
+    .bio-cta h3 em {
+      font-style: italic;
+      background: linear-gradient(135deg, #ADCD52, #12736D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     .bio-cta p { font-size: 16px; color: rgba(250,247,242,0.65); margin-bottom: 32px; line-height: 1.6; }
     .btn-cta {
       display: inline-flex; align-items: center;
@@ -63,9 +80,9 @@
       background: var(--cream); color: var(--dark);
       font-family: var(--sans); font-size: 13px; font-weight: 400;
       letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
-    .btn-cta:hover { opacity: 0.85; }
+    .btn-cta:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: var(--shadow-md); }
     @media (max-width: 960px) {
       .bio-hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 60px; }
       .bio-photo-wrap { position: static; max-width: 320px; }

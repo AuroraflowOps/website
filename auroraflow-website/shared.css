@@ -17,6 +17,12 @@
   --serif: 'Poiret One', Georgia, sans-serif;
   --sans: 'Roboto', sans-serif;
   --nav-h: 72px;
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 12px rgba(28,24,22,0.06);
+  --shadow-md: 0 12px 32px rgba(28,24,22,0.10);
+  --shadow-lift: 0 16px 40px rgba(28,24,22,0.14);
 }
 
 html { scroll-behavior: smooth; }
@@ -54,9 +60,9 @@ nav {
   background: var(--waves); color: rgb(255, 255, 255);
   font-family: var(--sans); font-size: 12px; font-weight: 400;
   letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
-  transition: background 0.2s; white-space: nowrap;
+  transition: background 0.2s, transform 0.25s, box-shadow 0.25s; white-space: nowrap;
 }
-.btn-book:hover { background: var(--spark); color: var(--dark); }
+.btn-book:hover { background: var(--spark); color: var(--dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
 /* hamburger */
 .nav-hamburger {
@@ -359,9 +365,12 @@ section { padding: 80px 40px; }
   border: 1.5px solid var(--dark); color: var(--dark);
   font-family: var(--sans); font-size: 12px; font-weight: 400;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.25s, box-shadow 0.25s;
 }
-.btn-outline:hover { background: var(--dark); color: var(--cream); }
+.btn-outline:hover { background: var(--dark); color: var(--cream); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+@media (prefers-reduced-motion: reduce) {
+  .btn-book:hover, .btn-outline:hover { transform: none; }
+}
 
 /* ── FOOTER ── */
 footer {

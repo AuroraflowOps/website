@@ -42,8 +42,12 @@
       letter-spacing: -0.01em; margin-bottom: 24px;
     }
     .hero-content h1 .accent {
-      color: #12736D;
       display: block;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ADCD52 0%, #9DD5D2 55%, #12736D 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     .hero-content p {
       font-size: clamp(15px, 1.6vw, 18px); font-weight: 300;
@@ -107,7 +111,8 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
     .about-image {
-      border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; position: relative;
+      border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3; position: relative;
+      box-shadow: 0 24px 60px -20px rgba(18, 115, 109, 0.35);
     }
     .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .about-text h2 {
@@ -123,11 +128,18 @@
     /* ── PROVIDERS ── */
     .providers { background: var(--cream); }
     .providers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    .provider-card { text-decoration: none; color: inherit; display: block; }
-    .provider-photo {
-      aspect-ratio: 1/1; border-radius: 4px; overflow: hidden; margin-bottom: 14px;
-      background: #e0d8d0;
+    .provider-card {
+      text-decoration: none; color: inherit; display: block;
+      transition: transform 0.3s cubic-bezier(0.2,0.7,0.2,1);
     }
+    .provider-card:hover { transform: translateY(-6px); }
+    .provider-photo {
+      aspect-ratio: 1/1; border-radius: var(--radius); overflow: hidden; margin-bottom: 14px;
+      background: #e0d8d0;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s ease;
+    }
+    .provider-card:hover .provider-photo { box-shadow: var(--shadow-lift); }
     .provider-photo img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.45s ease;
@@ -136,21 +148,36 @@
     .provider-name {
       font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: 0.01em;
     }
+    @media (prefers-reduced-motion: reduce) {
+      .provider-card, .provider-card:hover,
+      .service-card, .service-card:hover { transform: none; }
+      .service-card::before { transition: none; }
+    }
 
     /* ── SERVICES PREVIEW ── */
     .services-preview { background: var(--warm-white); }
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .service-card {
+      position: relative; overflow: hidden;
       display: flex; gap: 20px; align-items: flex-start;
-      padding: 24px; border-radius: 4px; background: var(--cream);
+      padding: 24px; border-radius: var(--radius); background: var(--cream);
       text-decoration: none; color: inherit; border: 1px solid var(--border);
-      transition: box-shadow 0.2s, border-color 0.2s;
+      transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .service-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right,
+        #ADCD52, #12736D, #363971, #6E3F8D, #BA7EC9, #585BA7, #52BCA3, #D9E493);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.2,0.7,0.2,1);
     }
     .service-card:hover {
-      box-shadow: 0 4px 20px rgba(28,24,22,0.07); border-color: rgba(28,24,22,0.18);
+      box-shadow: var(--shadow-md); border-color: rgba(28,24,22,0.18);
+      transform: translateY(-4px);
     }
+    .service-card:hover::before { transform: scaleX(1); }
     .service-thumb {
-      width: 86px; height: 86px; border-radius: 3px;
+      width: 86px; height: 86px; border-radius: var(--radius-sm);
       flex-shrink: 0; overflow: hidden; background: #e0d8d0;
     }
     .service-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -162,14 +189,33 @@
 
     /* ── TAGLINE BAND ── */
     .tagline-band {
-      background: var(--dark); padding: 90px 40px; text-align: center;
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--deep) 100%);
+      padding: 110px 40px; text-align: center;
     }
+    .tagline-band::before,
+    .tagline-band::after {
+      content: ""; position: absolute; border-radius: 50%;
+      filter: blur(90px); opacity: 0.35; pointer-events: none;
+    }
+    .tagline-band::before {
+      width: 420px; height: 420px; background: var(--space);
+      top: -180px; left: -120px;
+    }
+    .tagline-band::after {
+      width: 380px; height: 380px; background: var(--waves);
+      bottom: -160px; right: -100px;
+    }
+    .tagline-band > * { position: relative; z-index: 1; }
     .tagline-band h3 {
       font-family: var(--serif); font-size: clamp(28px, 4.5vw, 58px);
-      font-weight: 300; color: var(--cream); line-height: 1.2; letter-spacing: -0.01em;
+      font-weight: 300; color: var(--cream); line-height: 1.2; letter-spacing: -0.015em;
     }
     .tagline-band h3 em { font-style: italic; }
     .tagline-band .btn-hero { margin-top: 36px; }
+    @media (prefers-reduced-motion: reduce) {
+      .tagline-band::before, .tagline-band::after { display: none; }
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -224,7 +270,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Durham, NC &nbsp;·&nbsp; Inclusive Wellness</span>
-    <h1 style="font-weight: 700">Feel welcome<br><span class="accent" style="color: rgb(157, 213, 210); font-weight: 700">in your own skin.</span></h1>
+    <h1 style="font-weight: 700">Feel welcome<br><span class="accent">in your own skin.</span></h1>
     <p>Massage, skincare, and bodywork in a space built for every body, exactly as it is.</p>
     <div class="hero-actions">
       <a class="btn-hero" href="services.html">Explore Services</a>

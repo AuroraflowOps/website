@@ -7,3 +7,5 @@
 !auroraflow-website/**
 !README.md
 !.gitignore
+!.claude/
+!.claude/**

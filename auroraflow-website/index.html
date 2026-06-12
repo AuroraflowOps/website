@@ -764,7 +764,11 @@
        Replaces the straight rainbow-bar divider on the home page with a
        slow curve carrying the same brand gradient, plus a soft shimmer
        that drifts along it like light moving through the aurora. */
-    .aurora-ribbon { width: 100%; height: 28px; line-height: 0; }
+    .aurora-ribbon {
+      width: 100%; height: 28px; line-height: 0;
+      background: #0c0e1d; /* match adjacent dark sections so no body color shows through */
+      margin: -1px 0; /* cover sub-pixel seams against neighboring sections */
+    }
     .aurora-ribbon svg { display: block; width: 100%; height: 100%; }
     .aurora-ribbon .ribbon-base {
       fill: none; stroke: url(#auroraRibbonGrad); stroke-width: 3; stroke-linecap: round;

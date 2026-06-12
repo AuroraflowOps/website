@@ -29,12 +29,14 @@
       object-position: center 25%;
     }
     .hero video {
-      animation: heroZoom 45s ease-in-out infinite;
       transform-origin: center 30%;
       will-change: transform;
       transform: translateZ(0);
       opacity: 0;
       transition: opacity 1.2s ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero video { animation: heroZoom 45s ease-in-out infinite; }
     }
     .hero-img-mobile { display: none; }
     @media (max-width: 900px) {
@@ -84,6 +86,16 @@
       from { opacity: 0; transform: translateY(20px) scale(0.98); }
       to   { opacity: 1; transform: translateY(0)    scale(1); }
     }
+    /* ── FIRST BREATH ──
+       Plays once on load: the hero text gently contracts (inhale), then
+       releases outward past its resting size (exhale) before settling —
+       a single, deliberate breath before the ambient loop takes over. */
+    @keyframes heroFirstBreath {
+      0%   { transform: scale(1.05); }
+      38%  { transform: scale(0.93); }  /* inhale — text draws inward */
+      74%  { transform: scale(1.045); } /* exhale — releases outward */
+      100% { transform: scale(1); }     /* settle into the ambient loop */
+    }
     @keyframes heroBreathe {
       0%   { transform: scale(1); }
       18%  { transform: scale(0.985); }
@@ -92,16 +104,49 @@
       85%  { transform: scale(1.018); }
       100% { transform: scale(1); }
     }
+    /* ── BREATH AURA ──
+       A soft burst of aurora light that blooms outward in sync with the
+       exhale of the first breath, then dissolves — visualizing the
+       "breath" rather than just describing it. */
+    .hero-breath-aura {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-breath-aura::before {
+      content: '';
+      width: min(70vw, 900px); height: min(70vw, 900px);
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(173,205,82,0.30) 0%,
+        rgba(110,63,141,0.22) 38%,
+        transparent 72%);
+      filter: blur(28px);
+      transform: scale(0.3);
+      opacity: 0;
+      animation: heroBreathAura 5.2s var(--ease-calm) 0.1s 1 both;
+    }
+    @keyframes heroBreathAura {
+      0%   { transform: scale(0.32); opacity: 0; }
+      38%  { transform: scale(0.46); opacity: 0; }   /* inhale — light gathers, unseen */
+      74%  { transform: scale(1.15); opacity: 0.6; } /* exhale — light blooms outward */
+      100% { transform: scale(1.5);  opacity: 0; }   /* dissolves into the scene */
+    }
     .hero-content {
       position: relative; z-index: 2;
       padding: 0 40px;
       max-width: 860px; width: 100%;
       text-align: center;
       opacity: 0;
-      /* breathes on the site-wide rhythm — slow enough to settle a visitor's own pace */
+      /* one deliberate breath on arrival, then the ambient rhythm continues */
       animation:
-        heroIntro   0.4s ease-out    0s forwards,
-        heroBreathe var(--breath) ease-in-out 2s infinite;
+        heroIntro      0.4s ease-out    0s    forwards,
+        heroFirstBreath 5.2s var(--ease-calm) 0.1s  1 both,
+        heroBreathe    var(--breath) ease-in-out 5.3s infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-content { animation: heroIntro 0.4s ease-out 0s forwards; }
+      .hero-breath-aura { display: none; }
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -714,10 +759,66 @@
       .hero-actions { flex-direction: column; align-items: center; gap: 14px; }
       .btn-hero { width: 100%; max-width: 320px; justify-content: center; font-size: 14px; padding: 18px 24px; }
     }
+
+    /* ── AURORA RIBBON ──
+       Replaces the straight rainbow-bar divider on the home page with a
+       slow curve carrying the same brand gradient, plus a soft shimmer
+       that drifts along it like light moving through the aurora. */
+    .aurora-ribbon { width: 100%; height: 28px; line-height: 0; }
+    .aurora-ribbon svg { display: block; width: 100%; height: 100%; }
+    .aurora-ribbon .ribbon-base {
+      fill: none; stroke: url(#auroraRibbonGrad); stroke-width: 3; stroke-linecap: round;
+    }
+    .aurora-ribbon .ribbon-shimmer {
+      fill: none; stroke: rgba(255,255,255,0.5); stroke-width: 3; stroke-linecap: round;
+      stroke-dasharray: 14 90; mix-blend-mode: screen;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .aurora-ribbon .ribbon-shimmer { animation: ribbonShimmer 22s linear infinite; }
+    }
+    @keyframes ribbonShimmer { to { stroke-dashoffset: -1248; } }
+
+    /* ── ORGANIC SECTION WAVE ──
+       A curved handoff from the dark "Our Space" photo into the cream
+       footer, replacing a hard rectangular seam. Static — no animation cost. */
+    .section-wave { display: block; width: 100%; line-height: 0; }
+    .section-wave svg { display: block; width: 100%; height: clamp(36px, 7vw, 84px); }
+    .section-wave path { fill: var(--warm-white); }
+
+    /* ── DRIFTING AURORA MESH ──
+       The radial-gradient glows behind dark sections slowly drift and
+       breathe, like the aurora itself shifting overhead. Transform-only
+       so it stays cheap; each section drifts at its own slow pace. */
+    @keyframes auroraMeshDrift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(-3%, 2.5%) scale(1.06); }
+      100% { transform: translate(2.5%, -2%) scale(1.03); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .about::before        { animation: auroraMeshDrift 72s ease-in-out infinite alternate; will-change: transform; }
+      .announcements::before{ animation: auroraMeshDrift 86s ease-in-out infinite alternate; will-change: transform; }
+      .services-preview::before { animation: auroraMeshDrift 79s ease-in-out infinite alternate; will-change: transform; }
+      .testimonials::after  { animation: auroraMeshDrift 94s ease-in-out infinite alternate; will-change: transform; }
+    }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="auroraRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ADCD52"/>
+      <stop offset="14%" stop-color="#12736D"/>
+      <stop offset="28%" stop-color="#363971"/>
+      <stop offset="42%" stop-color="#6E3F8D"/>
+      <stop offset="57%" stop-color="#BA7EC9"/>
+      <stop offset="71%" stop-color="#585BA7"/>
+      <stop offset="85%" stop-color="#52BCA3"/>
+      <stop offset="100%" stop-color="#D9E493"/>
+    </linearGradient>
+  </defs>
+</svg>
 
 <nav>
   <a class="nav-logo" href="index.html"><img loading="lazy" src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
@@ -772,6 +873,7 @@
   </video>
   <img class="hero-img-mobile" src="assets/aurora-hero-poster-mobile.jpg" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
+  <div class="hero-breath-aura" aria-hidden="true"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
     <h1 style="font-weight: 700">Feel at home in <span class="accent">your own body</span></h1>
@@ -790,7 +892,12 @@
   </div>
 </section>
 
-<div class="rainbow-bar"></div>
+<div class="aurora-ribbon" aria-hidden="true">
+  <svg viewBox="0 0 1200 32" preserveAspectRatio="none">
+    <path class="ribbon-base" d="M0,16 C100,28 200,4 300,16 C400,28 500,4 600,16 C700,28 800,4 900,16 C1000,28 1100,4 1200,16"/>
+    <path class="ribbon-shimmer" d="M0,16 C100,28 200,4 300,16 C400,28 500,4 600,16 C700,28 800,4 900,16 C1000,28 1100,4 1200,16"/>
+  </svg>
+</div>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
@@ -904,7 +1011,12 @@
   </div>
 </section>
 
-<div class="rainbow-bar"></div>
+<div class="aurora-ribbon" aria-hidden="true">
+  <svg viewBox="0 0 1200 32" preserveAspectRatio="none">
+    <path class="ribbon-base" d="M0,16 C100,28 200,4 300,16 C400,28 500,4 600,16 C700,28 800,4 900,16 C1000,28 1100,4 1200,16"/>
+    <path class="ribbon-shimmer" d="M0,16 C100,28 200,4 300,16 C400,28 500,4 600,16 C700,28 800,4 900,16 C1000,28 1100,4 1200,16"/>
+  </svg>
+</div>
 
 <!-- FEATURED SERVICES PREVIEW -->
 <section class="services-preview">
@@ -1033,7 +1145,12 @@
   </div>
 </section>
 
-<div class="rainbow-bar"></div>
+<div class="aurora-ribbon" aria-hidden="true">
+  <svg viewBox="0 0 1200 32" preserveAspectRatio="none">
+    <path class="ribbon-base" d="M0,16 C100,28 200,4 300,16 C400,28 500,4 600,16 C700,28 800,4 900,16 C1000,28 1100,4 1200,16"/>
+    <path class="ribbon-shimmer" d="M0,16 C100,28 200,4 300,16 C400,28 500,4 600,16 C700,28 800,4 900,16 C1000,28 1100,4 1200,16"/>
+  </svg>
+</div>
 
 <!-- SEE OUR SPACE -->
 <section class="space-peek">
@@ -1049,6 +1166,11 @@
     <a class="btn-hero" href="https://maps.app.goo.gl/GKhtkFqhU2D4HyRr8" target="_blank" rel="noopener noreferrer">View Our Space &rarr;</a>
   </div>
 </section>
+<div class="section-wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,100 L0,100 Z"/>
+  </svg>
+</div>
 
 <!-- FOOTER -->
 </main>

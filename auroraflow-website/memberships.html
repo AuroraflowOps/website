@@ -48,7 +48,7 @@
     .plan-price-detail { font-size: 14px; color: var(--muted); }
     .plan-savings {
       display: inline-block; padding: 4px 12px; border-radius: 100px;
-      background: oklch(72% 0.18 140); color: white;
+      background: #418232; color: white;
       font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
       text-transform: uppercase; margin-top: 10px;
     }
@@ -68,7 +68,7 @@
     }
     .plan-services li:last-child { border-bottom: none; }
     .plan-services .svc-value {
-      font-size: 12px; color: oklch(62% 0.14 140); font-weight: 400;
+      font-size: 12px; color: #457e38; font-weight: 400;
       white-space: nowrap; flex-shrink: 0;
     }
     .plan-perks { list-style: none; padding: 0; margin-bottom: 28px; }
@@ -118,7 +118,7 @@
     .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
     .how-num {
       font-family: var(--serif); font-size: 40px; font-weight: 300;
-      color: #ddd5cc; line-height: 1; margin-bottom: 14px;
+      color: #928d87; line-height: 1; margin-bottom: 14px;
     }
     .how-step h4 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
     .how-step p { font-size: 14px; line-height: 1.75; color: var(--mid); }
@@ -283,7 +283,7 @@
       max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
-    .corp-form-text .section-label { color: rgba(250,247,242,0.4); margin-bottom: 14px; }
+    .corp-form-text .section-label { color: rgba(250,247,242,0.47); margin-bottom: 14px; }
     .corp-form-text h2 {
       font-family: var(--serif); font-size: clamp(26px, 3.5vw, 44px);
       font-weight: 400; color: var(--cream); margin-bottom: 16px; letter-spacing: -0.01em;
@@ -292,7 +292,7 @@
     .corp-form-text h2 em { font-style: italic; }
     .corp-form-text p { font-size: 15px; color: rgba(250,247,242,0.55); line-height: 1.78; margin-bottom: 20px; }
     .corp-form-text address {
-      font-style: normal; font-size: 14px; color: rgba(250,247,242,0.4); line-height: 1.9;
+      font-style: normal; font-size: 14px; color: rgba(250,247,242,0.47); line-height: 1.9;
     }
     .corp-form-text address a { color: rgba(250,247,242,0.55); text-decoration: none; }
     .corp-form-text address a:hover { color: var(--cream); }
@@ -530,22 +530,22 @@
     <h2>How it <em>works</em></h2>
     <div class="how-grid">
       <div class="how-step">
-        <div class="how-num">01</div>
+        <div class="how-num" aria-hidden="true">01</div>
         <h4>Activate your membership</h4>
         <p>Contact us or request via our booking system. Your credit is added immediately upon activation.</p>
       </div>
       <div class="how-step">
-        <div class="how-num">02</div>
+        <div class="how-num" aria-hidden="true">02</div>
         <h4>Credit renews monthly</h4>
         <p>Every month a new credit is automatically added to your account for you to use whenever you're ready.</p>
       </div>
       <div class="how-step">
-        <div class="how-num">03</div>
+        <div class="how-num" aria-hidden="true">03</div>
         <h4>Book &amp; apply at checkout</h4>
         <p>Book online, then apply your member credit at checkout. Need a longer session? Just pay the difference at your discounted rate.</p>
       </div>
       <div class="how-step">
-        <div class="how-num">04</div>
+        <div class="how-num" aria-hidden="true">04</div>
         <h4>Credits never expire</h4>
         <p>Life happens. Your credits roll over indefinitely, even if your membership is no longer active, you can still use them.</p>
       </div>

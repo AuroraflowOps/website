@@ -29,12 +29,14 @@
       object-position: center 25%;
     }
     .hero video {
-      animation: heroZoom 45s ease-in-out infinite;
       transform-origin: center 30%;
       will-change: transform;
       transform: translateZ(0);
       opacity: 0;
       transition: opacity 1.2s ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero video { animation: heroZoom 45s ease-in-out infinite; }
     }
     .hero-img-mobile { display: none; }
     @media (max-width: 900px) {

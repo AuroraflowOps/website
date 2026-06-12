@@ -182,6 +182,11 @@ nav {
 }
 /* keep the two mobile icons snug */
 .nav-mobile-actions { display: flex; align-items: center; gap: 8px; }
+@media (min-width: 901px) {
+  /* on desktop both children are hidden, but the wrapper itself was still
+     a flex child of nav, throwing off justify-content: space-between */
+  .nav-mobile-actions { display: none; }
+}
 
 /* hamburger */
 .nav-hamburger {

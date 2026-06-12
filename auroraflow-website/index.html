@@ -84,6 +84,16 @@
       from { opacity: 0; transform: translateY(20px) scale(0.98); }
       to   { opacity: 1; transform: translateY(0)    scale(1); }
     }
+    /* ── FIRST BREATH ──
+       Plays once on load: the hero text gently contracts (inhale), then
+       releases outward past its resting size (exhale) before settling —
+       a single, deliberate breath before the ambient loop takes over. */
+    @keyframes heroFirstBreath {
+      0%   { transform: scale(1.05); }
+      38%  { transform: scale(0.93); }  /* inhale — text draws inward */
+      74%  { transform: scale(1.045); } /* exhale — releases outward */
+      100% { transform: scale(1); }     /* settle into the ambient loop */
+    }
     @keyframes heroBreathe {
       0%   { transform: scale(1); }
       18%  { transform: scale(0.985); }
@@ -92,16 +102,49 @@
       85%  { transform: scale(1.018); }
       100% { transform: scale(1); }
     }
+    /* ── BREATH AURA ──
+       A soft burst of aurora light that blooms outward in sync with the
+       exhale of the first breath, then dissolves — visualizing the
+       "breath" rather than just describing it. */
+    .hero-breath-aura {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-breath-aura::before {
+      content: '';
+      width: min(70vw, 900px); height: min(70vw, 900px);
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(173,205,82,0.30) 0%,
+        rgba(110,63,141,0.22) 38%,
+        transparent 72%);
+      filter: blur(28px);
+      transform: scale(0.3);
+      opacity: 0;
+      animation: heroBreathAura 5.2s var(--ease-calm) 0.1s 1 both;
+    }
+    @keyframes heroBreathAura {
+      0%   { transform: scale(0.32); opacity: 0; }
+      38%  { transform: scale(0.46); opacity: 0; }   /* inhale — light gathers, unseen */
+      74%  { transform: scale(1.15); opacity: 0.6; } /* exhale — light blooms outward */
+      100% { transform: scale(1.5);  opacity: 0; }   /* dissolves into the scene */
+    }
     .hero-content {
       position: relative; z-index: 2;
       padding: 0 40px;
       max-width: 860px; width: 100%;
       text-align: center;
       opacity: 0;
-      /* breathes on the site-wide rhythm — slow enough to settle a visitor's own pace */
+      /* one deliberate breath on arrival, then the ambient rhythm continues */
       animation:
-        heroIntro   0.4s ease-out    0s forwards,
-        heroBreathe var(--breath) ease-in-out 2s infinite;
+        heroIntro      0.4s ease-out    0s    forwards,
+        heroFirstBreath 5.2s var(--ease-calm) 0.1s  1 both,
+        heroBreathe    var(--breath) ease-in-out 5.3s infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-content { animation: heroIntro 0.4s ease-out 0s forwards; }
+      .hero-breath-aura { display: none; }
     }
     .hero-eyebrow {
       font-family: var(--sans); font-size: 12px; font-weight: 500;
@@ -772,6 +815,7 @@
   </video>
   <img class="hero-img-mobile" src="assets/aurora-hero-poster-mobile.jpg" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
+  <div class="hero-breath-aura" aria-hidden="true"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Downtown Durham, NC</span>
     <h1 style="font-weight: 700">Feel at home in <span class="accent">your own body</span></h1>

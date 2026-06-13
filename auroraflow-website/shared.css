@@ -180,8 +180,10 @@ nav {
 @media (min-width: 901px) {
   .nav-gift-mobile { display: none; }
 }
-/* keep the two mobile icons snug */
-.nav-mobile-actions { display: flex; align-items: center; gap: 8px; }
+/* keep the two mobile icons snug — pinned to the right, just left of the
+   hamburger (margin-left:auto absorbs nav's free space so the cluster
+   doesn't get spread to the middle by justify-content: space-between) */
+.nav-mobile-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; margin-right: 10px; }
 @media (min-width: 901px) {
   /* on desktop both children are hidden, but the wrapper itself was still
      a flex child of nav, throwing off justify-content: space-between */

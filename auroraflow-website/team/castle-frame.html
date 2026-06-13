@@ -50,6 +50,26 @@
     }
     .bio-body a { color: var(--dark); }
     .bio-body strong { font-weight: 500; color: var(--dark); }
+    .bio-services-section { background: var(--cream); padding: 72px 40px; }
+    .bio-services-inner { max-width: 1200px; margin: 0 auto; }
+    .bio-services-inner h2 {
+      font-family: var(--serif); font-size: 34px; font-weight: 400;
+      margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-svc {
+      display: block; padding: 20px 22px; border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border); background: var(--warm-white);
+      text-decoration: none; color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .bio-svc:hover {
+      border-color: var(--dark); box-shadow: 0 4px 16px rgba(28,24,22,0.07);
+      transform: translateY(-3px);
+    }
+    .bio-svc-name { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 4px; }
+    .bio-svc-price { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
     .bio-cta {
       background: var(--dark); padding: 90px 40px; text-align: center;
       position: relative; overflow: hidden; z-index: 0;
@@ -86,7 +106,12 @@
     @media (max-width: 960px) {
       .bio-hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 60px; }
       .bio-photo-wrap { position: static; max-width: 320px; }
+      .bio-services-grid { grid-template-columns: repeat(2,1fr); }
+      .bio-services-section { padding: 56px 24px; }
       .bio-cta { padding: 70px 24px; }
+    }
+    @media (max-width: 520px) {
+      .bio-services-grid { grid-template-columns: 1fr; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -179,6 +204,19 @@
 </div>
 
 <div class="rainbow-bar"></div>
+
+<div class="bio-services-section">
+  <div class="bio-services-inner">
+    <h2>Book a Session with Castle</h2>
+    <p>Click a service below to learn more or book directly.</p>
+    <div class="bio-services-grid">
+      <a class="bio-svc" href="../services/therapeutic-massage.html">
+        <div class="bio-svc-name">Therapeutic Massage</div>
+        <div class="bio-svc-price">From $115 · 60 min</div>
+      </a>
+    </div>
+  </div>
+</div>
 
 <div class="bio-cta">
   <h2>Ready to feel<br><em>your best?</em></h2>

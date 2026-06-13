@@ -22,6 +22,37 @@
       /* svh = stable viewport height — excludes mobile browser chrome so hero doesn't clip */
       .hero { height: 100svh; }
     }
+
+    /* ── SECTION SCROLL-SNAP ──
+       A gentle "proximity" pull toward each section's top — never mandatory,
+       so taller sections (reviews, about) are never trapped. scroll-padding
+       keeps snapped/anchored sections clear of the fixed nav. Disabled
+       entirely for reduced-motion users. */
+    html { scroll-snap-type: y proximity; scroll-padding-top: var(--nav-h); }
+    section { scroll-snap-align: start; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-snap-type: none; }
+    }
+
+    /* ── HERO SCROLL CUE ──
+       A soft downward chevron anchored at the hero's base; doubles as a
+       smooth-scroll link to the reviews section. Bobs only when motion
+       is welcome; stays as a static affordance otherwise. */
+    .hero-scroll-cue {
+      position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+      z-index: 3; display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; color: rgba(250,247,242,0.85);
+      text-decoration: none; transition: color 0.25s;
+    }
+    .hero-scroll-cue svg { width: 28px; height: 28px; }
+    .hero-scroll-cue:hover { color: #ADCD52; }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-scroll-cue { animation: heroScrollBob 2.4s var(--ease-calm) infinite; }
+    }
+    @keyframes heroScrollBob {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.85; }
+      50%      { transform: translateX(-50%) translateY(7px); opacity: 1; }
+    }
     @keyframes heroZoom {
       0%   { transform: scale(1.08) translateZ(0); }
       50%  { transform: scale(1.14) translateZ(0); }
@@ -884,6 +915,11 @@
       </div>
     </div>
   </div>
+  <a class="hero-scroll-cue" href="#reviews" aria-label="Scroll to reviews">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
 </section>
 
 <div class="aurora-ribbon" aria-hidden="true">
@@ -893,7 +929,7 @@
 </div>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials">
+<section class="testimonials" id="reviews">
   <div class="testimonials-inner">
 
     <!-- Left: heading -->

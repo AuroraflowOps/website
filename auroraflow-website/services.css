@@ -15,7 +15,7 @@
 .svc-hero-inner {
   max-width: 1200px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 72px; align-items: center; padding: 80px 40px;
+  gap: 72px; align-items: start; padding: 80px 40px;
   position: relative; z-index: 1;
 }
 .svc-img-wrap {

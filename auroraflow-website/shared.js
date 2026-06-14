@@ -1,4 +1,21 @@
 /* Auroraflow — shared client-side enhancements */
+
+/* ── Google Analytics (GA4) ──
+   Loaded here so every page that includes shared.js is tracked with one
+   snippet. Update GA_ID to change the measurement ID. */
+(function () {
+  var GA_ID = 'G-XSD2W9D1GB';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+})();
+
 (function () {
   /* Inject decorative sparkles into every .page-hero (subpage header).
      Honors prefers-reduced-motion. */

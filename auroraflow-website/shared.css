@@ -607,7 +607,7 @@ footer {
 
 /* ── SERVICE DESCRIPTION LISTS ── */
 .svc-desc-list {
-  font-size: 17px; line-height: 1.82; color: var(--mid);
+  font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.7);
   margin: 0 0 24px 20px; padding: 0;
 }
 .svc-desc-list li { margin-bottom: 4px; }

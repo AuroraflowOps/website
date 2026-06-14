@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /booking-complete.html
+
+Sitemap: https://www.auroraflow.com/sitemap.xml

@@ -16,6 +16,43 @@
   document.head.appendChild(s);
 })();
 
+/* ── GA4 conversion / interaction event tracking ──
+   One delegated listener tracks the key off-site CTAs (all are <a> tags):
+   booking, gift cards, phone, email, memberships. GA4 recommended event
+   names are used where they exist so they map cleanly to Key Events. */
+(function () {
+  function svcName() {
+    var el = document.querySelector('h1.svc-name') || document.querySelector('h1');
+    return (el ? el.textContent : document.title).trim();
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || typeof window.gtag !== 'function') return;
+    var href = a.getAttribute('href') || '';
+
+    if (href.indexOf('booking.mangomint.com') > -1) {
+      gtag('event', 'generate_lead', {
+        event_category: 'booking', service_name: svcName(), link_url: href
+      });
+    } else if (href.indexOf('gift-cards/814946') > -1) {
+      gtag('event', 'gift_card_click', { event_category: 'gift_card', link_url: href });
+    } else if (href.indexOf('membership') > -1) {
+      gtag('event', 'begin_checkout', { event_category: 'membership', link_url: href });
+    } else if (href.indexOf('tel:') === 0) {
+      gtag('event', 'phone_click', { event_category: 'contact', link_url: href });
+    } else if (href.indexOf('mailto:') === 0) {
+      gtag('event', 'email_click', { event_category: 'contact', link_url: href });
+    }
+  }, true);
+
+  /* True conversion: Mangomint returns guests to booking-complete.html */
+  if (location.pathname.indexOf('booking-complete') > -1) {
+    var fire = function () { if (typeof window.gtag === 'function') gtag('event', 'booking_complete', { event_category: 'booking' }); };
+    if (document.readyState !== 'loading') fire();
+    else document.addEventListener('DOMContentLoaded', fire);
+  }
+})();
+
 (function () {
   /* Inject decorative sparkles into every .page-hero (subpage header).
      Honors prefers-reduced-motion. */

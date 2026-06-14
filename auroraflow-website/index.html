@@ -196,6 +196,16 @@
       transform: translateY(-3px);
       box-shadow: 0 14px 32px -10px rgba(173,205,82,0.55);
     }
+    /* hero Book Now: breathing brand aura, like the nav Book Now button */
+    .hero .btn-hero { position: relative; isolation: isolate; }
+    .hero .btn-hero::before {
+      content: ''; position: absolute; inset: -3px; border-radius: 100px;
+      background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
+      opacity: 0.6; filter: blur(10px); z-index: -1; pointer-events: none;
+      animation: auraBreathe var(--breath) ease-in-out infinite;
+    }
+    .hero .btn-hero:hover::before { opacity: 0.95; filter: blur(14px); }
+    @media (prefers-reduced-motion: reduce) { .hero .btn-hero::before { animation: none; } }
     .btn-hero-ghost {
       display: inline-flex; align-items: center;
       padding: 16px 32px; border-radius: 100px;
@@ -913,7 +923,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-breath-aura" aria-hidden="true"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">Downtown Durham, NC</span>
+    <span class="hero-eyebrow">Durham, NC</span>
     <h1 style="font-weight: 700">Feel at home in <span class="accent">your own body</span></h1>
     <p>Durham's award winning spa and wellness center designed to provide you with a safe, welcoming space for massage, skincare, and more.</p>
     <div class="hero-proof">
@@ -1105,7 +1115,75 @@
         </div>
       </div>
 
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Community</span>
+          <h3>Introducing the Auroraflow Community Fund</h3>
+          <p>Wellness belongs to everyone. Our new donation-based fund supports clients who face financial barriers to care, with no judgment and no limit on applications.</p>
+          <ul>
+            <li>Apply anytime via a brief consideration form</li>
+            <li>Monthly spots announced via newsletter &amp; social, first-come, first-served</li>
+            <li>Everyone who applies gets a personal follow-up from our team</li>
+            <li>Want to give? Donate to support a neighbor's care</li>
+          </ul>
+          <a class="announcement-link" href="community-fund.html">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">New Partnership</span>
+          <h3>Real primary care. No insurance required.</h3>
+          <p>Community Love DPC puts the relationship back in healthcare. Flat-rate memberships built around you, not your insurer.</p>
+          <ul>
+            <li>Flexible visits: in-clinic, telehealth, SMS, or home</li>
+            <li>Affordable memberships for individuals &amp; families, sliding scale available</li>
+            <li>Wholesale labs, imaging &amp; procedures at wholesale costs, no middleman</li>
+          </ul>
+          <a class="announcement-link" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img loading="lazy" src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Team Update</span>
+          <h3>Nurturing our team: a modest price adjustment</h3>
+          <p>To fairly compensate our therapists, who are constantly growing, training, and showing up for you, we're making a small pricing update on July 1st.</p>
+          <ul>
+            <li>Massage &amp; Skincare Services: +$10</li>
+            <li>Waxing Services: +$5</li>
+            <li>This change supports our team's livelihood and continued investment in their craft</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="announcement-card">
+        <div class="announcement-logo">
+          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
+        </div>
+        <div>
+          <span class="announcement-eyebrow">Policy</span>
+          <h3>New: Dementia &amp; Cognitive Conditions Policy</h3>
+          <p>To protect client safety, practitioner safety, and ensure clear consent practices, we've added a new policy for clients with dementia, Alzheimer's, or other cognitive conditions.</p>
+          <ul>
+            <li>A caregiver must be present in the treatment room or on-site for the full session</li>
+            <li>The caregiver is required to sign consent forms on behalf of the client</li>
+          </ul>
+          <a class="announcement-link" href="policies.html">View Full Policies →</a>
+        </div>
+      </div>
+
     </div>
+    <div class="announcements-nav" id="announcementsNav"></div>
   </div>
 </section>
 

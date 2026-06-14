@@ -140,27 +140,12 @@ nav {
   animation: none; opacity: 1; filter: blur(12px);
 }
 
-/* mobile-only Book Now pill in the nav bar */
+/* mobile-only Book Now icon button in the nav bar */
 .nav-book-mobile {
-  position: relative; isolation: isolate;
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  height: 40px; padding: 0 16px; border-radius: 100px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
   background: var(--waves); color: #faf7f2;
-  font-family: var(--sans); font-size: 12px; font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase;
   text-decoration: none; transition: background 0.2s, color 0.2s;
-}
-/* spell out the action so the booking CTA is unmistakable on mobile */
-.nav-book-mobile::after { content: "Book"; }
-/* same breathing brand aura as the desktop Book Now button so it draws the eye */
-.nav-book-mobile::before {
-  content: ''; position: absolute; inset: -2px; border-radius: 100px;
-  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
-  opacity: 0.7; filter: blur(7px); z-index: -1; pointer-events: none;
-  animation: auraBreathe var(--breath) ease-in-out infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .nav-book-mobile::before { animation: none; }
 }
 .nav-book-mobile svg { width: 17px; height: 17px; }
 .nav-book-mobile:hover { background: var(--spark); color: var(--dark); }

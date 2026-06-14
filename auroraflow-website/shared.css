@@ -692,4 +692,7 @@ footer {
   .footer-links a { font-size: 14px; }
   .footer-address, .footer-address a { font-size: 14px; }
   .footer-copy { font-size: 12.5px; }
+  /* bio service-card price captions (defined inline per bio at 12px);
+     the descendant selector outranks the inline rule */
+  .bio-svc .bio-svc-price { font-size: 13px; }
 }

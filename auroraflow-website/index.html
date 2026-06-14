@@ -575,10 +575,13 @@
       .tagline-band { padding: 70px 24px; }
     }
     @media (max-width: 900px) {
-      /* stack announcement image above text earlier so tablet/narrow widths
-         aren't cramped */
+      /* stack a full-width banner image above the text (a wide 3:2 crop so a
+         square source photo doesn't become a giant square on a phone) */
       .announcement-card { grid-template-columns: 1fr; gap: 22px; }
-      .announcement-logo { width: 150px; }
+      .announcement-logo { width: 100%; aspect-ratio: 3 / 2; }
+      .announcement-logo img { object-position: center; }
+      /* the Instagram tile stays a tidy banner too */
+      .announcement-ig-tile svg { width: 88px; height: 88px; }
     }
     @media (max-width: 540px) {
       .hero-badge img { height: 52px; }

@@ -7,3 +7,4 @@
 !auroraflow-website/**
 !README.md
 !.gitignore
+!netlify.toml

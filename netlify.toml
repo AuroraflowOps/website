@@ -1,0 +1,11 @@
+# Netlify configuration — Auroraflow website
+# The site is plain static HTML/CSS/JS (no build step); just publish the
+# site folder so www.auroraflow.com/ serves auroraflow-website/index.html.
+[build]
+  publish = "auroraflow-website"
+
+# Long-cache the fingerprinted assets (images/fonts/media) for speed.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

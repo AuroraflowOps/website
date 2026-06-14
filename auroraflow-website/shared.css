@@ -6,7 +6,7 @@
   --warm-white: #fdf9f4;
   --dark: #1c1816;
   --mid: #4a4340;
-  --muted: #79706b;
+  --muted: #6c635d;
   --accent: #ADCD52;
   --accent2: #12736D;
   --spark: #ADCD52;
@@ -682,4 +682,14 @@ footer {
     width: min(360px, calc(100vw - 24px)) !important;
     height: min(560px, 80dvh) !important;
   }
+}
+
+/* ── MOBILE TYPE LEGIBILITY ──
+   Nudge the smallest shared text up on phones so secondary copy and the
+   footer stay comfortably readable. Stylistic nav/buttons left untouched. */
+@media (max-width: 600px) {
+  .section-label { font-size: 12px; }
+  .footer-links a { font-size: 14px; }
+  .footer-address, .footer-address a { font-size: 14px; }
+  .footer-copy { font-size: 12.5px; }
 }

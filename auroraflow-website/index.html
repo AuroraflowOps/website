@@ -290,7 +290,7 @@
     }
     .about-h2-light {
       font-weight: 300; font-style: italic;
-      color: rgba(250,247,242,0.55);
+      color: rgba(250,247,242,0.72);
     }
     .about-text h2 strong {
       font-weight: 700; color: #faf7f2;
@@ -319,7 +319,7 @@
         radial-gradient(ellipse 50% 60% at 90% 10%, rgba(110,63,141,0.16) 0%, transparent 55%),
         radial-gradient(ellipse 45% 50% at 8% 95%, rgba(173,205,82,0.08) 0%, transparent 55%);
     }
-    .announcements .section-label { color: rgba(250,247,242,0.45); }
+    .announcements .section-label { color: rgba(250,247,242,0.72); }
     .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
     .announcement-card {
       grid-area: 1 / 1;
@@ -431,7 +431,7 @@
         radial-gradient(ellipse 50% 55% at 12% 12%, rgba(18,115,109,0.16) 0%, transparent 55%),
         radial-gradient(ellipse 45% 50% at 92% 88%, rgba(110,63,141,0.14) 0%, transparent 55%);
     }
-    .services-preview .section-label { color: rgba(250,247,242,0.45); }
+    .services-preview .section-label { color: rgba(250,247,242,0.72); }
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; z-index: 1; }
     .service-card {
       display: flex; flex-direction: column; position: relative;
@@ -480,7 +480,7 @@
       color: #ADCD52; letter-spacing: 0.04em;
       margin-bottom: 10px; display: block;
     }
-    .service-info p { font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.58); }
+    .service-info p { font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.72); }
     .service-link {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 16px; font-size: 12px; font-weight: 500;
@@ -605,7 +605,7 @@
     }
     /* Left column — heading + callout */
     .testimonials-header { padding-top: 80px; }
-    .testimonials-header .section-label { color: rgba(250,247,242,0.45); margin-bottom: 16px; }
+    .testimonials-header .section-label { color: rgba(250,247,242,0.72); margin-bottom: 16px; }
     .testimonials-header h2 {
       font-family: var(--serif); font-size: clamp(32px, 4vw, 56px);
       font-weight: 400; line-height: 1.1; color: #faf7f2;
@@ -613,13 +613,13 @@
     }
     .testimonials-header h2 em { font-style: italic; color: var(--accent); }
     .testimonials-header p {
-      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.55);
+      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.72);
       margin-bottom: 32px; max-width: 320px;
     }
     .reviews-google-link {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
-      color: rgba(250,247,242,0.45); text-decoration: none; transition: color 0.25s;
+      color: rgba(250,247,242,0.72); text-decoration: none; transition: color 0.25s;
     }
     .reviews-google-link:hover { color: rgba(250,247,242,0.8); }
     .reviews-google-link::before {
@@ -738,7 +738,7 @@
     .hero-link {
       font-family: var(--sans); font-size: 12px; font-weight: 400;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(250,247,242,0.48); text-decoration: none;
+      color: rgba(250,247,242,0.72); text-decoration: none;
       transition: color 0.2s; white-space: nowrap;
     }
     .hero-link:hover { color: rgba(250,247,242,0.85); }
@@ -761,7 +761,7 @@
       display: flex; align-items: center; gap: 7px;
       font-family: var(--sans); font-size: 11px; font-weight: 400;
       letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(250,247,242,0.52);
+      color: rgba(250,247,242,0.72);
       padding: 0 20px;
     }
     .trust-item-stars { color: #FBBC04; font-size: 10px; letter-spacing: 2px; }
@@ -805,6 +805,23 @@
       .announcements::before{ animation: auroraMeshDrift 86s ease-in-out infinite alternate; will-change: transform; }
       .services-preview::before { animation: auroraMeshDrift 79s ease-in-out infinite alternate; will-change: transform; }
       .testimonials::after  { animation: auroraMeshDrift 94s ease-in-out infinite alternate; will-change: transform; }
+    }
+
+    /* ── MOBILE TYPE LEGIBILITY ──
+       Bump secondary/body copy on phones so nothing reads too small.
+       Headlines and buttons are already fluid, so they're left as-is. */
+    @media (max-width: 600px) {
+      .hero-content p        { font-size: 16.5px; }
+      .service-info p        { font-size: 16px; }
+      .service-info h3       { font-size: 21px; }
+      .service-price         { font-size: 14px; }
+      .testimonials-header p { font-size: 16px; }
+      .tc-quote              { font-size: 16px; }
+      .announcement-card p   { font-size: 16px; }
+      .announcement-eyebrow,
+      .announcements .section-label,
+      .services-preview .section-label,
+      .space-peek-content .section-label { font-size: 12px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -925,7 +942,6 @@
 
     <!-- Left: heading -->
     <div class="testimonials-header">
-      <p class="section-label">Client Reviews</p>
       <h2>Love letters<br><em>from clients</em></h2>
       <p>Over 400 five-star reviews. Here's what our community says about their experience at Auroraflow.</p>
       <a class="reviews-google-link" href="https://www.google.com/search?q=Auroraflow+Durham+NC+reviews" target="_blank" rel="noopener">See all reviews on Google</a>
@@ -1074,73 +1090,6 @@
     <div class="announcements-slider" id="announcementsSlider">
 
       <div class="announcement-card active">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">Community</span>
-          <h3>Introducing the Auroraflow Community Fund</h3>
-          <p>Wellness belongs to everyone. Our new donation-based fund supports clients who face financial barriers to care, with no judgment and no limit on applications.</p>
-          <ul>
-            <li>Apply anytime via a brief consideration form</li>
-            <li>Monthly spots announced via newsletter &amp; social, first-come, first-served</li>
-            <li>Everyone who applies gets a personal follow-up from our team</li>
-            <li>Want to give? Donate to support a neighbor's care</li>
-          </ul>
-          <a class="announcement-link" href="community-fund.html">Learn More →</a>
-        </div>
-      </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">New Partnership</span>
-          <h3>Real primary care. No insurance required.</h3>
-          <p>Community Love DPC puts the relationship back in healthcare. Flat-rate memberships built around you, not your insurer.</p>
-          <ul>
-            <li>Flexible visits: in-clinic, telehealth, SMS, or home</li>
-            <li>Affordable memberships for individuals &amp; families, sliding scale available</li>
-            <li>Wholesale labs, imaging &amp; procedures at wholesale costs, no middleman</li>
-          </ul>
-          <a class="announcement-link" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">Learn More →</a>
-        </div>
-      </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">Team Update</span>
-          <h3>Nurturing our team: a modest price adjustment</h3>
-          <p>To fairly compensate our therapists, who are constantly growing, training, and showing up for you, we're making a small pricing update on July 1st.</p>
-          <ul>
-            <li>Massage &amp; Skincare Services: +$10</li>
-            <li>Waxing Services: +$5</li>
-            <li>This change supports our team's livelihood and continued investment in their craft</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">Policy</span>
-          <h3>New: Dementia &amp; Cognitive Conditions Policy</h3>
-          <p>To protect client safety, practitioner safety, and ensure clear consent practices, we've added a new policy for clients with dementia, Alzheimer's, or other cognitive conditions.</p>
-          <ul>
-            <li>A caregiver must be present in the treatment room or on-site for the full session</li>
-            <li>The caregiver is required to sign consent forms on behalf of the client</li>
-          </ul>
-          <a class="announcement-link" href="policies.html">View Full Policies →</a>
-        </div>
-      </div>
-
-      <div class="announcement-card">
         <div class="announcement-logo announcement-ig-tile">
           <a href="https://www.instagram.com/auroraflowmassage/" target="_blank" rel="noopener" aria-label="Auroraflow on Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1149,15 +1098,14 @@
           </a>
         </div>
         <div>
-          <span class="announcement-eyebrow">Stay Connected</span>
-          <h3>Follow along on Instagram</h3>
-          <p>Be the first to know about new openings, events, community days, and offerings — and see the space, the art, and the team behind Auroraflow.</p>
+          <span class="announcement-eyebrow">Stay in the Loop</span>
+          <h3>Follow us on Instagram</h3>
+          <p>Our Instagram is where we post our latest specials, announcements, events, and openings — plus a look at the space, the art, and the team behind Auroraflow. Follow along so you never miss what's new.</p>
           <a class="announcement-link" href="https://www.instagram.com/auroraflowmassage/" target="_blank" rel="noopener">@auroraflowmassage →</a>
         </div>
       </div>
 
     </div>
-    <div class="announcements-nav" id="announcementsNav"></div>
   </div>
 </section>
 
@@ -1194,11 +1142,6 @@
     <a class="btn-hero" href="https://maps.app.goo.gl/GKhtkFqhU2D4HyRr8" target="_blank" rel="noopener noreferrer">View Our Space &rarr;</a>
   </div>
 </section>
-<div class="section-wave" aria-hidden="true">
-  <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,100 L0,100 Z"/>
-  </svg>
-</div>
 
 <!-- FOOTER -->
 </main>

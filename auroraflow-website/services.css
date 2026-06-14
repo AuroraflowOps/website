@@ -20,7 +20,7 @@
 }
 .svc-img-wrap {
   border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3;
-  background: #1a1c2e; position: relative;
+  background: #1a1c2e; position: sticky; top: calc(var(--nav-h) + 24px);
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.14),
     0 40px 100px rgba(5,3,12,0.7),
@@ -230,6 +230,7 @@
 /* RESPONSIVE */
 @media (max-width: 960px) {
   .svc-hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 48px 24px 60px; }
+  .svc-img-wrap { position: static; }
   .svc-details-inner { grid-template-columns: 1fr; gap: 20px; }
   .svc-details { padding: 56px 24px; }
   .svc-providers-grid { grid-template-columns: repeat(2,1fr); }

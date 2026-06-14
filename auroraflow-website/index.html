@@ -331,15 +331,19 @@
         radial-gradient(ellipse 45% 50% at 8% 95%, rgba(173,205,82,0.08) 0%, transparent 55%);
     }
     .announcements .section-label { color: rgba(250,247,242,0.72); }
-    .announcements-slider { display: grid; position: relative; z-index: 1; min-height: 220px; }
+    .announcements-slider { position: relative; z-index: 1; }
     .announcement-card {
-      grid-area: 1 / 1;
+      /* inactive cards overlay out of flow; the active card stays in normal
+         flow so the slider is exactly as tall as the card being shown —
+         no empty space under shorter cards */
+      position: absolute; top: 0; left: 0; width: 100%;
       display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: center;
       opacity: 0; transform: translateY(10px);
       transition: opacity 0.9s var(--ease-calm), transform 0.9s var(--ease-calm);
       pointer-events: none;
     }
     .announcement-card.active {
+      position: relative;
       opacity: 1; transform: translateY(0); pointer-events: auto;
     }
     .announcement-logo {
@@ -570,10 +574,11 @@
       .hero-content { padding: 0 24px 56px; }
       .tagline-band { padding: 70px 24px; }
     }
-    @media (max-width: 720px) {
-      /* stack announcement image above text */
-      .announcement-card { grid-template-columns: 1fr; gap: 24px; }
-      .announcement-logo { width: 140px; }
+    @media (max-width: 900px) {
+      /* stack announcement image above text earlier so tablet/narrow widths
+         aren't cramped */
+      .announcement-card { grid-template-columns: 1fr; gap: 22px; }
+      .announcement-logo { width: 150px; }
     }
     @media (max-width: 540px) {
       .hero-badge img { height: 52px; }

@@ -36,7 +36,7 @@
 .svc-back {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
-  text-transform: uppercase; color: rgba(250,247,242,0.45); text-decoration: none;
+  text-transform: uppercase; color: rgba(250,247,242,0.72); text-decoration: none;
   margin-bottom: 28px; transition: color 0.2s;
 }
 .svc-back:hover { color: rgba(250,247,242,0.85); }
@@ -172,7 +172,7 @@
   margin-bottom: 4px; color: #faf7f2;
 }
 .svc-provider-role {
-  font-size: 11px; color: rgba(250,247,242,0.45);
+  font-size: 11px; color: rgba(250,247,242,0.72);
   letter-spacing: 0.06em; text-transform: uppercase;
 }
 
@@ -240,4 +240,11 @@
 @media (max-width: 560px) {
   .svc-providers-grid { grid-template-columns: 1fr 1fr; }
   .svc-related-grid { grid-template-columns: 1fr; }
+}
+
+/* ── MOBILE TYPE LEGIBILITY ──
+   Bump the smallest captions on service pages so they read comfortably. */
+@media (max-width: 600px) {
+  .svc-related-price { font-size: 13px; }
+  .svc-provider-role { font-size: 12px; }
 }

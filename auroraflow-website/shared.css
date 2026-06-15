@@ -78,8 +78,10 @@ nav {
   transform: rotate(45deg) translateY(-1px);
   transition: transform 0.2s; margin-top: 1px;
 }
-.nav-dropdown:hover .nav-dropdown-toggle { color: var(--dark); }
-.nav-dropdown:hover .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(2px); }
+.nav-dropdown:hover .nav-dropdown-toggle,
+.nav-dropdown:focus-within .nav-dropdown-toggle { color: var(--dark); }
+.nav-dropdown:hover .nav-dropdown-toggle::after,
+.nav-dropdown:focus-within .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(2px); }
 .nav-dropdown-menu {
   position: absolute; top: calc(100% + 14px); left: 50%;
   transform: translateX(-50%) translateY(-6px);
@@ -90,7 +92,8 @@ nav {
   transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
   box-shadow: 0 8px 32px rgba(0,0,0,0.10); z-index: 210;
 }
-.nav-dropdown:hover .nav-dropdown-menu {
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
   opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
 }
 .nav-dropdown-menu li a {
@@ -101,6 +104,17 @@ nav {
   transition: color 0.15s, background 0.15s;
 }
 .nav-dropdown-menu li a:hover { color: var(--dark); background: rgba(0,0,0,0.035); }
+
+/* Sitewide keyboard focus indicator — previously relied on inconsistent
+   browser defaults; custom pill buttons and the dropdown toggle had no
+   visible focus ring for keyboard/AT users. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #6E3F8D;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
 
 .btn-book,
 .nav-links a.btn-book {

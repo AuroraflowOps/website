@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <meta name="description" content="Auroraflow is an LGBTQ-owned massage and skincare spa in downtown Durham, NC. Inclusive wellness for every body.">
+  <!-- Preload the LCP hero poster per breakpoint (matches the 900px CSS switch
+       between desktop video poster and the mobile static image) -->
+  <link rel="preload" as="image" href="assets/aurora-hero-poster.jpg" media="(min-width: 901px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/aurora-hero-poster-mobile.jpg" media="(max-width: 900px)" fetchpriority="high">
   <link rel="stylesheet" href="shared.css">
   <style>
     /* ── HERO ── */
@@ -910,7 +914,7 @@
 </svg>
 
 <nav>
-  <a class="nav-logo" href="index.html"><img loading="lazy" src="assets/logo.png" alt="Auroraflow" class="nav-logo-img" /></a>
+  <a class="nav-logo" href="index.html"><img src="assets/logo.png" width="4532" height="1358" alt="Auroraflow" class="nav-logo-img" /></a>
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
@@ -960,7 +964,7 @@
   <video autoplay muted playsinline preload="metadata" poster="assets/aurora-hero-poster.jpg" id="heroVideo">
     <source src="assets/aurora-hero-web.mp4" type="video/mp4">
   </video>
-  <img class="hero-img-mobile" src="assets/aurora-hero-poster-mobile.jpg" alt="" aria-hidden="true">
+  <img class="hero-img-mobile" src="assets/aurora-hero-poster-mobile.jpg" width="720" height="405" fetchpriority="high" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
   <div class="hero-breath-aura" aria-hidden="true"></div>
   <div class="hero-content">
@@ -975,7 +979,7 @@
       <a class="btn-hero" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
       <a class="hero-link" href="services.html">Explore Services →</a>
       <div class="hero-badge pos-inline" id="heroBadge">
-        <img src="assets/img/695d02be17e983c000368553_Best-of-25.png" alt="Best Massage in the Triangle" />
+        <img src="assets/img/695d02be17e983c000368553_Best-of-25.png" width="1600" height="1236" alt="Best Massage in the Triangle" />
       </div>
     </div>
   </div>
@@ -1111,7 +1115,7 @@
     <div class="services-grid">
       <a class="service-card" href="services/clinical-facial.html">
         <div class="service-thumb">
-          <img src="assets/img/68d6c350e8607a9bb016a660_Untitled-design-66-.jpg" alt="Clinical Facial and Consultation" loading="lazy" />
+          <img src="assets/img/68d6c350e8607a9bb016a660_Untitled-design-66-.jpg" width="1600" height="1600" alt="Clinical Facial and Consultation" loading="lazy" />
         </div>
         <div class="service-info">
           <h3>Clinical Facial &amp; Consultation</h3>
@@ -1122,7 +1126,7 @@
       </a>
       <a class="service-card" href="services/craniosacral-massage.html">
         <div class="service-thumb">
-          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.jpg" alt="Energetic Bodywork" loading="lazy" />
+          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.jpg" width="1600" height="1600" alt="Energetic Bodywork" loading="lazy" />
         </div>
         <div class="service-info">
           <h3>Energetic Bodywork</h3>
@@ -1158,7 +1162,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" alt="Auroraflow inclusive wellness space" />
+          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" width="1480" height="1600" alt="Auroraflow inclusive wellness space" />
         </div>
         <div>
           <span class="announcement-eyebrow">Community</span>
@@ -1176,7 +1180,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" alt="Community Love Direct Primary Care doctor with patient" />
+          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" width="1500" height="1000" alt="Community Love Direct Primary Care doctor with patient" />
         </div>
         <div>
           <span class="announcement-eyebrow">New Partnership</span>
@@ -1193,7 +1197,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/team-hero.jpg" alt="The Auroraflow team" />
+          <img loading="lazy" src="assets/img/team-hero.jpg" width="900" height="1600" alt="The Auroraflow team" />
         </div>
         <div>
           <span class="announcement-eyebrow">Team Update</span>
@@ -1209,7 +1213,7 @@
 
       <div class="announcement-card">
         <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" alt="Happy older couple at Auroraflow" />
+          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" width="800" height="450" alt="Happy older couple at Auroraflow" />
         </div>
         <div>
           <span class="announcement-eyebrow">Policy</span>
@@ -1233,7 +1237,7 @@
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image">
-        <img loading="lazy" src="assets/img/759A0003.jpg"
+        <img loading="lazy" src="assets/img/759A0003.jpg" width="1600" height="1066"
           alt="Client receiving a facial at Auroraflow" />
       </div>
       <div class="about-text">
@@ -1250,7 +1254,7 @@
 <!-- SEE OUR SPACE -->
 <section class="space-peek">
   <div class="space-peek-bg">
-    <img loading="lazy" src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg"
+    <img loading="lazy" src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg" width="1600" height="900"
       alt="Massage room with rainbow mural at Auroraflow" />
   </div>
   <div class="space-peek-overlay"></div>

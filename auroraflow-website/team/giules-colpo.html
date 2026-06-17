@@ -21,8 +21,8 @@
       aspect-ratio: 1/1; background: #e0d8d0;
     }
     .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
-    .bio-lifestyle img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius-sm); display: block; }
+    .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 8px; }
+    .bio-lifestyle img { width: 100%; aspect-ratio: 1/1; height: auto; object-fit: cover; border-radius: var(--radius-sm); display: block; align-self: start; }
     .bio-back {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
@@ -122,15 +122,23 @@
     }
     .btn-cta:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: var(--shadow-md); }
     @media (max-width: 960px) {
-      .bio-hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 60px; }
-      .bio-photo-wrap { position: static; max-width: 320px; }
+      .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
+      .bio-content { display: contents; }
+      .bio-back { order: 1; }
+      .bio-pronoun { order: 2; }
+      .bio-name { order: 3; width: 100%; }
+      .bio-title { order: 4; width: 100%; }
+      .bio-divider { order: 5; width: 100%; }
+      .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
+      .btn-book-hero { order: 7; }
+      .bio-body { order: 8; width: 100%; }
       .bio-services-grid { grid-template-columns: repeat(2,1fr); }
       .bio-services-section { padding: 56px 24px; }
       .bio-cta { padding: 70px 24px; }
     }
     @media (max-width: 520px) {
       .bio-services-grid { grid-template-columns: 1fr; }
-      .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+      .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 8px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>

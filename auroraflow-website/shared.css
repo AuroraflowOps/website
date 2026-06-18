@@ -649,37 +649,44 @@ footer {
   .footer-social { flex-direction: row; }
 }
 
-/* ── MANGOMINT CHAT WIDGET — tame mobile behavior ──
-   The widget (injected by booking.mangomint.com/app.js) defaults to a
-   full-screen takeover on phones: its container + panel stretch to
-   100dvw × 100dvh with pointer-events:all, so when the chat opens (including
-   any proactive pop-up) it covers the whole viewport and traps every tap
-   until it's closed — blocking the nav and page links. We keep the launcher
-   as a small icon and bound the open panel to a bottom-right card so the rest
-   of the page stays tappable. Selectors mirror Mangomint's own classes;
-   !important is required to override their inline-injected stylesheet. */
+/* ── MANGOMINT CHAT WIDGET — keep the open panel a bounded, fitted card ──
+   The webchat (injected by booking.mangomint.com/app.js; iframe served from
+   app.mangomint.com/webchat) misbehaves at both ends:
+   • desktop — Mangomint anchors the open panel near the top with a fixed
+     ~720px height, so on shorter windows its bottom (the message input) is
+     cut off below the viewport;
+   • mobile — its open container is full-bleed with overflow:hidden, and the
+     panel iframe is absolutely positioned, so any attempt to shrink the
+     container by height collapses it to 0 and clips the chat away entirely.
+   Fix both the same way: scope to the OPEN state (so the closed launcher
+   bubble keeps Mangomint's own placement), anchor the panel to the
+   bottom-right, and bound its height to the viewport so nothing is cut off
+   or hidden. The iframe fills that bounded container. !important is required
+   to beat Mangomint's runtime-injected stylesheet. */
+.mangomint-chat-container.mangomint-chat-container-open {
+  top: auto !important;
+  left: auto !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  width: min(400px, calc(100vw - 32px)) !important;
+  height: min(640px, calc(100dvh - 32px)) !important;
+  max-height: calc(100dvh - 32px) !important;
+}
+.mangomint-chat-container-open .mangomint-chat-widget {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 @media (max-width: 768px) {
-  /* never show the proactive "How can we help you?" pop-out */
-  .mangomint-chat-bubble-open { display: none !important; }
-
-  /* the fixed wrapper should only occupy the corner, never the full screen,
-     so it can't sit invisibly over the page and intercept taps */
-  .mangomint-chat-container {
-    top: auto !important;
-    left: auto !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: min(384px, calc(100vw - 24px)) !important;
-    height: auto !important;
-    max-height: 85dvh !important;
-  }
-
-  /* the open chat panel (iframe) becomes a bounded card instead of full-bleed */
-  .mangomint-chat-widget {
+  /* full-width card on phones, still bottom-anchored and viewport-bounded */
+  .mangomint-chat-container.mangomint-chat-container-open {
     right: 12px !important;
     bottom: 12px !important;
-    width: min(360px, calc(100vw - 24px)) !important;
-    height: min(560px, 80dvh) !important;
+    width: calc(100vw - 24px) !important;
+    height: min(560px, calc(100dvh - 24px)) !important;
+    max-height: calc(100dvh - 24px) !important;
   }
 }
 

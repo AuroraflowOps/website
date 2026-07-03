@@ -67,6 +67,8 @@
 
 .svc-divider { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 28px; }
 .svc-desc { font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.7); margin-bottom: 28px; }
+.svc-desc a { color: var(--spark); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.svc-desc a:hover { color: var(--cream); }
 
 .svc-book-btn {
   display: inline-flex; align-items: center;

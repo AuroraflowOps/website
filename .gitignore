@@ -8,3 +8,7 @@
 !README.md
 !.gitignore
 !netlify.toml
+
+# Track Claude Code skills so they persist across sessions
+!.claude/
+!.claude/**

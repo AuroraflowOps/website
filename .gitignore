@@ -9,6 +9,10 @@
 !.gitignore
 !netlify.toml
 
+# Track design audit deliverables (repo root, never served)
+!DESIGN-AUDIT-JOURNAL-BIOS-SERVICES.md
+!DESIGN-AUDIT-JOURNAL-BIOS-SERVICES-MOCKUP.html
+
 # Track Claude Code skills so they persist across sessions
 !.claude/
 !.claude/**

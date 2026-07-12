@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -125,9 +134,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -209,12 +219,12 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/6510ed5b9aaff1956e04a9d5_Nik.png" width="400" height="400" alt="Nikkia &quot;Nik&quot; Beech-Moore" loading="lazy" />
+        <img src="../assets/img/6510ed5b9aaff1956e04a9d5_Nik.webp" width="400" height="400" alt="Nikkia &quot;Nik&quot; Beech-Moore" loading="lazy" />
       </div>
             <div class="bio-lifestyle">
-        <img src="../assets/img/645ab16d84fd8b3f19be12eb_3.png" width="900" height="900" alt="Nikkia Beech Moore lifestyle" loading="lazy" />
-        <img src="../assets/img/645ab16d8eb8197aed4d7e81_2.png" width="900" height="900" alt="Nikkia Beech Moore lifestyle" loading="lazy" />
-        <img src="../assets/img/645ab16dab1afd63434022a0_1.png" width="900" height="900" alt="Nikkia Beech Moore lifestyle" loading="lazy" />
+        <img src="../assets/img/645ab16d84fd8b3f19be12eb_3.webp" width="900" height="900" alt="Nikkia Beech Moore lifestyle" loading="lazy" />
+        <img src="../assets/img/645ab16d8eb8197aed4d7e81_2.webp" width="900" height="900" alt="Nikkia Beech Moore lifestyle" loading="lazy" />
+        <img src="../assets/img/645ab16dab1afd63434022a0_1.webp" width="900" height="900" alt="Nikkia Beech Moore lifestyle" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -222,10 +232,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">She/her</span>
       <h1 class="bio-name">Nikkia "Nik" Beech-Moore</h1>
       <div class="bio-title">Esthetician</div>
+      <div class="bio-chips"><span class="pronoun-pill">she/her</span></div>
+      <div class="bio-specialties"><a class="chip chip-neutral" href="../services/spa-facial.html">Spa Facial</a><a class="chip chip-neutral" href="../services/acne-focused-facial.html">Acne Focused Facial</a><a class="chip chip-neutral" href="../services/chemical-peels.html">Chemical Peels</a><a class="chip chip-neutral" href="../services/hydration-station.html">Hydration Station</a></div>
       <div class="bio-divider"></div>
       <a class="btn-book-hero" href="https://booking.mangomint.com/814946?staffId=28" target="_blank">Book Now</a>
       <div class="bio-body"><p>Nikkia, or "Nik," (<strong>E24104</strong>) is YOUR Personal Skin Curator and Brow Sculptor looking to magnify the innate essence in her clients. A New York native who has been living in North Carolina since 2008, she graduated from Bennett College for Women and received training from the Health & Style Institute.</p><p>Nikkia specializes in healthy, transformative, and customized skincare and likes to educate her clients on how to be intentional when addressing acne, hyperpigmentation, and the changes that come with the aging process. She is committed to promoting Skin Equity for all individuals, regardless of their budget, access, background, or skin's current status.</p><p>"I want my clients to know that my passion for skin care is much deeper than vanity; it is about self-preservation and self-care through intentionally loving the largest organ we have because we only get one!" Nik has completed hands-on training with world-renowned Joelle Lee on chemical peels specifically for skin of color.</p><p>In addition to her love for skincare, she is a cocktail connoisseur, super foodie, and loves to stamp her passport at every chance with her wife or family & friends. She is also a proud fur mama to Coltrane and Kendall.</p></div>
@@ -243,19 +253,19 @@
     <div class="bio-services-grid">
       <a class="bio-svc" href="../services/spa-facial.html">
         <div class="bio-svc-name">Spa Facial</div>
-        <div class="bio-svc-price">$125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/acne-focused-facial.html">
         <div class="bio-svc-name">Acne Focused Facial</div>
-        <div class="bio-svc-price">$145 · 75 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">75 min</span></div>
       </a>
       <a class="bio-svc" href="../services/chemical-peels.html">
         <div class="bio-svc-name">Chemical Peels</div>
-        <div class="bio-svc-price">From $195 · 90 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$195</span><span class="svc-meta-dur">90 min</span></div>
       </a>
       <a class="bio-svc" href="../services/hydration-station.html">
         <div class="bio-svc-name">Hydration Station</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/waxing.html">
         <div class="bio-svc-name">Body and Facial Hair Removal</div>
@@ -263,35 +273,35 @@
       </a>
       <a class="bio-svc" href="../services/microdermabrasion-facial.html">
         <div class="bio-svc-name">Microdermabrasion Facial</div>
-        <div class="bio-svc-price">$185 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$185</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/the-grizzly.html">
         <div class="bio-svc-name">The Grizzly (Beard Facial)</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/sensitive-skin-calming-facial.html">
         <div class="bio-svc-name">Sensitive Skin Calming Facial</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/excellent-exfoliation-facial.html">
         <div class="bio-svc-name">Excellent Exfoliation Spa Facial</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/facial-101.html">
         <div class="bio-svc-name">Facial 101 (Intro)</div>
-        <div class="bio-svc-price">$105 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$105</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/relaxing-back-treatment.html">
         <div class="bio-svc-name">Relaxing Back Treatment</div>
-        <div class="bio-svc-price">$115 · 45 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$115</span><span class="svc-meta-dur">45 min</span></div>
       </a>
       <a class="bio-svc" href="../services/clinical-facial.html">
         <div class="bio-svc-name">Clinical Facial &amp; Consultation</div>
-        <div class="bio-svc-price">$210 · 105 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$210</span><span class="svc-meta-dur">105 min</span></div>
       </a>
       <a class="bio-svc" href="../services/bipoc-clinical-facial.html">
         <div class="bio-svc-name">BIPOC Specific Clinical Facial &amp; Consultation</div>
-        <div class="bio-svc-price">$210 · 105 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$210</span><span class="svc-meta-dur">105 min</span></div>
       </a>
     
     </div>

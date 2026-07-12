@@ -40,8 +40,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -58,7 +67,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -108,9 +117,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -191,7 +201,7 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/66bf9d8673894dd181e887b8_Castle-Headshot.jpg" width="1600" height="1600" alt="Castle Frame" loading="lazy" />
+        <img src="../assets/img/66bf9d8673894dd181e887b8_Castle-Headshot.webp" width="1200" height="1200" alt="Castle Frame" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -199,9 +209,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      <span class="bio-pronoun">She/Her</span>
       <h1 class="bio-name">Castle Frame</h1>
       <div class="bio-title">CEO, Founder, Massage Therapist</div>
+      <div class="bio-chips"><span class="pronoun-pill">she/her</span></div>
+      <div class="bio-specialties"><a class="chip chip-neutral" href="../services/therapeutic-massage.html">Therapeutic Massage</a></div>
       <div class="bio-divider"></div>
       <div class="bio-body">
         <p>Castle is the founder and CEO of Auroraflow and has been a licensed massage therapist since 2014. After two years of running Castle Frame Massage out of her home, she opened Auroraflow in 2022 with a mission to create a wellness space where people, both employees and clients, of all backgrounds feel safe, welcomed, and cared for.</p>
@@ -221,7 +232,7 @@
     <div class="bio-services-grid">
       <a class="bio-svc" href="../services/therapeutic-massage.html">
         <div class="bio-svc-name">Therapeutic Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
     </div>
   </div>

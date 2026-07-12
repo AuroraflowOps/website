@@ -698,7 +698,98 @@ footer {
   .footer-links a { font-size: 14px; }
   .footer-address, .footer-address a { font-size: 14px; }
   .footer-copy { font-size: 12.5px; }
-  /* bio service-card price captions (defined inline per bio at 12px);
-     the descendant selector outranks the inline rule */
-  .bio-svc .bio-svc-price { font-size: 13px; }
+  /* bio service-card duration chips stay readable on phones */
+  .bio-svc .svc-meta-dur { font-size: 11px; }
+}
+
+/* ── TINTED CHIP FAMILY (design audit X1) ──
+   One shape everywhere; only the tint changes. Text colours are darkened
+   past the raw brand values where needed to hold WCAG AA on cream. */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 100px;
+  font-family: var(--sans); font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.09em; text-transform: uppercase; line-height: 1.4;
+  text-decoration: none;
+}
+.chip-identity { background: rgba(110,63,141,0.13); color: #6E3F8D; }
+.chip-services { background: rgba(18,115,109,0.14); color: #0e5f5a; }
+.chip-team     { background: rgba(54,57,113,0.13);  color: #363971; }
+.chip-wellness { background: rgba(120,140,40,0.16); color: #566b12; }
+.chip-neutral  { background: rgba(28,24,22,0.07);   color: var(--muted); }
+.chip-inquire  { background: rgba(54,57,113,0.11);  color: #363971; }
+.chip-addon    { background: rgba(173,205,82,0.20); color: #566b12; }
+a.chip:hover { filter: brightness(0.92); }
+
+/* ── PRONOUN PILL — quiet, secondary to the job title ── */
+.pronoun-pill {
+  display: inline-block; padding: 2px 10px; border-radius: 100px;
+  border: 1px solid var(--border); color: var(--muted);
+  font-family: var(--sans); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.07em;
+}
+
+/* ── PRICE / DURATION META ROW (design audit S1/X4) ── */
+.svc-meta { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-bottom: 12px; }
+.svc-meta-from { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.svc-meta-price { font-family: var(--serif); font-size: 20px; color: var(--dark); line-height: 1; }
+.svc-meta-dur {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--mid); background: rgba(28,24,22,0.06);
+  padding: 4px 11px; border-radius: 100px; letter-spacing: 0.02em;
+}
+.svc-meta-dur svg { width: 11px; height: 11px; opacity: 0.7; }
+/* compact variant for bio service cards */
+.bio-svc-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.bio-svc-meta .svc-meta-price { font-size: 17px; }
+.bio-svc-meta .svc-meta-dur { font-size: 10px; padding: 3px 9px; }
+
+/* ── SOFT FILTER TRANSITION (design audit X2) ── */
+.softfilter > * {
+  transition: opacity 0.36s var(--ease-calm), transform 0.36s var(--ease-calm);
+}
+.softfilter > .f-out { opacity: 0; transform: translateY(12px) scale(0.97); pointer-events: none; }
+.softfilter > .f-in { animation: filterRise 0.42s var(--ease-calm) both; }
+@keyframes filterRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCROLL REVEAL (design audit X3) ──
+   Opt-in per grid via .reveal-grid; shared.js adds html.js-reveal only when
+   the observer is available and motion is allowed, so content is never
+   hidden without JS. */
+html.js-reveal .reveal-grid > * { opacity: 0; transform: translateY(12px); }
+html.js-reveal .reveal-grid > .revealed {
+  opacity: 1; transform: none;
+  transition: opacity 0.55s var(--ease-calm), transform 0.55s var(--ease-calm);
+}
+@media (prefers-reduced-motion: reduce) {
+  .softfilter > *, .softfilter > .f-in { transition: none !important; animation: none !important; }
+  html.js-reveal .reveal-grid > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ── ARTICLE READING PROGRESS (design audit JD3) ──
+   Injected by shared.js on pages with an .article-body. */
+.article-progress {
+  position: fixed; top: var(--nav-h); left: 0; right: 0; height: 3px;
+  z-index: 199; pointer-events: none;
+}
+.article-progress span {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(to right,
+    #ADCD52, #12736D, #363971, #6E3F8D,
+    #BA7EC9, #585BA7, #52BCA3, #D9E493
+  );
+}
+
+.article-meta .meta-date { color: var(--accent2); font-weight: 500; }
+
+/* ── PULLQUOTE (design audit JD2) ── */
+.article-body .pullquote {
+  font-family: var(--serif); font-size: clamp(20px, 2.4vw, 26px);
+  font-style: italic; line-height: 1.45; color: var(--dark);
+  border-left: 3px solid;
+  border-image: linear-gradient(to bottom, #ADCD52, #12736D, #6E3F8D) 1;
+  padding-left: 20px; margin: 32px 0;
 }

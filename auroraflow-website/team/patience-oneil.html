@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -125,9 +134,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -209,12 +219,12 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/649a036b21a9becd849d02ac_Untitled-design-22-.png" width="1200" height="1200" alt="Patience O'Neill" loading="lazy" />
+        <img src="../assets/img/649a036b21a9becd849d02ac_Untitled-design-22-.webp" width="1200" height="1200" alt="Patience O'Neill" loading="lazy" />
       </div>
             <div class="bio-lifestyle">
-        <img src="../assets/img/63862ae5fc1ac29137a22797_Untitled-design-5.png" width="400" height="400" alt="Patience Oneil lifestyle" loading="lazy" />
-        <img src="../assets/img/63862ae7fc1ac254f5a227a7_Untitled-design-4.png" width="400" height="400" alt="Patience Oneil lifestyle" loading="lazy" />
-        <img src="../assets/img/63862aedea82e8709367798f_Untitled-design-2-.png" width="400" height="400" alt="Patience Oneil lifestyle" loading="lazy" />
+        <img src="../assets/img/63862ae5fc1ac29137a22797_Untitled-design-5.webp" width="400" height="400" alt="Patience Oneil lifestyle" loading="lazy" />
+        <img src="../assets/img/63862ae7fc1ac254f5a227a7_Untitled-design-4.webp" width="400" height="400" alt="Patience Oneil lifestyle" loading="lazy" />
+        <img src="../assets/img/63862aedea82e8709367798f_Untitled-design-2-.webp" width="400" height="400" alt="Patience Oneil lifestyle" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -222,10 +232,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">They/Them</span>
       <h1 class="bio-name">Patience O'Neill</h1>
       <div class="bio-title">Massage Therapist</div>
+      <div class="bio-chips"><span class="pronoun-pill">they/them</span></div>
+      <div class="bio-specialties"><a class="chip chip-neutral" href="../services/therapeutic-massage.html">Therapeutic Massage</a><a class="chip chip-neutral" href="../services/prenatal-massage.html">Prenatal Massage</a><a class="chip chip-neutral" href="../services/sports-massage.html">Sports Massage</a></div>
       <div class="bio-divider"></div>
       <a class="btn-book-hero" href="https://booking.mangomint.com/814946?staffId=17" target="_blank">Book Now</a>
       <div class="bio-body"><p>Patience (<strong>LMBT#14469</strong>) is a genderqueer massage therapist specializing in tension release and pain management. Their goal as a massage therapist is to meet your goals as a client and to help you fall as deeply into the relaxation that you desire, and/or address whatever tension, pain, or recovery issues you have.</p><p>They use a mix of direct pressure techniques to pinpoint tension within specific muscles, Myofascial Release Therapy to melt connective tissue and open up muscle groups, Pin and Stretch techniques and passive movement to increase mobility and range, and Swedish techniques to warm and soothe. The modalities Patience has utilized in their practice since becoming a massage therapist in 2014 include Trigger Point Therapy, Myofascial Release Therapy, Sports Massage, Swedish Massage, Pregnancy Massage, and Joint Mobilization and Stretching.</p><p>Patience's request of you as a client is that you communicate with them if there are any adjustments that could make you more comfortable: pressure, positioning, temperature, music, etc</p></div>
@@ -243,15 +253,15 @@
     <div class="bio-services-grid">
       <a class="bio-svc" href="../services/therapeutic-massage.html">
         <div class="bio-svc-name">Therapeutic Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/prenatal-massage.html">
         <div class="bio-svc-name">Prenatal Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/sports-massage.html">
         <div class="bio-svc-name">Sports Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
     
     </div>

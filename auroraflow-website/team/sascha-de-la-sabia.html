@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -112,9 +121,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -196,19 +206,18 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/678d60f7fb933bdacd740158_Untitled-1500-x-1500-px-2-.png" width="1500" height="1500" alt="Sascha De la Sabia" loading="lazy" />
+        <img src="../assets/img/678d60f7fb933bdacd740158_Untitled-1500-x-1500-px-2-.webp" width="1200" height="1200" alt="Sascha De la Sabia" loading="lazy" />
       </div>
-      <div class="bio-lifestyle"><img src="../assets/img/678d61cce5931244f1256b03_Untitled-design-18-.png" width="1500" height="1500" alt="Sascha De la Sabia lifestyle" loading="lazy" /></div>
+      <div class="bio-lifestyle"><img src="../assets/img/678d61cce5931244f1256b03_Untitled-design-18-.webp" width="1200" height="1200" alt="Sascha De la Sabia lifestyle" loading="lazy" /></div>
     </div>
     <div class="bio-content">
       <a class="bio-back" href="../team.html">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">They/she</span>
       <h1 class="bio-name">Sascha De la Sabia</h1>
       <div class="bio-title">Front Desk Manager, Hiring Manager, Cultural Sensitivity Liaison</div>
+      <div class="bio-chips"><span class="pronoun-pill">they/she</span></div>
       <div class="bio-divider"></div>
       <div class="bio-body"><p>Sascha has lived in Durham since 2022 but hails from Washington, D.C. An avid traveler, they've lived in 5 states and 4 countries, and want to explore so much more of the world. Fluent in 4 languages, Sascha loves connecting with people from all over.</p><p>As a queer Afrolatiné Caribbean person, Sascha is passionate about uplifting underrepresented voices. Prior to working at Auroraflow, they dedicated their career as an academic scholar to educating others about Hip-Hop and Black culture in Germany. Now, they support the local community in Durham through working as a perfumer at Bright Black, a Black-owned business founded in Durham, and by teaching languages online through their own business, Language Leveled.</p><p>At Auroraflow, they look forward to making your visit unforgettable and maybe even introducing you to your next favorite musician from another country while you wait for your appointment!</p></div>
     </div>

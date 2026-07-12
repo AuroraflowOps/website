@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -125,9 +134,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -209,12 +219,12 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/6510ed3ea2dc726c9741db54_Brandi.png" width="400" height="400" alt="Brandy Robertson" loading="lazy" />
+        <img src="../assets/img/6510ed3ea2dc726c9741db54_Brandi.webp" width="400" height="400" alt="Brandy Robertson" loading="lazy" />
       </div>
             <div class="bio-lifestyle">
-        <img src="../assets/img/64b6f02d1af210408d9d4ef5_4.png" width="400" height="400" alt="Brandy Robertson lifestyle" loading="lazy" />
-        <img src="../assets/img/64b6f02d2d3ff71b2a22849c_3.png" width="400" height="400" alt="Brandy Robertson lifestyle" loading="lazy" />
-        <img src="../assets/img/64b6f02d0e1dfb4e8bab7d7f_2.png" width="400" height="400" alt="Brandy Robertson lifestyle" loading="lazy" />
+        <img src="../assets/img/64b6f02d1af210408d9d4ef5_4.webp" width="400" height="400" alt="Brandy Robertson lifestyle" loading="lazy" />
+        <img src="../assets/img/64b6f02d2d3ff71b2a22849c_3.webp" width="400" height="400" alt="Brandy Robertson lifestyle" loading="lazy" />
+        <img src="../assets/img/64b6f02d0e1dfb4e8bab7d7f_2.webp" width="400" height="400" alt="Brandy Robertson lifestyle" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -222,10 +232,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">She/Her</span>
       <h1 class="bio-name">Brandy Robertson</h1>
       <div class="bio-title">Massage Therapist</div>
+      <div class="bio-chips"><span class="pronoun-pill">she/her</span></div>
+      <div class="bio-specialties"><a class="chip chip-neutral" href="../services/therapeutic-massage.html">Therapeutic Massage</a><a class="chip chip-neutral" href="../services/couples-massage.html">Couples Massage</a></div>
       <div class="bio-divider"></div>
       <a class="btn-book-hero" href="https://booking.mangomint.com/814946?staffId=34" target="_blank">Book Now</a>
       <div class="bio-body"><p>Brandy (<strong>LMBT#21089</strong>) went to Cornerstone Holistic Institute in Wake Forest, NC. She currently practices Swedish, Therapeutic, and Deep Tissue</p><p>Brandy's practice is rooted in something deeper than just technique — it is rooted in whole body care. Brandy brings both skill and genuine compassion to every session, holding the understanding that the body doesn't arrive alone — the mind and soul come with it, and real healing happens when all three are acknowledged, and honored.</p><p>Her number one goal is simple and profound: to provide a safe environment where every client feels at ease in their body — seen, heard, and leaving better than when they arrived.</p><p>Her healing philosophy is as intentional as it is intuitive. She understands that true wellness begins with trust, and that a treatment room should feel like a sanctuary — a space free of judgment, where the nervous system can soften and the body is given full permission to heal. Every session is tailored, every touch purposeful, and every client encounter an opportunity to meet someone exactly where they are.</p><p>She believes wholeheartedly in the dignity and power of every person — values that quietly inform the way she shows up for her clients each day. Her love of nature and animals, including her two beloved dogs, keeps her grounded in the rhythms of the living world and reminds her that healing, in all its forms, is a natural and necessary act.</p><p>Beyond the treatment table, Brandy is a human rights activist, womens sports advocate, amateur blacksmith and a musician. She begins her day with early morning meditation in nature and Reiki self healing.</p><p>Whether you are seeking relief from chronic tension, recovering from physical stress, or simply longing for genuine restoration, Brandy offers a presence that is both skilled and deeply human. In her hands, bodywork becomes more than therapy — it's a return to self.</p></div>
@@ -243,11 +253,11 @@
     <div class="bio-services-grid">
       <a class="bio-svc" href="../services/therapeutic-massage.html">
         <div class="bio-svc-name">Therapeutic Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/couples-massage.html">
         <div class="bio-svc-name">Couples Massage</div>
-        <div class="bio-svc-price">From $250 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$250</span><span class="svc-meta-dur">60 min</span></div>
       </a>
     
     </div>

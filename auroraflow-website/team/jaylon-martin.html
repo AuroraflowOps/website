@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -112,9 +121,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -196,19 +206,18 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/68d6ba76ab268601824aef08_Untitled-design-61-.jpg" width="1600" height="1600" alt="Jaylon Martin" loading="lazy" />
+        <img src="../assets/img/68d6ba76ab268601824aef08_Untitled-design-61-.webp" width="1200" height="1200" alt="Jaylon Martin" loading="lazy" />
       </div>
-      <div class="bio-lifestyle"><img src="../assets/img/68d6baa08ba20b07f581c684_Untitled-design-62-.jpg" width="1600" height="1600" alt="Jaylon Martin lifestyle" loading="lazy" /></div>
+      <div class="bio-lifestyle"><img src="../assets/img/68d6baa08ba20b07f581c684_Untitled-design-62-.webp" width="1200" height="1200" alt="Jaylon Martin lifestyle" loading="lazy" /></div>
     </div>
     <div class="bio-content">
       <a class="bio-back" href="../team.html">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">Any/All</span>
       <h1 class="bio-name">Jaylon Martin</h1>
       <div class="bio-title">Front Desk Receptionist</div>
+      <div class="bio-chips"><span class="pronoun-pill">any/all</span></div>
       <div class="bio-divider"></div>
       <div class="bio-body"><p>Jaylon moved to North Carolina in 2019 and has been in Chapel Hill since 2022. Originally from Jackson, MS, they love movies, reading, and art in all its forms and enjoy sharing those stories with friends. When not working on model kits, they bring warmth and a genuine love for people to the front desk at Auroraflow.</p></div>
     </div>

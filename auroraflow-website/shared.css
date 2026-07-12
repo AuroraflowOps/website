@@ -806,6 +806,12 @@ html.js-reveal .reveal-grid > .revealed {
    Ken Burns image, the staggered rise-in, reduced-motion handling — is
    inherited from .page-hero untouched. */
 .article-page-hero { min-height: 480px; }
+/* opt-in modifier for posts whose hero is a square headshot rather than a
+   landscape scene -- a dead-center crop on a wide hero zooms in to just
+   eyes/nose/mouth. Taller hero + a top-biased crop keeps hair-to-shoulders
+   in frame instead. */
+.article-page-hero.hero-is-headshot { min-height: 620px; }
+.article-page-hero.hero-is-headshot .page-hero-img img { object-position: center 12%; }
 .article-page-hero .page-hero-content h1 {
   font-size: clamp(26px, 4vw, 44px); max-width: 760px; margin-left: auto; margin-right: auto;
 }

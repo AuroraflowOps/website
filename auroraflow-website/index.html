@@ -339,32 +339,23 @@
         radial-gradient(ellipse 50% 60% at 90% 10%, rgba(110,63,141,0.16) 0%, transparent 55%),
         radial-gradient(ellipse 45% 50% at 8% 95%, rgba(173,205,82,0.08) 0%, transparent 55%);
     }
-    .announcements .section-label { color: rgba(250,247,242,0.72); }
-    .announcements-slider { position: relative; z-index: 1; }
-    .announcement-card {
-      /* inactive cards overlay out of flow; the active card stays in normal
-         flow so the slider is exactly as tall as the card being shown —
-         no empty space under shorter cards */
-      position: absolute; top: 0; left: 0; width: 100%;
-      display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: center;
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.9s var(--ease-calm), transform 0.9s var(--ease-calm);
-      pointer-events: none;
+    .announcements .section-label { color: rgba(250,247,242,0.72); margin-bottom: 16px; }
+    .community-updates-title {
+      font-family: var(--serif); font-size: clamp(26px, 3vw, 38px);
+      font-weight: 400; color: #faf7f2; letter-spacing: -0.01em;
+      margin: 0 0 28px; position: relative; z-index: 1;
     }
-    .announcement-card.active {
-      position: relative;
-      opacity: 1; transform: translateY(0); pointer-events: auto;
+    .community-updates-grid.services-grid { grid-template-columns: repeat(3, 1fr); position: relative; z-index: 1; }
+    .community-updates-note {
+      position: relative; z-index: 1;
+      margin-top: 24px; font-size: 13px; line-height: 1.7; color: rgba(250,247,242,0.55);
     }
-    .announcement-logo {
-      border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; position: relative;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.65), 0 0 60px rgba(110,63,141,0.18);
+    .note-pill {
+      display: inline-block; padding: 3px 10px; margin-right: 8px;
+      border-radius: 100px; background: rgba(255,255,255,0.08);
+      font-family: var(--sans); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,247,242,0.7);
     }
-    .announcement-logo::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: rgba(255,255,255,0.05);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
-    }
-    .announcement-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     /* Instagram "follow us" tile — brand IG gradient in place of a photo */
     .announcement-ig-tile {
       display: grid; place-items: center;
@@ -382,46 +373,6 @@
       letter-spacing: 0.2em; text-transform: uppercase;
       color: #ADCD52; margin-bottom: 14px; display: block;
     }
-    .announcement-card h3 {
-      font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px);
-      font-weight: 400; line-height: 1.2; margin-bottom: 16px;
-      letter-spacing: -0.01em;
-      color: #faf7f2;
-    }
-    .announcement-card p {
-      font-size: 16px; line-height: 1.75; color: rgba(250,247,242,0.65);
-      margin-bottom: 20px;
-    }
-    .announcement-card ul {
-      list-style: none; padding: 0; margin: 0 0 28px;
-    }
-    .announcement-card ul li {
-      font-size: 15px; line-height: 1.65; color: rgba(250,247,242,0.6);
-      padding: 6px 0 6px 20px; position: relative;
-    }
-    .announcement-card ul li::before {
-      content: "→"; position: absolute; left: 0;
-      color: #ADCD52; font-size: 12px;
-    }
-    .announcement-accent {
-      border-radius: var(--radius-lg); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 12px;
-      padding: 32px 24px; text-align: center; position: relative;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.55), 0 0 60px rgba(110,63,141,0.18);
-    }
-    .announcement-accent::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.05);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
-    }
-    .announcement-accent .accent-icon {
-      font-size: 42px; line-height: 1;
-    }
-    .announcement-accent .accent-label {
-      font-family: var(--sans); font-size: 11px; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(250,247,242,0.7);
-    }
     .announcement-link {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 28px; border-radius: 100px;
@@ -431,16 +382,35 @@
       transition: background 0.2s, border-color 0.2s;
     }
     .announcement-link:hover { background: rgba(250,247,242,0.1); border-color: #faf7f2; }
-    .announcements-nav {
-      display: flex; justify-content: center; gap: 8px;
-      margin-top: 36px; position: relative; z-index: 1;
+    .instagram-teaser {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+      margin-top: 72px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,0.08);
     }
-    .announcements-nav button {
-      width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer;
-      background: rgba(250,247,242,0.25); transition: background 0.25s, transform 0.25s;
+    .instagram-teaser-text { flex: 1; min-width: 260px; }
+    .instagram-teaser-text h2 {
+      font-family: var(--serif); font-weight: 400; line-height: 1.2;
+      color: #faf7f2; letter-spacing: -0.01em;
+      font-size: clamp(22px, 2.5vw, 28px); margin: 0 0 10px;
     }
-    .announcements-nav button.active {
-      background: #ADCD52; transform: scale(1.3);
+    .instagram-teaser-text p {
+      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.65);
+      max-width: 420px; margin-bottom: 18px;
+    }
+    .instagram-teaser-tiles {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+      flex: none; width: 260px;
+    }
+    .instagram-tile {
+      position: relative; aspect-ratio: 1/1; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 24px 60px rgba(5,3,12,0.55), 0 0 60px rgba(110,63,141,0.18);
+    }
+    .instagram-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 900px) {
+      .community-updates-title { margin-top: 0; }
+      .community-updates-grid.services-grid { grid-template-columns: 1fr; }
+      .instagram-teaser { flex-direction: column; align-items: flex-start; margin-top: 48px; padding-top: 40px; }
+      .instagram-teaser-tiles { width: 100%; max-width: 300px; }
     }
 
     /* ── FEATURED SERVICES ── */
@@ -582,15 +552,6 @@
       .hero-badge img { height: 60px; }
       .hero-content { padding: 0 24px 56px; }
       .tagline-band { padding: 70px 24px; }
-    }
-    @media (max-width: 900px) {
-      /* stack a full-width banner image above the text (a wide 3:2 crop so a
-         square source photo doesn't become a giant square on a phone) */
-      .announcement-card { grid-template-columns: 1fr; gap: 22px; }
-      .announcement-logo { width: 100%; aspect-ratio: 3 / 2; }
-      .announcement-logo img { object-position: center; }
-      /* the Instagram tile stays a tidy banner too */
-      .announcement-ig-tile svg { width: 88px; height: 88px; }
     }
     @media (max-width: 540px) {
       .hero-badge img { height: 52px; }
@@ -845,7 +806,7 @@
       .service-price         { font-size: 14px; }
       .testimonials-header p { font-size: 16px; }
       .tc-quote              { font-size: 16px; }
-      .announcement-card p   { font-size: 16px; }
+      .instagram-teaser-text p { font-size: 16px; }
       .announcement-eyebrow,
       .announcements .section-label,
       .services-preview .section-label,
@@ -1127,9 +1088,9 @@
           <span class="service-link">Learn More →</span>
         </div>
       </a>
-      <a class="service-card" href="services/craniosacral-massage.html">
+      <a class="service-card" href="services/blended-massage-energy-healing.html">
         <div class="service-thumb">
-          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.jpg" width="1600" height="1600" alt="Energetic Bodywork" loading="lazy" />
+          <img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.webp" width="1600" height="1600" alt="Energetic Bodywork" loading="lazy" />
         </div>
         <div class="service-info">
           <h3>Energetic Bodywork</h3>
@@ -1145,93 +1106,71 @@
 <!-- ANNOUNCEMENTS -->
 <section class="announcements">
   <div class="section-inner">
-    <div class="announcements-slider" id="announcementsSlider">
 
-      <div class="announcement-card active">
-        <div class="announcement-logo announcement-ig-tile">
+    <p class="section-label">What's New</p>
+    <h2 class="community-updates-title">Community &amp; care updates</h2>
+    <div class="services-grid community-updates-grid">
+
+      <a class="service-card" href="community-fund.html">
+        <div class="service-thumb">
+          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" width="1480" height="1600" alt="Auroraflow inclusive wellness space" />
+        </div>
+        <div class="service-info">
+          <span class="announcement-eyebrow">Community</span>
+          <h3>Introducing the Community Fund</h3>
+          <p>A donation-based fund for clients facing financial barriers to care. Apply anytime.</p>
+          <span class="service-link">Learn More →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">
+        <div class="service-thumb">
+          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" width="1500" height="1000" alt="Community Love Direct Primary Care doctor with patient" />
+        </div>
+        <div class="service-info">
+          <span class="announcement-eyebrow">Partnership</span>
+          <h3>Real primary care, no insurance required</h3>
+          <p>Community Love DPC: flat-rate memberships built around you, not your insurer.</p>
+          <span class="service-link">Learn More →</span>
+        </div>
+      </a>
+
+      <a class="service-card" href="policies.html">
+        <div class="service-thumb">
+          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" width="800" height="450" alt="Happy older couple at Auroraflow" />
+        </div>
+        <div class="service-info">
+          <span class="announcement-eyebrow">Policy</span>
+          <h3>Dementia &amp; cognitive conditions policy</h3>
+          <p>A new consent policy protecting client and practitioner safety.</p>
+          <span class="service-link">View Policies →</span>
+        </div>
+      </a>
+
+    </div>
+    <p class="community-updates-note"><span class="note-pill">Team</span>To fairly compensate our therapists, we're making a modest pricing update effective July 1st: massage &amp; skincare services +$10, waxing services +$5.</p>
+
+    <div class="instagram-teaser">
+      <div class="instagram-teaser-text">
+        <span class="announcement-eyebrow">Stay in the Loop</span>
+        <h2>Follow us on Instagram</h2>
+        <p>Specials, announcements, events, and a look at the space, the art, and the team behind Auroraflow.</p>
+        <a class="announcement-link" href="https://www.instagram.com/auroraflowmassage/" target="_blank" rel="noopener">@auroraflowmassage →</a>
+      </div>
+      <div class="instagram-teaser-tiles">
+        <div class="instagram-tile announcement-ig-tile">
           <a href="https://www.instagram.com/auroraflowmassage/" target="_blank" rel="noopener" aria-label="Auroraflow on Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
             </svg>
           </a>
         </div>
-        <div>
-          <span class="announcement-eyebrow">Stay in the Loop</span>
-          <h3>Follow us on Instagram</h3>
-          <p>Our Instagram is where we post our latest specials, announcements, events, and openings — plus a look at the space, the art, and the team behind Auroraflow. Follow along so you never miss what's new.</p>
-          <a class="announcement-link" href="https://www.instagram.com/auroraflowmassage/" target="_blank" rel="noopener">@auroraflowmassage →</a>
+        <div class="instagram-tile">
+          <img loading="lazy" src="assets/img/entryway-pride-flags.jpg" alt="Auroraflow's Durham entryway, decorated with pride flags" />
         </div>
       </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/64e67a8cbf913d0e30ae9d25_Auroraflow-Massage-Pronouns-Workplace-LGBTQ-Business.jpeg" width="1480" height="1600" alt="Auroraflow inclusive wellness space" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">Community</span>
-          <h3>Introducing the Auroraflow Community Fund</h3>
-          <p>Wellness belongs to everyone. Our new donation-based fund supports clients who face financial barriers to care, with no judgment and no limit on applications.</p>
-          <ul>
-            <li>Apply anytime via a brief consideration form</li>
-            <li>Monthly spots announced via newsletter &amp; social, first-come, first-served</li>
-            <li>Everyone who applies gets a personal follow-up from our team</li>
-            <li>Want to give? Donate to support a neighbor's care</li>
-          </ul>
-          <a class="announcement-link" href="community-fund.html">Learn More →</a>
-        </div>
-      </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" width="1500" height="1000" alt="Community Love Direct Primary Care doctor with patient" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">New Partnership</span>
-          <h3>Real primary care. No insurance required.</h3>
-          <p>Community Love DPC puts the relationship back in healthcare. Flat-rate memberships built around you, not your insurer.</p>
-          <ul>
-            <li>Flexible visits: in-clinic, telehealth, SMS, or home</li>
-            <li>Affordable memberships for individuals &amp; families, sliding scale available</li>
-            <li>Wholesale labs, imaging &amp; procedures at wholesale costs, no middleman</li>
-          </ul>
-          <a class="announcement-link" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">Learn More →</a>
-        </div>
-      </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/team-hero.jpg" width="900" height="1600" alt="The Auroraflow team" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">Team Update</span>
-          <h3>Nurturing our team: a modest price adjustment</h3>
-          <p>To fairly compensate our therapists, who are constantly growing, training, and showing up for you, we're making a small pricing update on July 1st.</p>
-          <ul>
-            <li>Massage &amp; Skincare Services: +$10</li>
-            <li>Waxing Services: +$5</li>
-            <li>This change supports our team's livelihood and continued investment in their craft</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="announcement-card">
-        <div class="announcement-logo">
-          <img loading="lazy" src="assets/img/elderly-couple-smiling.jpg" width="800" height="450" alt="Happy older couple at Auroraflow" />
-        </div>
-        <div>
-          <span class="announcement-eyebrow">Policy</span>
-          <h3>New: Dementia &amp; Cognitive Conditions Policy</h3>
-          <p>To protect client safety, practitioner safety, and ensure clear consent practices, we've added a new policy for clients with dementia, Alzheimer's, or other cognitive conditions.</p>
-          <ul>
-            <li>A caregiver must be present in the treatment room or on-site for the full session</li>
-            <li>The caregiver is required to sign consent forms on behalf of the client</li>
-          </ul>
-          <a class="announcement-link" href="policies.html">View Full Policies →</a>
-        </div>
-      </div>
-
     </div>
-    <div class="announcements-nav" id="announcementsNav"></div>
+
   </div>
 </section>
 
@@ -1427,46 +1366,6 @@
       document.body.style.overflow = '';
     });
   });
-
-  // Announcements slider
-  (() => {
-    const slider = document.getElementById('announcementsSlider');
-    const navEl  = document.getElementById('announcementsNav');
-    if (!slider || !navEl) return;
-    const cards = Array.from(slider.querySelectorAll('.announcement-card'));
-    let current = 0, timer;
-    cards.forEach((_, i) => {
-      const btn = document.createElement('button');
-      btn.setAttribute('aria-label', 'Announcement ' + (i + 1));
-      if (i === 0) btn.classList.add('active');
-      btn.addEventListener('click', () => { goTo(i); resetTimer(); });
-      navEl.appendChild(btn);
-    });
-    const dots = Array.from(navEl.querySelectorAll('button'));
-    function goTo(idx) {
-      cards[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = ((idx % cards.length) + cards.length) % cards.length;
-      cards[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-    function startTimer() { timer = setInterval(() => goTo(current + 1), 9500); }
-    function resetTimer() { clearInterval(timer); startTimer(); }
-    slider.addEventListener('mouseenter', () => clearInterval(timer));
-    slider.addEventListener('mouseleave', startTimer);
-
-    // Touch swipe support
-    let touchStartX = null;
-    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend', e => {
-      if (touchStartX === null) return;
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
-      touchStartX = null;
-    });
-
-    startTimer();
-  })();
 
   // Sparkle star field for all dark sections
   document.querySelectorAll('.testimonials').forEach(section => {

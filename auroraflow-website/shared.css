@@ -720,6 +720,12 @@ footer {
 .chip-inquire  { background: rgba(54,57,113,0.11);  color: #363971; }
 .chip-addon    { background: rgba(173,205,82,0.20); color: #566b12; }
 a.chip:hover { filter: brightness(0.92); }
+/* on-dark variants, for chips sitting over a photo hero or night-sky section */
+.chip-identity-d { background: rgba(255,255,255,0.14); color: #d9b8ec; }
+.chip-services-d { background: rgba(255,255,255,0.14); color: #8fe0cf; }
+.chip-team-d     { background: rgba(255,255,255,0.14); color: #b7bdf2; }
+.chip-wellness-d { background: rgba(255,255,255,0.14); color: #d7e79a; }
+.chip-neutral-d  { background: rgba(255,255,255,0.14); color: rgba(250,247,242,0.85); }
 
 /* ── PRONOUN PILL — quiet, secondary to the job title ── */
 .pronoun-pill {
@@ -792,4 +798,35 @@ html.js-reveal .reveal-grid > .revealed {
   border-left: 3px solid;
   border-image: linear-gradient(to bottom, #ADCD52, #12736D, #6E3F8D) 1;
   padding-left: 20px; margin: 32px 0;
+}
+
+/* ── ARTICLE HERO — title overlaid on the photo, reusing .page-hero ──
+   Post titles are full sentences (much longer than a page tagline), so the
+   shared h1/p sizes are scaled down here; everything else — the wash, the
+   Ken Burns image, the staggered rise-in, reduced-motion handling — is
+   inherited from .page-hero untouched. */
+.article-page-hero { min-height: 480px; }
+.article-page-hero .page-hero-content h1 {
+  font-size: clamp(26px, 4vw, 44px); max-width: 760px; margin-left: auto; margin-right: auto;
+}
+.article-page-hero .page-hero-content p { font-style: italic; }
+.article-hero-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(250,247,242,0.75); text-decoration: none;
+  transition: color 0.2s;
+}
+.article-hero-back:hover { color: var(--cream); }
+.article-hero-tag { margin-bottom: 4px; }
+.article-hero-meta {
+  display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+  font-family: var(--sans); font-size: 13px; color: rgba(250,247,242,0.75);
+}
+.article-hero-meta .dot { opacity: 0.5; }
+.article-hero-meta .meta-date { color: var(--accent); font-weight: 500; }
+.page-hero-content > .article-hero-back { animation-delay: 0.2s; }
+.page-hero-content > .article-hero-tag  { animation-delay: 0.35s; }
+.page-hero-content > .article-hero-meta { animation-delay: 0.9s; }
+@media (max-width: 720px) {
+  .article-page-hero { min-height: 420px; }
 }

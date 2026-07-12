@@ -9,50 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
   <style>
-    .article-hero {
-      padding-top: var(--nav-h);
-      background: var(--warm-white);
-    }
-    .article-hero-img {
-      width: 100%; max-height: 520px; overflow: hidden;
-      background: #e0d8d0;
-    }
-    .article-hero-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      max-height: 520px;
-    }
-    .article-header {
-      max-width: 780px; margin: 0 auto;
-      padding: 56px 40px 0;
-    }
-    .article-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted); text-decoration: none;
-      margin-bottom: 28px; transition: color 0.2s;
-    }
-    .article-back:hover { color: var(--dark); }
-    .article-tag {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
-    }
-    .article-title {
-      font-family: var(--serif);
-      font-size: clamp(28px, 4.5vw, 56px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-    .article-summary {
-      font-size: 18px; line-height: 1.7; color: var(--mid);
-      margin-bottom: 28px; font-style: italic;
-    }
-    .article-meta {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 13px; color: var(--muted); padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta .dot { opacity: 0.4; }
-
     /* Rich text body */
     .article-body {
       max-width: 780px; margin: 0 auto;
@@ -150,7 +106,6 @@
     .related-summary { font-size: 13px; line-height: 1.65; color: var(--muted); }
 
     @media (max-width: 900px) {
-      .article-header { padding: 48px 24px 0; }
       .article-body { padding: 32px 24px 64px; }
       .related-grid { grid-template-columns: repeat(2,1fr); }
       .related-section { padding: 56px 24px; }
@@ -228,16 +183,18 @@
 </div>
 <main>
 
-<div class="article-hero">
-  <div class="article-hero-img"><img src="../assets/img/63989d6c19252735e3124266_FullSizeRender.webp" width="1200" height="675" alt="A Sneak Preview of Auroraflow Services" loading="lazy" /></div>
-  <div class="article-header">
-    <a class="article-back" href="../journal.html">
+<div class="page-hero article-page-hero">
+  <div class="page-hero-img">
+    <img src="../assets/img/63989d6c19252735e3124266_FullSizeRender.webp" width="1200" height="675" alt="A Sneak Preview of Auroraflow Services" />
+  </div>
+  <div class="page-hero-content">
+    <a class="article-hero-back" href="../journal.html">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to Journal
     </a>
-    <div class="article-tag"><span class="chip chip-services">Services</span></div>
-    <h1 class="article-title">A Sneak Preview of Auroraflow Services</h1>
-    <p class="article-summary">See a preview of the full range of Auroraflow services and learn how you can make a meaningful commitment to your wellness journey.</p>
-    <div class="article-meta">
+    <p class="article-hero-tag"><span class="chip chip-services-d">Services</span></p>
+    <h1>A Sneak Preview of Auroraflow Services</h1>
+    <p>See a preview of the full range of Auroraflow services and learn how you can make a meaningful commitment to your wellness journey.</p>
+    <div class="article-hero-meta">
       <span class="meta-date">Dec 2022</span>
       <span class="dot">·</span>
       <span>Auroraflow Team</span>
@@ -246,8 +203,6 @@
     </div>
   </div>
 </div>
-
-<div class="rainbow-bar"></div>
 
 <div class="article-body">
   <p>At Auroraflow, we are committed to making it as easy as possible to invest in your own wellness. Both bodywork and skincare treatments can be booked as individual services or as part of a monthly membership.</p><h2>Massage & Bodywork</h2><p>We offer a full range of therapeutic massages, each customized to meet your body's unique needs. Whether you are coming in to reduce stress or deal with a specific pain, our talented team of licensed massage therapists will take extra care to ensure you are comfortable and that each treatment is focused on your personal goals.</p><p>Before each session, your therapist will work with you to understand the goals of your session, identify any pre-existing conditions, and discuss any sensitive issues. We know this can be a vulnerable experience, but we ask you to be as open and honest as possible so we can do our best to make you comfortable.</p><h2>Facials & Skincare</h2><p>Depending on your skin's needs, facials include a skin analysis, double cleanse, customized exfoliation, facial massage, extractions, facial mask, shoulder massage, and finishing with the appropriate serum and moisturizer. Facials are given using products from Hale & Hush, a line designed for people undergoing chemotherapy and other health-challenged skin types, formulated with organic and sustainable ingredients, paraben-free, gluten-free, sulfate-free, and dermatologist-tested.</p><h2>Hair Removal</h2><p>Auroraflow offers inclusive hair removal, with our menu tailored so that services are based on the time and effort of the esthetician, not the gender or body type of our clients. As with all Auroraflow treatments, our team will be taking extra steps to help each person feel comfortable in their skin, regardless of size, shape, or gender.</p><p><strong>Ready to start your wellness journey? <a href="../services.html">View all our services</a> or <a href="https://booking.mangomint.com/814946" target="_blank">book an appointment</a> today.</strong></p>

@@ -9,50 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
   <style>
-    .article-hero {
-      padding-top: var(--nav-h);
-      background: var(--warm-white);
-    }
-    .article-hero-img {
-      width: 100%; max-height: 520px; overflow: hidden;
-      background: #e0d8d0;
-    }
-    .article-hero-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      max-height: 520px;
-    }
-    .article-header {
-      max-width: 780px; margin: 0 auto;
-      padding: 56px 40px 0;
-    }
-    .article-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted); text-decoration: none;
-      margin-bottom: 28px; transition: color 0.2s;
-    }
-    .article-back:hover { color: var(--dark); }
-    .article-tag {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
-    }
-    .article-title {
-      font-family: var(--serif);
-      font-size: clamp(28px, 4.5vw, 56px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-    .article-summary {
-      font-size: 18px; line-height: 1.7; color: var(--mid);
-      margin-bottom: 28px; font-style: italic;
-    }
-    .article-meta {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 13px; color: var(--muted); padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta .dot { opacity: 0.4; }
-
     /* Rich text body */
     .article-body {
       max-width: 780px; margin: 0 auto;
@@ -150,7 +106,6 @@
     .related-summary { font-size: 13px; line-height: 1.65; color: var(--muted); }
 
     @media (max-width: 900px) {
-      .article-header { padding: 48px 24px 0; }
       .article-body { padding: 32px 24px 64px; }
       .related-grid { grid-template-columns: repeat(2,1fr); }
       .related-section { padding: 56px 24px; }
@@ -228,16 +183,18 @@
 </div>
 <main>
 
-<div class="article-hero">
-  <div class="article-hero-img"><img src="../assets/img/63a2448100c39f816a95d85d_Untitled-design-3-.webp" width="1200" height="720" alt="Meet the Team: Hayley Yokoyama" loading="lazy" /></div>
-  <div class="article-header">
-    <a class="article-back" href="../journal.html">
+<div class="page-hero article-page-hero">
+  <div class="page-hero-img">
+    <img src="../assets/img/63a2448100c39f816a95d85d_Untitled-design-3-.webp" width="1200" height="720" alt="Meet the Team: Hayley Yokoyama" />
+  </div>
+  <div class="page-hero-content">
+    <a class="article-hero-back" href="../journal.html">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to Journal
     </a>
-    <div class="article-tag"><span class="chip chip-team">Team</span></div>
-    <h1 class="article-title">Meet the Team: Hayley Yokoyama</h1>
-    <p class="article-summary">Meet Hayley and learn how she uses 20 years of dance experience to support clients at Auroraflow through the art of Ashiatsu barefoot massage.</p>
-    <div class="article-meta">
+    <p class="article-hero-tag"><span class="chip chip-team-d">Team</span></p>
+    <h1>Meet the Team: Hayley Yokoyama</h1>
+    <p>Meet Hayley and learn how she uses 20 years of dance experience to support clients at Auroraflow through the art of Ashiatsu barefoot massage.</p>
+    <div class="article-hero-meta">
       <span class="meta-date">Dec 2022</span>
       <span class="dot">·</span>
       <span>Auroraflow Team</span>
@@ -246,8 +203,6 @@
     </div>
   </div>
 </div>
-
-<div class="rainbow-bar"></div>
 
 <div class="article-body">
   <div class="pullquote">Meet Hayley Yokoyama, Auroraflow's Ashiatsu expert.</div><h2>Hayley! Great to have you as part of the team. Why don't you start by telling us a bit about yourself?</h2><p>I'm originally from Hillsborough, just a couple minutes down the road from Auroraflow. I've also spent a chunk of time in Roanoke, VA, while at Hollins University, so I have a soft spot for the Blue Ridge Mountains. I'm a Leo and an INFJ, meaning I'm a big-picture kind of gal with big homebody energy. I love to do all things crafty, especially sewing, embroidery, and furniture redesign.</p><h2>What do you do for fun? What does your typical weekend look like?</h2><p>My partner, Keita, and I are big foodies, so the weekends tend to be our time to explore new restaurants or concoct our own dishes. When we retire, we really want to open our own Japanese-Southern fusion restaurant. I have also been challenging my dancing background by taking aerial silks classes on Sundays.</p><h2>What brought you to massage therapy?</h2><p>I've been dancing for almost 20 years now and wanted to translate all of the skills I had learned in the studio into something I could share with a wider range of people. Dance taught me how to improvise, how to be intuitive with others' minds and bodies, and how each body savors movement in a different way. After a pretty severe dance injury, it really shocked me that there was not an accessible system set up for post-physical therapy care for higher-performance athletes and artists.</p><h2>Why did you decide to specialize in Ashiatsu?</h2><p>Ashiatsu means "foot pressure" in Japanese. It's a super slow, deep massage that feels almost like you're being enveloped in a warm, compressive wave. As a dancer, I wanted to take advantage of the knowledge that my body already possessed. Another pro is that Ashiatsu uses gravity to deliver deep pressure instead of pure muscle, which means that 5'2" me can deliver 6'2" pressure consistently.</p><h2>Who do you think benefits the most from Ashiatsu massage?</h2><p>While I think almost everyone can benefit from Ashiatsu, I would say two groups especially benefit: <strong>those who suffer from chronic pain conditions</strong>, because the deep structural pressure provides longer-lasting relief; and <strong>those who suffer from anxiety, insomnia, or depression</strong>, because the slow, deep pressure engages the parasympathetic "rest and digest" response, like a moving, weighted blanket.</p><h2>What made you decide to bring your talents to Auroraflow?</h2><p>Something that has always bothered me in healthcare has been the lack of support post-treatment. I wanted to participate in a space in which people could be honest with their difficulties and receive unconditionally positive care.</p>

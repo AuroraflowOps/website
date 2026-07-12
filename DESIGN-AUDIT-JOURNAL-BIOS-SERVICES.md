@@ -38,6 +38,29 @@ X2. One **soft filter transition** shared by journal + services.
 X3. One **scroll-reveal** utility (staggered 12px rise + fade, `prefers-reduced-motion: reduce` → off).
 X4. Meta row normalization: date · author · read-time (journal), price · duration (services), role + pronoun pill (team).
 
+## Findings — Service DETAIL pages (services/*.html — 27 pages, one template via services.css)
+These pages use a night-sky (#0c0e1d) treatment with glassmorphism cards — distinct from the cream index pages. All fixes below are template-level: one services.css/content change covers all 27 pages.
+SD1. **Category eyebrow fails contrast**: `.svc-cat` is teal #12736D on #0c0e1d (~2.4:1, fails AA). Fix: X1 chip in an on-dark variant, or brighten to the existing #52BCA3. CSS-only.
+SD2. **Every Book CTA is generic**: all 27 `.svc-book-btn`s link to `booking.mangomint.com/814946` with no serviceId — yet the free-consultation link on the same pages proves per-service deep-links exist (`?serviceId=121`). Deep-link each page's CTA to its own service. Content fix, direct booking-conversion value.
+SD3. **Provider cards missing pronouns + booking**: "Providers Offering This Service" cards show name/role only — no pronoun pill (brand continuity with T1) and no way to book with that provider even though staffId deep-links exist on team.html. Add pronoun pill + a "Book with {name}" affordance on hover/below.
+SD4. **Related-card price oddballs**: same muted microcaps line as the index, including "$30 add-on" / "Email for pricing" posing as prices — apply the S1 chip system in an on-dark variant.
+SD5 (flag). "Benefits of X" is a bolded paragraph inside the description wall — style as an eyebrow-style subheading for scannability.
+
+## Findings — Bio pages (team/*.html — 21 pages)
+BD1. **Credentials & awards buried in prose**: license numbers ("LMBT #19480") and awards ("Best Massage Therapist in Durham 2025", Indy Week runner-up) sit mid-paragraph where nobody sees them. Surface as small badges under the name: a license chip and an award chip (★). Trust signals, content+CSS.
+BD2. **No specialties at a glance**: a reader must finish six paragraphs to learn Hayley's specialty is Ashiatsu. Add a specialty chip row (X1 chips) under the title, sourced from the provider's bookable services.
+BD3. **Pronoun pill casing varies 10 ways** across the 21 pages (She/Her, She/her, she/her, They/she, Any/All…). Normalize lowercase — the page-level twin of T1.
+BD4. **`.bio-svc` price microtext** → apply the S1 mini meta row (price leading, duration chip, Inquire/Add-on chips).
+BD5 (flag). 7 of 21 bios have no hero Book button — mostly support staff, but "Castle Frame · CEO & Massage Therapist" is in that set. Decide the rule (bookable = button) and apply consistently.
+
+## Findings — Journal posts (journal/*.html — 11 pages)
+JD1. **No date in the article meta** (ties J1) — and read-times drift: the cupping post says "2 min read" while its index card says "4 min read". One source of truth.
+JD2. **Heading hierarchy is chaotic**: section headings are h5s in two posts, h4s in one, h3s or h2s elsewhere; and mid-body statements are set as bare h2 callouts ("At Auroraflow we use dry-cupping as our preferred method."). Normalize sections to h2 and introduce a styled `.pullquote` (serif italic, rainbow left border) for callout lines.
+JD3. **Rainbow reading-progress bar**: a 3px rainbow-gradient progress bar under the fixed nav that fills as you read — tiny JS, deeply on-brand (the rainbow-bar IS the site signature), reduced-motion-safe. The single most "modern" small move available on articles.
+JD4. **`.article-tag` grey microtext** → X1 category chip (ties J3). Also a CSS bug: `.article-back` declares `display:inline-flex` then `display:block` in the same rule — the svg alignment is being re-patched inline per page.
+
+Scale note: everything above is proposed template-level — services.css/shared.css carry all 27 service pages; bio and journal changes ship as one pattern plus a per-page content sweep (21 bios, 11 posts).
+
 ## Technical & performance (adopted from prior home-page audit doc, verified against repo)
 P1. **Image weight is the single highest-leverage fix** on all three page groups: team.html serves multiple 2–2.7MB PNGs directly (several named `*.jpeg.pdf-*.png` — photos exported through a PDF, never optimized); services/journal use 1.8–2.9MB PNGs; repo max 3.7MB. Fix: WebP at rendered size (same process already applied to home page: −89% image weight there). Keep originals; og:image stays JPEG/PNG.
 P2. **Adopt the fluid spacing tokens** `--space-section-y` / `--space-page-x` (defined in shared.css, underused): journal `60px 40px 80px`, team `64px 40px 100px`, services `48px 40px 100px` are all hardcoded — pointing them at the tokens unifies rhythm and tightens correctly on phones.

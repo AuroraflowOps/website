@@ -190,31 +190,6 @@
       }
     }
 
-    /* ── FOUNDERS ── */
-    .founders-section { background: var(--cream); padding: var(--space-section-y) var(--space-page-x); }
-    .founders-inner { max-width: 1200px; margin: 0 auto; }
-    .founders-inner h2 {
-      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 400; margin-bottom: 48px; letter-spacing: -0.01em;
-    }
-    .founders-inner h2 em { font-style: italic; }
-    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    .founder-card { display: flex; gap: 28px; align-items: flex-start; }
-    .founder-photo {
-      width: 160px; height: 160px; border-radius: var(--radius-sm); overflow: hidden;
-      background: #e0d8d0; flex-shrink: 0;
-    }
-    .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .founder-name {
-      font-family: var(--serif); font-size: 26px; font-weight: 400;
-      margin-bottom: 4px; letter-spacing: 0.01em;
-    }
-    .founder-role {
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 14px;
-    }
-    .founder-bio { font-size: 15px; line-height: 1.78; color: var(--mid); }
-
     /* ── COMMUNITY ── */
     .community-section { background: var(--warm-white); padding: var(--space-section-y) var(--space-page-x); }
     .community-inner {
@@ -268,11 +243,6 @@
 
     @media (max-width: 960px) {
       .story-inner, .community-inner { grid-template-columns: 1fr; gap: 40px; }
-      .founders-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px) {
-      .founder-card { flex-direction: column; }
-      .founder-photo { width: 120px; height: 120px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -407,35 +377,6 @@
         <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 8.2L22 12l-8.2 1.8L12 22l-1.8-8.2L2 12l8.2-1.8z"/></svg></div>
         <h3>Be YOU</h3>
         <p>We show up as our authentic selves, and encourage you to do the same.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FOUNDERS -->
-<div class="founders-section">
-  <div class="founders-inner">
-    <h2>Founded by <em>two people</em>, built by a community</h2>
-    <div class="founders-grid">
-      <div class="founder-card">
-        <div class="founder-photo">
-          <img src="assets/img/founder-castle.webp" width="400" height="400" alt="Castle Frame" loading="lazy" />
-        </div>
-        <div>
-          <div class="founder-name">Castle Frame</div>
-          <div class="founder-role">CEO &amp; Massage Therapist</div>
-          <p class="founder-bio">Castle co-founded Auroraflow to build the safe, affirming space they wished existed — and still works as a massage therapist here today.</p>
-        </div>
-      </div>
-      <div class="founder-card">
-        <div class="founder-photo">
-          <img src="assets/img/founder-lauren.webp" width="400" height="400" alt="Lauren McCullough" loading="lazy" />
-        </div>
-        <div>
-          <div class="founder-name">Lauren McCullough</div>
-          <div class="founder-role">Co-founder</div>
-          <p class="founder-bio">Lauren co-founded Auroraflow, helping shape a wellness space rooted in accessibility and community from day one.</p>
-        </div>
       </div>
     </div>
   </div>

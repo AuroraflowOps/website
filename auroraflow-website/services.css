@@ -31,8 +31,8 @@
     0 0 40px rgba(110,63,141,0.18);
 }
 @media (min-width: 701px) {
-  .svc-hero-inner { grid-template-columns: minmax(220px, 300px) 1fr; gap: 52px; align-items: center; padding: 44px 40px 52px; }
-  .svc-img-wrap { max-width: 300px; margin: 0; }
+  .svc-hero-inner { grid-template-columns: minmax(220px, 300px) 1fr; gap: 52px; align-items: start; padding: 44px 40px 52px; }
+  .svc-img-wrap { max-width: 300px; margin: 0; position: sticky; top: calc(var(--nav-h) + 24px); }
 }
 .svc-img-wrap::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;

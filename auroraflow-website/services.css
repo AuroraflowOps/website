@@ -12,19 +12,27 @@
     radial-gradient(ellipse 60% 80% at 10% 55%, rgba(110,63,141,0.18) 0%, transparent 60%),
     radial-gradient(ellipse 50% 60% at 90% 20%, rgba(18,115,109,0.14) 0%, transparent 55%);
 }
+/* mobile-first: stacked, small centered image; desktop breakpoint below promotes
+   to a 2-col grid with a fixed-width image column so the photo can't dominate
+   the page on wide screens */
 .svc-hero-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 72px; align-items: start; padding: 80px 40px;
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr;
+  gap: 24px; padding: 28px var(--space-page-x) 36px;
   position: relative; z-index: 1;
 }
 .svc-img-wrap {
-  border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3;
-  background: #1a1c2e; position: sticky; top: calc(var(--nav-h) + 24px);
+  border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1;
+  max-width: 220px; margin: 0 auto;
+  background: #1a1c2e; position: relative;
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.14),
-    0 40px 100px rgba(5,3,12,0.7),
-    0 0 80px rgba(110,63,141,0.22);
+    0 20px 48px rgba(5,3,12,0.55),
+    0 0 40px rgba(110,63,141,0.18);
+}
+@media (min-width: 701px) {
+  .svc-hero-inner { grid-template-columns: minmax(220px, 300px) 1fr; gap: 52px; align-items: center; padding: 44px 40px 52px; }
+  .svc-img-wrap { max-width: 300px; margin: 0; }
 }
 .svc-img-wrap::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -229,10 +237,8 @@
 }
 .svc-related-price { font-size: 12px; color: #ADCD52; letter-spacing: 0.04em; }
 
-/* RESPONSIVE */
+/* RESPONSIVE (legacy 3-block sections; still used by not-yet-converted pages) */
 @media (max-width: 960px) {
-  .svc-hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 48px 24px 60px; }
-  .svc-img-wrap { position: static; }
   .svc-details-inner { grid-template-columns: 1fr; gap: 20px; }
   .svc-details { padding: 56px 24px; }
   .svc-providers-grid { grid-template-columns: repeat(2,1fr); }
@@ -286,5 +292,90 @@
   font-size: 10.5px; color: rgba(250,247,242,0.75); background: rgba(255,255,255,0.08);
   padding: 3px 10px; border-radius: 100px; letter-spacing: 0.02em;
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   SERVICE PAGE REDESIGN, v2. Additive: old classes above stay untouched
+   so pages not yet migrated keep rendering. New pages use these instead
+   of .svc-details / .svc-detail-block. Mobile-first throughout (base =
+   phone, min-width queries promote to tablet/desktop).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* generic dark section shell shared by the review, fit, expect/prepare,
+   providers, FAQ and related blocks on a converted page */
+.svc-block { background: #0c0e1d; padding: 36px var(--space-page-x); position: relative; overflow: hidden; }
+@media (min-width: 960px) { .svc-block { padding: 52px 40px; } }
+.svc-block-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.svc-block-inner.left { text-align: left; }
+.svc-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #ADCD52; margin-bottom: 14px; text-align: center; }
+.svc-block-inner.left .svc-eyebrow { text-align: left; }
+.svc-h2 { font-family: var(--serif); font-size: clamp(28px, 3.4vw, 42px); font-weight: 400; letter-spacing: -0.01em; color: #faf7f2; margin-bottom: 12px; text-align: center; }
+.svc-block-inner.left .svc-h2 { text-align: left; }
+
+/* is this right for you: compact pill chips. flex-wrap + justify-center
+   (not a fixed grid) so an incomplete last row centers instead of a
+   dangling empty cell, whatever the bullet count on a given page */
+.fit-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.fit-card { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; background: rgba(255,255,255,0.05); border-radius: 100px; padding: 9px 20px 9px 9px; box-shadow: 0 0 0 1px rgba(255,255,255,0.12); transition: transform 0.25s, box-shadow 0.25s; }
+.fit-card:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,255,255,0.22), 0 10px 24px rgba(5,3,12,0.4); }
+.fit-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(173,205,82,0.18); }
+.fit-icon svg { width: 13px; height: 13px; color: #ADCD52; }
+.fit-card:nth-child(5n+2) .fit-icon { background: rgba(82,188,163,0.18); }
+.fit-card:nth-child(5n+2) .fit-icon svg { color: #52BCA3; }
+.fit-card:nth-child(5n+3) .fit-icon { background: rgba(186,126,201,0.18); }
+.fit-card:nth-child(5n+3) .fit-icon svg { color: #BA7EC9; }
+.fit-card:nth-child(5n+4) .fit-icon { background: rgba(88,91,167,0.2); }
+.fit-card:nth-child(5n+4) .fit-icon svg { color: #8f92da; }
+.fit-card:nth-child(5n+5) .fit-icon { background: rgba(217,228,147,0.2); }
+.fit-card:nth-child(5n+5) .fit-icon svg { color: #D9E493; }
+.fit-label { font-size: 13.5px; line-height: 1.3; color: rgba(250,247,242,0.88); white-space: nowrap; }
+
+/* what to expect / how to prepare: compact 2-col bullet cards */
+.compact-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 700px) { .compact-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
+.compact-card { background: rgba(255,255,255,0.04); border-radius: var(--radius-lg); padding: 26px 28px; box-shadow: 0 0 0 1px rgba(255,255,255,0.13); }
+.compact-card h3 { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #ADCD52; margin-bottom: 14px; }
+.compact-card ul { list-style: none; padding: 0; }
+.compact-card li { font-size: 14.5px; line-height: 1.6; color: rgba(250,247,242,0.75); padding: 7px 0 7px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+.compact-card li:last-child { border-bottom: none; }
+.compact-card li::before { content: "\2192"; position: absolute; left: 0; color: #12736D; font-size: 11px; }
+
+/* review section: used only when a genuine service-specific review exists */
+.review-wrap { max-width: 640px; margin: 0 auto; background: rgba(255,255,255,0.045); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: 0 0 0 1px rgba(255,255,255,0.13); text-align: center; }
+@media (min-width: 640px) { .review-wrap { padding: 40px 44px; } }
+.review-stars { color: #FBBC04; letter-spacing: 3px; font-size: 14px; margin-bottom: 18px; }
+.review-quote { font-family: var(--serif); font-size: 20px; line-height: 1.55; color: #faf7f2; font-weight: 300; margin-bottom: 22px; }
+.review-byline { font-size: 12px; letter-spacing: 0.06em; color: rgba(250,247,242,0.55); text-transform: uppercase; }
+.review-google { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,247,242,0.55); text-decoration: none; }
+
+/* provider grid density modifiers, applied on top of the base .svc-providers-grid */
+.svc-providers-grid.single { grid-template-columns: minmax(160px, 200px); justify-content: center; }
+.svc-providers-grid.many { grid-template-columns: repeat(2,1fr); gap: 16px; }
+@media (min-width: 480px) { .svc-providers-grid.many { grid-template-columns: repeat(3,1fr); } }
+@media (min-width: 700px) { .svc-providers-grid.many { grid-template-columns: repeat(4,1fr); gap: 20px; } }
+@media (min-width: 960px) { .svc-providers-grid.many { grid-template-columns: repeat(6,1fr); } }
+.svc-providers-grid.many .svc-provider-name { font-size: 14px; }
+.svc-providers-grid.many .svc-provider-role { font-size: 9px; margin-bottom: 8px; }
+.svc-provider-nobook { display: block; font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(250,247,242,0.35); }
+
+/* FAQ accordion, CSS-only via <details>/<summary> */
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: rgba(255,255,255,0.04); border-radius: var(--radius); box-shadow: 0 0 0 1px rgba(255,255,255,0.1); overflow: hidden; }
+.faq-item summary { list-style: none; cursor: pointer; padding: 20px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--sans); font-size: 15.5px; color: #faf7f2; font-weight: 400; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-plus { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); position: relative; }
+.faq-plus::before, .faq-plus::after { content: ""; position: absolute; background: rgba(250,247,242,0.75); transition: transform 0.25s; }
+.faq-plus::before { left: 6px; right: 6px; top: 50%; height: 1px; transform: translateY(-50%); }
+.faq-plus::after { top: 6px; bottom: 6px; left: 50%; width: 1px; transform: translateX(-50%); }
+.faq-item[open] .faq-plus::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+.faq-answer { padding: 0 26px 22px; font-size: 14.5px; line-height: 1.75; color: rgba(250,247,242,0.65); }
+
+/* final booking CTA band, closes the page */
+.final-cta { background: #0c0e1d; padding: 40px var(--space-page-x); text-align: center; position: relative; overflow: hidden; }
+@media (min-width: 960px) { .final-cta { padding: 56px 40px; } }
+.final-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 50% 0%, rgba(110,63,141,0.22) 0%, transparent 60%); }
+.final-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+.final-cta h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); color: #faf7f2; margin-bottom: 14px; }
+.final-cta p { font-size: 15px; color: rgba(250,247,242,0.65); margin-bottom: 32px; }
+.final-cta-price { display: flex; gap: 14px; justify-content: center; align-items: center; margin-bottom: 28px; }
 .chip-addon-d   { background: rgba(173,205,82,0.18); color: #cfe393; }
 .chip-inquire-d { background: rgba(88,91,167,0.30);  color: #c3c5ee; }

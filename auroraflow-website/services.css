@@ -151,7 +151,10 @@
   font-family: var(--serif); font-size: 34px; font-weight: 400;
   margin-bottom: 32px; letter-spacing: -0.01em; color: #faf7f2;
 }
-.svc-providers-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+/* flex + wrap + justify-center (not a fixed grid) so an incomplete last row of
+   providers centers itself instead of stranding a lone card on the left */
+.svc-providers-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.svc-providers-grid .svc-provider-card { flex: 0 1 190px; max-width: 210px; }
 .svc-provider-card {
   display: block; text-decoration: none; color: inherit; text-align: center;
   transition: transform 0.3s cubic-bezier(0.2,0.7,0.2,1);
@@ -241,13 +244,11 @@
 @media (max-width: 960px) {
   .svc-details-inner { grid-template-columns: 1fr; gap: 20px; }
   .svc-details { padding: 56px 24px; }
-  .svc-providers-grid { grid-template-columns: repeat(2,1fr); }
   .svc-providers-section { padding: 56px 24px; }
   .svc-related-grid { grid-template-columns: repeat(2,1fr); }
   .svc-related { padding: 56px 24px; }
 }
 @media (max-width: 560px) {
-  .svc-providers-grid { grid-template-columns: 1fr 1fr; }
   .svc-related-grid { grid-template-columns: 1fr; }
 }
 
@@ -347,12 +348,12 @@
 .review-byline { font-size: 12px; letter-spacing: 0.06em; color: rgba(250,247,242,0.55); text-transform: uppercase; }
 .review-google { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,247,242,0.55); text-decoration: none; }
 
-/* provider grid density modifiers, applied on top of the base .svc-providers-grid */
-.svc-providers-grid.single { grid-template-columns: minmax(160px, 200px); justify-content: center; }
-.svc-providers-grid.many { grid-template-columns: repeat(2,1fr); gap: 16px; }
-@media (min-width: 480px) { .svc-providers-grid.many { grid-template-columns: repeat(3,1fr); } }
-@media (min-width: 700px) { .svc-providers-grid.many { grid-template-columns: repeat(4,1fr); gap: 20px; } }
-@media (min-width: 960px) { .svc-providers-grid.many { grid-template-columns: repeat(6,1fr); } }
+/* provider grid density modifiers, applied on top of the base .svc-providers-grid
+   (both are flex + wrap + justify-center already, so incomplete rows always center) */
+.svc-providers-grid.single { justify-content: center; }
+.svc-providers-grid.single .svc-provider-card { flex: 0 1 190px; }
+.svc-providers-grid.many { gap: 16px; }
+.svc-providers-grid.many .svc-provider-card { flex: 0 1 130px; max-width: 150px; }
 .svc-providers-grid.many .svc-provider-name { font-size: 14px; }
 .svc-providers-grid.many .svc-provider-role { font-size: 9px; margin-bottom: 8px; }
 .svc-provider-nobook { display: block; font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(250,247,242,0.35); }
@@ -368,6 +369,8 @@
 .faq-plus::after { top: 6px; bottom: 6px; left: 50%; width: 1px; transform: translateX(-50%); }
 .faq-item[open] .faq-plus::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
 .faq-answer { padding: 0 26px 22px; font-size: 14.5px; line-height: 1.75; color: rgba(250,247,242,0.65); }
+.faq-answer li { padding: 4px 0 4px 20px; position: relative; }
+.faq-answer li::before { content: "\2192"; position: absolute; left: 0; color: #12736D; font-size: 11px; }
 
 /* final booking CTA band, closes the page */
 .final-cta { background: #0c0e1d; padding: 40px var(--space-page-x); text-align: center; position: relative; overflow: hidden; }

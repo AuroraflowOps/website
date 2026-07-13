@@ -380,5 +380,21 @@
 .final-cta h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); color: #faf7f2; margin-bottom: 14px; }
 .final-cta p { font-size: 15px; color: rgba(250,247,242,0.65); margin-bottom: 32px; }
 .final-cta-price { display: flex; gap: 14px; justify-content: center; align-items: center; margin-bottom: 28px; }
+
+/* pricing menu (used by pages whose price list is too long for hero bullets, e.g. waxing) */
+.price-detail-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+@media (min-width: 700px) { .price-detail-grid { grid-template-columns: 1fr 1fr; } }
+.price-detail-card { background: rgba(255,255,255,0.04); border-radius: var(--radius); padding: 18px 20px; box-shadow: 0 0 0 1px rgba(255,255,255,0.1); }
+.price-detail-card h4 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: #faf7f2; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.price-detail-card .pd-price { color: #ADCD52; font-size: 14px; font-family: var(--serif); flex-shrink: 0; white-space: nowrap; }
+.price-detail-card p { font-size: 13px; line-height: 1.6; color: rgba(250,247,242,0.65); }
+.price-list-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #ADCD52; margin: 8px 0 10px; }
+.price-list { display: grid; grid-template-columns: 1fr; gap: 0 24px; }
+@media (min-width: 560px) { .price-list { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 860px) { .price-list { grid-template-columns: 1fr 1fr 1fr; } }
+.price-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 2px; font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.price-row .pr-name { color: rgba(250,247,242,0.8); }
+.price-row .pr-price { color: #ADCD52; font-family: var(--serif); flex-shrink: 0; }
+.price-note { font-size: 12.5px; line-height: 1.65; color: rgba(250,247,242,0.55); margin-top: 16px; }
 .chip-addon-d   { background: rgba(173,205,82,0.18); color: #cfe393; }
 .chip-inquire-d { background: rgba(88,91,167,0.30);  color: #c3c5ee; }

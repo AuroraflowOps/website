@@ -9,50 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
   <style>
-    .article-hero {
-      padding-top: var(--nav-h);
-      background: var(--warm-white);
-    }
-    .article-hero-img {
-      width: 100%; max-height: 520px; overflow: hidden;
-      background: #e0d8d0;
-    }
-    .article-hero-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      max-height: 520px;
-    }
-    .article-header {
-      max-width: 780px; margin: 0 auto;
-      padding: 56px 40px 0;
-    }
-    .article-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted); text-decoration: none;
-      margin-bottom: 28px; transition: color 0.2s; display: block;
-    }
-    .article-back:hover { color: var(--dark); }
-    .article-tag {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
-    }
-    .article-title {
-      font-family: var(--serif);
-      font-size: clamp(28px, 4.5vw, 56px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-    .article-summary {
-      font-size: 18px; line-height: 1.7; color: var(--mid);
-      margin-bottom: 28px; font-style: italic;
-    }
-    .article-meta {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 13px; color: var(--muted); padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta .dot { opacity: 0.4; }
-
     /* Rich text body */
     .article-body {
       max-width: 780px; margin: 0 auto;
@@ -150,7 +106,6 @@
     .related-summary { font-size: 13px; line-height: 1.65; color: var(--muted); }
 
     @media (max-width: 900px) {
-      .article-header { padding: 48px 24px 0; }
       .article-body { padding: 32px 24px 64px; }
       .related-grid { grid-template-columns: repeat(2,1fr); }
       .related-section { padding: 56px 24px; }
@@ -198,7 +153,6 @@
         <li><a href="../classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="../journal.html" class="active">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -222,30 +176,31 @@
   <a href="../pay-what-you-can.html">Pay What You Can</a>
   <a href="../memberships.html">Memberships</a>
   <a href="../classes.html">Classes</a>
-  <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
 <main>
 
-<div class="article-hero">
-  <div class="article-hero-img"><img src="../assets/img/661da54d2e468fc127c77fd9_Massage-Stress-Managment.JPG" width="1980" height="1980" alt="National Stress Awareness Month" loading="lazy" /></div>
-  <div class="article-header">
-    <a class="article-back" href="../journal.html">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><polyline points="15 18 9 12 15 6"/></svg>Back to Journal
+<div class="page-hero article-page-hero">
+  <div class="page-hero-img">
+    <img src="../assets/img/661da54d2e468fc127c77fd9_Massage-Stress-Managment.webp" width="1200" height="1200" alt="National Stress Awareness Month" />
+  </div>
+  <div class="page-hero-content">
+    <a class="article-hero-back" href="../journal.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to Journal
     </a>
-    <div class="article-tag">Wellness</div>
-    <h1 class="article-title">National Stress Awareness Month</h1>
-    <p class="article-summary">Stress is a part of life but it doesn't need to be debilitating. Learn some helpful tips and discover how massage can be part of your stress management routine.</p>
-    <div class="article-meta">
+    <p class="article-hero-tag"><span class="chip chip-wellness-d">Wellness</span></p>
+    <h1>National Stress Awareness Month</h1>
+    <p>Stress is a part of life but it doesn't need to be debilitating. Learn some helpful tips and discover how massage can be part of your stress management routine.</p>
+    <div class="article-hero-meta">
+      <span class="meta-date">Apr 2024</span>
+      <span class="dot">·</span>
       <span>Auroraflow Team</span>
       <span class="dot">·</span>
       <span>2 min read</span>
     </div>
   </div>
 </div>
-
-<div class="rainbow-bar"></div>
 
 <div class="article-body">
   <h2>What is National Stress Awareness Month?</h2><p>Originally established in the UK in 1992 by the International Stress Management Association, Stress Awareness Month was created to help break the stigma around mental health in the workplace and bring attention to stress-reducing habits.</p><h2>What is stress?</h2><p>"Stress" was originally used in physics to describe force acting on an area of material. It was adopted by Austrian-born scientist Hans Selye in 1920 to describe strain on the physical body. When discussing stress, it's important to recognize that stress in itself is not negative, it helps our body build muscles, strengthens our immune system, and can reward us with joyful experiences. But the human body is not made to manage ongoing stress without extended periods of recovery.</p><p>Unchecked, stress leads to severe health issues from mental illness, heart disease, and cancer. Your body is stuck in a fight/flight/freeze/fawn mode and cannot properly rest/digest. But all is not lost.</p><h2>How can I manage stress?</h2><p>The theme for this year's Stress Awareness Month is <strong>#littlebylittle</strong>, emphasizing the importance of small daily steps. Here are some helpful places to start:</p><ul><li><em>Prioritize sleep:</em> set aside a wind-down time each night, put screens away, do some gentle stretching</li><li><em>Connect with others:</em> check in with the safe people in your life</li><li><em>Move your body:</em> find a practice you enjoy, bird watching, basketball, hiking, farmers markets</li><li><em>Spend time in nature:</em> sit outside and read a book, take a walk, garden</li><li><em>Breathe deep:</em> taking deep conscious breaths helps shift your nervous system into rest/digest</li><li><em>Practice mindfulness:</em> meditation, yoga, tai chi, or any hobby that fully engrosses you</li></ul><h2>What role does massage play in stress management?</h2><p>Massage and bodywork are powerful tools in helping your body and mind come back to relaxation mode. Not only are you physically allowing your body to come to rest and working out those stiff muscles, you are allowing your mind to pay attention to how stress has been affecting your system as a whole. Massage reconnects the link between body and mind, bringing a key part of stress management: mindfulness.</p><p>We at Auroraflow are aware that for many people in the current American environment, massage is a luxury product. To make it a little easier for those in our community at different socioeconomic levels to access this tool for stress reduction, we typically offer "Pay What You Can" days at least twice a month — follow us on Instagram for the latest updates, or give us a call at (919) 229-9555 to find out what's coming up.</p>
@@ -264,17 +219,17 @@
     <div class="related-grid">
       
       <a class="related-card" href="discover-the-benefits-of-chemical-peels.html">
-        <div class="related-img"><img src="../assets/img/66f968b7490b93bd2144c949_Auroraflow-Skincare.jpg" width="2048" height="1365" alt="Discover the Benefits of Chemical Peels" loading="lazy" /></div>
+        <div class="related-img"><img src="../assets/img/66f968b7490b93bd2144c949_Auroraflow-Skincare.webp" width="1200" height="800" alt="Discover the Benefits of Chemical Peels" loading="lazy" /></div>
         <div class="related-title">Discover the Benefits of Chemical Peels</div>
         <div class="related-summary">We're thrilled that our estheticians have received advanced training with world-renowned educator Joelle Lee, equipping them to safely administer chemical peels to skin of every shade.</div>
       </a>
       <a class="related-card" href="meet-the-team-hayley-ware.html">
-        <div class="related-img"><img src="../assets/img/63a2448100c39f816a95d85d_Untitled-design-3-.jpg" width="2000" height="1200" alt="Meet the Team: Hayley Yokoyama" loading="lazy" /></div>
+        <div class="related-img"><img src="../assets/img/63a2448100c39f816a95d85d_Untitled-design-3-.webp" width="1200" height="720" alt="Meet the Team: Hayley Yokoyama" loading="lazy" /></div>
         <div class="related-title">Meet the Team: Hayley Yokoyama</div>
         <div class="related-summary">Meet Hayley and learn how she uses 20 years of dance experience to support clients at Auroraflow through the art of Ashiatsu barefoot massage.</div>
       </a>
       <a class="related-card" href="embracing-every-body-a-guide-to-inclusive-massage-experiences.html">
-        <div class="related-img"><img src="../assets/img/650362b79682c5c042896c94_Headshot-Template-6-.png" width="1500" height="1500" alt="Embracing Every Body: A Guide to Inclusive Massage Experiences" loading="lazy" /></div>
+        <div class="related-img"><img src="../assets/img/650362b79682c5c042896c94_Headshot-Template-6-.webp" width="1200" height="1200" alt="Embracing Every Body: A Guide to Inclusive Massage Experiences" loading="lazy" /></div>
         <div class="related-title">Embracing Every Body: A Guide to Inclusive Massage Experiences</div>
         <div class="related-summary">All bodies are accepted here. We want to provide an extra layer of transparency and support for plus-size people and people of various abilities.</div>
       </a>
@@ -293,8 +248,7 @@
           <li><a href="../team.html">Team</a></li>
           <li><a href="#">Memberships</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="../journal.html">Journal</a></li>
-          <li><a href="#">Careers</a></li>
+                <li><a href="#">Careers</a></li>
           <li><a href="../contact.html">Contact</a></li>
         </ul>
         <address class="footer-address" itemscope itemtype="https://schema.org/PostalAddress">

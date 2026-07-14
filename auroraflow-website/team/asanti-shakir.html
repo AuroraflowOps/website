@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -112,9 +121,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -162,7 +172,6 @@
         <li><a href="../classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="../journal.html">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -186,7 +195,6 @@
   <a href="../pay-what-you-can.html">Pay What You Can</a>
   <a href="../memberships.html">Memberships</a>
   <a href="../classes.html">Classes</a>
-  <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -196,7 +204,7 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/asanti-shakir.jpg" width="1334" height="1334" alt="Asanti Shakir" loading="lazy" />
+        <img src="../assets/img/asanti-shakir.webp" width="1200" height="1200" alt="Asanti Shakir" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -204,10 +212,9 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">She/her</span>
       <h1 class="bio-name">Asanti Shakir</h1>
       <div class="bio-title">Aspiring Esthetician</div>
+      <div class="bio-chips"><span class="pronoun-pill">she/her</span></div>
       <div class="bio-divider"></div>
       <div class="bio-body"><p>Asanti was born and raised in Atlanta, GA. She enjoys doing yoga, sunbathing, watching and listening to nature, gardening, and most of all making all things beautiful. She loves creating beauty that feels grounding, calming, and intentional. Deeply empathetic, she's passionate about connecting with people and helping them feel comfortable in themselves. She's drawn to the deeper side of beauty — where confidence, healing, sensuality, and self-worth meet — and is here for luminous skin, meaningful growth, quiet luxury, and building a life that feels as beautiful as it looks. She plans to bridge somatic healing, beauty, and transformation together as her line of work. With a deep interest in psychology, astrology, and nervous system regulation, she finds that her empathetic nature aligns with helping people understand themselves more deeply for growth.</p><p>Asanti is an aspiring esthetician gaining firsthand experience at Auroraflow. Having aligned with a vegan diet and lifestyle for almost two years, she's learned a great deal about healing the body from within, and she plans on sharing her experiences and journey through her connections. As a fun fact, her name Asanti means "thank you" in Swahili, and her last name Shakir also means "thank you" in Arabic. With "thank you" woven into her name, she's always felt naturally drawn toward offering services to others.</p></div>
     </div>
@@ -236,8 +243,7 @@
           <li><a href="../memberships.html">Memberships</a></li>
           <li><a href="../classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="../journal.html">Journal</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../contact.html">Contact</a></li>
           <li><a href="../pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="../policies.html">Policies</a></li>
         </ul>

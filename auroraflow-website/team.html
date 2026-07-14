@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    .team-section { background: var(--cream); padding: 64px 40px 100px; }
+    .team-section { background: var(--cream); padding: var(--space-section-y) var(--space-page-x); }
     .team-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -32,6 +32,15 @@
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
+    .team-photo::after {
+      content: ""; position: absolute; inset: 0; border-radius: var(--radius-sm);
+      padding: 2px; z-index: 2; pointer-events: none;
+      background: linear-gradient(135deg, #ADCD52, #12736D, #363971, #6E3F8D, #BA7EC9, #52BCA3, #D9E493);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity 0.35s ease;
+    }
+    .team-card:hover .team-photo::after { opacity: 1; }
     .team-card:hover .team-photo img { transform: scale(1.04); }
     .team-badge {
       position: absolute; top: 12px; left: 12px;
@@ -45,9 +54,10 @@
       margin-bottom: 4px; line-height: 1.2;
     }
     .team-title {
-      font-size: 12px; color: var(--muted); letter-spacing: 0.06em;
-      text-transform: uppercase; font-weight: 400;
+      font-size: 12px; color: var(--mid); letter-spacing: 0.06em;
+      text-transform: uppercase; font-weight: 500;
     }
+    .team-pronoun { margin-top: 6px; }
 
     /* ── PROVIDER CARD WITH BOOKING BUTTON ── */
     .team-card-link {
@@ -56,25 +66,29 @@
     .team-book-btn {
       display: inline-flex; align-items: center;
       margin-top: 12px; padding: 7px 16px; border-radius: 100px;
-      background: var(--dark); color: var(--cream);
+      background: transparent; border: 1.5px solid rgba(28,24,22,0.28); color: var(--mid);
       font-family: var(--sans); font-size: 10px; font-weight: 400;
       letter-spacing: 0.09em; text-transform: uppercase;
-      text-decoration: none; transition: background 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
+      text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }
-    .team-book-btn:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .team-book-btn:hover {
+      background: var(--dark); color: var(--cream); border-color: var(--dark);
+      transform: translateY(-2px); box-shadow: var(--shadow-sm);
+    }
 
     /* ── TEAM GROUP SECTIONS ── */
     .team-group { max-width: 1200px; margin: 0 auto; }
     .team-group + .team-group { margin-top: 72px; }
     .team-group-heading {
+      display: flex; align-items: center; gap: 16px;
       font-family: var(--sans); font-size: 11px; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
-      padding-bottom: 16px; margin-bottom: 36px;
-      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark);
+      margin-bottom: 36px;
     }
+    .team-group-heading::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
     /* ── VALUES BAND ── */
-    .values-band { background: var(--warm-white); padding: 80px 40px; }
+    .values-band { background: var(--warm-white); padding: var(--space-section-y) var(--space-page-x); }
     .values-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
     .values-inner h2 {
       font-family: var(--serif); font-size: clamp(30px, 4vw, 52px);
@@ -91,7 +105,7 @@
     .value p { font-size: 14px; line-height: 1.75; color: var(--mid); }
 
     /* ── JOIN BAND ── */
-    .join-band { background: #0c0e1d; padding: 80px 40px; text-align: center; position: relative; overflow: hidden; z-index: 0; }
+    .join-band { background: #0c0e1d; padding: var(--space-section-y) var(--space-page-x); text-align: center; position: relative; overflow: hidden; z-index: 0; }
     .join-band::before {
       content: "";
       position: absolute; inset: 0; pointer-events: none; z-index: -1;
@@ -129,10 +143,7 @@
     }
     @media (max-width: 768px) {
       .team-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
-      .team-section { padding: 48px 24px 80px; }
       .values-grid { grid-template-columns: 1fr; gap: 28px; }
-      .values-band { padding: 60px 24px; }
-      .join-band { padding: 60px 24px; }
     }
     @media (max-width: 400px) {
       .team-grid { grid-template-columns: 1fr; }
@@ -173,7 +184,6 @@
         <li><a href="classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -198,7 +208,6 @@
   <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
   <a href="classes.html">Classes</a>
-  <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -206,7 +215,7 @@
 
 <div class="page-hero">
   <div class="page-hero-img">
-    <img src="assets/img/team-hero.jpg" width="900" height="1600" alt="Auroraflow team planting together" />
+    <img src="assets/img/team-hero.webp" width="900" height="1600" alt="Auroraflow team planting together" />
   </div>
   <div class="page-hero-content">
     <p class="section-label">Our People</p>
@@ -222,15 +231,16 @@
   <!-- SERVICE PROVIDERS -->
   <div class="team-group">
     <h2 class="team-group-heading">Service Providers</h2>
-    <div class="team-grid">
+    <div class="team-grid reveal-grid">
 
     <div class="team-card">
       <a class="team-card-link" href="team/brandon-hu.html">
         <div class="team-photo">
-          <img src="assets/img/6893923ca6c2d2cc6188bde0_Untitled-design-50-.jpg" width="1600" height="1600" alt="Brandon Hu" loading="lazy" />
+          <img src="assets/img/6893923ca6c2d2cc6188bde0_Untitled-design-50-.webp" width="1200" height="1200" alt="Brandon Hu" loading="lazy" />
         </div>
         <div class="team-name">Brandon Hu</div>
-        <div class="team-title">Massage Therapist · He/Him</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">he/him</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/auroraflow?staffId=61" target="_blank">Book Now</a>
     </div>
@@ -238,10 +248,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/omer-unluata.html">
         <div class="team-photo">
-          <img src="assets/img/6893956b4420df3dbf1612ef_Untitled-design-51-.jpg" width="1600" height="1600" alt="Omer Unluata" loading="lazy" />
+          <img src="assets/img/6893956b4420df3dbf1612ef_Untitled-design-51-.webp" width="1200" height="1200" alt="Omer Unluata" loading="lazy" />
         </div>
         <div class="team-name">Omer Unluata</div>
-        <div class="team-title">Massage Therapist · He/Him</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">he/him</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/auroraflow?staffId=60" target="_blank">Book Now</a>
     </div>
@@ -249,10 +260,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/carissa-bovee.html">
         <div class="team-photo">
-          <img src="assets/img/6748ed21e5ab6934a8ab842a_IMG_1165-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-1-.png" width="1500" height="1500" alt="Carissa Bovee" loading="lazy" />
+          <img src="assets/img/6748ed21e5ab6934a8ab842a_IMG_1165-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-1-.webp" width="1200" height="1200" alt="Carissa Bovee" loading="lazy" />
         </div>
         <div class="team-name">Carissa Bovee</div>
-        <div class="team-title">Esthetician · She/Her</div>
+        <div class="team-title">Esthetician</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=54" target="_blank">Book Now</a>
     </div>
@@ -260,10 +272,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/taylor-casella.html">
         <div class="team-photo">
-          <img src="assets/img/6723f8e36d8a23f1812f6c9a_1.png" width="500" height="500" alt="Taylor Casella" loading="lazy" />
+          <img src="assets/img/6723f8e36d8a23f1812f6c9a_1.webp" width="500" height="500" alt="Taylor Casella" loading="lazy" />
         </div>
         <div class="team-name">Taylor Casella</div>
-        <div class="team-title">Massage Therapist · she/they</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/they</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=52" target="_blank">Book Now</a>
     </div>
@@ -271,10 +284,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/giules-colpo.html">
         <div class="team-photo">
-          <img src="assets/img/6696d3d64541bec292305cb4_Giules-Colpo.jpg" width="1600" height="1600" alt="Giules Colpo" loading="lazy" />
+          <img src="assets/img/6696d3d64541bec292305cb4_Giules-Colpo.webp" width="1200" height="1200" alt="Giules Colpo" loading="lazy" />
         </div>
         <div class="team-name">Giules Colpo</div>
-        <div class="team-title">Massage Therapist · she/they</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/they</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=47" target="_blank">Book Now</a>
     </div>
@@ -282,10 +296,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/amanda-stehle.html">
         <div class="team-photo">
-          <img src="assets/img/66884bfe92b99695f8d467a8_Amanda-Stehle.JPG" width="950" height="950" alt="Amanda Stehle" loading="lazy" />
+          <img src="assets/img/66884bfe92b99695f8d467a8_Amanda-Stehle.webp" width="950" height="950" alt="Amanda Stehle" loading="lazy" />
         </div>
         <div class="team-name">Amanda Stehle</div>
-        <div class="team-title">Massage Therapist · she/her</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=43" target="_blank">Book Now</a>
     </div>
@@ -293,10 +308,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/cleo-hyzy.html">
         <div class="team-photo">
-          <img src="assets/img/659d883026af59d9d8a74339_1.png" width="500" height="500" alt="Cleo Hyzy" loading="lazy" />
+          <img src="assets/img/659d883026af59d9d8a74339_1.webp" width="500" height="500" alt="Cleo Hyzy" loading="lazy" />
         </div>
         <div class="team-name">Cleo Hyzy</div>
-        <div class="team-title">Massage Therapist · she/her</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=40" target="_blank">Book Now</a>
     </div>
@@ -304,10 +320,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/brandy-robertson.html">
         <div class="team-photo">
-          <img src="assets/img/6510ed3ea2dc726c9741db54_Brandi.png" width="400" height="400" alt="Brandy Robertson" loading="lazy" />
+          <img src="assets/img/6510ed3ea2dc726c9741db54_Brandi.webp" width="400" height="400" alt="Brandy Robertson" loading="lazy" />
         </div>
         <div class="team-name">Brandy Robertson</div>
-        <div class="team-title">Massage Therapist · She/Her</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=34" target="_blank">Book Now</a>
     </div>
@@ -315,10 +332,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/jessmary-ramos.html">
         <div class="team-photo">
-          <img src="assets/img/6510ed52becbe7216d196271_Jessmary.png" width="400" height="400" alt="Jessmary Ramos" loading="lazy" />
+          <img src="assets/img/6510ed52becbe7216d196271_Jessmary.webp" width="400" height="400" alt="Jessmary Ramos" loading="lazy" />
         </div>
         <div class="team-name">Jessmary Ramos</div>
-        <div class="team-title">Massage Therapist · She/Her</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=35" target="_blank">Book Now</a>
     </div>
@@ -326,10 +344,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/patience-oneil.html">
         <div class="team-photo">
-          <img src="assets/img/649a036b21a9becd849d02ac_Untitled-design-22-.png" width="1200" height="1200" alt="Patience O'Neill" loading="lazy" />
+          <img src="assets/img/649a036b21a9becd849d02ac_Untitled-design-22-.webp" width="1200" height="1200" alt="Patience O'Neill" loading="lazy" />
         </div>
         <div class="team-name">Patience O'Neill</div>
-        <div class="team-title">Massage Therapist · They/Them</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">they/them</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=17" target="_blank">Book Now</a>
     </div>
@@ -337,10 +356,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/izzy-weiser.html">
         <div class="team-photo">
-          <img src="assets/img/6510ed87a428f0504d2cd408_Izzy.png" width="400" height="400" alt="Izzy Weiser" loading="lazy" />
+          <img src="assets/img/6510ed87a428f0504d2cd408_Izzy.webp" width="400" height="400" alt="Izzy Weiser" loading="lazy" />
         </div>
         <div class="team-name">Izzy Weiser</div>
-        <div class="team-title">Massage Therapist · They/she</div>
+        <div class="team-title">Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">they/she</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=23" target="_blank">Book Now</a>
     </div>
@@ -348,10 +368,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/nikkia-beech-moore.html">
         <div class="team-photo">
-          <img src="assets/img/6510ed5b9aaff1956e04a9d5_Nik.png" width="400" height="400" alt="Nikkia Beech-Moore" loading="lazy" />
+          <img src="assets/img/6510ed5b9aaff1956e04a9d5_Nik.webp" width="400" height="400" alt="Nikkia Beech-Moore" loading="lazy" />
         </div>
         <div class="team-name">Nikkia "Nik" Beech-Moore</div>
-        <div class="team-title">Esthetician · She/her</div>
+        <div class="team-title">Esthetician</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=28" target="_blank">Book Now</a>
     </div>
@@ -359,10 +380,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/christine-link.html">
         <div class="team-photo">
-          <img src="assets/img/66bf9d0d6d1f2ac1aedfc550_Christine-Headshot.jpg" width="1600" height="1600" alt="Christine Link" loading="lazy" />
+          <img src="assets/img/66bf9d0d6d1f2ac1aedfc550_Christine-Headshot.webp" width="1200" height="1200" alt="Christine Link" loading="lazy" />
         </div>
         <div class="team-name">Christine Link</div>
-        <div class="team-title">Esthetician · They/Them &amp; She/Her</div>
+        <div class="team-title">Esthetician</div>
+        <div class="team-pronoun"><span class="pronoun-pill">they/them &amp; she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/814946?staffId=26" target="_blank">Book Now</a>
     </div>
@@ -370,10 +392,11 @@
     <div class="team-card">
       <a class="team-card-link" href="team/hayley-yokoyama.html">
         <div class="team-photo">
-          <img src="assets/img/6510edcb9473faa75eba6269_Hayley.png" width="400" height="400" alt="Hayley Yokoyama" loading="lazy" />
+          <img src="assets/img/6510edcb9473faa75eba6269_Hayley.webp" width="400" height="400" alt="Hayley Yokoyama" loading="lazy" />
         </div>
         <div class="team-name">Hayley Yokoyama</div>
-        <div class="team-title">Director of Education · She/Her</div>
+        <div class="team-title">Director of Education</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
       </a>
       <a class="team-book-btn" href="https://booking.mangomint.com/auroraflow?staffId=14" target="_blank">Book Now</a>
     </div>
@@ -385,62 +408,69 @@
   <!-- SUPPORT STAFF -->
   <div class="team-group">
     <h2 class="team-group-heading">Support Staff</h2>
-    <div class="team-grid">
+    <div class="team-grid reveal-grid">
 
     <a class="team-card" href="team/castle-frame.html">
       <div class="team-photo">
-        <img src="assets/img/66bf9d8673894dd181e887b8_Castle-Headshot.jpg" width="1600" height="1600" alt="Castle Frame" loading="lazy" />
+        <img src="assets/img/66bf9d8673894dd181e887b8_Castle-Headshot.webp" width="1200" height="1200" alt="Castle Frame" loading="lazy" />
       </div>
       <div class="team-name">Castle Frame</div>
-      <div class="team-title">CEO &amp; Massage Therapist · She/Her</div>
+      <div class="team-title">CEO &amp; Massage Therapist</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
     </a>
 
     <a class="team-card" href="team/lydia-atkins.html">
       <div class="team-photo">
-        <img src="assets/img/66bf9d8cad22d765622d2bb4_Lydia-Headshot.jpg" width="1600" height="1600" alt="Lydia Atkins" loading="lazy" />
+        <img src="assets/img/66bf9d8cad22d765622d2bb4_Lydia-Headshot.webp" width="1200" height="1200" alt="Lydia Atkins" loading="lazy" />
       </div>
       <div class="team-name">Lydia Atkins</div>
-      <div class="team-title">Director · She/Her</div>
+      <div class="team-title">Director</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
     </a>
 
     <a class="team-card" href="team/sascha-de-la-sabia.html">
       <div class="team-photo">
-        <img src="assets/img/678d60f7fb933bdacd740158_Untitled-1500-x-1500-px-2-.png" width="1500" height="1500" alt="Sascha De la Sabia" loading="lazy" />
+        <img src="assets/img/678d60f7fb933bdacd740158_Untitled-1500-x-1500-px-2-.webp" width="1200" height="1200" alt="Sascha De la Sabia" loading="lazy" />
       </div>
       <div class="team-name">Sascha De la Sabia</div>
-      <div class="team-title">Front Desk Manager · They/she</div>
+      <div class="team-title">Front Desk Manager</div>
+        <div class="team-pronoun"><span class="pronoun-pill">they/she</span></div>
     </a>
 
     <a class="team-card" href="team/jaylon-martin.html">
       <div class="team-photo">
-        <img src="assets/img/68d6ba76ab268601824aef08_Untitled-design-61-.jpg" width="1600" height="1600" alt="Jaylon Martin" loading="lazy" />
+        <img src="assets/img/68d6ba76ab268601824aef08_Untitled-design-61-.webp" width="1200" height="1200" alt="Jaylon Martin" loading="lazy" />
       </div>
       <div class="team-name">Jaylon Martin</div>
-      <div class="team-title">Front Desk · Any/All</div>
+      <div class="team-title">Front Desk</div>
+        <div class="team-pronoun"><span class="pronoun-pill">any/all</span></div>
     </a>
 
     <a class="team-card" href="team/elare-andre.html">
       <div class="team-photo">
-        <img src="assets/img/68d6b885a4d21acf5e8b63e6_Untitled-design-63-.jpg" width="1600" height="1600" alt="Elare André" loading="lazy" />
+        <img src="assets/img/68d6b885a4d21acf5e8b63e6_Untitled-design-63-.webp" width="1200" height="1200" alt="Elare André" loading="lazy" />
       </div>
       <div class="team-name">Elare André</div>
-      <div class="team-title">Front Desk · He/They</div>
+      <div class="team-title">Front Desk</div>
+        <div class="team-pronoun"><span class="pronoun-pill">he/they</span></div>
     </a>
 
     <a class="team-card" href="team/asanti-shakir.html">
       <div class="team-photo">
-        <img src="assets/img/asanti-shakir.jpg" width="1334" height="1334" alt="Asanti Shakir" loading="lazy" />
+        <img src="assets/img/asanti-shakir.webp" width="1200" height="1200" alt="Asanti Shakir" loading="lazy" />
       </div>
       <div class="team-name">Asanti Shakir</div>
-      <div class="team-title">Aspiring Esthetician · She/her</div>
+      <div class="team-title">Aspiring Esthetician</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
     </a>
 
     <a class="team-card" href="team/lauren-mccullough.html">
       <div class="team-photo">
-        <img src="assets/img/6510eddc753332fbbf45bae8_Lauren.png" width="400" height="400" alt="Lauren McCullough" loading="lazy" />
+        <img src="assets/img/6510eddc753332fbbf45bae8_Lauren.webp" width="400" height="400" alt="Lauren McCullough" loading="lazy" />
       </div>
       <div class="team-name">Lauren McCullough</div>
-      <div class="team-title">Co-founder · She/Her</div>
+      <div class="team-title">Co-founder</div>
+        <div class="team-pronoun"><span class="pronoun-pill">she/her</span></div>
     </a>
 
     </div><!-- /.team-grid support -->
@@ -473,7 +503,7 @@
 <div class="join-band">
   <h3>Interested in joining<br><em>our team?</em></h3>
   <p>We're always looking for talented, passionate wellness providers who share our values.</p>
-  <a class="btn-hero-light" href="#">View Open Positions</a>
+  <a class="btn-hero-light" href="contact.html">Get in Touch About Openings</a>
 </div>
 
 <!-- FOOTER -->
@@ -489,8 +519,7 @@
           <li><a href="memberships.html">Memberships</a></li>
           <li><a href="classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
           <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="policies.html">Policies</a></li>
         </ul>

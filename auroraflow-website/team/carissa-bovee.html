@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -125,9 +134,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -175,7 +185,6 @@
         <li><a href="../classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="../journal.html">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -199,7 +208,6 @@
   <a href="../pay-what-you-can.html">Pay What You Can</a>
   <a href="../memberships.html">Memberships</a>
   <a href="../classes.html">Classes</a>
-  <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -209,12 +217,12 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/6748ed21e5ab6934a8ab842a_IMG_1165-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-1-.png" width="1500" height="1500" alt="Carissa Bovee" loading="lazy" />
+        <img src="../assets/img/6748ed21e5ab6934a8ab842a_IMG_1165-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-1-.webp" width="1200" height="1200" alt="Carissa Bovee" loading="lazy" />
       </div>
             <div class="bio-lifestyle">
-        <img src="../assets/img/6748f01aedc252f09d19cf9a_IMG_2336-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-.png" width="1500" height="1500" alt="Carissa Bovee lifestyle" loading="lazy" />
-        <img src="../assets/img/6748f1362c79f7b89cc8136f_IMG_3498-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-.png" width="1500" height="1500" alt="Carissa Bovee lifestyle" loading="lazy" />
-        <img src="../assets/img/6748f2b65dc7bb58659325a1_IMG_3985-Carissa-Bovee.jpeg.pdf-2-.png" width="1497" height="1500" alt="Carissa Bovee lifestyle" loading="lazy" />
+        <img src="../assets/img/6748f01aedc252f09d19cf9a_IMG_2336-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-.webp" width="1200" height="1200" alt="Carissa Bovee lifestyle" loading="lazy" />
+        <img src="../assets/img/6748f1362c79f7b89cc8136f_IMG_3498-Carissa-Bovee.jpeg.pdf-1500-x-1500-px-.webp" width="1200" height="1200" alt="Carissa Bovee lifestyle" loading="lazy" />
+        <img src="../assets/img/6748f2b65dc7bb58659325a1_IMG_3985-Carissa-Bovee.jpeg.pdf-2-.webp" width="1200" height="1202" alt="Carissa Bovee lifestyle" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -222,9 +230,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      <span class="bio-pronoun">She/Her</span>
       <h1 class="bio-name">Carissa Bovee</h1>
       <div class="bio-title">Esthetician</div>
+      <div class="bio-chips"><span class="pronoun-pill">she/her</span></div>
+      <div class="bio-specialties"><a class="chip chip-neutral" href="../services/sensitive-skin-calming-facial.html">Sensitive Skin Calming Facial</a><a class="chip chip-neutral" href="../services/waxing.html">Body and Facial Hair Removal</a><a class="chip chip-neutral" href="../services/spa-facial.html">Spa Facial</a><a class="chip chip-neutral" href="../services/excellent-exfoliation-facial.html">Excellent Exfoliation Spa Facial</a></div>
       <div class="bio-divider"></div>
       <a class="btn-book-hero" href="https://booking.mangomint.com/814946?staffId=54" target="_blank">Book Now</a>
       <div class="bio-body"><p>Carissa <strong>(#E21673)</strong> is a dedicated esthetician with a passion for results-driven skincare and natural lash and brow enhancements. A graduate of Elevate Salon Institute in Durham, NC, she has specialized training in lash lifting, brow lamination, lash and brow tinting, microdermabrasion, gua sha, facial cupping, hydrodermabrasion, and chemical peels.</p><p>Specializing in waxing and evidence-based skincare, Carissa is committed to providing practical, approachable solutions tailored to each client. She loves blending professional-grade and over-the-counter products to achieve personalized results without unnecessary financial investment.</p><p>Carissa is a proud member of the LGBTQ+ community and has a long history of disability support and advocacy, ensuring her services are inclusive, accessible, and welcoming to all, regardless of skin type, color, age, or condition.</p><p>Originally from a small town in Iowa, Carissa moved to Durham in 2015 and has made it her home. In her free time, she enjoys painting, hand embroidery, casual video games, and audiobooks, as well as spending time with her wife and their two cats.</p></div>
@@ -242,7 +251,7 @@
     <div class="bio-services-grid">
       <a class="bio-svc" href="../services/sensitive-skin-calming-facial.html">
         <div class="bio-svc-name">Sensitive Skin Calming Facial</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/waxing.html">
         <div class="bio-svc-name">Body and Facial Hair Removal</div>
@@ -250,47 +259,47 @@
       </a>
       <a class="bio-svc" href="../services/spa-facial.html">
         <div class="bio-svc-name">Spa Facial</div>
-        <div class="bio-svc-price">$125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/excellent-exfoliation-facial.html">
         <div class="bio-svc-name">Excellent Exfoliation Spa Facial</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/hydration-station.html">
         <div class="bio-svc-name">Hydration Station</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/the-grizzly.html">
         <div class="bio-svc-name">The Grizzly (Beard Facial)</div>
-        <div class="bio-svc-price">$145 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/chemical-peels.html">
         <div class="bio-svc-name">Chemical Peels</div>
-        <div class="bio-svc-price">From $195 · 90 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$195</span><span class="svc-meta-dur">90 min</span></div>
       </a>
       <a class="bio-svc" href="../services/acne-focused-facial.html">
         <div class="bio-svc-name">Acne Focused Facial</div>
-        <div class="bio-svc-price">$145 · 75 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur">75 min</span></div>
       </a>
       <a class="bio-svc" href="../services/microdermabrasion-facial.html">
         <div class="bio-svc-name">Microdermabrasion Facial</div>
-        <div class="bio-svc-price">$185 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$185</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/facial-101.html">
         <div class="bio-svc-name">Facial 101 (Intro)</div>
-        <div class="bio-svc-price">$105 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$105</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/lash-lift.html">
         <div class="bio-svc-name">Lash Lift</div>
-        <div class="bio-svc-price">$90 · 45 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$90</span><span class="svc-meta-dur">45 min</span></div>
       </a>
       <a class="bio-svc" href="../services/relaxing-back-treatment.html">
         <div class="bio-svc-name">Relaxing Back Treatment</div>
-        <div class="bio-svc-price">$115 · 45 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$115</span><span class="svc-meta-dur">45 min</span></div>
       </a>
       <a class="bio-svc" href="../services/clinical-facial.html">
         <div class="bio-svc-name">Clinical Facial &amp; Consultation</div>
-        <div class="bio-svc-price">$210 · 105 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-price">$210</span><span class="svc-meta-dur">105 min</span></div>
       </a>
     
     </div>
@@ -315,8 +324,7 @@
           <li><a href="../memberships.html">Memberships</a></li>
           <li><a href="../classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="../journal.html">Journal</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../contact.html">Contact</a></li>
           <li><a href="../pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="../policies.html">Policies</a></li>
         </ul>

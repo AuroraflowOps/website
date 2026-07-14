@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="shared.css">
   <style>
     /* ── FEATURED POST ── */
-    .featured-section { background: var(--warm-white); padding: 60px 40px 80px; }
+    .featured-section { background: var(--warm-white); padding: var(--space-section-y) var(--space-page-x); }
     .featured-inner { max-width: 1200px; margin: 0 auto; }
     .featured-card {
       display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
@@ -46,7 +46,7 @@
     /* ── TAGS ── */
     .tag-bar {
       display: flex; gap: 8px; flex-wrap: wrap;
-      padding: 32px 40px 0; justify-content: center;
+      padding: 32px var(--space-page-x) 0; justify-content: center;
     }
     .tag-btn {
       padding: 8px 20px; border-radius: 100px; border: 1.5px solid var(--border);
@@ -59,7 +59,7 @@
     }
 
     /* ── ARTICLE GRID ── */
-    .articles-section { padding: 48px 40px 100px; }
+    .articles-section { padding: 48px var(--space-page-x) var(--space-section-y); }
     .articles-inner { max-width: 1200px; margin: 0 auto; }
     .articles-grid {
       display: grid;
@@ -109,13 +109,47 @@
     }
 
     /* ── NEWSLETTER BAND ── */
+    .featured-img { position: relative; }
+    .featured-pill {
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(12,14,29,0.82); color: #faf7f2;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 5px 13px; border-radius: 100px;
+    }
+    .meta-date { color: var(--accent2); font-weight: 500; }
+
+    /* ── NEWSLETTER BAND (design audit J4) ── */
+    .newsletter-band {
+      background:
+        radial-gradient(ellipse 60% 80% at 15% 20%, rgba(18,115,109,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 70% at 88% 90%, rgba(110,63,141,0.26) 0%, transparent 55%),
+        #0c0e1d;
+      padding: var(--space-section-y) var(--space-page-x); text-align: center;
+    }
+    .newsletter-band h3 {
+      font-family: var(--serif); font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 300; color: var(--cream); margin-bottom: 10px; line-height: 1.2;
+    }
+    .newsletter-band p { font-size: 15px; color: rgba(250,247,242,0.7); margin-bottom: 24px; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1; min-width: 0; padding: 13px 20px; border-radius: 100px;
+      border: 1px solid rgba(250,247,242,0.24); background: rgba(255,255,255,0.06);
+      color: #faf7f2; font-size: 14px; font-family: var(--sans);
+    }
+    .newsletter-form input::placeholder { color: rgba(250,247,242,0.5); }
+    .newsletter-form button {
+      padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer;
+      background: var(--accent); color: #1c1816; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--sans);
+      transition: background 0.2s, color 0.2s;
+    }
 
     @media (max-width: 960px) {
       .featured-card { grid-template-columns: 1fr; gap: 32px; }
       .articles-grid { grid-template-columns: repeat(2, 1fr); }
-      .featured-section { padding: 48px 24px 60px; }
-      .articles-section { padding: 40px 24px 80px; }
-      .tag-bar { padding: 24px 24px 0; }
     }
     @media (max-width: 600px) {
       .articles-grid { grid-template-columns: 1fr; }
@@ -158,7 +192,6 @@
         <li><a href="classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="journal.html" class="active">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -183,7 +216,6 @@
   <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
   <a href="classes.html">Classes</a>
-  <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -191,7 +223,7 @@
 
 <div class="page-hero">
   <div class="page-hero-img">
-    <img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.png" width="627" height="679" alt="" />
+    <img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.webp" width="627" height="679" alt="" />
   </div>
   <div class="page-hero-content">
     <p class="section-label">Journal</p>
@@ -207,16 +239,19 @@
     <p class="section-label">Featured</p>
     <a class="featured-card" href="journal/embracing-pronouns-celebrating-identity-and-inclusivity-at-your-auroraflow-massage-and-facial.html">
       <div class="featured-img">
-        <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg" width="1600" height="900" alt="Embracing Pronouns at Auroraflow" loading="lazy" />
+        <span class="featured-pill">★ Featured</span>
+        <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.webp" width="1200" height="675" alt="Embracing Pronouns at Auroraflow" loading="lazy" />
       </div>
       <div class="featured-body">
-        <div class="featured-tag">Identity &amp; Inclusivity</div>
+        <div class="featured-tag"><span class="chip chip-identity">Identity &amp; Inclusivity</span></div>
         <h2 class="featured-title">Embracing Pronouns: Celebrating Identity and Inclusivity at Auroraflow</h2>
         <p class="featured-excerpt">Discover the power of pronouns and celebrate inclusivity at Auroraflow. We dive into pronoun education, respecting identities, and creating an ally-friendly space as an LGBTQ-owned spa in Durham, NC.</p>
         <div class="featured-meta">
+          <span class="meta-date">Aug 2023</span>
+          <span class="dot">·</span>
           <span>Auroraflow Team</span>
           <span class="dot">·</span>
-          <span>5 min read</span>
+          <span>2 min read</span>
         </div>
       </div>
     </a>
@@ -235,109 +270,120 @@
 <!-- ARTICLES GRID -->
 <div class="articles-section">
   <div class="articles-inner">
-    <div class="articles-grid" id="articlesGrid">
+    <div class="articles-grid reveal-grid" id="articlesGrid">
 
       <a class="article-card" data-tag="services"
         href="journal/lets-get-into-cupping.html">
         <div class="article-img">
-          <img src="assets/img/68a61503465e5c82d11698fe_Untitled-design-5-.jpg" width="1600" height="1600" alt="Cupping therapy" loading="lazy" />
+          <img src="assets/img/68a61503465e5c82d11698fe_Untitled-design-5-.webp" width="1200" height="1200" alt="Cupping therapy" loading="lazy" />
         </div>
-        <div class="article-tag">Services</div>
+        <div class="article-tag"><span class="chip chip-services">Services</span></div>
         <h3 class="article-title">Let's Get Into Cupping! What Is It and How Can It Help You?</h3>
         <p class="article-excerpt">Experience cupping, the use of suction cups to safely release tension along your body. Non-invasive, completely safe, deeply relaxing.</p>
-        <div class="article-meta">Auroraflow Team · 4 min read</div>
+        <div class="article-meta"><span class="meta-date">Aug 2025</span> · Auroraflow Team · 2 min read</div>
       </a>
 
       <a class="article-card" data-tag="identity"
         href="journal/embracing-every-body-a-guide-to-inclusive-massage-experiences.html">
         <div class="article-img">
-          <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.jpeg" width="1600" height="900" alt="Inclusive massage space" loading="lazy" />
+          <img src="assets/img/63989d6c19252735e3124266_FullSizeRender.webp" width="1200" height="675" alt="Inclusive massage space" loading="lazy" />
         </div>
-        <div class="article-tag">Identity &amp; Inclusivity</div>
+        <div class="article-tag"><span class="chip chip-identity">Identity &amp; Inclusivity</span></div>
         <h3 class="article-title">Embracing Every Body: A Guide to Inclusive Massage Experiences</h3>
         <p class="article-excerpt">All bodies are welcome here. We share extra transparency and support for plus-size people and people of various abilities who might need accommodations.</p>
-        <div class="article-meta">Auroraflow Team · 6 min read</div>
+        <div class="article-meta"><span class="meta-date">Sep 2023</span> · Auroraflow Team · 2 min read</div>
       </a>
 
       <a class="article-card" data-tag="wellness"
         href="journal/referral-program.html">
         <div class="article-img">
-          <img src="assets/img/653ae919fc20c9ffd37daca5_Referral-Program-Website.png" width="1500" height="1500" alt="Referral program" loading="lazy" />
+          <img src="assets/img/653ae919fc20c9ffd37daca5_Referral-Program-Website.webp" width="1200" height="1200" alt="Referral program" loading="lazy" />
         </div>
-        <div class="article-tag">Wellness</div>
+        <div class="article-tag"><span class="chip chip-wellness">Wellness</span></div>
         <h3 class="article-title">Share the Wellness with Auroraflow's Referral Program</h3>
         <p class="article-excerpt">When you refer a friend or family member and they book any service, you'll both receive $20 off your next appointment. A win-win for everyone.</p>
-        <div class="article-meta">Auroraflow Team · 2 min read</div>
+        <div class="article-meta"><span class="meta-date">Oct 2023</span> · Auroraflow Team · 1 min read</div>
       </a>
 
       <a class="article-card" data-tag="team"
         href="journal/meet-the-team-hayley-ware.html">
         <div class="article-img">
-          <img src="assets/img/6421da7a18801b8203ffa32c_Auroraflow-Website-Photo-Template-2-.png" width="750" height="750" alt="John Terribili" loading="lazy" />
+          <img src="assets/img/6421da7a18801b8203ffa32c_Auroraflow-Website-Photo-Template-2-.webp" width="750" height="750" alt="John Terribili" loading="lazy" />
         </div>
-        <div class="article-tag">Team</div>
+        <div class="article-tag"><span class="chip chip-team">Team</span></div>
         <h3 class="article-title">Meet John: How He Left a 20-Year IT Career to Pursue Massage Therapy</h3>
         <p class="article-excerpt">Learn about John Terribili's journey and what inspired him to make one of the most meaningful career changes of his life, and how it led him to Auroraflow.</p>
-        <div class="article-meta">John Terribili · 5 min read</div>
+        <div class="article-meta"><span class="meta-date">Dec 2022</span> · John Terribili · 2 min read</div>
       </a>
 
       <a class="article-card" data-tag="team"
         href="journal/meet-the-team-castle.html">
         <div class="article-img">
-          <img src="assets/img/6892cb8c1c06742cb2648a09_Untitled-design-49-.jpg" width="1600" height="1600" alt="Castle Frame, CEO" loading="lazy" />
+          <img src="assets/img/6892cb8c1c06742cb2648a09_Untitled-design-49-.webp" width="1200" height="1200" alt="Castle Frame, CEO" loading="lazy" />
         </div>
-        <div class="article-tag">Team</div>
+        <div class="article-tag"><span class="chip chip-team">Team</span></div>
         <h3 class="article-title">Meet Castle: The CEO Keeping Wellness at the Center of Everything</h3>
         <p class="article-excerpt">Castle, CEO of Auroraflow, shares a little about herself, her vision, and how she strives to stay happy, healthy, and grounded every day.</p>
-        <div class="article-meta">Castle Frame · 4 min read</div>
+        <div class="article-meta"><span class="meta-date">Dec 2022</span> · Castle Frame · 1 min read</div>
       </a>
 
       <a class="article-card" data-tag="services"
         href="journal/services-preview.html">
         <div class="article-img">
-          <img src="assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png" width="1500" height="1500" alt="Auroraflow services" loading="lazy" />
+          <img src="assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.webp" width="1200" height="1200" alt="Auroraflow services" loading="lazy" />
         </div>
-        <div class="article-tag">Services</div>
+        <div class="article-tag"><span class="chip chip-services">Services</span></div>
         <h3 class="article-title">A Sneak Preview of Our Services and Your Wellness Journey</h3>
         <p class="article-excerpt">See a preview of the full range of Auroraflow services and learn how you can make a meaningful commitment to your wellness journey this year.</p>
-        <div class="article-meta">Auroraflow Team · 3 min read</div>
+        <div class="article-meta"><span class="meta-date">Dec 2022</span> · Auroraflow Team · 1 min read</div>
       </a>
 
       <a class="article-card" data-tag="identity"
         href="journal/what-is-auroraflow.html">
         <div class="article-img">
-          <img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.png" width="627" height="679" alt="Inside Auroraflow" loading="lazy" />
+          <img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.webp" width="627" height="679" alt="Inside Auroraflow" loading="lazy" />
         </div>
-        <div class="article-tag">Identity &amp; Inclusivity</div>
+        <div class="article-tag"><span class="chip chip-identity">Identity &amp; Inclusivity</span></div>
         <h3 class="article-title">On the Surface, We Look Like Your Everyday Spa, But What's Inside?</h3>
         <p class="article-excerpt">A closer look at what makes Auroraflow different: our values, our culture, and what it truly means to be a radically inclusive wellness space in Durham, NC.</p>
-        <div class="article-meta">Auroraflow Team · 5 min read</div>
+        <div class="article-meta"><span class="meta-date">Apr 2024</span> · Auroraflow Team · 2 min read</div>
       </a>
 
       <a class="article-card" data-tag="team"
         href="journal/meet-the-team-christine-link.html">
         <div class="article-img">
-          <img src="assets/img/66214889abfb8f3a6ed61090_IMG_0065.jpg" width="1600" height="1200" alt="Christine, Esthetician" loading="lazy" />
+          <img src="assets/img/66214889abfb8f3a6ed61090_IMG_0065.webp" width="1200" height="900" alt="Christine, Esthetician" loading="lazy" />
         </div>
-        <div class="article-tag">Team</div>
+        <div class="article-tag"><span class="chip chip-team">Team</span></div>
         <h3 class="article-title">Meet Christine: An Esthetician Whose Passion Runs Deeper Than Skincare</h3>
         <p class="article-excerpt">Christine, one of Auroraflow's estheticians, shares a little about herself and her passion for joining a wellness team that truly aligns with her values.</p>
-        <div class="article-meta">Christine · 4 min read</div>
+        <div class="article-meta"><span class="meta-date">Aug 2024</span> · Christine · 1 min read</div>
       </a>
 
       <a class="article-card" data-tag="services"
         href="journal/national-stress-awareness-month.html">
         <div class="article-img">
-          <img src="assets/img/661824071493393795ac67c8_Lymphatic-Drainage.JPG" width="2118" height="1980" alt="Lymphatic drainage" loading="lazy" />
+          <img src="assets/img/661824071493393795ac67c8_Lymphatic-Drainage.webp" width="1200" height="1122" alt="Lymphatic drainage" loading="lazy" />
         </div>
-        <div class="article-tag">Services</div>
+        <div class="article-tag"><span class="chip chip-services">Services</span></div>
         <h3 class="article-title">Thai Massage: A Non-Traditional Experience Blending Yoga, Acupressure &amp; Deep Massage</h3>
         <p class="article-excerpt">A fully-clothed technique combining Hatha yoga, acupressure, stretching, and deep massage techniques to release tension and promote full-body relaxation.</p>
-        <div class="article-meta">Auroraflow Team · 4 min read</div>
+        <div class="article-meta"><span class="meta-date">Apr 2024</span> · Auroraflow Team · 2 min read</div>
       </a>
 
     </div>
   </div>
+</div>
+
+
+<!-- NEWSLETTER -->
+<div class="newsletter-band">
+  <h3>Stay in the <em>flow</em></h3>
+  <p>Wellness notes and team stories, a few times a season. No spam, ever.</p>
+  <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+    <input type="email" placeholder="you@email.com" aria-label="Email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
 </div>
 
 <!-- FOOTER -->
@@ -353,8 +399,7 @@
           <li><a href="memberships.html">Memberships</a></li>
           <li><a href="classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
           <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="policies.html">Policies</a></li>
         </ul>

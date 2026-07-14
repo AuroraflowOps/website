@@ -48,8 +48,17 @@
     }
     .bio-title {
       font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 36px;
+      color: var(--muted); margin-bottom: 14px;
     }
+    .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .cred-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
+      border-radius: 100px; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
+    .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
+    .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
     .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
@@ -62,7 +71,7 @@
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
     .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .bio-services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
       border: 1.5px solid var(--border); background: var(--warm-white);
@@ -125,9 +134,10 @@
       .bio-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 48px 24px 60px; }
       .bio-content { display: contents; }
       .bio-back { order: 1; }
-      .bio-pronoun { order: 2; }
       .bio-name { order: 3; width: 100%; }
       .bio-title { order: 4; width: 100%; }
+      .bio-chips { order: 4; width: 100%; }
+      .bio-specialties { order: 4; width: 100%; }
       .bio-divider { order: 5; width: 100%; }
       .bio-photo-wrap { order: 6; position: static; width: 100%; max-width: 320px; margin-bottom: 28px; }
       .btn-book-hero { order: 7; }
@@ -175,7 +185,6 @@
         <li><a href="../classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="../journal.html">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -199,7 +208,6 @@
   <a href="../pay-what-you-can.html">Pay What You Can</a>
   <a href="../memberships.html">Memberships</a>
   <a href="../classes.html">Classes</a>
-  <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -209,11 +217,11 @@
   <div class="bio-hero-inner">
     <div class="bio-photo-wrap">
       <div class="bio-photo">
-        <img src="../assets/img/6723f8e36d8a23f1812f6c9a_1.png" width="500" height="500" alt="Taylor Casella" loading="lazy" />
+        <img src="../assets/img/6723f8e36d8a23f1812f6c9a_1.webp" width="500" height="500" alt="Taylor Casella" loading="lazy" />
       </div>
             <div class="bio-lifestyle">
-        <img src="../assets/img/6723f9202431af1b983b1b1c_Untitled-design-9-.png" width="500" height="500" alt="Taylor Casella lifestyle" loading="lazy" />
-        <img src="../assets/img/6723faa8fe5f2fd44e1a19cc_Untitled-design-10-.png" width="500" height="500" alt="Taylor Casella lifestyle" loading="lazy" />
+        <img src="../assets/img/6723f9202431af1b983b1b1c_Untitled-design-9-.webp" width="500" height="500" alt="Taylor Casella lifestyle" loading="lazy" />
+        <img src="../assets/img/6723faa8fe5f2fd44e1a19cc_Untitled-design-10-.webp" width="500" height="500" alt="Taylor Casella lifestyle" loading="lazy" />
       </div>
     </div>
     <div class="bio-content">
@@ -221,10 +229,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Team
       </a>
-      
-      <span class="bio-pronoun">she/they</span>
       <h1 class="bio-name">Taylor Casella</h1>
       <div class="bio-title">Massage Therapist</div>
+      <div class="bio-chips"><span class="cred-chip cred-license">LMBT #16876</span><span class="pronoun-pill">she/they</span></div>
+      <div class="bio-specialties"><a class="chip chip-neutral" href="../services/therapeutic-massage.html">Therapeutic Massage</a><a class="chip chip-neutral" href="../services/couples-massage.html">Couples Massage</a><a class="chip chip-neutral" href="../services/prenatal-massage.html">Prenatal Massage</a></div>
       <div class="bio-divider"></div>
       <a class="btn-book-hero" href="https://booking.mangomint.com/814946?staffId=52" target="_blank">Book Now</a>
       <div class="bio-body"><p>Taylor (<strong>LMBT #16876</strong>) attended the Philadelphia School of Massage and Bodywork from 2016 to 2017 before moving to Durham. Body neutrality and inclusivity are incredibly important to their work, and they make it their personal mission to ensure their clients feel supported and heard. These core values drive Taylor's approach to bodywork, making them someone dedicated not only to listening to the goals of each client, but also to what their bodies communicate on the table.</p><p>Taylor specializes in deep tissue massage that blends relaxation with results, with a focus on working with clients experiencing chronic pain. They are equally as passionate about prenatal massage, and consider it one of the greatest honors to be able to care for prenatal clients throughout their pregnancies. Taylor's own experiences with eating disorders, neurodivergence, and trauma shape the way she shows up to each session, striving to create an empathetic and safe space for their clients.</p><p>Outside of work, Taylor enjoys horror movies, comic books, Star Wars and pretty much anything pop-culture. When Taylor isn't traveling, they spend most of their days crafting, watching movies, and hanging out with their dog Ziggy, who they are obsessed with. They are a Leo, an iced coffee enthusiast, and a collector of awful fridge magnets.</p></div>
@@ -242,15 +250,15 @@
     <div class="bio-services-grid">
       <a class="bio-svc" href="../services/therapeutic-massage.html">
         <div class="bio-svc-name">Therapeutic Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/couples-massage.html">
         <div class="bio-svc-name">Couples Massage</div>
-        <div class="bio-svc-price">From $250 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$250</span><span class="svc-meta-dur">60 min</span></div>
       </a>
       <a class="bio-svc" href="../services/prenatal-massage.html">
         <div class="bio-svc-name">Prenatal Massage</div>
-        <div class="bio-svc-price">From $125 · 60 min</div>
+        <div class="bio-svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur">60 min</span></div>
       </a>
     
     </div>
@@ -275,8 +283,7 @@
           <li><a href="../memberships.html">Memberships</a></li>
           <li><a href="../classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="../journal.html">Journal</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../contact.html">Contact</a></li>
           <li><a href="../pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="../policies.html">Policies</a></li>
         </ul>

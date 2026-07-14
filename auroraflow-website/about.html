@@ -190,31 +190,6 @@
       }
     }
 
-    /* ── FOUNDERS ── */
-    .founders-section { background: var(--cream); padding: var(--space-section-y) var(--space-page-x); }
-    .founders-inner { max-width: 1200px; margin: 0 auto; }
-    .founders-inner h2 {
-      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 400; margin-bottom: 48px; letter-spacing: -0.01em;
-    }
-    .founders-inner h2 em { font-style: italic; }
-    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    .founder-card { display: flex; gap: 28px; align-items: flex-start; }
-    .founder-photo {
-      width: 160px; height: 160px; border-radius: var(--radius-sm); overflow: hidden;
-      background: #e0d8d0; flex-shrink: 0;
-    }
-    .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .founder-name {
-      font-family: var(--serif); font-size: 26px; font-weight: 400;
-      margin-bottom: 4px; letter-spacing: 0.01em;
-    }
-    .founder-role {
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 14px;
-    }
-    .founder-bio { font-size: 15px; line-height: 1.78; color: var(--mid); }
-
     /* ── COMMUNITY ── */
     .community-section { background: var(--warm-white); padding: var(--space-section-y) var(--space-page-x); }
     .community-inner {
@@ -268,11 +243,6 @@
 
     @media (max-width: 960px) {
       .story-inner, .community-inner { grid-template-columns: 1fr; gap: 40px; }
-      .founders-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px) {
-      .founder-card { flex-direction: column; }
-      .founder-photo { width: 120px; height: 120px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -309,7 +279,6 @@
         <li><a href="classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -333,7 +302,6 @@
   <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
   <a href="classes.html">Classes</a>
-  <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -342,7 +310,7 @@
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-img">
-    <img src="assets/img/about-hero-entryway.webp" width="1600" height="2133" alt="Auroraflow entryway with pride flag bunting" fetchpriority="high" />
+    <img src="assets/img/auroraflow-house-exterior.webp" width="1280" height="960" alt="Auroraflow's home, a turquoise Victorian house in downtown Durham, NC" fetchpriority="high" />
   </div>
   <div class="page-hero-content">
     <p class="section-label">About Auroraflow</p>
@@ -356,7 +324,7 @@
 <div class="story-section">
   <div class="story-inner">
     <div class="story-img">
-      <img src="assets/img/story-treatment-room.webp" width="900" height="1200" alt="A couples massage treatment room at Auroraflow, with a heron mural and warm lighting" />
+      <img src="assets/img/auroraflow-hallway-entryway.webp" width="792" height="1056" alt="Inside Auroraflow, a colorful entryway with pride flag bunting, a reading bench, and a bookshelf" loading="lazy" />
     </div>
     <div class="story-text">
       <h2>Our <em>story</em></h2>
@@ -412,35 +380,6 @@
   </div>
 </div>
 
-<!-- FOUNDERS -->
-<div class="founders-section">
-  <div class="founders-inner">
-    <h2>Founded by <em>two people</em>, built by a community</h2>
-    <div class="founders-grid">
-      <div class="founder-card">
-        <div class="founder-photo">
-          <img src="assets/img/founder-castle.webp" width="400" height="400" alt="Castle Frame" loading="lazy" />
-        </div>
-        <div>
-          <div class="founder-name">Castle Frame</div>
-          <div class="founder-role">CEO &amp; Massage Therapist</div>
-          <p class="founder-bio">Castle co-founded Auroraflow to build the safe, affirming space they wished existed — and still works as a massage therapist here today.</p>
-        </div>
-      </div>
-      <div class="founder-card">
-        <div class="founder-photo">
-          <img src="assets/img/founder-lauren.webp" width="400" height="400" alt="Lauren McCullough" loading="lazy" />
-        </div>
-        <div>
-          <div class="founder-name">Lauren McCullough</div>
-          <div class="founder-role">Co-founder</div>
-          <p class="founder-bio">Lauren co-founded Auroraflow, helping shape a wellness space rooted in accessibility and community from day one.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- COMMUNITY -->
 <div class="community-section">
   <div class="community-inner">
@@ -452,7 +391,6 @@
       <p>Auroraflow was built <em>by</em> this community and <em>for</em> this community, and that will never change.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
         <a class="btn-outline" href="team.html">Meet Our Team</a>
-        <a class="btn-outline" href="journal.html">Read Our Journal</a>
       </div>
     </div>
     <div class="community-img">
@@ -483,8 +421,7 @@
           <li><a href="memberships.html">Memberships</a></li>
           <li><a href="classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
           <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="policies.html">Policies</a></li>
         </ul>

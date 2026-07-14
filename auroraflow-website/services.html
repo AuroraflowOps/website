@@ -11,7 +11,7 @@
   <style>
     .filter-bar {
       display: flex; align-items: center; justify-content: center;
-      gap: 10px; flex-wrap: wrap; padding: 32px 40px 0;
+      gap: 10px; flex-wrap: wrap; padding: 32px var(--space-page-x) 0;
     }
     .filter-btn {
       padding: 9px 22px; border-radius: 100px; border: 1.5px solid var(--border);
@@ -28,7 +28,7 @@
     .consult-note a { color: var(--dark); font-weight: 400; }
 
     /* ── SERVICES GRID ── */
-    .services-section { padding: 48px 40px 100px; }
+    .services-section { padding: 48px var(--space-page-x) var(--space-section-y); }
     .services-section .section-inner { max-width: 1200px; margin: 0 auto; }
     .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
@@ -37,8 +37,12 @@
       display: flex; flex-direction: column;
       background: var(--warm-white); border-radius: var(--radius-sm);
       border: 1px solid var(--border); overflow: hidden;
-      text-decoration: none; color: inherit; position: relative;
+      position: relative;
       transition: box-shadow 0.25s, border-color 0.25s, transform 0.3s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .svc-card-link {
+      display: flex; flex-direction: column; flex: 1;
+      text-decoration: none; color: inherit;
     }
     .svc-card::before {
       content: "";
@@ -62,32 +66,28 @@
     }
     .svc-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
     .svc-card:hover .svc-img img { transform: scale(1.04); }
-    .svc-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+    .svc-body { padding: 22px 24px 0; flex: 1; display: flex; flex-direction: column; }
     .svc-body h2 {
       font-family: var(--serif); font-size: 20px; font-weight: 400;
       line-height: 1.25; margin-bottom: 8px;
-    }
-    .svc-price {
-      font-size: 12px; letter-spacing: 0.06em; color: var(--accent2);
-      text-transform: uppercase; margin-bottom: 12px; font-weight: 500;
     }
     .svc-desc {
       font-size: 14px; line-height: 1.7; color: var(--mid); flex: 1; margin-bottom: 20px;
     }
     .svc-book {
       display: inline-flex; align-items: center; align-self: flex-start;
+      margin: 0 24px 24px;
       padding: 9px 20px; border-radius: 100px;
       border: 1.5px solid var(--dark); color: var(--dark);
       font-family: var(--sans); font-size: 11px; font-weight: 400;
       letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
       transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1);
+      position: relative; z-index: 2;
     }
     .svc-book:hover { background: var(--dark); color: var(--cream); transform: translateY(-2px); }
 
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .services-section { padding: 40px 24px 80px; }
-      .filter-bar { padding: 24px 24px 0; }
       .consult-note { padding: 14px 24px 0; }
     }
     @media (max-width: 560px) {
@@ -129,7 +129,6 @@
         <li><a href="classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="journal.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -154,7 +153,6 @@
   <a href="pay-what-you-can.html">Pay What You Can</a>
   <a href="memberships.html">Memberships</a>
   <a href="classes.html">Classes</a>
-  <a href="journal.html">Journal</a>
   <a href="contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
@@ -162,7 +160,7 @@
 
 <div class="page-hero">
   <div class="page-hero-img">
-    <img src="assets/img/66214889abfb8f3a6ed61090_IMG_0065.jpg" width="1600" height="1200" alt="" />
+    <img src="assets/img/services-hero-treatment.webp" width="1600" height="1066" alt="Close-up of a massage treatment in progress at Auroraflow" />
   </div>
   <div class="page-hero-content">
     <p class="section-label">Services</p>
@@ -183,288 +181,344 @@
 <!-- SERVICES -->
 <div class="services-section">
   <div class="section-inner">
-    <div class="services-grid" id="servicesGrid">
+    <div class="services-grid softfilter reveal-grid" id="servicesGrid">
 
-      <a class="svc-card" data-cat="massage" href="services/therapeutic-massage.html">
-        <div class="svc-img"><img src="assets/img/684875281528670cae3abc26_Untitled-design-34-.jpg" width="1600" height="1600" alt="Therapeutic Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/therapeutic-massage.html">
+        <div class="svc-img"><img src="assets/img/684875281528670cae3abc26_Untitled-design-34-.webp" width="1200" height="1200" alt="Therapeutic Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Therapeutic Massage</h2>
-          <div class="svc-price">From $125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Deep relaxation and stress relief. Mood boost and relaxation. Nerve stimulation.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=7" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/ashiatsu-massage.html">
-        <div class="svc-img"><img src="assets/img/68487643112b5347d8dfa18a_Untitled-design-35-.jpg" width="1600" height="1600" alt="Ashiatsu Barefoot Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/ashiatsu-massage.html">
+        <div class="svc-img"><img src="assets/img/68487643112b5347d8dfa18a_Untitled-design-35-.webp" width="1200" height="1200" alt="Ashiatsu Barefoot Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Ashiatsu "Barefoot" Massage</h2>
-          <div class="svc-price">From $145 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Deep tissue relief using the therapist's feet for broader pressure, deeper tension release and profound relaxation.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=12" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/blended-massage-energy-healing.html">
-        <div class="svc-img"><img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.jpg" width="1600" height="1600" alt="Energetic Bodywork" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/blended-massage-energy-healing.html">
+        <div class="svc-img"><img src="assets/img/6848800087a49c11bae7b316_Untitled-design-31-.webp" width="1200" height="1200" alt="Energetic Bodywork" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Energetic Bodywork</h2>
-          <div class="svc-price">From $125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Combines soothing massage with energy healing for deep physical relaxation and meaningful energetic restoration.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/sports-massage.html">
-        <div class="svc-img"><img src="assets/img/6421da7a18801b8203ffa32c_Auroraflow-Website-Photo-Template-2-.png" width="750" height="750" alt="Sports Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/sports-massage.html">
+        <div class="svc-img"><img src="assets/img/6421da7a18801b8203ffa32c_Auroraflow-Website-Photo-Template-2-.webp" width="750" height="750" alt="Sports Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Sports Massage</h2>
-          <div class="svc-price">From $125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Focused deep tissue massage targeting overworked muscles to boost performance, flexibility and recovery time</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=23" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/prenatal-massage.html">
-        <div class="svc-img"><img src="assets/img/638662a4e5050055397ab47a_prenatalwebsite.png" width="250" height="250" alt="Prenatal Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/prenatal-massage.html">
+        <div class="svc-img"><img src="assets/img/638662a4e5050055397ab47a_prenatalwebsite.webp" width="250" height="250" alt="Prenatal Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Prenatal Massage</h2>
-          <div class="svc-price">From $125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Safe, specialized massage to relieve tension, reduce stress and support overall wellbeing throughout pregnancy.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=14" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/couples-massage.html">
-        <div class="svc-img"><img src="assets/img/653c31c8b6e7d5d8204b271d_Auroraflow.-Couples-Massage.-Image.-Durham-North-Carolina.png" width="1500" height="1500" alt="Couples Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/couples-massage.html">
+        <div class="svc-img"><img src="assets/img/auroraflow-couples-massage-room.webp" width="984" height="1312" alt="Couples Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Couples Massage</h2>
-          <div class="svc-price">From $250 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$250</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Side-by-side therapeutic massage for any two people to relax, reconnect and unwind together</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=17" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/lymphatic-drainage-massage.html">
-        <div class="svc-img"><img src="assets/img/661824071493393795ac67c8_Lymphatic-Drainage.JPG" width="2118" height="1980" alt="Lymphatic Drainage Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/lymphatic-drainage-massage.html">
+        <div class="svc-img"><img src="assets/img/661824071493393795ac67c8_Lymphatic-Drainage.webp" width="1200" height="1122" alt="Lymphatic Drainage Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Lymphatic Drainage Massage</h2>
-          <div class="svc-price">From $125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Gentle strokes stimulate the lymph system to reduce swelling, detoxify the body and support immune health</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=33" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/craniosacral-massage.html">
-        <div class="svc-img"><img src="assets/img/6723f8ce74900e8a01148c9c_2.png" width="500" height="500" alt="Craniosacral Massage Blend" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/craniosacral-massage.html">
+        <div class="svc-img"><img src="assets/img/6723f8ce74900e8a01148c9c_2.webp" width="500" height="500" alt="Craniosacral Massage Blend" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Craniosacral Massage Blend</h2>
-          <div class="svc-price">$145 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Gentle cranial sacral therapy combined with massage to release deep tension and restore full body balance</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=39" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/energy-healing.html">
-        <div class="svc-img"><img src="assets/img/684873a86a55c05676f84946_Untitled-design-32-.jpg" width="1600" height="1600" alt="Energy Healing" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/energy-healing.html">
+        <div class="svc-img"><img src="assets/img/684873a86a55c05676f84946_Untitled-design-32-.webp" width="1200" height="1200" alt="Energy Healing" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Energy Healing</h2>
-          <div class="svc-price">From $125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Harmonizes the body's energy field and chakras to promote grounding, cleansing and overall healing.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=20" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/reflexology.html">
-        <div class="svc-img"><img src="assets/img/68c858e11965fed19d558e9d_Untitled-design-58-.jpg" width="1600" height="1600" alt="Reflexology" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/reflexology.html">
+        <div class="svc-img"><img src="assets/img/68c858e11965fed19d558e9d_Untitled-design-58-.webp" width="1200" height="1200" alt="Reflexology" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Reflexology</h2>
-          <div class="svc-price">From $85 · 30 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$85</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30 min</span></div>
           <p class="svc-desc">Targeted foot massage that stimulates the nervous system to relax the body, improve sleep and ease pain.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=22" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/tmj-massage.html">
-        <div class="svc-img"><img src="assets/img/68d6c71a004fc3b817123290_Untitled-design-67-.jpg" width="1600" height="1600" alt="TMJ Tune-up" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/tmj-massage.html">
+        <div class="svc-img"><img src="assets/img/68d6c71a004fc3b817123290_Untitled-design-67-.webp" width="1200" height="1200" alt="TMJ Tune-up" loading="lazy" /></div>
         <div class="svc-body">
           <h2>TMJ Tune-up</h2>
-          <div class="svc-price">$90 · 30 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$90</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30 min</span></div>
           <p class="svc-desc">Relieves jaw tension, reduces headaches and improves jaw mobility through targeted muscle manipulation techniques.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=25" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/scar-tissue-massage.html">
-        <div class="svc-img"><img src="assets/img/684880637d25838a7b0cbd03_Untitled-design-41-.jpg" width="1600" height="1600" alt="Scar Tissue Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/scar-tissue-massage.html">
+        <div class="svc-img"><img src="assets/img/684880637d25838a7b0cbd03_Untitled-design-41-.webp" width="1200" height="1200" alt="Scar Tissue Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Scar Tissue Massage</h2>
-          <div class="svc-price">From $75 · 30 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$75</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30 min</span></div>
           <p class="svc-desc">Specialized treatment to improve sensation, mobility and comfort around post-surgical or traumatic scar tissue</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=124" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/on-site-chair-massage.html">
-        <div class="svc-img"><img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.png" width="627" height="679" alt="On-site Chair Massage" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/on-site-chair-massage.html">
+        <div class="svc-img"><img src="assets/img/6614875d29f243a0184aaa7b_Brown-And-Blue-Nature-Scenery-Travel-Photo-Collage.webp" width="627" height="679" alt="On-site Chair Massage" loading="lazy" /></div>
         <div class="svc-body">
           <h2>On-site Chair Massage</h2>
-          <div class="svc-price">Email for pricing</div>
+          <div class="svc-meta"><span class="chip chip-inquire">Inquire for Pricing</span><span class="svc-meta-dur">On-site</span></div>
           <p class="svc-desc">Bring relaxation to your next office event or fundraiser with professional on-site chair massage for teams.</p>
-          <span class="svc-book">Get in Touch</span>
         </div>
       </a>
+      <a class="svc-book" href="mailto:lydia@auroraflow.com">Get in Touch</a>
+    </div>
 
-      <a class="svc-card" data-cat="massage" href="services/cupping.html">
-        <div class="svc-img"><img src="assets/img/68a61503465e5c82d11698fe_Untitled-design-5-.jpg" width="1600" height="1600" alt="Cupping" loading="lazy" /></div>
+      <div class="svc-card" data-cat="massage">
+      <a class="svc-card-link" href="services/cupping.html">
+        <div class="svc-img"><img src="assets/img/68a61503465e5c82d11698fe_Untitled-design-5-.webp" width="1200" height="1200" alt="Cupping" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Cupping</h2>
-          <div class="svc-price">$30 add-on</div>
+          <div class="svc-meta"><span class="chip chip-addon">+ $30 Add-on</span></div>
           <p class="svc-desc">Releases deep tension, improves circulation and supports the body’s natural healing process. Deeply relaxing.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=230" target="_blank">Book Appointment</a>
+    </div>
 
       <!-- SKINCARE -->
-      <a class="svc-card" data-cat="skincare" href="services/spa-facial.html">
-        <div class="svc-img"><img src="assets/img/66214889abfb8f3a6ed61090_IMG_0065.jpg" width="1600" height="1200" alt="Spa Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/spa-facial.html">
+        <div class="svc-img"><img src="assets/img/66214889abfb8f3a6ed61090_IMG_0065.webp" width="1200" height="900" alt="Spa Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Spa Facial</h2>
-          <div class="svc-price">$125 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$125</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Classic customizable facial with cleanse, massage, extractions and a mask. Suitable for every skin type.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=20" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/facial-101.html">
-        <div class="svc-img"><img src="assets/img/68c1fccb36c16802544e18ee_759A8228.jpg" width="1360" height="1303" alt="Facial 101" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/facial-101.html">
+        <div class="svc-img"><img src="assets/img/68c1fccb36c16802544e18ee_759A8228.webp" width="1200" height="1150" alt="Facial 101" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Facial 101 (Intro)</h2>
-          <div class="svc-price">$105 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$105</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">A complete introductory facial including cleanse, exfoliation, extractions, mask and massage. Perfect first facial.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=231" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/sensitive-skin-calming-facial.html">
-        <div class="svc-img"><img src="assets/img/647746d027ac4439417c48fc_1.png" width="400" height="400" alt="Sensitive Skin Calming Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/sensitive-skin-calming-facial.html">
+        <div class="svc-img"><img src="assets/img/647746d027ac4439417c48fc_1.webp" width="400" height="400" alt="Sensitive Skin Calming Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Sensitive Skin Calming Facial</h2>
-          <div class="svc-price">$145 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Tailored facial using anti-inflammatory, dermatologist-tested products to exfoliate, extract and restore skin health.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=21" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/acne-focused-facial.html">
-        <div class="svc-img"><img src="assets/img/65033fb8da06d8709e493b74_Auroraflow.-Acne-Facial-Blog-Post.png" width="1500" height="1500" alt="Acne Focused Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/acne-focused-facial.html">
+        <div class="svc-img"><img src="assets/img/65033fb8da06d8709e493b74_Auroraflow.-Acne-Facial-Blog-Post.webp" width="1200" height="1200" alt="Acne Focused Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Acne Focused Facial</h2>
-          <div class="svc-price">$145 · 75 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>75 min</span></div>
           <p class="svc-desc">Deep extractions, high-frequency technology and a charcoal mask work together to clear pores and calm skin.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=127" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/excellent-exfoliation-facial.html">
-        <div class="svc-img"><img src="assets/img/682cca9f888f89724f6e44f9_759A8310.jpg" width="1600" height="1066" alt="Excellent Exfoliation Spa Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/excellent-exfoliation-facial.html">
+        <div class="svc-img"><img src="assets/img/682cca9f888f89724f6e44f9_759A8310.webp" width="1200" height="800" alt="Excellent Exfoliation Spa Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Excellent Exfoliation Spa Facial</h2>
-          <div class="svc-price">$145 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">AHA exfoliation with Manuka Honey revives skin texture, softens fine lines and restores a natural radiance.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=22" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/clinical-facial.html">
-        <div class="svc-img"><img src="assets/img/68d6c350e8607a9bb016a660_Untitled-design-66-.jpg" width="1600" height="1600" alt="Clinical Facial and Consultation" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/clinical-facial.html">
+        <div class="svc-img"><img src="assets/img/68d6c350e8607a9bb016a660_Untitled-design-66-.webp" width="1200" height="1200" alt="Clinical Facial and Consultation" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Clinical Facial &amp; Consultation</h2>
-          <div class="svc-price">$210 · 105 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$210</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>105 min</span></div>
           <p class="svc-desc">Start your skincare journey with a thorough consultation and a personalized facial treatment plan.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=172" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/bipoc-clinical-facial.html">
-        <div class="svc-img"><img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.jpg" width="1600" height="1600" alt="BIPOC Specific Clinical Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/bipoc-clinical-facial.html">
+        <div class="svc-img"><img src="assets/img/68d6c70511d1fc22166a4c16_Untitled-design-68-.webp" width="1200" height="1200" alt="BIPOC Specific Clinical Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>BIPOC Specific Clinical Facial &amp; Consultation</h2>
-          <div class="svc-price">$210 · 105 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$210</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>105 min</span></div>
           <p class="svc-desc">Comprehensive skin consultation and treatment plan designed and tailored specifically for skin of color</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=208" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/chemical-peels.html">
-        <div class="svc-img"><img src="assets/img/66f9665620d4e0b7cfe6e1bf_Auroraflow-Chemical-Peels.jpg" width="1337" height="1337" alt="Chemical Peels" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/chemical-peels.html">
+        <div class="svc-img"><img src="assets/img/66f9665620d4e0b7cfe6e1bf_Auroraflow-Chemical-Peels.webp" width="1200" height="1200" alt="Chemical Peels" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Chemical Peels</h2>
-          <div class="svc-price">From $195 · 90 min</div>
+          <div class="svc-meta"><span class="svc-meta-from">From</span><span class="svc-meta-price">$195</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>90 min</span></div>
           <p class="svc-desc">Gently exfoliates and promotes cell turnover for smoother, brighter skin that is safe for all skin tones.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=27" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/hydration-station.html">
-        <div class="svc-img"><img src="assets/img/65677831e2a5f1cb6f39e88a_Hydration-Station-Auroraflow-Site.png" width="1500" height="1500" alt="Hydration Station" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/hydration-station.html">
+        <div class="svc-img"><img src="assets/img/65677831e2a5f1cb6f39e88a_Hydration-Station-Auroraflow-Site.webp" width="1200" height="1200" alt="Hydration Station" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Hydration Station</h2>
-          <div class="svc-price">$145 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Water-rich facial that locks in moisture, prevents dehydration and leaves skin plump and refreshed.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=146" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/microdermabrasion-facial.html">
-        <div class="svc-img"><img src="assets/img/68484aabb261d1c803583b61_Untitled-design-30-.jpg" width="1600" height="1600" alt="Microdermabrasion Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/microdermabrasion-facial.html">
+        <div class="svc-img"><img src="assets/img/68484aabb261d1c803583b61_Untitled-design-30-.webp" width="1200" height="1200" alt="Microdermabrasion Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Microdermabrasion Facial</h2>
-          <div class="svc-price">$185 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$185</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">Diamond-tip exfoliation and suction reveal smoother, brighter skin while stimulating long-term collagen production.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=203" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/the-grizzly.html">
-        <div class="svc-img"><img src="assets/img/63deb7c970afa6733ea85d21_5.jpg" width="600" height="600" alt="The Grizzly Beard Facial" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/the-grizzly.html">
+        <div class="svc-img"><img src="assets/img/63deb7c970afa6733ea85d21_5.webp" width="600" height="600" alt="The Grizzly Beard Facial" loading="lazy" /></div>
         <div class="svc-body">
           <h2>The Grizzly (Beard Facial)</h2>
-          <div class="svc-price">$145 · 60 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$145</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 min</span></div>
           <p class="svc-desc">High-frequency beard treatment that clears bacteria, stimulates growth and leaves facial hair soft and healthy.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/auroraflow?serviceId=91" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/lash-lift.html">
-        <div class="svc-img"><img src="assets/img/678fd2c20d9cf5ca7fffc49e_Untitled-1500-x-1500-px-3-.png" width="1500" height="1500" alt="Lash Lift" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/lash-lift.html">
+        <div class="svc-img"><img src="assets/img/678fd2c20d9cf5ca7fffc49e_Untitled-1500-x-1500-px-3-.webp" width="1200" height="1200" alt="Lash Lift" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Lash Lift</h2>
-          <div class="svc-price">$90 · 45 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$90</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>45 min</span></div>
           <p class="svc-desc">Curls and lifts your natural lashes for a longer, more defined look with zero daily maintenance required.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=40" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/waxing.html">
-        <div class="svc-img"><img src="assets/img/63d47ddd3dc29b30138f7cb2_Auroraflow-Website-Photo-Template.jpg" width="500" height="500" alt="Body and Facial Hair Removal" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/waxing.html">
+        <div class="svc-img"><img src="assets/img/63d47ddd3dc29b30138f7cb2_Auroraflow-Website-Photo-Template.webp" width="500" height="500" alt="Body and Facial Hair Removal" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Body and Facial Hair Removal</h2>
-          <div class="svc-price">Pricing varies by service</div>
+          <div class="svc-meta"><span class="chip chip-inquire">Pricing Varies</span></div>
           <p class="svc-desc">Inclusive, gender-affirming waxing using hypoallergenic wax formulated for all skin and body types.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946?showOnlyScId=11" target="_blank">Book Appointment</a>
+    </div>
 
-      <a class="svc-card" data-cat="skincare" href="services/relaxing-back-treatment.html">
-        <div class="svc-img"><img src="assets/img/65eb7cba66520ea5d64bd4ed_Relaxing-Back-Treatment-Auroraflow.jpg" width="576" height="642" alt="Relaxing Back Treatment" loading="lazy" /></div>
+      <div class="svc-card" data-cat="skincare">
+      <a class="svc-card-link" href="services/relaxing-back-treatment.html">
+        <div class="svc-img"><img src="assets/img/65eb7cba66520ea5d64bd4ed_Relaxing-Back-Treatment-Auroraflow.webp" width="576" height="642" alt="Relaxing Back Treatment" loading="lazy" /></div>
         <div class="svc-body">
           <h2>Relaxing Back Treatment</h2>
-          <div class="svc-price">$115 · 45 min</div>
+          <div class="svc-meta"><span class="svc-meta-price">$115</span><span class="svc-meta-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>45 min</span></div>
           <p class="svc-desc">Deep cleanse, exfoliation and extractions for the back to clear congestion and hydrate often neglected skin.</p>
-          <span class="svc-book">Book Appointment</span>
         </div>
       </a>
+      <a class="svc-book" href="https://booking.mangomint.com/814946" target="_blank">Book Appointment</a>
+    </div>
 
     </div>
   </div>
@@ -483,8 +537,7 @@
           <li><a href="memberships.html">Memberships</a></li>
           <li><a href="classes.html">Classes</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
           <li><a href="pay-what-you-can.html">Pay What You Can</a></li>
           <li><a href="policies.html">Policies</a></li>
         </ul>
@@ -532,9 +585,32 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.dataset.filter;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let shown = 0;
       cards.forEach(card => {
         const show = filter === 'all' || card.dataset.cat === filter;
-        card.style.display = show ? 'flex' : 'none';
+        card.classList.remove('f-in');
+        if (show) {
+          card.style.display = 'flex';
+          if (!reduce) {
+            card.classList.add('f-out');
+            const idx = shown;
+            setTimeout(() => {
+              card.classList.remove('f-out');
+              card.classList.add('f-in');
+            }, 30 + idx * 45);
+          } else {
+            card.classList.remove('f-out');
+          }
+          shown++;
+        } else if (reduce) {
+          card.style.display = 'none';
+        } else {
+          card.classList.add('f-out');
+          setTimeout(() => {
+            if (card.classList.contains('f-out')) card.style.display = 'none';
+          }, 360);
+        }
       });
     });
   });

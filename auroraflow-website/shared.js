@@ -269,3 +269,55 @@
   }
 })();
 
+
+/* ── DESIGN AUDIT: scroll reveal (X3) + article reading progress (JD3) ── */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initReveal() {
+    var grids = document.querySelectorAll('.reveal-grid');
+    if (!grids.length || reduce || !('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('js-reveal');
+    grids.forEach(function (grid) {
+      var kids = Array.prototype.slice.call(grid.children);
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var i = kids.indexOf(en.target);
+          en.target.style.transitionDelay = (i % 3) * 80 + 'ms';
+          en.target.classList.add('revealed');
+          io.unobserve(en.target);
+        });
+      }, { threshold: 0.12, rootMargin: '10000px 0px -5% 0px' });
+      kids.forEach(function (k) { io.observe(k); });
+    });
+  }
+
+  function initProgress() {
+    var article = document.querySelector('.article-body');
+    if (!article || reduce) return;
+    var bar = document.createElement('div');
+    bar.className = 'article-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    var fill = document.createElement('span');
+    bar.appendChild(fill);
+    document.body.appendChild(bar);
+    function update() {
+      var rect = article.getBoundingClientRect();
+      var top = rect.top + window.scrollY - window.innerHeight * 0.6;
+      var end = rect.top + window.scrollY + rect.height - window.innerHeight * 0.6;
+      var p = (window.scrollY - top) / Math.max(1, end - top);
+      fill.style.width = Math.min(100, Math.max(0, p * 100)) + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  function init() { initReveal(); initProgress(); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

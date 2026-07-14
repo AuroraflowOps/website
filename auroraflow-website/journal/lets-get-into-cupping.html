@@ -9,50 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
   <style>
-    .article-hero {
-      padding-top: var(--nav-h);
-      background: var(--warm-white);
-    }
-    .article-hero-img {
-      width: 100%; max-height: 520px; overflow: hidden;
-      background: #e0d8d0;
-    }
-    .article-hero-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      max-height: 520px;
-    }
-    .article-header {
-      max-width: 780px; margin: 0 auto;
-      padding: 56px 40px 0;
-    }
-    .article-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted); text-decoration: none;
-      margin-bottom: 28px; transition: color 0.2s; display: block;
-    }
-    .article-back:hover { color: var(--dark); }
-    .article-tag {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
-    }
-    .article-title {
-      font-family: var(--serif);
-      font-size: clamp(28px, 4.5vw, 56px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-    .article-summary {
-      font-size: 18px; line-height: 1.7; color: var(--mid);
-      margin-bottom: 28px; font-style: italic;
-    }
-    .article-meta {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 13px; color: var(--muted); padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta .dot { opacity: 0.4; }
-
     /* Rich text body */
     .article-body {
       max-width: 780px; margin: 0 auto;
@@ -150,7 +106,6 @@
     .related-summary { font-size: 13px; line-height: 1.65; color: var(--muted); }
 
     @media (max-width: 900px) {
-      .article-header { padding: 48px 24px 0; }
       .article-body { padding: 32px 24px 64px; }
       .related-grid { grid-template-columns: repeat(2,1fr); }
       .related-section { padding: 56px 24px; }
@@ -198,7 +153,6 @@
         <li><a href="../classes.html">Classes</a></li>
       </ul>
     </li>
-    <li><a href="../journal.html" class="active">Journal</a></li>
     <li><a href="../contact.html">Contact</a></li>
     <li><a class="btn-book" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a></li>
   </ul>
@@ -222,22 +176,25 @@
   <a href="../pay-what-you-can.html">Pay What You Can</a>
   <a href="../memberships.html">Memberships</a>
   <a href="../classes.html">Classes</a>
-  <a href="../journal.html">Journal</a>
   <a href="../contact.html">Contact</a>
   <a class="btn-book-mobile" href="https://booking.mangomint.com/814946" target="_blank">Book Now</a>
 </div>
 <main>
 
-<div class="article-hero">
-  <div class="article-hero-img"><img src="../assets/img/68a61503465e5c82d11698fe_Untitled-design-5-.jpg" width="1600" height="1600" alt="Let's Get Into Cupping! What Is It and How Can It Help You?" loading="lazy" /></div>
-  <div class="article-header">
-    <a class="article-back" href="../journal.html">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><polyline points="15 18 9 12 15 6"/></svg>Back to Journal
+<div class="page-hero article-page-hero">
+  <div class="page-hero-img">
+    <img src="../assets/img/68a61503465e5c82d11698fe_Untitled-design-5-.webp" width="1200" height="1200" alt="Let's Get Into Cupping! What Is It and How Can It Help You?" />
+  </div>
+  <div class="page-hero-content">
+    <a class="article-hero-back" href="../journal.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Back to Journal
     </a>
-    <div class="article-tag">Services</div>
-    <h1 class="article-title">Let's Get Into Cupping! What Is It and How Can It Help You?</h1>
-    <p class="article-summary">Experience cupping, the use of suction cups to safely release tension along your body. Non-invasive, completely safe, and deeply relaxing.</p>
-    <div class="article-meta">
+    <p class="article-hero-tag"><span class="chip chip-services-d">Services</span></p>
+    <h1>Let's Get Into Cupping! What Is It and How Can It Help You?</h1>
+    <p>Experience cupping, the use of suction cups to safely release tension along your body. Non-invasive, completely safe, and deeply relaxing.</p>
+    <div class="article-hero-meta">
+      <span class="meta-date">Aug 2025</span>
+      <span class="dot">·</span>
       <span>Auroraflow Team</span>
       <span class="dot">·</span>
       <span>2 min read</span>
@@ -245,10 +202,8 @@
   </div>
 </div>
 
-<div class="rainbow-bar"></div>
-
 <div class="article-body">
-  <p>You might have heard whispers about cupping before. Maybe you've seen those red circles on people's backs and were curious. It's time to unravel the mystery of this ancient therapy and dive into the incredible benefits it can bring to your day.</p><h5>What is Cupping, Anyway?</h5><p>Smooth, specially designed cups are placed on your skin, creating a gentle suction. This suction encourages blood flow to the treated areas, promoting healing and providing a soothing sensation. Cupping has been around for centuries, known to have originated from ancient Chinese, Egyptian, and Middle Eastern practices. At Auroraflow, our therapists are tested and certified in practicing it during their treatments.</p><h2>At Auroraflow we use dry-cupping as our preferred method.</h2><h5>Why Should You Try Cupping?</h5><p><strong>Stress Relief:</strong> Cupping eases tension and helps you drift into a state of relaxation, like a mini-vacation for your body and mind.</p><p><strong>Bye-bye Muscle Knots:</strong> Sitting in front of a computer or standing on your feet all day can lead to muscle knots and pain. Cupping helps to release muscle tension, making you feel as loose as a noodle.</p><p><strong>Detoxification:</strong> Cupping helps to draw out impurities and toxins from deep within your muscles, leaving you feeling refreshed and revitalized.</p><p><strong>Boosts Circulation:</strong> Cupping enhances blood circulation, promoting faster healing and a healthier body overall.</p><p><strong>Immunity Boost:</strong> Cupping stimulates the lymphatic system, helping your body fight off infections more effectively.</p><h5>Is Cupping Right for You?</h5><p>Absolutely! Cupping is for everyone. This therapy is non-invasive and completely safe when performed by trained professionals. If you are concerned, our certified massage therapists are able to answer any and all questions you may have.</p><h5>But Does It Leave Marks?</h5><p>While cupping may leave temporary circular marks on your skin, they're just a sign that the therapy is doing its job! These marks usually fade within a few days.</p>
+  <p>You might have heard whispers about cupping before. Maybe you've seen those red circles on people's backs and were curious. It's time to unravel the mystery of this ancient therapy and dive into the incredible benefits it can bring to your day.</p><h2>What is Cupping, Anyway?</h2><p>Smooth, specially designed cups are placed on your skin, creating a gentle suction. This suction encourages blood flow to the treated areas, promoting healing and providing a soothing sensation. Cupping has been around for centuries, known to have originated from ancient Chinese, Egyptian, and Middle Eastern practices. At Auroraflow, our therapists are tested and certified in practicing it during their treatments.</p><div class="pullquote">At Auroraflow we use dry-cupping as our preferred method.</div><h2>Why Should You Try Cupping?</h2><p><strong>Stress Relief:</strong> Cupping eases tension and helps you drift into a state of relaxation, like a mini-vacation for your body and mind.</p><p><strong>Bye-bye Muscle Knots:</strong> Sitting in front of a computer or standing on your feet all day can lead to muscle knots and pain. Cupping helps to release muscle tension, making you feel as loose as a noodle.</p><p><strong>Detoxification:</strong> Cupping helps to draw out impurities and toxins from deep within your muscles, leaving you feeling refreshed and revitalized.</p><p><strong>Boosts Circulation:</strong> Cupping enhances blood circulation, promoting faster healing and a healthier body overall.</p><p><strong>Immunity Boost:</strong> Cupping stimulates the lymphatic system, helping your body fight off infections more effectively.</p><h2>Is Cupping Right for You?</h2><p>Absolutely! Cupping is for everyone. This therapy is non-invasive and completely safe when performed by trained professionals. If you are concerned, our certified massage therapists are able to answer any and all questions you may have.</p><h2>But Does It Leave Marks?</h2><p>While cupping may leave temporary circular marks on your skin, they're just a sign that the therapy is doing its job! These marks usually fade within a few days.</p>
 </div>
 
 <div class="article-cta">
@@ -264,17 +219,17 @@
     <div class="related-grid">
       
       <a class="related-card" href="discover-the-benefits-of-chemical-peels.html">
-        <div class="related-img"><img src="../assets/img/66f968b7490b93bd2144c949_Auroraflow-Skincare.jpg" width="2048" height="1365" alt="Discover the Benefits of Chemical Peels" loading="lazy" /></div>
+        <div class="related-img"><img src="../assets/img/66f968b7490b93bd2144c949_Auroraflow-Skincare.webp" width="1200" height="800" alt="Discover the Benefits of Chemical Peels" loading="lazy" /></div>
         <div class="related-title">Discover the Benefits of Chemical Peels</div>
         <div class="related-summary">We're thrilled that our estheticians have received advanced training with world-renowned educator Joelle Lee, equipping them to safely administer chemical peels to skin of every shade.</div>
       </a>
       <a class="related-card" href="meet-the-team-hayley-ware.html">
-        <div class="related-img"><img src="../assets/img/63a2448100c39f816a95d85d_Untitled-design-3-.jpg" width="2000" height="1200" alt="Meet the Team: Hayley Yokoyama" loading="lazy" /></div>
+        <div class="related-img"><img src="../assets/img/63a2448100c39f816a95d85d_Untitled-design-3-.webp" width="1200" height="720" alt="Meet the Team: Hayley Yokoyama" loading="lazy" /></div>
         <div class="related-title">Meet the Team: Hayley Yokoyama</div>
         <div class="related-summary">Meet Hayley and learn how she uses 20 years of dance experience to support clients at Auroraflow through the art of Ashiatsu barefoot massage.</div>
       </a>
       <a class="related-card" href="embracing-every-body-a-guide-to-inclusive-massage-experiences.html">
-        <div class="related-img"><img src="../assets/img/650362b79682c5c042896c94_Headshot-Template-6-.png" width="1500" height="1500" alt="Embracing Every Body: A Guide to Inclusive Massage Experiences" loading="lazy" /></div>
+        <div class="related-img"><img src="../assets/img/650362b79682c5c042896c94_Headshot-Template-6-.webp" width="1200" height="1200" alt="Embracing Every Body: A Guide to Inclusive Massage Experiences" loading="lazy" /></div>
         <div class="related-title">Embracing Every Body: A Guide to Inclusive Massage Experiences</div>
         <div class="related-summary">All bodies are accepted here. We want to provide an extra layer of transparency and support for plus-size people and people of various abilities.</div>
       </a>
@@ -293,8 +248,7 @@
           <li><a href="../team.html">Team</a></li>
           <li><a href="#">Memberships</a></li>
           <li><a href="https://clients.mangomint.com/gift-cards/814946" target="_blank">Gift Cards</a></li>
-          <li><a href="../journal.html">Journal</a></li>
-          <li><a href="#">Careers</a></li>
+                <li><a href="#">Careers</a></li>
           <li><a href="../contact.html">Contact</a></li>
         </ul>
         <address class="footer-address" itemscope itemtype="https://schema.org/PostalAddress">

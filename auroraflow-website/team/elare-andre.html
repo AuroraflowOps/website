@@ -21,7 +21,7 @@
       aspect-ratio: 1/1; background: #e0d8d0;
     }
     .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 8px; }
+    .bio-lifestyle { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-top: 8px; }
     .bio-lifestyle img { width: 100%; aspect-ratio: 1/1; height: auto; object-fit: cover; border-radius: var(--radius-sm); display: block; align-self: start; }
     .bio-back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -135,7 +135,7 @@
     }
     @media (max-width: 520px) {
       .bio-services-grid { grid-template-columns: 1fr; }
-      .bio-lifestyle { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+      .bio-lifestyle { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -225,12 +225,6 @@
 <div class="rainbow-bar"></div>
 
 
-
-<div class="bio-cta">
-  <h2>Ready to book with<br><em>Elare?</em></h2>
-  <p>Use our online scheduler to find a time that works for you.</p>
-  <a class="btn-cta" href="https://booking.mangomint.com/814946" target="_blank">Book an Appointment</a>
-</div>
 
 </main>
 <footer>

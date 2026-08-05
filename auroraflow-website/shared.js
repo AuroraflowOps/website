@@ -218,6 +218,68 @@
   }
 })();
 
+/* ── Back-to-School gift card promo banner ──
+   Site-wide bar above the nav: $50 off a $400 gift card, running through
+   Aug 7, 2026. Self-expires — pages load it only while the local date is
+   before HIDE_ON, so nothing needs to be removed when the promo ends.
+   The fixed nav and all content clearance key off --nav-h, so while the
+   banner is up we grow --nav-h by the banner's measured height and pin the
+   nav just below the banner; everything else adjusts automatically. */
+(function () {
+  var HIDE_ON = new Date(2026, 7, 8); /* midnight Aug 8, 2026 local — last shown Aug 7 */
+  if (new Date() >= HIDE_ON) return;
+
+  var GIFT_URL = 'https://clients.mangomint.com/gift-cards/814946';
+
+  function addPromoBanner() {
+    if (document.querySelector('.promo-banner')) return;
+
+    var style = document.createElement('style');
+    style.textContent =
+      '.promo-banner{position:fixed;top:0;left:0;right:0;z-index:210;' +
+      'display:flex;align-items:center;justify-content:center;flex-wrap:wrap;' +
+      'gap:4px 10px;padding:9px var(--space-page-x);box-sizing:border-box;' +
+      'background:linear-gradient(100deg,var(--deep),var(--accent2));' +
+      'color:var(--cream);text-decoration:none;text-align:center;' +
+      'font-family:var(--sans);font-size:13.5px;font-weight:400;line-height:1.35;}' +
+      '.promo-banner strong{font-weight:700;color:var(--accent);' +
+      'letter-spacing:0.04em;text-transform:uppercase;font-size:12.5px;}' +
+      '.promo-banner .promo-cta{font-weight:700;text-decoration:underline;' +
+      'text-underline-offset:3px;white-space:nowrap;}' +
+      '.promo-banner:hover .promo-cta{color:var(--accent);}' +
+      'html.has-promo{--nav-base-h:72px;--nav-h:calc(var(--nav-base-h) + var(--promo-h,0px));}' +
+      'html.has-promo nav{height:var(--nav-base-h);top:var(--promo-h,0px);}';
+    document.head.appendChild(style);
+
+    var banner = document.createElement('a');
+    banner.className = 'promo-banner';
+    banner.href = GIFT_URL;
+    banner.target = '_blank';
+    banner.rel = 'noopener';
+    banner.innerHTML =
+      '<strong>Back to School</strong>' +
+      '<span>$50 off a $400 gift card — now through Aug&nbsp;7</span>' +
+      '<span class="promo-cta">Get yours</span>';
+    document.body.insertBefore(banner, document.body.firstChild);
+
+    /* the bar can wrap to two lines on narrow screens, so measure the real
+       height and push the nav/content down by exactly that much */
+    var root = document.documentElement;
+    function sync() {
+      root.style.setProperty('--promo-h', banner.offsetHeight + 'px');
+    }
+    root.classList.add('has-promo');
+    sync();
+    window.addEventListener('resize', sync);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addPromoBanner);
+  } else {
+    addPromoBanner();
+  }
+})();
+
 // Gift card buttons — desktop pill beside Book Now, mobile icon beside the calendar
 (function () {
   var GIFT_URL = 'https://clients.mangomint.com/gift-cards/814946';

@@ -703,8 +703,24 @@
     }
     @media (max-width: 640px) {
       .testimonials { padding: 56px 24px; }
-      .testimonials-slider { gap: 16px; }
-      .testimonial-card { width: 78vw; }
+      /* On phones the auto-marquee is unreadable — you can't control the
+         pace and touch never pauses it. Swap it for a swipe gallery: the
+         track scroll-snaps one card at a time, with slivers of the
+         neighboring cards peeking in as the swipe affordance. */
+      .testimonials-track-mask {
+        overflow-x: auto;
+        -webkit-mask-image: none; mask-image: none;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        /* bleed to the screen edges so the centered card gets full width */
+        margin: 0 -24px; padding: 0 24px;
+      }
+      .testimonials-track-mask::-webkit-scrollbar { display: none; }
+      .testimonials-slider { animation: none; gap: 16px; }
+      .testimonial-card { width: calc(100vw - 64px); scroll-snap-align: center; }
+      /* the marquee's duplicate loop set would make swipers pass every
+         review twice — drop it from the gallery */
+      .testimonial-card[aria-hidden="true"] { display: none; }
     }
 
     .hero-link {

@@ -9,3 +9,20 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# Redirects from the old site's URL structure, so links and search results
+# indexed against the previous site land on the current pages instead of 404.
+[[redirects]]
+  from = "/services-and-treatments/*"
+  to = "/services/:splat.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/services-preview"
+  to = "/services.html"
+  status = 301
+
+[[redirects]]
+  from = "/post/*"
+  to = "/"
+  status = 301

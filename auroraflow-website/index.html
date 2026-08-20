@@ -76,7 +76,18 @@
     .hero-fsa-badge-text strong { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
     .hero-fsa-badge-text span { font-size: 13px; font-weight: 400; color: rgba(250,247,242,0.9); }
     @media (max-width: 900px) {
-      .hero-fsa-badge { position: static; display: inline-flex; margin-bottom: 16px; filter: none; }
+      /* On mobile the badge drops out of the photo overlay into normal flow
+         above the headline — align it right with a compact single-line
+         label instead of the desktop's stacked two-line text, so it reads
+         as a small corner tag rather than its own stacked block. */
+      .hero-fsa-badge {
+        position: static; display: flex; width: fit-content; margin: 0 0 12px auto;
+        align-items: center; gap: 8px; filter: none;
+      }
+      .hero-fsa-badge svg { width: 26px; height: 26px; }
+      .hero-fsa-badge-text { flex-direction: row; gap: 5px; line-height: 1.2; }
+      .hero-fsa-badge-text strong { font-size: 14px; }
+      .hero-fsa-badge-text span { font-size: 14px; }
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -703,8 +714,22 @@
     }
     @media (max-width: 640px) {
       .testimonials { padding: 56px 24px; }
-      .testimonials-slider { gap: 16px; }
-      .testimonial-card { width: 78vw; }
+      /* The desktop marquee never stops moving long enough to read on a
+         phone (hover-to-pause doesn't exist on touch). Below 640px, swap it
+         for a manual one-card-at-a-time swipe: kill the autoplay, scroll-snap
+         each card to fill the visible width, and drop the looped duplicate
+         set (aria-hidden, invisible to touch users otherwise). */
+      .testimonials-track-mask {
+        -webkit-mask-image: none; mask-image: none;
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory; scroll-behavior: smooth;
+      }
+      .testimonials-slider { gap: 16px; width: auto; animation: none; }
+      .testimonial-card {
+        width: calc(100vw - 48px); flex: 0 0 calc(100vw - 48px);
+        scroll-snap-align: center;
+      }
+      .testimonial-card[aria-hidden="true"] { display: none; }
     }
 
     .hero-link {

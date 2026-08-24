@@ -76,7 +76,7 @@
     .hero-fsa-badge-text strong { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
     .hero-fsa-badge-text span { font-size: 13px; font-weight: 400; color: rgba(250,247,242,0.9); }
     @media (max-width: 900px) {
-      .hero-fsa-badge { position: static; display: inline-flex; margin-bottom: 16px; filter: none; }
+      .hero-fsa-badge { position: static; display: flex; justify-content: flex-end; margin-bottom: 16px; filter: none; }
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -379,6 +379,9 @@
       transition: color 0.2s;
     }
     .announcement-link:hover { color: #D9E493; }
+    /* the Weekday Special card's "See Details" is a <button> (it opens the
+       promo modal, not a link) riding the same look as the anchor variants */
+    button.announcement-link { background: none; border: none; padding: 0; cursor: pointer; }
     /* compact "Follow" pill riding the head row — same shape/weight as the
        services-preview .btn-outline, with the Instagram mark standing in
        for an icon */
@@ -408,6 +411,29 @@
     @media (max-width: 560px) {
       .updates-head { display: block; }
       .updates-follow-cta { display: inline-flex; margin-top: 16px; }
+    }
+    @media (max-width: 640px) {
+      /* swipeable one-at-a-time gallery, replacing the stacked column so
+         there's less to scroll through on phones */
+      .updates-grid {
+        display: flex; gap: 0;
+        overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+      }
+      .updates-grid::-webkit-scrollbar { display: none; }
+      .update-card { flex: 0 0 100%; scroll-snap-align: center; }
+      .updates-dots {
+        display: flex; justify-content: center; gap: 8px; margin-top: 18px;
+      }
+      .updates-dots button {
+        width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%;
+        background: rgba(250,247,242,0.28); cursor: pointer;
+        transition: background 0.25s, transform 0.25s;
+      }
+      .updates-dots button.active { background: var(--accent); transform: scale(1.3); }
+    }
+    @media (min-width: 641px) {
+      .updates-dots { display: none; }
     }
 
     /* ── FEATURED SERVICES ── */
@@ -703,8 +729,31 @@
     }
     @media (max-width: 640px) {
       .testimonials { padding: 56px 24px; }
-      .testimonials-slider { gap: 16px; }
-      .testimonial-card { width: 78vw; }
+      /* one-at-a-time swipeable carousel on mobile, replacing the desktop
+         continuous marquee — real reviews only, snapped edge-to-edge */
+      .testimonials-track-mask {
+        -webkit-mask-image: none; mask-image: none;
+        overflow-x: auto; overflow-y: hidden;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+      }
+      .testimonials-track-mask::-webkit-scrollbar { display: none; }
+      .testimonials-slider { gap: 0; width: auto; animation: none; }
+      .testimonial-card { width: 100%; flex: 0 0 100%; scroll-snap-align: center; }
+      /* duplicates exist only to loop the desktop marquee seamlessly */
+      .testimonial-card[aria-hidden="true"] { display: none; }
+      .testimonials-dots {
+        display: flex; justify-content: center; gap: 8px; margin-top: 20px;
+      }
+      .testimonials-dots button {
+        width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%;
+        background: rgba(250,247,242,0.28); cursor: pointer;
+        transition: background 0.25s, transform 0.25s;
+      }
+      .testimonials-dots button.active { background: var(--accent); transform: scale(1.3); }
+    }
+    @media (min-width: 641px) {
+      .testimonials-dots { display: none; }
     }
 
     .hero-link {
@@ -1099,6 +1148,17 @@
     <div class="updates-grid">
       <div class="update-card">
         <div class="update-photo">
+          <img loading="lazy" src="assets/img/svc-facial-treatments.webp" width="900" height="900" alt="Relaxing facial treatment at Auroraflow" />
+        </div>
+        <div class="update-card-body">
+          <span class="announcement-eyebrow">Weekday Special</span>
+          <h3>Weekday Massage + Skin Care</h3>
+          <p>20% off any skincare service booked same-day with a massage, Monday through Friday, through Oct 31, 2026.</p>
+          <button type="button" class="announcement-link wp-details-btn">See Details →</button>
+        </div>
+      </div>
+      <div class="update-card">
+        <div class="update-photo">
           <img loading="lazy" src="assets/img/space-entryway-pride.webp" width="900" height="1200" alt="Pride flag bunting in the Auroraflow entryway" />
         </div>
         <div class="update-card-body">
@@ -1106,17 +1166,6 @@
           <h3>The Auroraflow Community Fund</h3>
           <p>Wellness belongs to everyone. Our donation-based fund supports clients who face financial barriers to care — apply anytime, no judgment, no limit on applications.</p>
           <a class="announcement-link" href="community-fund.html">Learn More →</a>
-        </div>
-      </div>
-      <div class="update-card">
-        <div class="update-photo">
-          <img loading="lazy" src="assets/img/community-love-dpc-doctor.webp" width="1500" height="1000" alt="Community Love Direct Primary Care doctor with patient" />
-        </div>
-        <div class="update-card-body">
-          <span class="announcement-eyebrow">New Partnership</span>
-          <h3>Real primary care, no insurance required</h3>
-          <p>Community Love DPC puts the relationship back in healthcare: flat-rate memberships, flexible visits, and wholesale labs — built around you, not your insurer.</p>
-          <a class="announcement-link" href="https://www.communitylovedpc.com/" target="_blank" rel="noopener">Learn More →</a>
         </div>
       </div>
       <div class="update-card">
@@ -1223,6 +1272,109 @@
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }, 7500);
+  })();
+
+  // Mobile reviews carousel — swipeable, snaps one card at a time, auto-advances
+  (() => {
+    const mask = document.querySelector('.testimonials-track-mask');
+    const slider = document.querySelector('.testimonials-slider');
+    if (!mask || !slider) return;
+    if (!window.matchMedia('(max-width: 640px)').matches) return;
+
+    const cards = Array.from(slider.querySelectorAll('.testimonial-card:not([aria-hidden="true"])'));
+    if (cards.length < 2) return;
+
+    const dots = document.createElement('div');
+    dots.className = 'testimonials-dots';
+    cards.forEach((card, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Go to review ${i + 1}`);
+      if (i === 0) b.classList.add('active');
+      b.addEventListener('click', () => {
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+      dots.appendChild(b);
+    });
+    mask.insertAdjacentElement('afterend', dots);
+    const dotEls = Array.from(dots.children);
+
+    let active = 0;
+    function setActive(i) {
+      if (i === active) return;
+      active = i;
+      dotEls.forEach((d, j) => d.classList.toggle('active', j === i));
+    }
+
+    // track which card is centered as the user swipes
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+          setActive(cards.indexOf(entry.target));
+        }
+      });
+    }, { root: mask, threshold: [0.6] });
+    cards.forEach((c) => io.observe(c));
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // auto-advance, pausing while the user is actively touching/swiping
+    let timer = null;
+    let paused = false;
+    let resumeTimer = null;
+    function advance() {
+      if (paused) return;
+      cards[(active + 1) % cards.length].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    function start() { timer = setInterval(advance, 5000); }
+    mask.addEventListener('touchstart', () => {
+      paused = true;
+      clearInterval(timer);
+    }, { passive: true });
+    mask.addEventListener('touchend', () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { paused = false; start(); }, 4000);
+    }, { passive: true });
+    start();
+  })();
+
+  // Mobile "What's New" gallery — swipeable dot indicators (no auto-advance;
+  // these are read-at-your-own-pace cards, not a promo to cycle through)
+  (() => {
+    const grid = document.querySelector('.updates-grid');
+    if (!grid) return;
+    if (!window.matchMedia('(max-width: 640px)').matches) return;
+
+    const cards = Array.from(grid.querySelectorAll('.update-card'));
+    if (cards.length < 2) return;
+
+    const dots = document.createElement('div');
+    dots.className = 'updates-dots';
+    cards.forEach((card, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Go to update ${i + 1}`);
+      if (i === 0) b.classList.add('active');
+      b.addEventListener('click', () => {
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+      dots.appendChild(b);
+    });
+    grid.insertAdjacentElement('afterend', dots);
+    const dotEls = Array.from(dots.children);
+
+    let active = 0;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+          const i = cards.indexOf(entry.target);
+          if (i === active) return;
+          active = i;
+          dotEls.forEach((d, j) => d.classList.toggle('active', j === i));
+        }
+      });
+    }, { root: grid, threshold: [0.6] });
+    cards.forEach((c) => io.observe(c));
   })();
 
   // Sparkle star field for all dark sections

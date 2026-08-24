@@ -557,6 +557,118 @@ button:focus-visible,
   .page-hero-content { padding: 32px 24px; }
 }
 
+/* ── WEEKDAY MASSAGE + SKIN CARE promo banner (injected by shared.js) ──
+   Site-wide bar above the nav. Starts translated off-screen and slides down
+   0.6s after shared.js adds .wp-visible (fired 5s after page load), so it
+   doesn't compete with the hero on first paint. Reuses the --promo-h /
+   html.has-promo nav-offset mechanism set up for the Back to School promo
+   above, so nav + content clearance stay in sync automatically. */
+.weekday-promo-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 210;
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 4px 14px; padding: 10px 56px; box-sizing: border-box;
+  background: linear-gradient(100deg, var(--space), var(--accent2));
+  color: var(--cream); text-align: center;
+  font-family: var(--sans); font-size: 13.5px; font-weight: 400; line-height: 1.35;
+  transform: translateY(-100%);
+  transition: transform 0.6s var(--ease-calm);
+}
+.weekday-promo-banner.wp-visible { transform: translateY(0); }
+.weekday-promo-banner strong {
+  font-weight: 700; color: var(--accent);
+  letter-spacing: 0.04em; text-transform: uppercase; font-size: 12.5px;
+}
+.weekday-promo-banner .wp-details-btn {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 700;
+  color: var(--cream); background: rgba(250,247,242,0.16);
+  border: 1px solid rgba(250,247,242,0.4); border-radius: 100px;
+  padding: 5px 16px; cursor: pointer; white-space: nowrap;
+  transition: background 0.2s;
+}
+.weekday-promo-banner .wp-details-btn:hover { background: rgba(250,247,242,0.28); }
+.weekday-promo-banner .wp-close {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px; border-radius: 50%; border: none;
+  background: transparent; color: var(--cream); opacity: 0.75;
+  font-size: 19px; line-height: 1; cursor: pointer;
+}
+.weekday-promo-banner .wp-close:hover { opacity: 1; }
+@media (max-width: 640px) {
+  .weekday-promo-banner { padding: 9px 42px; font-size: 12.5px; }
+}
+
+/* ── Weekday promo details modal (injected by shared.js) ── */
+.wp-modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(12,14,29,0.72);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.3s var(--ease-calm), visibility 0s linear 0.3s;
+}
+.wp-modal-overlay.wp-open {
+  opacity: 1; visibility: visible;
+  transition: opacity 0.3s var(--ease-calm), visibility 0s;
+}
+.wp-modal {
+  position: relative;
+  background: var(--cream); color: var(--dark);
+  border-radius: var(--radius-lg); overflow: hidden;
+  max-width: 460px; width: 100%; max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lift);
+  transform: translateY(16px) scale(0.98); opacity: 0;
+  transition: transform 0.35s var(--ease-calm), opacity 0.35s var(--ease-calm);
+}
+.wp-modal-overlay.wp-open .wp-modal { transform: translateY(0) scale(1); opacity: 1; }
+.wp-modal-img { width: 100%; aspect-ratio: 16/11; overflow: hidden; position: relative; }
+.wp-modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wp-modal-close {
+  position: absolute; top: 14px; right: 14px; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%; border: none;
+  background: rgba(12,14,29,0.55); color: #fff; font-size: 18px; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.wp-modal-close:hover { background: rgba(12,14,29,0.75); }
+.wp-modal-body { padding: 26px 28px 30px; }
+.wp-modal-eyebrow {
+  display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2);
+  margin-bottom: 10px;
+}
+.wp-modal-body h2 {
+  font-family: var(--serif); font-size: clamp(23px, 3vw, 28px); font-weight: 400;
+  line-height: 1.15; margin-bottom: 14px; color: var(--dark);
+}
+.wp-modal-code {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(18,115,109,0.08); border: 1.5px dashed var(--accent2);
+  border-radius: var(--radius-sm); padding: 11px 16px; margin-bottom: 18px;
+}
+.wp-modal-code span:first-child { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.wp-modal-code strong { font-family: var(--sans); font-size: 17px; letter-spacing: 0.06em; color: var(--accent2); }
+.wp-modal-body > p { font-size: 15px; line-height: 1.68; color: var(--mid); margin-bottom: 16px; }
+.wp-modal-rules { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.wp-modal-rules li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; line-height: 1.5; color: var(--dark);
+}
+.wp-modal-rules svg { flex-shrink: 0; margin-top: 2px; color: var(--accent2); width: 16px; height: 16px; }
+.wp-modal-expiry { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+.wp-modal-cta {
+  display: inline-flex; align-items: center; justify-content: center; width: 100%;
+  padding: 15px 28px; border-radius: 100px;
+  background: var(--accent2); color: var(--cream);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s;
+}
+.wp-modal-cta:hover { background: #0e5f5a; }
+@media (prefers-reduced-motion: reduce) {
+  .weekday-promo-banner,
+  .wp-modal-overlay,
+  .wp-modal { transition: none; }
+}
+
 /* ── SECTION ── */
 section { padding: var(--space-section-y) var(--space-page-x); }
 .section-inner { max-width: 1200px; margin: 0 auto; }

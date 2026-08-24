@@ -45,6 +45,26 @@ nav {
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
+
+/* ── PROMO BANNER NAV OFFSET ──
+   Shared infrastructure any site-wide promo banner can opt into: add
+   html.has-promo and keep --promo-h synced to the banner's measured height
+   (see the promo banner blocks in shared.js) and the nav shifts down below
+   it — on desktop and mobile alike — while --nav-h (used everywhere else
+   for hero/page-hero top padding) grows to match, so content clears both
+   the banner and the nav instead of sitting underneath them. This used to
+   live only in the (now-expired) Back to School banner's injected
+   <style> tag, so it silently stopped applying once that banner's script
+   started returning early — moved here so it isn't tied to any one
+   banner's lifetime. */
+html.has-promo {
+  --nav-base-h: 72px;
+  --nav-h: calc(var(--nav-base-h) + var(--promo-h, 0px));
+}
+html.has-promo nav {
+  height: var(--nav-base-h);
+  top: var(--promo-h, 0px);
+}
 .nav-logo {
   display: flex; align-items: center;
   text-decoration: none; flex-shrink: 0;
@@ -561,8 +581,8 @@ button:focus-visible,
    Site-wide bar above the nav. Starts translated off-screen and slides down
    0.6s after shared.js adds .wp-visible (fired 5s after page load), so it
    doesn't compete with the hero on first paint. Reuses the --promo-h /
-   html.has-promo nav-offset mechanism set up for the Back to School promo
-   above, so nav + content clearance stay in sync automatically. */
+   html.has-promo nav-offset mechanism above, so nav + content clearance
+   stay in sync automatically. */
 .weekday-promo-banner {
   position: fixed; top: 0; left: 0; right: 0; z-index: 210;
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap;

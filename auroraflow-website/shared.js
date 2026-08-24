@@ -290,6 +290,7 @@
 (function () {
   var HIDE_ON = new Date(2026, 10, 1); /* midnight Nov 1, 2026 local — last shown Oct 31 */
   if (new Date() >= HIDE_ON) return;
+  if (!/^\/(index\.html)?$/.test(location.pathname)) return; /* home page only */
 
   var DISMISS_KEY = 'wp-weekday-promo-dismissed';
   var BOOK_URL = 'https://booking.mangomint.com/814946';

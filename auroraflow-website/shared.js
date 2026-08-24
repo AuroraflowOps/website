@@ -280,6 +280,123 @@
   }
 })();
 
+/* ── Weekday Massage + Skin Care promo banner ──
+   Site-wide bar above the nav: 20% off any skincare service booked same-day
+   as a massage, Monday–Friday, through Oct 31, 2026. Unlike the immediate
+   Back to School bar above, this one slides down 5s after the page loads so
+   it doesn't compete with the hero on first paint, and stays up until
+   dismissed (remembered for the browsing session) or the offer ends.
+   "See more details" opens a modal with the full terms and a photo. */
+(function () {
+  var HIDE_ON = new Date(2026, 10, 1); /* midnight Nov 1, 2026 local — last shown Oct 31 */
+  if (new Date() >= HIDE_ON) return;
+
+  var DISMISS_KEY = 'wp-weekday-promo-dismissed';
+  var BOOK_URL = 'https://booking.mangomint.com/814946';
+
+  function sessionDismissed() {
+    try { return !!sessionStorage.getItem(DISMISS_KEY); } catch (e) { return false; }
+  }
+  function rememberDismissed() {
+    try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
+  }
+  if (sessionDismissed()) return;
+
+  function checkItem(text) {
+    return '<li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>' + text + '</span></li>';
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape') closeModal();
+  }
+  function openModal() {
+    var modal = document.querySelector('.wp-modal-overlay') || buildModal();
+    modal.classList.add('wp-open');
+    document.addEventListener('keydown', onKey);
+  }
+  function closeModal() {
+    var modal = document.querySelector('.wp-modal-overlay');
+    if (!modal) return;
+    modal.classList.remove('wp-open');
+    document.removeEventListener('keydown', onKey);
+  }
+  function buildModal() {
+    var overlay = document.createElement('div');
+    overlay.className = 'wp-modal-overlay';
+    overlay.innerHTML =
+      '<div class="wp-modal" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">' +
+        '<div class="wp-modal-img">' +
+          '<img src="assets/img/svc-facial-treatments.webp" alt="Relaxing facial treatment at Auroraflow" loading="lazy">' +
+          '<button type="button" class="wp-modal-close" aria-label="Close">×</button>' +
+        '</div>' +
+        '<div class="wp-modal-body">' +
+          '<span class="wp-modal-eyebrow">Weekday Special</span>' +
+          '<h2 id="wp-modal-title">Weekday Massage + Skin Care</h2>' +
+          '<div class="wp-modal-code"><span>Promo code</span><strong>ADDSKIN20</strong></div>' +
+          '<p>Receive 20% off any skincare service when you book it the same day as a massage.</p>' +
+          '<ul class="wp-modal-rules">' +
+            checkItem('Valid Monday through Friday only — not available Saturday or Sunday.') +
+            checkItem('The 20% discount applies to the skincare service only; the massage is full price.') +
+            checkItem('The skincare service must be booked the same day as your massage appointment.') +
+          '</ul>' +
+          '<p class="wp-modal-expiry">Offer ends October 31, 2026. Mention or enter code ADDSKIN20 when booking.</p>' +
+          '<a class="wp-modal-cta" href="' + BOOK_URL + '" target="_blank" rel="noopener">Book a weekday massage</a>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+    overlay.querySelector('.wp-modal-close').addEventListener('click', closeModal);
+    return overlay;
+  }
+
+  function addWeekdayPromo() {
+    if (document.querySelector('.weekday-promo-banner')) return;
+
+    var banner = document.createElement('div');
+    banner.className = 'weekday-promo-banner';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'Weekday promotion');
+    banner.innerHTML =
+      '<strong>Weekday Special</strong>' +
+      '<span>20% off any skincare service booked same-day with a massage — Mon–Fri</span>' +
+      '<button type="button" class="wp-details-btn">See more details</button>' +
+      '<button type="button" class="wp-close" aria-label="Dismiss weekday promotion">×</button>';
+    document.body.insertBefore(banner, document.body.firstChild);
+
+    var root = document.documentElement;
+    function sync() {
+      root.style.setProperty('--promo-h', banner.offsetHeight + 'px');
+    }
+    function dismiss() {
+      banner.classList.remove('wp-visible');
+      window.setTimeout(function () {
+        root.classList.remove('has-promo');
+        root.style.setProperty('--promo-h', '0px');
+      }, 600);
+      rememberDismissed();
+    }
+
+    banner.querySelector('.wp-close').addEventListener('click', dismiss);
+    banner.querySelector('.wp-details-btn').addEventListener('click', openModal);
+
+    window.setTimeout(function () {
+      if (sessionDismissed()) return;
+      root.classList.add('has-promo');
+      banner.classList.add('wp-visible');
+      sync();
+      window.addEventListener('resize', sync);
+    }, 5000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addWeekdayPromo);
+  } else {
+    addWeekdayPromo();
+  }
+})();
+
 // Gift card buttons — desktop pill beside Book Now, mobile icon beside the calendar
 (function () {
   var GIFT_URL = 'https://clients.mangomint.com/gift-cards/814946';

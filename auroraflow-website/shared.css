@@ -620,43 +620,44 @@ button:focus-visible,
   transition: transform 0.35s var(--ease-calm), opacity 0.35s var(--ease-calm);
 }
 .wp-modal-overlay.wp-open .wp-modal { transform: translateY(0) scale(1); opacity: 1; }
-.wp-modal-img { width: 100%; aspect-ratio: 16/11; overflow: hidden; position: relative; }
+.wp-modal-img { width: 100%; aspect-ratio: 16/7; overflow: hidden; position: relative; }
 .wp-modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .wp-modal-close {
-  position: absolute; top: 14px; right: 14px; z-index: 2;
-  width: 34px; height: 34px; border-radius: 50%; border: none;
-  background: rgba(12,14,29,0.55); color: #fff; font-size: 18px; line-height: 1;
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: rgba(12,14,29,0.55); color: #fff; font-size: 17px; line-height: 1;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
 .wp-modal-close:hover { background: rgba(12,14,29,0.75); }
-.wp-modal-body { padding: 26px 28px 30px; }
+.wp-modal-body { padding: 18px 24px 22px; }
 .wp-modal-eyebrow {
-  display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 600;
+  display: inline-block; font-family: var(--sans); font-size: 10.5px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .wp-modal-body h2 {
-  font-family: var(--serif); font-size: clamp(23px, 3vw, 28px); font-weight: 400;
-  line-height: 1.15; margin-bottom: 14px; color: var(--dark);
+  font-family: var(--serif); font-size: clamp(20px, 2.6vw, 24px); font-weight: 400;
+  line-height: 1.15; margin-bottom: 12px; color: var(--dark);
 }
 .wp-modal-code {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   background: rgba(18,115,109,0.08); border: 1.5px dashed var(--accent2);
-  border-radius: var(--radius-sm); padding: 11px 16px; margin-bottom: 18px;
+  border-radius: var(--radius-sm); padding: 9px 14px; margin-bottom: 12px;
 }
-.wp-modal-code span:first-child { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-.wp-modal-code strong { font-family: var(--sans); font-size: 17px; letter-spacing: 0.06em; color: var(--accent2); }
-.wp-modal-body > p { font-size: 15px; line-height: 1.68; color: var(--mid); margin-bottom: 16px; }
-.wp-modal-rules { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.wp-modal-rules li {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: 14px; line-height: 1.5; color: var(--dark);
+.wp-modal-code span:first-child { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.wp-modal-code strong { font-family: var(--sans); font-size: 16px; letter-spacing: 0.06em; color: var(--accent2); }
+.wp-modal-body > p { font-size: 14.5px; line-height: 1.55; color: var(--mid); margin-bottom: 14px; }
+.wp-modal-tags { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.wp-modal-tags li {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 500; color: var(--dark);
+  background: rgba(18,115,109,0.08); border-radius: 100px; padding: 6px 12px 6px 8px;
 }
-.wp-modal-rules svg { flex-shrink: 0; margin-top: 2px; color: var(--accent2); width: 16px; height: 16px; }
-.wp-modal-expiry { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+.wp-modal-tags svg { flex-shrink: 0; color: var(--accent2); width: 13px; height: 13px; }
+.wp-modal-expiry { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
 .wp-modal-cta {
   display: inline-flex; align-items: center; justify-content: center; width: 100%;
-  padding: 15px 28px; border-radius: 100px;
+  padding: 14px 28px; border-radius: 100px;
   background: var(--accent2); color: var(--cream);
   font-family: var(--sans); font-size: 13px; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;

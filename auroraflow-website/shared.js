@@ -302,7 +302,7 @@
   }
   if (sessionDismissed()) return;
 
-  function checkItem(text) {
+  function tagItem(text) {
     return '<li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>' + text + '</span></li>';
   }
 
@@ -333,14 +333,14 @@
           '<span class="wp-modal-eyebrow">Weekday Special</span>' +
           '<h2 id="wp-modal-title">Weekday Massage + Skin Care</h2>' +
           '<div class="wp-modal-code"><span>Promo code</span><strong>ADDSKIN20</strong></div>' +
-          '<p>Receive 20% off any skincare service when you book it the same day as a massage.</p>' +
-          '<ul class="wp-modal-rules">' +
-            checkItem('Valid Monday through Friday only — not available Saturday or Sunday.') +
-            checkItem('The 20% discount applies to the skincare service only; the massage is full price.') +
-            checkItem('The skincare service must be booked the same day as your massage appointment.') +
+          '<p>20% off any skincare service booked same-day with a massage.</p>' +
+          '<ul class="wp-modal-tags">' +
+            tagItem('Mon–Fri only') +
+            tagItem('Skincare service only') +
+            tagItem('Same-day booking') +
           '</ul>' +
-          '<p class="wp-modal-expiry">Offer ends October 31, 2026. Mention or enter code ADDSKIN20 when booking.</p>' +
-          '<a class="wp-modal-cta" href="' + BOOK_URL + '" target="_blank" rel="noopener">Book a weekday massage</a>' +
+          '<p class="wp-modal-expiry">Ends October 31, 2026.</p>' +
+          '<a class="wp-modal-cta" href="' + BOOK_URL + '" target="_blank" rel="noopener">Book Now</a>' +
         '</div>' +
       '</div>';
     document.body.appendChild(overlay);

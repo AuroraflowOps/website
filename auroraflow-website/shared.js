@@ -1,4 +1,4 @@
-/* Auroraflow — shared client-side enhancements */
+/* Auroraflow ── shared client-side enhancements */
 
 /* ── Google Analytics (GA4) ──
    Loaded here so every page that includes shared.js is tracked with one
@@ -351,6 +351,14 @@
     return overlay;
   }
 
+  /* delegated so any element anywhere on the page (the banner's own button,
+     the "What's New" card link, etc.) can open the same modal by carrying
+     this class — nothing needs a direct reference to openModal */
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.wp-details-btn');
+    if (trigger) openModal();
+  });
+
   function addWeekdayPromo() {
     if (document.querySelector('.weekday-promo-banner')) return;
 
@@ -379,7 +387,6 @@
     }
 
     banner.querySelector('.wp-close').addEventListener('click', dismiss);
-    banner.querySelector('.wp-details-btn').addEventListener('click', openModal);
 
     window.setTimeout(function () {
       if (sessionDismissed()) return;

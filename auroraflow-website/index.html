@@ -1284,6 +1284,14 @@
     const cards = Array.from(slider.querySelectorAll('.testimonial-card:not([aria-hidden="true"])'));
     if (cards.length < 2) return;
 
+    // Scroll the mask container directly rather than card.scrollIntoView():
+    // the mask is overflow-y:hidden (it only scrolls horizontally), so
+    // scrollIntoView's block:'nearest' had no vertically-scrollable ancestor
+    // to satisfy and fell back to scrolling the whole page instead.
+    function goTo(i) {
+      mask.scrollTo({ left: i * mask.clientWidth, behavior: 'smooth' });
+    }
+
     const dots = document.createElement('div');
     dots.className = 'testimonials-dots';
     cards.forEach((card, i) => {
@@ -1291,9 +1299,7 @@
       b.type = 'button';
       b.setAttribute('aria-label', `Go to review ${i + 1}`);
       if (i === 0) b.classList.add('active');
-      b.addEventListener('click', () => {
-        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      });
+      b.addEventListener('click', () => goTo(i));
       dots.appendChild(b);
     });
     mask.insertAdjacentElement('afterend', dots);
@@ -1324,7 +1330,7 @@
     let resumeTimer = null;
     function advance() {
       if (paused) return;
-      cards[(active + 1) % cards.length].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      goTo((active + 1) % cards.length);
     }
     function start() { timer = setInterval(advance, 5000); }
     mask.addEventListener('touchstart', () => {
@@ -1348,6 +1354,12 @@
     const cards = Array.from(grid.querySelectorAll('.update-card'));
     if (cards.length < 2) return;
 
+    // same fix as the reviews carousel: scroll the grid directly instead of
+    // card.scrollIntoView(), which risked scrolling the whole page vertically
+    function goTo(i) {
+      grid.scrollTo({ left: i * grid.clientWidth, behavior: 'smooth' });
+    }
+
     const dots = document.createElement('div');
     dots.className = 'updates-dots';
     cards.forEach((card, i) => {
@@ -1355,9 +1367,7 @@
       b.type = 'button';
       b.setAttribute('aria-label', `Go to update ${i + 1}`);
       if (i === 0) b.classList.add('active');
-      b.addEventListener('click', () => {
-        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      });
+      b.addEventListener('click', () => goTo(i));
       dots.appendChild(b);
     });
     grid.insertAdjacentElement('afterend', dots);

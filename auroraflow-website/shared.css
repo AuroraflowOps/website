@@ -1,1 +1,971 @@
-PLACEHOLDER
+/* ── AURORAFLOW SHARED STYLES ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #faf7f2;
+  --warm-white: #fdf9f4;
+  --dark: #1c1816;
+  --mid: #4a4340;
+  --muted: #6c635d;
+  --accent: #ADCD52;
+  --accent2: #12736D;
+  --spark: #ADCD52;
+  --waves: #12736D;
+  --deep: #363971;
+  --space: #6E3F8D;
+  --border: rgba(28,24,22,0.10);
+  --serif: 'Poiret One', Georgia, sans-serif;
+  --sans: 'Roboto', sans-serif;
+  --nav-h: 72px;
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 12px rgba(28,24,22,0.06);
+  --shadow-md: 0 12px 32px rgba(28,24,22,0.10);
+  --shadow-lift: 0 16px 40px rgba(28,24,22,0.14);
+  /* brand rhythm — one slow inhale–exhale; shared so the whole page breathes together */
+  --breath: 9.5s;
+  --ease-calm: cubic-bezier(0.37, 0, 0.18, 1);
+  /* fluid spacing — scales smoothly from phone to desktop, no breakpoint jumps */
+  --space-section-y: clamp(48px, 9vw, 80px);
+  --space-page-x: clamp(20px, 5vw, 40px);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; font-size: 17px; -webkit-font-smoothing: antialiased; }
+
+/* ── NAV ── */
+/* mobile-first: links hidden, hamburger + book pill shown; desktop layers up at 901px */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--space-page-x); height: var(--nav-h);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── PROMO BANNER NAV OFFSET ──
+   Shared infrastructure any site-wide promo banner can opt into: add
+   html.has-promo and keep --promo-h synced to the banner's measured height
+   (see the promo banner blocks in shared.js) and the nav shifts down below
+   it — on desktop and mobile alike — while --nav-h (used everywhere else
+   for hero/page-hero top padding) grows to match, so content clears both
+   the banner and the nav instead of sitting underneath them. This used to
+   live only in the (now-expired) Back to School banner's injected
+   <style> tag, so it silently stopped applying once that banner's script
+   started returning early — moved here so it isn't tied to any one
+   banner's lifetime. */
+html.has-promo {
+  --nav-base-h: 72px;
+  --nav-h: calc(var(--nav-base-h) + var(--promo-h, 0px));
+}
+html.has-promo nav {
+  height: var(--nav-base-h);
+  top: var(--promo-h, 0px);
+}
+.nav-logo {
+  display: flex; align-items: center;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-img {
+  height: 52px; width: auto; display: block;
+}
+.nav-links {
+  display: none; align-items: center; gap: 28px; list-style: none;
+}
+@media (min-width: 901px) {
+  .nav-links { display: flex; }
+}
+.nav-links a {
+  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--mid); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--dark); }
+
+/* Programs dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: inline-flex !important; align-items: center; gap: 4px; cursor: default;
+}
+.nav-dropdown-toggle::after {
+  content: '';
+  display: inline-block; width: 5px; height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  transition: transform 0.2s; margin-top: 1px;
+}
+.nav-dropdown:hover .nav-dropdown-toggle,
+.nav-dropdown:focus-within .nav-dropdown-toggle { color: var(--dark); }
+.nav-dropdown:hover .nav-dropdown-toggle::after,
+.nav-dropdown:focus-within .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(2px); }
+.nav-dropdown-menu {
+  position: absolute; top: calc(100% + 14px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(255,255,255,0.99);
+  border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 6px 0; list-style: none;
+  min-width: 188px; opacity: 0; visibility: hidden;
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10); z-index: 210;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu li a {
+  display: block; padding: 10px 20px;
+  font-family: var(--sans); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--mid); text-decoration: none; white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-dropdown-menu li a:hover { color: var(--dark); background: rgba(0,0,0,0.035); }
+
+/* Sitewide keyboard focus indicator — previously relied on inconsistent
+   browser defaults; custom pill buttons and the dropdown toggle had no
+   visible focus ring for keyboard/AT users. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #6E3F8D;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.btn-book,
+.nav-links a.btn-book {
+  position: relative; isolation: isolate;
+  display: inline-flex; align-items: center;
+  padding: 10px 22px; border-radius: 100px;
+  background: rgba(12,14,29,0.92); color: #faf7f2 !important;
+  border: 1px solid rgba(255,255,255,0.12);
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.25s; white-space: nowrap;
+}
+.btn-book::before,
+.nav-links a.btn-book::before {
+  content: '';
+  position: absolute; inset: -2px; border-radius: 100px;
+  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
+  opacity: 0.72; filter: blur(8px);
+  z-index: -1; pointer-events: none;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  /* the aura inhales and exhales on the site-wide breath rhythm */
+  animation: auraBreathe var(--breath) ease-in-out infinite;
+}
+@keyframes auraBreathe {
+  0%, 100% { opacity: 0.5; }
+  42%      { opacity: 0.92; } /* unhurried inhale, longer exhale */
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-book::before, .nav-links a.btn-book::before { animation: none; }
+}
+.btn-book:hover,
+.nav-links a.btn-book:hover {
+  background: rgba(12,14,29,0.72); color: #fff !important;
+}
+.btn-book:hover::before,
+.nav-links a.btn-book:hover::before {
+  animation: none; opacity: 1; filter: blur(12px);
+}
+
+/* mobile-only Book Now icon button in the nav bar */
+.nav-book-mobile {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: var(--waves); color: #faf7f2;
+  text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.nav-book-mobile svg { width: 17px; height: 17px; }
+.nav-book-mobile:hover { background: var(--spark); color: var(--dark); }
+@media (min-width: 901px) {
+  .nav-book-mobile { display: none; }
+}
+
+/* ── GIFT CARDS (injected by shared.js) ── */
+/* desktop: ghost pill beside Book Now */
+.btn-gift {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 20px; border-radius: 100px;
+  border: 1.5px solid var(--space); color: var(--space);
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.25s, color 0.25s;
+}
+.nav-links a.btn-gift { color: var(--space); }
+.btn-gift svg { width: 14px; height: 14px; }
+.btn-gift:hover,
+.nav-links a.btn-gift:hover { background: var(--space); color: #faf7f2; }
+/* mobile: gift icon circle beside the calendar button */
+.nav-gift-mobile {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: var(--space); color: #faf7f2;
+  text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.nav-gift-mobile svg { width: 17px; height: 17px; }
+.nav-gift-mobile:hover { background: var(--spark); color: var(--dark); }
+@media (min-width: 901px) {
+  .nav-gift-mobile { display: none; }
+}
+/* keep the two mobile icons snug — pinned to the right, just left of the
+   hamburger (margin-left:auto absorbs nav's free space so the cluster
+   doesn't get spread to the middle by justify-content: space-between) */
+.nav-mobile-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; margin-right: 10px; }
+@media (min-width: 901px) {
+  /* on desktop both children are hidden, but the wrapper itself was still
+     a flex child of nav, throwing off justify-content: space-between */
+  .nav-mobile-actions { display: none; }
+}
+
+/* hamburger */
+.nav-hamburger {
+  display: flex; flex-direction: column; gap: 5px; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  padding: 4px; min-width: 44px; min-height: 44px; align-items: center;
+}
+@media (min-width: 901px) {
+  .nav-hamburger { display: none; }
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--dark); transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* mobile menu overlay — a night-sky moment, not a fallback list.
+   Fades in on the calm easing; links rise one breath apart. */
+.nav-mobile-menu {
+  display: flex; position: fixed; inset: var(--nav-h) 0 0 0; z-index: 190;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 90%, rgba(110,63,141,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 45% at 90% 15%, rgba(18,115,109,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 35% at 80% 80%, rgba(173,205,82,0.08) 0%, transparent 55%),
+    #0c0e1d;
+  flex-direction: column;
+  padding: 44px 32px 40px; gap: 0; overflow-y: auto;
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition:
+    opacity 0.55s var(--ease-calm),
+    transform 0.55s var(--ease-calm),
+    visibility 0s linear 0.55s;
+}
+.nav-mobile-menu.open {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition:
+    opacity 0.55s var(--ease-calm),
+    transform 0.55s var(--ease-calm),
+    visibility 0s;
+}
+.nav-mobile-menu a {
+  position: relative; z-index: 1;
+  font-family: var(--serif); font-size: clamp(28px, 7.5vw, 34px); font-weight: 300;
+  color: var(--cream); text-decoration: none; padding: 15px 0;
+  border-bottom: 1px solid rgba(250,247,242,0.10); letter-spacing: 0.01em;
+  transition: color 0.3s, padding-left 0.4s var(--ease-calm);
+  min-height: 44px;
+}
+.nav-mobile-menu a:not(.btn-book-mobile):hover { color: var(--accent); padding-left: 8px; }
+/* nested program links injected by shared.js */
+.nav-mobile-menu .nav-mobile-group-label {
+  position: relative; z-index: 1;
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); padding: 26px 0 6px;
+}
+.nav-mobile-menu a.nav-mobile-sub {
+  font-size: clamp(21px, 5.5vw, 25px);
+  padding: 12px 0 12px 16px;
+  color: rgba(250,247,242,0.82);
+}
+/* staggered rise — each link arrives a beat after the last */
+.nav-mobile-menu > * { opacity: 0; transform: translateY(14px); }
+.nav-mobile-menu.open > * {
+  animation: menuLinkRise 0.7s var(--ease-calm) forwards;
+}
+.nav-mobile-menu.open > *:nth-child(1)  { animation-delay: 0.08s; }
+.nav-mobile-menu.open > *:nth-child(2)  { animation-delay: 0.14s; }
+.nav-mobile-menu.open > *:nth-child(3)  { animation-delay: 0.20s; }
+.nav-mobile-menu.open > *:nth-child(4)  { animation-delay: 0.26s; }
+.nav-mobile-menu.open > *:nth-child(5)  { animation-delay: 0.32s; }
+.nav-mobile-menu.open > *:nth-child(6)  { animation-delay: 0.38s; }
+.nav-mobile-menu.open > *:nth-child(7)  { animation-delay: 0.44s; }
+.nav-mobile-menu.open > *:nth-child(8)  { animation-delay: 0.50s; }
+.nav-mobile-menu.open > *:nth-child(9)  { animation-delay: 0.56s; }
+.nav-mobile-menu.open > *:nth-child(10) { animation-delay: 0.62s; }
+.nav-mobile-menu.open > *:nth-child(11) { animation-delay: 0.68s; }
+.nav-mobile-menu.open > *:nth-child(12) { animation-delay: 0.74s; }
+@keyframes menuLinkRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-mobile-menu { transition: none; transform: none; }
+  .nav-mobile-menu > * { opacity: 1; transform: none; animation: none !important; }
+}
+.nav-mobile-menu .sparkle-star { z-index: 0; position: absolute; }
+.nav-mobile-menu .btn-book-mobile {
+  position: relative; isolation: isolate; z-index: 1;
+  margin-top: 36px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 18px 36px; border-radius: 100px;
+  background: rgba(12,14,29,0.92); color: var(--cream) !important;
+  border: 1px solid rgba(255,255,255,0.18);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.nav-mobile-menu .btn-book-mobile::before {
+  content: '';
+  position: absolute; inset: -2px; border-radius: 100px;
+  background: linear-gradient(90deg, #6E3F8D, #52BCA3, #ADCD52);
+  opacity: 0.72; filter: blur(8px);
+  z-index: -1; pointer-events: none;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  animation: auraBreathe var(--breath) ease-in-out infinite;
+}
+.nav-mobile-menu .btn-book-mobile:hover::before {
+  animation: none; opacity: 1; filter: blur(12px);
+}
+
+/* ── RAINBOW BAR ── */
+.rainbow-bar {
+  height: 4px;
+  background: linear-gradient(to right,
+    #ADCD52, #12736D, #363971, #6E3F8D,
+    #BA7EC9, #585BA7, #52BCA3, #D9E493
+  );
+}
+
+/* ── PAGE HEADER (legacy, plain) ── */
+.page-header {
+  padding: 140px 40px 80px;
+  background: var(--warm-white);
+  text-align: center;
+}
+.page-header h1 {
+  font-family: var(--serif); font-size: clamp(42px, 6vw, 80px);
+  font-weight: 300; letter-spacing: -0.01em; line-height: 1.1;
+  margin-bottom: 16px;
+}
+.page-header p {
+  font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 580px; margin: 0 auto;
+}
+
+/* ── PAGE HERO (background-image header for sub-pages) ── */
+.page-hero {
+  padding-top: var(--nav-h);
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  /* fixed height so every sub-page hero matches regardless of inner content */
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-hero-img {
+  position: absolute; inset: 0;
+}
+.page-hero-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0;
+  transform: scale(1.08);
+  animation:
+    pageHeroImgIn 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s forwards,
+    pageHeroKenBurns 24s ease-out 1.6s forwards;
+}
+@keyframes pageHeroImgIn {
+  to { opacity: 0.55; transform: scale(1.04); }
+}
+@keyframes pageHeroKenBurns {
+  to { transform: scale(1.12); }
+}
+.page-hero::before,
+.page-hero::after {
+  opacity: 0;
+  animation: pageHeroWashIn 1.6s ease-out 0.05s forwards;
+}
+@keyframes pageHeroWashIn {
+  to { opacity: 1; }
+}
+.page-hero::before {
+  /* color wash — top color + heavier dark at bottom for type readability */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(54, 57, 113, 0.45) 0%,
+      rgba(28, 24, 22, 0.55) 50%,
+      rgba(28, 24, 22, 0.85) 100%);
+}
+.page-hero::after {
+  /* subtle vignette to focus the centered headline */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    transparent 30%,
+    rgba(28, 24, 22, 0.4) 100%);
+}
+.page-hero-content {
+  position: relative; z-index: 2;
+  max-width: 860px; margin: 0 auto;
+  padding: 48px 40px;
+  text-align: center;
+}
+
+/* ── HERO SPARKLES (injected by shared.js) ── */
+.hero-sparkles {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none;
+}
+.hero-sparkle {
+  position: absolute;
+  display: block;
+  /* four-pointed star using two layered conic-like gradients on a square */
+  background:
+    radial-gradient(ellipse 50% 8% at 50% 50%, rgba(250,247,242,0.95) 0%, rgba(250,247,242,0) 60%),
+    radial-gradient(ellipse 8% 50% at 50% 50%, rgba(250,247,242,0.95) 0%, rgba(250,247,242,0) 60%);
+  opacity: 0;
+  transform: scale(0) rotate(0deg);
+  transform-origin: center;
+  filter: drop-shadow(0 0 6px rgba(250,247,242,0.45))
+          drop-shadow(0 0 14px rgba(217,119,87,0.35));
+  animation:
+    sparkleBurst 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) var(--delay, 0s) 1 both,
+    sparkleTwinkle var(--twinkle, 2.6s) ease-in-out calc(var(--delay, 0s) + 1.6s) infinite;
+}
+@keyframes sparkleBurst {
+  0%   { opacity: 0;    transform: scale(0)   rotate(-30deg); }
+  40%  { opacity: 1;    transform: scale(1.3) rotate(0deg); }
+  100% { opacity: 0.9;  transform: scale(1)   rotate(0deg); }
+}
+@keyframes sparkleTwinkle {
+  0%   { opacity: 0.95; transform: scale(1)    rotate(0deg); }
+  20%  { opacity: 0.15; transform: scale(0.45) rotate(20deg); }
+  35%  { opacity: 0;    transform: scale(0.2)  rotate(35deg); }
+  50%  { opacity: 0.25; transform: scale(0.5)  rotate(60deg); }
+  70%  { opacity: 1;    transform: scale(1.25) rotate(80deg); }
+  100% { opacity: 0.95; transform: scale(1)    rotate(90deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-sparkles { display: none; }
+}
+
+/* ── STAR FIELD DOTS (injected by shared.js into dark sections) ── */
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  45%, 55%  { opacity: var(--star-opacity, 0.75); transform: scale(1); }
+}
+.sparkle-star {
+  position: absolute; border-radius: 50%;
+  background: #fff; pointer-events: none; z-index: 0;
+  width: var(--star-size, 1.5px); height: var(--star-size, 1.5px);
+  animation: starTwinkle var(--star-dur, 3s) ease-in-out var(--star-delay, 0s) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-star { display: none; }
+}
+/* staggered entrance for hero content */
+.page-hero-content > * {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: pageHeroRise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.page-hero-content > .section-label { animation-delay: 0.35s; }
+.page-hero-content > h1             { animation-delay: 0.50s; }
+.page-hero-content > p              { animation-delay: 0.70s; }
+.page-hero-content > .page-hero-actions,
+.page-hero-content > .page-hero-badge { animation-delay: 0.90s; }
+@keyframes pageHeroRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+/* eyebrow rules grow out from center to keep the lockup feeling alive */
+.page-hero-content .section-label::before,
+.page-hero-content .section-label::after {
+  transform-origin: center;
+  animation: pageHeroRuleGrow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.7s both;
+}
+@keyframes pageHeroRuleGrow {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.55; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-img img,
+  .page-hero::before,
+  .page-hero::after,
+  .page-hero-content > *,
+  .page-hero-content .section-label::before,
+  .page-hero-content .section-label::after {
+    animation: none !important;
+    opacity: initial;
+    transform: none;
+  }
+  .page-hero-img img { opacity: 0.55; }
+}
+/* unified eyebrow — same class used across every hero */
+.page-hero-content .section-label {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.page-hero-content .section-label::before,
+.page-hero-content .section-label::after {
+  content: ""; display: inline-block;
+  width: 24px; height: 1.5px;
+  background: var(--accent); opacity: 0.55;
+}
+.page-hero-content h1 {
+  font-family: var(--serif); font-size: clamp(40px, 6vw, 80px);
+  font-weight: 300; color: var(--cream); line-height: 1.06;
+  letter-spacing: -0.01em; margin-bottom: 24px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+.page-hero-content h1 em { font-style: italic; }
+.page-hero-content p {
+  font-size: clamp(16px, 1.6vw, 19px); color: rgba(250, 247, 242, 0.92);
+  line-height: 1.65; max-width: 600px; margin: 0 auto;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* optional row of CTA buttons inside the hero */
+.page-hero-actions {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  margin-top: 36px;
+}
+.page-hero-actions .btn-light {
+  display: inline-flex; align-items: center;
+  padding: 15px 32px; border-radius: 100px;
+  background: var(--cream); color: var(--dark);
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.page-hero-actions .btn-light:hover { opacity: 0.9; transform: translateY(-1px); }
+.page-hero-actions .btn-ghost {
+  display: inline-flex; align-items: center;
+  padding: 15px 32px; border-radius: 100px;
+  border: 1.5px solid rgba(250,247,242,0.4); color: var(--cream);
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.page-hero-actions .btn-ghost:hover {
+  border-color: var(--cream); background: rgba(250,247,242,0.08);
+}
+
+/* optional inline informational badge (e.g. schedule, status) */
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 28px;
+  padding: 10px 18px; border-radius: 100px;
+  background: rgba(250,247,242,0.10);
+  border: 1px solid rgba(250,247,242,0.20);
+  font-family: var(--sans); font-size: 13px; color: rgba(250,247,242,0.9);
+}
+.page-hero-badge svg { color: var(--accent); }
+.page-hero-badge strong { color: var(--cream); font-weight: 500; }
+
+@media (max-width: 720px) {
+  .page-hero { min-height: 460px; }
+  .page-hero-content { padding: 32px 24px; }
+}
+
+/* ── WEEKDAY MASSAGE + SKIN CARE promo banner (injected by shared.js) ──
+   Site-wide bar above the nav. Starts translated off-screen and slides down
+   0.6s after shared.js adds .wp-visible (fired 5s after page load), so it
+   doesn't compete with the hero on first paint. Reuses the --promo-h /
+   html.has-promo nav-offset mechanism above, so nav + content clearance
+   stay in sync automatically. */
+.weekday-promo-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 210;
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 4px 14px; padding: 10px 56px; box-sizing: border-box;
+  background: linear-gradient(100deg, var(--space), var(--accent2));
+  color: var(--cream); text-align: center;
+  font-family: var(--sans); font-size: 13.5px; font-weight: 400; line-height: 1.35;
+  transform: translateY(-100%);
+  transition: transform 0.6s var(--ease-calm);
+}
+.weekday-promo-banner.wp-visible { transform: translateY(0); }
+.weekday-promo-banner strong {
+  font-weight: 700; color: var(--accent);
+  letter-spacing: 0.04em; text-transform: uppercase; font-size: 12.5px;
+}
+.weekday-promo-banner .wp-details-btn {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 700;
+  color: var(--cream); background: rgba(250,247,242,0.16);
+  border: 1px solid rgba(250,247,242,0.4); border-radius: 100px;
+  padding: 5px 16px; cursor: pointer; white-space: nowrap;
+  transition: background 0.2s;
+}
+.weekday-promo-banner .wp-details-btn:hover { background: rgba(250,247,242,0.28); }
+.weekday-promo-banner .wp-close {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px; border-radius: 50%; border: none;
+  background: transparent; color: var(--cream); opacity: 0.75;
+  font-size: 19px; line-height: 1; cursor: pointer;
+}
+.weekday-promo-banner .wp-close:hover { opacity: 1; }
+@media (max-width: 640px) {
+  .weekday-promo-banner { padding: 9px 42px; font-size: 12.5px; }
+}
+
+/* ── Weekday promo details modal (injected by shared.js) ── */
+.wp-modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(12,14,29,0.72);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.3s var(--ease-calm), visibility 0s linear 0.3s;
+}
+.wp-modal-overlay.wp-open {
+  opacity: 1; visibility: visible;
+  transition: opacity 0.3s var(--ease-calm), visibility 0s;
+}
+.wp-modal {
+  position: relative;
+  background: var(--cream); color: var(--dark);
+  border-radius: var(--radius-lg); overflow: hidden;
+  max-width: 460px; width: 100%; max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lift);
+  transform: translateY(16px) scale(0.98); opacity: 0;
+  transition: transform 0.35s var(--ease-calm), opacity 0.35s var(--ease-calm);
+}
+.wp-modal-overlay.wp-open .wp-modal { transform: translateY(0) scale(1); opacity: 1; }
+.wp-modal-img { width: 100%; aspect-ratio: 16/7; overflow: hidden; position: relative; }
+.wp-modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wp-modal-close {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: rgba(12,14,29,0.55); color: #fff; font-size: 17px; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.wp-modal-close:hover { background: rgba(12,14,29,0.75); }
+.wp-modal-body { padding: 18px 24px 22px; }
+.wp-modal-eyebrow {
+  display: inline-block; font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2);
+  margin-bottom: 6px;
+}
+.wp-modal-body h2 {
+  font-family: var(--serif); font-size: clamp(20px, 2.6vw, 24px); font-weight: 400;
+  line-height: 1.15; margin-bottom: 12px; color: var(--dark);
+}
+.wp-modal-code {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(18,115,109,0.08); border: 1.5px dashed var(--accent2);
+  border-radius: var(--radius-sm); padding: 9px 14px; margin-bottom: 12px;
+}
+.wp-modal-code span:first-child { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.wp-modal-code strong { font-family: var(--sans); font-size: 16px; letter-spacing: 0.06em; color: var(--accent2); }
+.wp-modal-body > p { font-size: 14.5px; line-height: 1.55; color: var(--mid); margin-bottom: 14px; }
+.wp-modal-tags { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.wp-modal-tags li {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 500; color: var(--dark);
+  background: rgba(18,115,109,0.08); border-radius: 100px; padding: 6px 12px 6px 8px;
+}
+.wp-modal-tags svg { flex-shrink: 0; color: var(--accent2); width: 13px; height: 13px; }
+.wp-modal-expiry { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+.wp-modal-cta {
+  display: inline-flex; align-items: center; justify-content: center; width: 100%;
+  padding: 14px 28px; border-radius: 100px;
+  background: var(--accent2); color: var(--cream);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s;
+}
+.wp-modal-cta:hover { background: #0e5f5a; }
+@media (prefers-reduced-motion: reduce) {
+  .weekday-promo-banner,
+  .wp-modal-overlay,
+  .wp-modal { transition: none; }
+}
+
+/* ── SECTION ── */
+section { padding: var(--space-section-y) var(--space-page-x); }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 40px;
+}
+
+/* ── BUTTONS ── */
+.btn-outline {
+  display: inline-flex; align-items: center;
+  padding: 12px 28px; border-radius: 100px;
+  border: 1.5px solid var(--dark); color: var(--dark);
+  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
+}
+.btn-outline:hover {
+  background: var(--dark); color: var(--cream);
+  transform: translateY(-2px); box-shadow: var(--shadow-md);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--warm-white);
+  padding: clamp(40px, 6vw, 60px) var(--space-page-x) clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--border);
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; margin-bottom: 48px; align-items: start;
+}
+.footer-logo { font-family: var(--serif); font-size: 26px; font-weight: 400; margin-bottom: 20px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; margin-bottom: 20px; }
+.footer-links a {
+  display: inline-block; padding: 6px 0; /* comfortable tap target */
+  font-size: 13px; font-weight: 400; letter-spacing: 0.05em;
+  color: var(--mid); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--dark); }
+.footer-address { font-size: 13px; line-height: 1.8; color: var(--muted); font-style: normal; }
+.footer-address a { color: var(--muted); text-decoration: none; }
+.footer-social { display: flex; gap: 10px; align-items: flex-start; }
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: center; color: var(--mid); text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
+}
+.footer-social a:hover {
+  background: var(--dark); border-color: var(--dark); color: var(--cream);
+  transform: translateY(-2px); box-shadow: var(--shadow-sm);
+}
+.footer-social svg { width: 14px; height: 14px; }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+/* ── SERVICE DESCRIPTION LISTS ── */
+.svc-desc-list {
+  font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.7);
+  margin: 0 0 24px 20px; padding: 0;
+}
+.svc-desc-list li { margin-bottom: 4px; }
+
+/* ── PLACEHOLDER ── */
+.img-placeholder {
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    45deg, #e0d8d0 0px, #e0d8d0 8px, #d5cdc5 8px, #d5cdc5 16px
+  );
+  display: flex; align-items: center; justify-content: center;
+}
+.img-placeholder span {
+  font-family: monospace; font-size: 11px; color: #7a6f6a;
+  background: rgba(250,247,242,0.75); padding: 5px 10px;
+  border-radius: 3px; text-align: center;
+}
+
+/* ── RESPONSIVE ──
+   Spacing is fluid (clamp) so the old per-breakpoint padding patches are gone.
+   Only layout reflows remain here. */
+@media (max-width: 900px) {
+  .page-header { padding: 120px var(--space-page-x) 60px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-social { flex-direction: row; }
+}
+
+/* ── MANGOMINT CHAT WIDGET — keep the open panel a bounded, fitted card ──
+   The webchat (injected by booking.mangomint.com/app.js; iframe served from
+   app.mangomint.com/webchat) misbehaves at both ends:
+   • desktop — Mangomint anchors the open panel near the top with a fixed
+     ~720px height, so on shorter windows its bottom (the message input) is
+     cut off below the viewport;
+   • mobile — its open container is full-bleed with overflow:hidden, and the
+     panel iframe is absolutely positioned, so any attempt to shrink the
+     container by height collapses it to 0 and clips the chat away entirely.
+   Fix both the same way: scope to the OPEN state (so the closed launcher
+   bubble keeps Mangomint's own placement), anchor the panel to the
+   bottom-right, and bound its height to the viewport so nothing is cut off
+   or hidden. The iframe fills that bounded container. !important is required
+   to beat Mangomint's runtime-injected stylesheet. */
+.mangomint-chat-container.mangomint-chat-container-open {
+  top: auto !important;
+  left: auto !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  width: min(400px, calc(100vw - 32px)) !important;
+  height: min(640px, calc(100dvh - 32px)) !important;
+  max-height: calc(100dvh - 32px) !important;
+}
+.mangomint-chat-container-open .mangomint-chat-widget {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (max-width: 768px) {
+  /* full-width card on phones, still bottom-anchored and viewport-bounded */
+  .mangomint-chat-container.mangomint-chat-container-open {
+    right: 12px !important;
+    bottom: 12px !important;
+    width: calc(100vw - 24px) !important;
+    height: min(560px, calc(100dvh - 24px)) !important;
+    max-height: calc(100dvh - 24px) !important;
+  }
+}
+
+/* ── MOBILE TYPE LEGIBILITY ──
+   Nudge the smallest shared text up on phones so secondary copy and the
+   footer stay comfortably readable. Stylistic nav/buttons left untouched. */
+@media (max-width: 600px) {
+  .section-label { font-size: 12px; }
+  .footer-links a { font-size: 14px; }
+  .footer-address, .footer-address a { font-size: 14px; }
+  .footer-copy { font-size: 12.5px; }
+  /* bio service-card duration chips stay readable on phones */
+  .bio-svc .svc-meta-dur { font-size: 11px; }
+}
+
+/* ── TINTED CHIP FAMILY (design audit X1) ──
+   One shape everywhere; only the tint changes. Text colours are darkened
+   past the raw brand values where needed to hold WCAG AA on cream. */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 100px;
+  font-family: var(--sans); font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.09em; text-transform: uppercase; line-height: 1.4;
+  text-decoration: none;
+}
+.chip-identity { background: rgba(110,63,141,0.13); color: #6E3F8D; }
+.chip-services { background: rgba(18,115,109,0.14); color: #0e5f5a; }
+.chip-team     { background: rgba(54,57,113,0.13);  color: #363971; }
+.chip-wellness { background: rgba(120,140,40,0.16); color: #566b12; }
+.chip-neutral  { background: rgba(28,24,22,0.07);   color: var(--muted); }
+.chip-inquire  { background: rgba(54,57,113,0.11);  color: #363971; }
+.chip-addon    { background: rgba(173,205,82,0.20); color: #566b12; }
+a.chip:hover { filter: brightness(0.92); }
+/* on-dark variants, for chips sitting over a photo hero or night-sky section */
+.chip-identity-d { background: rgba(255,255,255,0.14); color: #d9b8ec; }
+.chip-services-d { background: rgba(255,255,255,0.14); color: #8fe0cf; }
+.chip-team-d     { background: rgba(255,255,255,0.14); color: #b7bdf2; }
+.chip-wellness-d { background: rgba(255,255,255,0.14); color: #d7e79a; }
+.chip-neutral-d  { background: rgba(255,255,255,0.14); color: rgba(250,247,242,0.85); }
+
+/* ── PRONOUN PILL — quiet, secondary to the job title ── */
+.pronoun-pill {
+  display: inline-block; padding: 2px 10px; border-radius: 100px;
+  border: 1px solid var(--border); color: var(--muted);
+  font-family: var(--sans); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.07em;
+}
+
+/* ── PRICE / DURATION META ROW (design audit S1/X4) ── */
+.svc-meta { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-bottom: 12px; }
+.svc-meta-from { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.svc-meta-price { font-family: var(--serif); font-size: 20px; color: var(--dark); line-height: 1; }
+.svc-meta-dur {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--mid); background: rgba(28,24,22,0.06);
+  padding: 4px 11px; border-radius: 100px; letter-spacing: 0.02em;
+}
+.svc-meta-dur svg { width: 11px; height: 11px; opacity: 0.7; }
+/* compact variant for bio service cards */
+.bio-svc-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.bio-svc-meta .svc-meta-price { font-size: 17px; }
+.bio-svc-meta .svc-meta-dur { font-size: 10px; padding: 3px 9px; }
+
+/* ── SOFT FILTER TRANSITION (design audit X2) ── */
+.softfilter > * {
+  transition: opacity 0.36s var(--ease-calm), transform 0.36s var(--ease-calm);
+}
+.softfilter > .f-out { opacity: 0; transform: translateY(12px) scale(0.97); pointer-events: none; }
+.softfilter > .f-in { animation: filterRise 0.42s var(--ease-calm) both; }
+@keyframes filterRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCROLL REVEAL (design audit X3) ──
+   Opt-in per grid via .reveal-grid; shared.js adds html.js-reveal only when
+   the observer is available and motion is allowed, so content is never
+   hidden without JS. */
+html.js-reveal .reveal-grid > * { opacity: 0; transform: translateY(12px); }
+html.js-reveal .reveal-grid > .revealed {
+  opacity: 1; transform: none;
+  transition: opacity 0.55s var(--ease-calm), transform 0.55s var(--ease-calm);
+}
+@media (prefers-reduced-motion: reduce) {
+  .softfilter > *, .softfilter > .f-in { transition: none !important; animation: none !important; }
+  html.js-reveal .reveal-grid > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ── ARTICLE READING PROGRESS (design audit JD3) ──
+   Injected by shared.js on pages with an .article-body. */
+.article-progress {
+  position: fixed; top: var(--nav-h); left: 0; right: 0; height: 3px;
+  z-index: 199; pointer-events: none;
+}
+.article-progress span {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(to right,
+    #ADCD52, #12736D, #363971, #6E3F8D,
+    #BA7EC9, #585BA7, #52BCA3, #D9E493
+  );
+}
+
+.article-meta .meta-date { color: var(--accent2); font-weight: 500; }
+
+/* ── PULLQUOTE (design audit JD2) ── */
+.article-body .pullquote {
+  font-family: var(--serif); font-size: clamp(20px, 2.4vw, 26px);
+  font-style: italic; line-height: 1.45; color: var(--dark);
+  border-left: 3px solid;
+  border-image: linear-gradient(to bottom, #ADCD52, #12736D, #6E3F8D) 1;
+  padding-left: 20px; margin: 32px 0;
+}
+
+/* ── ARTICLE HERO — title overlaid on the photo, reusing .page-hero ──
+   Post titles are full sentences (much longer than a page tagline), so the
+   shared h1/p sizes are scaled down here; everything else — the wash, the
+   Ken Burns image, the staggered rise-in, reduced-motion handling — is
+   inherited from .page-hero untouched. */
+.article-page-hero { min-height: 480px; }
+/* opt-in modifier for posts whose hero is a square headshot rather than a
+   landscape scene -- a dead-center crop on a wide hero zooms in to just
+   eyes/nose/mouth. Taller hero + a top-biased crop keeps hair-to-shoulders
+   in frame instead. */
+.article-page-hero.hero-is-headshot { min-height: 620px; }
+.article-page-hero.hero-is-headshot .page-hero-img img { object-position: center 12%; }
+.article-page-hero .page-hero-content h1 {
+  font-size: clamp(26px, 4vw, 44px); max-width: 760px; margin-left: auto; margin-right: auto;
+}
+.article-page-hero .page-hero-content p { font-style: italic; }
+.article-hero-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(250,247,242,0.75); text-decoration: none;
+  transition: color 0.2s;
+}
+.article-hero-back:hover { color: var(--cream); }
+.article-hero-tag { margin-bottom: 4px; }
+.article-hero-meta {
+  display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+  font-family: var(--sans); font-size: 13px; color: rgba(250,247,242,0.75);
+}
+.article-hero-meta .dot { opacity: 0.5; }
+.article-hero-meta .meta-date { color: var(--accent); font-weight: 500; }
+.page-hero-content > .article-hero-back { animation-delay: 0.2s; }
+.page-hero-content > .article-hero-tag  { animation-delay: 0.35s; }
+.page-hero-content > .article-hero-meta { animation-delay: 0.9s; }
+@media (max-width: 720px) {
+  .article-page-hero { min-height: 420px; }
+}

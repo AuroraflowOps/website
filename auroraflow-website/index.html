@@ -76,7 +76,7 @@
     .hero-fsa-badge-text strong { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
     .hero-fsa-badge-text span { font-size: 13px; font-weight: 400; color: rgba(250,247,242,0.9); }
     @media (max-width: 900px) {
-      .hero-fsa-badge { position: static; display: inline-flex; margin-bottom: 16px; filter: none; }
+      .hero-fsa-badge { position: static; display: flex; justify-content: flex-end; margin-bottom: 16px; filter: none; }
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -703,8 +703,31 @@
     }
     @media (max-width: 640px) {
       .testimonials { padding: 56px 24px; }
-      .testimonials-slider { gap: 16px; }
-      .testimonial-card { width: 78vw; }
+      /* one-at-a-time swipeable carousel on mobile, replacing the desktop
+         continuous marquee — real reviews only, snapped edge-to-edge */
+      .testimonials-track-mask {
+        -webkit-mask-image: none; mask-image: none;
+        overflow-x: auto; overflow-y: hidden;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+      }
+      .testimonials-track-mask::-webkit-scrollbar { display: none; }
+      .testimonials-slider { gap: 0; width: auto; animation: none; }
+      .testimonial-card { width: 100%; flex: 0 0 100%; scroll-snap-align: center; }
+      /* duplicates exist only to loop the desktop marquee seamlessly */
+      .testimonial-card[aria-hidden="true"] { display: none; }
+      .testimonials-dots {
+        display: flex; justify-content: center; gap: 8px; margin-top: 20px;
+      }
+      .testimonials-dots button {
+        width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%;
+        background: rgba(250,247,242,0.28); cursor: pointer;
+        transition: background 0.25s, transform 0.25s;
+      }
+      .testimonials-dots button.active { background: var(--accent); transform: scale(1.3); }
+    }
+    @media (min-width: 641px) {
+      .testimonials-dots { display: none; }
     }
 
     .hero-link {
@@ -1223,6 +1246,70 @@
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }, 7500);
+  })();
+
+  // Mobile reviews carousel — swipeable, snaps one card at a time, auto-advances
+  (() => {
+    const mask = document.querySelector('.testimonials-track-mask');
+    const slider = document.querySelector('.testimonials-slider');
+    if (!mask || !slider) return;
+    if (!window.matchMedia('(max-width: 640px)').matches) return;
+
+    const cards = Array.from(slider.querySelectorAll('.testimonial-card:not([aria-hidden="true"])'));
+    if (cards.length < 2) return;
+
+    const dots = document.createElement('div');
+    dots.className = 'testimonials-dots';
+    cards.forEach((card, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Go to review ${i + 1}`);
+      if (i === 0) b.classList.add('active');
+      b.addEventListener('click', () => {
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+      dots.appendChild(b);
+    });
+    mask.insertAdjacentElement('afterend', dots);
+    const dotEls = Array.from(dots.children);
+
+    let active = 0;
+    function setActive(i) {
+      if (i === active) return;
+      active = i;
+      dotEls.forEach((d, j) => d.classList.toggle('active', j === i));
+    }
+
+    // track which card is centered as the user swipes
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+          setActive(cards.indexOf(entry.target));
+        }
+      });
+    }, { root: mask, threshold: [0.6] });
+    cards.forEach((c) => io.observe(c));
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // auto-advance, pausing while the user is actively touching/swiping
+    let timer = null;
+    let paused = false;
+    let resumeTimer = null;
+    function advance() {
+      if (paused) return;
+      cards[(active + 1) % cards.length].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    function start() { timer = setInterval(advance, 5000); }
+    mask.addEventListener('touchstart', () => {
+      paused = true;
+      clearInterval(timer);
+    }, { passive: true });
+    mask.addEventListener('touchend', () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { paused = false; start(); }, 4000);
+    }, { passive: true });
+    start();
   })();
 
   // Sparkle star field for all dark sections

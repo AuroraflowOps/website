@@ -333,8 +333,8 @@
         '<div class="wp-modal-body">' +
           '<span class="wp-modal-eyebrow">Weekday Special</span>' +
           '<h2 id="wp-modal-title">Weekday Massage + Skin Care</h2>' +
-          '<div class="wp-modal-code"><span>Promo code</span><strong>ADDSKIN20</strong></div>' +
-          '<p>20% off any skincare service booked same-day with a massage.</p>' +
+          '<div class="wp-modal-code"><span>Add to your booking notes</span><strong>ADDSKIN20</strong></div>' +
+          '<p>20% off any skincare service booked same-day with a massage. Add this code as a comment when you book online (or mention it if you call) so we know to apply your discount.</p>' +
           '<ul class="wp-modal-tags">' +
             tagItem('Mon–Fri only') +
             tagItem('Skincare service only') +

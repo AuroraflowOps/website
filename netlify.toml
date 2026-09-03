@@ -26,3 +26,14 @@
   from = "/post/*"
   to = "/"
   status = 301
+
+# Energy Healing was renamed to Guided Energy Work; keep the old URL working.
+[[redirects]]
+  from = "/services/energy-healing.html"
+  to = "/services/guided-energy-work.html"
+  status = 301
+
+[[redirects]]
+  from = "/services-and-treatments/energy-healing"
+  to = "/services/guided-energy-work.html"
+  status = 301

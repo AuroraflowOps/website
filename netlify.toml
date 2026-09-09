@@ -14,12 +14,12 @@
 # indexed against the previous site land on the current pages instead of 404.
 [[redirects]]
   from = "/services-and-treatments/*"
-  to = "/services/:splat.html"
+  to = "/services/:splat"
   status = 301
 
 [[redirects]]
   from = "/post/services-preview"
-  to = "/services.html"
+  to = "/services"
   status = 301
 
 [[redirects]]
@@ -30,10 +30,24 @@
 # Energy Healing was renamed to Guided Energy Work; keep the old URL working.
 [[redirects]]
   from = "/services/energy-healing.html"
-  to = "/services/guided-energy-work.html"
+  to = "/services/guided-energy-work"
   status = 301
 
 [[redirects]]
   from = "/services-and-treatments/energy-healing"
-  to = "/services/guided-energy-work.html"
+  to = "/services/guided-energy-work"
   status = 301
+
+# Pages are still served from their .html files on disk (Netlify resolves
+# /page to page.html automatically), but every internal link now points at
+# the extensionless URL. This sends anyone hitting an old bookmarked or
+# indexed *.html URL on to the clean one instead of serving duplicate
+# content at two addresses. force = true is required since the .html files
+# actually exist on disk — without it, Netlify serves the file instead of
+# applying the redirect. Placed last so the more specific rules above still
+# win for their exact legacy paths.
+[[redirects]]
+  from = "/*.html"
+  to = "/:splat"
+  status = 301
+  force = true

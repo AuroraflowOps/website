@@ -14,15 +14,15 @@
 ## Pages
 
 - [Home](https://www.auroraflow.com/): Overview of Auroraflow and its mission.
-- [About](https://www.auroraflow.com/about.html): Our story, founders, and mission.
-- [Services](https://www.auroraflow.com/services.html): Full list of massage, facial, waxing, and bodywork services, with pricing.
-- [Team](https://www.auroraflow.com/team.html): Licensed massage therapists and estheticians, with individual bios.
-- [Memberships](https://www.auroraflow.com/memberships.html): Monthly membership plans for individuals and businesses.
-- [Pay What You Can](https://www.auroraflow.com/pay-what-you-can.html): Sliding-scale pricing days to make wellness accessible.
-- [Community Fund](https://www.auroraflow.com/community-fund.html): Financial assistance program removing cost barriers to care.
-- [Classes](https://www.auroraflow.com/classes.html): Community wellness classes and events.
-- [Policies](https://www.auroraflow.com/policies.html): Booking, cancellation, accessibility, and care policies.
-- [Contact](https://www.auroraflow.com/contact.html): Location, hours, and how to reach us.
+- [About](https://www.auroraflow.com/about): Our story, founders, and mission.
+- [Services](https://www.auroraflow.com/services): Full list of massage, facial, waxing, and bodywork services, with pricing.
+- [Team](https://www.auroraflow.com/team): Licensed massage therapists and estheticians, with individual bios.
+- [Memberships](https://www.auroraflow.com/memberships): Monthly membership plans for individuals and businesses.
+- [Pay What You Can](https://www.auroraflow.com/pay-what-you-can): Sliding-scale pricing days to make wellness accessible.
+- [Community Fund](https://www.auroraflow.com/community-fund): Financial assistance program removing cost barriers to care.
+- [Classes](https://www.auroraflow.com/classes): Community wellness classes and events.
+- [Policies](https://www.auroraflow.com/policies): Booking, cancellation, accessibility, and care policies.
+- [Contact](https://www.auroraflow.com/contact): Location, hours, and how to reach us.
 
 ## Notes
 

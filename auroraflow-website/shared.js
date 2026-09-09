@@ -177,7 +177,7 @@
 
     /* group program pages under a small label so the long flat list reads
        as two calm clusters instead of nine equal items */
-    const PROGRAM_HREFS = ['community-fund.html', 'pay-what-you-can.html', 'memberships.html', 'classes.html'];
+    const PROGRAM_HREFS = ['community-fund', 'pay-what-you-can', 'memberships', 'classes'];
     const links = Array.from(menu.querySelectorAll('a'));
     const programLinks = links.filter((a) => {
       const href = (a.getAttribute('href') || '').split('/').pop();
@@ -377,7 +377,7 @@
     banner.innerHTML =
       '<strong>Introducing Hormonal Facials</strong>' +
       '<span>New consultation-based facials, plus $20 off all Clinical Facials through Oct 31</span>' +
-      '<a class="wp-link-btn" href="/clinical-facials.html">See the Details →</a>' +
+      '<a class="wp-link-btn" href="/clinical-facials">See the Details →</a>' +
       '<button type="button" class="wp-close" aria-label="Dismiss hormonal facials promotion">×</button>';
     document.body.insertBefore(banner, document.body.firstChild);
 

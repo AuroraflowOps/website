@@ -606,6 +606,15 @@ button:focus-visible,
   transition: background 0.2s;
 }
 .weekday-promo-banner .wp-details-btn:hover { background: rgba(250,247,242,0.28); }
+.weekday-promo-banner .wp-link-btn {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 700;
+  color: var(--cream); background: rgba(250,247,242,0.16);
+  border: 1px solid rgba(250,247,242,0.4); border-radius: 100px;
+  padding: 5px 16px; cursor: pointer; white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.weekday-promo-banner .wp-link-btn:hover { background: rgba(250,247,242,0.28); }
 .weekday-promo-banner .wp-close {
   position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
   width: 28px; height: 28px; border-radius: 50%; border: none;

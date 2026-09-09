@@ -379,8 +379,8 @@
       transition: color 0.2s;
     }
     .announcement-link:hover { color: #D9E493; }
-    /* the Weekday Special card's "See Details" is a <button> (it opens the
-       promo modal, not a link) riding the same look as the anchor variants */
+    /* unused for now — every "What's New" card currently uses the <a> variant,
+       but kept for any future card whose CTA needs to be a <button> instead */
     button.announcement-link { background: none; border: none; padding: 0; cursor: pointer; }
     /* compact "Follow" pill riding the head row — same shape/weight as the
        services-preview .btn-outline, with the Instagram mark standing in
@@ -1085,7 +1085,7 @@
         </div>
         <div class="service-info">
           <h3>Clinical Facial &amp; Consultation</h3>
-          <span class="service-price">$210 · 105 min</span>
+          <span class="service-price">$195 · 105 min</span>
           <p>Start your skincare journey with a thorough consultation and a personalized facial treatment plan.</p>
           <span class="service-link">Learn More →</span>
         </div>
@@ -1148,13 +1148,13 @@
     <div class="updates-grid">
       <div class="update-card">
         <div class="update-photo">
-          <img loading="lazy" src="assets/img/svc-facial-treatments.webp" width="900" height="900" alt="Relaxing facial treatment at Auroraflow" />
+          <img loading="lazy" src="assets/img/hormonal-facial-perimenopause.webp" width="1200" height="900" alt="Hormonal facial treatment at Auroraflow" />
         </div>
         <div class="update-card-body">
-          <span class="announcement-eyebrow">Weekday Special</span>
-          <h3>Weekday Massage + Skin Care</h3>
-          <p>20% off any skincare service booked same-day with a massage, Monday through Friday, through Oct 31, 2026.</p>
-          <button type="button" class="announcement-link wp-details-btn">See Details →</button>
+          <span class="announcement-eyebrow">New Special</span>
+          <h3>20% Off All Clinical Facials</h3>
+          <p>Introducing Hormonal Facials: two new consultation-based facials joining our Clinical Facial family. Save 20% on all four through Oct 31, 2026.</p>
+          <a class="announcement-link" href="clinical-facials.html">See Details →</a>
         </div>
       </div>
       <div class="update-card">

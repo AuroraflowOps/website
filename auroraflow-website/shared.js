@@ -377,8 +377,7 @@
     banner.innerHTML =
       '<strong>Introducing Hormonal Facials</strong>' +
       '<span>New consultation-based facials, plus 20% off all Clinical Facials through Oct 31</span>' +
-      '<a class="wp-link-btn" href="/services/hormonal-facial-young-adult.html">Young Adult →</a>' +
-      '<a class="wp-link-btn" href="/services/hormonal-facial-perimenopause.html">Perimenopause &amp; Menopause →</a>' +
+      '<a class="wp-link-btn" href="/clinical-facials.html">See the Details →</a>' +
       '<button type="button" class="wp-close" aria-label="Dismiss hormonal facials promotion">×</button>';
     document.body.insertBefore(banner, document.body.firstChild);
 

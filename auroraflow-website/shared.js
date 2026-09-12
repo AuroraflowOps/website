@@ -375,8 +375,8 @@
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', 'Hormonal facials promotion');
     banner.innerHTML =
-      '<strong>Introducing Hormonal Facials</strong>' +
-      '<span>New consultation-based facials, plus $20 off all Clinical Facials through Oct 31</span>' +
+      '<strong>$20 Off All Clinical Facials</strong>' +
+      '<span>Through Oct 31, including our new Hormonal Facials</span>' +
       '<a class="wp-link-btn" href="/clinical-facials">See the Details →</a>' +
       '<button type="button" class="wp-close" aria-label="Dismiss hormonal facials promotion">×</button>';
     document.body.insertBefore(banner, document.body.firstChild);

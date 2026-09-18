@@ -258,7 +258,7 @@
     banner.rel = 'noopener';
     banner.innerHTML =
       '<strong>Back to School</strong>' +
-      '<span>$50 off a $400 gift card — now through Aug&nbsp;7</span>' +
+      '<span>$50 off a $400 gift card, now through Aug&nbsp;7</span>' +
       '<span class="promo-cta">Get yours</span>';
     document.body.insertBefore(banner, document.body.firstChild);
 
@@ -280,22 +280,19 @@
   }
 })();
 
-/* ── Introducing Hormonal Facials promo banner ──
-   Site-wide bar above the nav (home page only): announces the two new
-   hormonal facials and the $20 off all Clinical Facials special, through
-   Oct 31, 2026. Formerly the Weekday Massage + Skin Care banner — repurposed
-   in place so the slide-down/dismiss/nav-offset mechanics stay untouched.
-   Unlike the immediate Back to School bar above, this one slides down 5s
+/* ── Express Massage promo banner ──
+   Site-wide bar above the nav (home page only): announces the new 30
+   Minute Express Massage. Formerly the Weekday Massage + Skin Care banner
+   (then briefly the Hormonal Facials banner) — repurposed in place so the
+   slide-down/dismiss/nav-offset mechanics stay untouched. Slides down 5s
    after the page loads so it doesn't compete with the hero on first paint,
-   and stays up until dismissed (remembered for the browsing session) or the
-   offer ends. The weekday skincare+massage offer this banner used to carry
-   is still honored on request; it's just no longer the featured promo. */
+   and stays up until dismissed (remembered for the browsing session). The
+   weekday skincare+massage offer this banner used to carry is still
+   honored on request; it's just no longer the featured promo. */
 (function () {
-  var HIDE_ON = new Date(2026, 10, 1); /* midnight Nov 1, 2026 local — last shown Oct 31 */
-  if (new Date() >= HIDE_ON) return;
   if (!/^\/(index\.html)?$/.test(location.pathname)) return; /* home page only */
 
-  var DISMISS_KEY = 'wp-hormonal-promo-dismissed';
+  var DISMISS_KEY = 'wp-express-massage-promo-dismissed';
   var BOOK_URL = 'https://booking.mangomint.com/814946';
 
   function sessionDismissed() {
@@ -367,18 +364,18 @@
     if (trigger) openModal();
   });
 
-  function addHormonalPromo() {
+  function addExpressMassagePromo() {
     if (document.querySelector('.weekday-promo-banner')) return;
 
     var banner = document.createElement('div');
     banner.className = 'weekday-promo-banner';
     banner.setAttribute('role', 'region');
-    banner.setAttribute('aria-label', 'Hormonal facials promotion');
+    banner.setAttribute('aria-label', 'Express massage promotion');
     banner.innerHTML =
-      '<strong>$20 Off All Clinical Facials</strong>' +
-      '<span>Through Oct 31, including our new Hormonal Facials</span>' +
-      '<a class="wp-link-btn" href="/clinical-facials">See the Details →</a>' +
-      '<button type="button" class="wp-close" aria-label="Dismiss hormonal facials promotion">×</button>';
+      '<strong>New: 30 Minute Express Massage</strong>' +
+      '<span>A quick, clothes-on reset for your head, scalp &amp; feet, $75</span>' +
+      '<a class="wp-link-btn" href="/services/express-massage">See the Details →</a>' +
+      '<button type="button" class="wp-close" aria-label="Dismiss express massage promotion">×</button>';
     document.body.insertBefore(banner, document.body.firstChild);
 
     var root = document.documentElement;
@@ -406,9 +403,9 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHormonalPromo);
+    document.addEventListener('DOMContentLoaded', addExpressMassagePromo);
   } else {
-    addHormonalPromo();
+    addExpressMassagePromo();
   }
 })();
 

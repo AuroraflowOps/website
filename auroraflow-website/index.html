@@ -322,12 +322,12 @@
        so it reads as an intentional section rather than a stray light
        band between two dark ones. */
     .new-faces { background: #0c0e1d; padding: var(--space-section-y) var(--space-page-x); }
-    .new-faces-inner { max-width: 1200px; margin: 0 auto; }
+    .new-faces-inner { max-width: 720px; margin: 0 auto; text-align: center; }
     .new-faces-head {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: 24px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vw, 52px);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px; margin-bottom: clamp(36px, 5vw, 52px);
     }
-    .new-faces-head .section-label { color: rgba(250,247,242,0.72); margin-bottom: 12px; }
+    .new-faces-head .section-label { color: rgba(250,247,242,0.72); margin: 0; }
     .new-faces-head h2 {
       font-family: var(--serif); font-size: clamp(24px, 2.8vw, 36px);
       font-weight: 400; line-height: 1.2; letter-spacing: -0.01em;
@@ -337,7 +337,7 @@
       border-color: rgba(250,247,242,0.4); color: #faf7f2; flex-shrink: 0;
     }
     .new-faces .btn-outline:hover { background: #faf7f2; color: #0e0a1e; border-color: #faf7f2; }
-    .new-faces-row { display: flex; gap: clamp(28px, 5vw, 56px); flex-wrap: wrap; }
+    .new-faces-row { display: flex; justify-content: center; gap: clamp(28px, 5vw, 56px); flex-wrap: wrap; }
     .new-face {
       display: flex; flex-direction: column; align-items: center; gap: 12px;
       text-decoration: none; color: inherit; width: 130px; text-align: center;
@@ -357,9 +357,7 @@
       letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,247,242,0.5);
     }
     @media (max-width: 640px) {
-      .new-faces-head { display: block; }
-      .new-faces .btn-outline { display: inline-flex; margin-top: 16px; }
-      .new-faces-row { justify-content: center; }
+      .new-faces .btn-outline { margin-top: 4px; }
     }
 
     /* ── ANNOUNCEMENTS ── */
@@ -1120,10 +1118,8 @@
 <section class="new-faces">
   <div class="new-faces-inner">
     <div class="new-faces-head">
-      <div>
-        <p class="section-label">New Faces</p>
-        <h2>Say hello to our newest team members</h2>
-      </div>
+      <p class="section-label">New Faces</p>
+      <h2>Say hello to our newest team members</h2>
       <a class="btn-outline" href="team">Meet the Full Team →</a>
     </div>
     <div class="new-faces-row">

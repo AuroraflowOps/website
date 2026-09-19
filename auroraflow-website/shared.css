@@ -456,6 +456,29 @@ button:focus-visible,
   .hero-sparkles { display: none; }
 }
 
+/* ── CURSOR SPARKLE TRAIL (injected by shared.js) ──
+   Same four-point star shape as the hero sparkles, sized down and
+   colored per-instance via --cursor-sparkle-color. Fixed-positioned at
+   the pointer coordinates and self-removed by shared.js once the fade
+   animation ends. */
+.cursor-sparkle {
+  position: fixed; top: 0; left: 0; z-index: 400; pointer-events: none;
+  width: 9px; height: 9px;
+  background:
+    radial-gradient(ellipse 50% 8% at 50% 50%, var(--cursor-sparkle-color, #ADCD52) 0%, transparent 60%),
+    radial-gradient(ellipse 8% 50% at 50% 50%, var(--cursor-sparkle-color, #ADCD52) 0%, transparent 60%);
+  opacity: 0.75;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  animation: cursorSparkleFade 0.7s ease-out forwards;
+}
+@keyframes cursorSparkleFade {
+  0%   { opacity: 0.75; transform: translate(-50%, -50%) scale(1)   rotate(0deg); }
+  100% { opacity: 0;    transform: translate(-50%, -50%) scale(0.2) rotate(50deg); }
+}
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .cursor-sparkle { display: none; }
+}
+
 /* ── STAR FIELD DOTS (injected by shared.js into dark sections) ── */
 @keyframes starTwinkle {
   0%, 100% { opacity: 0; transform: scale(0.4); }

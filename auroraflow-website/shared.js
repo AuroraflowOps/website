@@ -512,3 +512,43 @@
     init();
   }
 })();
+
+/* ── Cursor sparkle trail ──
+   A subtle sparkle that follows the pointer, reusing the site's existing
+   four-point star shape from the hero sparkles. Throttled by both time
+   and distance so it stays sparse rather than a dense trail. Skipped
+   entirely for touch-primary devices (no meaningful hover trail there)
+   and for reduced-motion, same as the site's other decorative animation. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var COLORS = ['#ADCD52', '#12736D', '#BA7EC9', '#52BCA3'];
+  var MIN_INTERVAL = 70; /* ms between sparkles */
+  var MIN_DIST = 28; /* px moved before spawning another */
+  var last = 0;
+  var lastX = null, lastY = null;
+
+  function spawnSparkle(x, y) {
+    var s = document.createElement('span');
+    s.className = 'cursor-sparkle';
+    s.style.left = x + 'px';
+    s.style.top = y + 'px';
+    s.style.setProperty('--cursor-sparkle-color', COLORS[Math.floor(Math.random() * COLORS.length)]);
+    document.body.appendChild(s);
+    s.addEventListener('animationend', function () { s.remove(); });
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    var now = Date.now();
+    if (now - last < MIN_INTERVAL) return;
+    if (lastX !== null) {
+      var dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (Math.sqrt(dx * dx + dy * dy) < MIN_DIST) return;
+    }
+    last = now;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    spawnSparkle(e.clientX, e.clientY);
+  });
+})();

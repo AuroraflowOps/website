@@ -463,19 +463,19 @@ button:focus-visible,
    animation ends. */
 .cursor-sparkle {
   position: fixed; top: 0; left: 0; z-index: 400; pointer-events: none;
-  width: 9px; height: 9px;
+  width: 13px; height: 13px;
   background:
     radial-gradient(ellipse 50% 8% at 50% 50%, var(--cursor-sparkle-color, #ADCD52) 0%, transparent 60%),
     radial-gradient(ellipse 8% 50% at 50% 50%, var(--cursor-sparkle-color, #ADCD52) 0%, transparent 60%);
-  opacity: 0.75;
+  opacity: 0.9;
   transform: translate(-50%, -50%) scale(1) rotate(0deg);
   animation: cursorSparkleFade 0.7s ease-out forwards;
 }
 @keyframes cursorSparkleFade {
-  0%   { opacity: 0.75; transform: translate(-50%, -50%) scale(1)   rotate(0deg); }
-  100% { opacity: 0;    transform: translate(-50%, -50%) scale(0.2) rotate(50deg); }
+  0%   { opacity: 0.9; transform: translate(-50%, -50%) scale(1)   rotate(0deg); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(0.2) rotate(50deg); }
 }
-@media (prefers-reduced-motion: reduce), (hover: none) {
+@media (prefers-reduced-motion: reduce) {
   .cursor-sparkle { display: none; }
 }
 

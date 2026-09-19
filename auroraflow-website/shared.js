@@ -516,16 +516,18 @@
 /* ── Cursor sparkle trail ──
    A subtle sparkle that follows the pointer, reusing the site's existing
    four-point star shape from the hero sparkles. Throttled by both time
-   and distance so it stays sparse rather than a dense trail. Skipped
-   entirely for touch-primary devices (no meaningful hover trail there)
-   and for reduced-motion, same as the site's other decorative animation. */
+   and distance so it stays sparse rather than a dense trail. Skipped for
+   reduced-motion, same as the site's other decorative animation. No
+   touch/hover check: touch input doesn't fire continuous mousemove
+   events anyway, and (hover: none) misreports on some hybrid laptops
+   with both a touchscreen and a mouse, which silently killed this for
+   mouse users on those devices. */
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(hover: none)').matches) return;
 
   var COLORS = ['#ADCD52', '#12736D', '#BA7EC9', '#52BCA3'];
-  var MIN_INTERVAL = 70; /* ms between sparkles */
-  var MIN_DIST = 28; /* px moved before spawning another */
+  var MIN_INTERVAL = 55; /* ms between sparkles */
+  var MIN_DIST = 16; /* px moved before spawning another */
   var last = 0;
   var lastX = null, lastY = null;
 

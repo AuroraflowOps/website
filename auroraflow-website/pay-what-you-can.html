@@ -38,9 +38,18 @@
       font-weight: 400; margin-bottom: 28px; letter-spacing: -0.01em;
     }
     .dates-inner h2 em { font-style: italic; }
+    .dates-note {
+      font-size: 14px; line-height: 1.6; color: var(--mid);
+      max-width: 560px; margin: -12px auto 32px;
+    }
+    .dates-year + .dates-year { margin-top: 36px; }
+    .dates-year-label {
+      font-family: var(--serif); font-size: 20px; font-weight: 400;
+      color: var(--mid); margin-bottom: 16px; letter-spacing: 0.04em;
+    }
     .dates-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
-      justify-content: center; gap: 20px; max-width: 640px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
+      justify-content: center; gap: 16px; max-width: 1040px; margin: 0 auto;
     }
     .date-card {
       padding: 24px; border-radius: var(--radius-sm);
@@ -49,7 +58,12 @@
     .date-card .date-day {
       font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 4px;
     }
+    .date-card .date-weekday {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--mid); margin-bottom: 6px;
+    }
     .date-card .date-provider { font-size: 14px; color: var(--mid); }
+    .date-card .date-provider a { color: inherit; }
 
     /* ── HOW IT WORKS ── */
     .how-section { background: var(--cream); padding: 80px 40px; }
@@ -129,6 +143,13 @@
       .how-steps { grid-template-columns: 1fr; gap: 32px; }
       .values-grid { grid-template-columns: 1fr; }
       .what-section, .how-section, .values-section, .faq-section { padding: 56px 24px; }
+    }
+    @media (max-width: 600px) {
+      .dates-section { padding: 48px 16px 0; }
+      .dates-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .date-card { padding: 16px 12px; }
+      .date-card .date-day { font-size: 19px; }
+      .date-card .date-provider { font-size: 13px; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>
@@ -221,17 +242,109 @@
 </div>
 
 <!-- UPCOMING DATES -->
+<!-- Source of truth: the "PWYC Days" Google Calendar. Past dates hide themselves (script at bottom). -->
 <div class="dates-section">
   <div class="dates-inner">
     <h2>Upcoming <em>PWYC days</em></h2>
-    <div class="dates-grid">
-      <div class="date-card">
-        <div class="date-day">October 10</div>
-        <div class="date-provider">with Brandon Hu</div>
+    <p class="dates-note">Dates and providers are subject to change. Please confirm when you book, or call or text us at <a href="tel:9192299555" style="white-space:nowrap">(919) 229-9555</a>.</p>
+    <div class="dates-year" data-year="2026">
+      <h3 class="dates-year-label">2026</h3>
+      <div class="dates-grid">
+        <div class="date-card" data-date="2026-10-10">
+          <div class="date-weekday">Saturday</div>
+          <div class="date-day">October 10</div>
+          <div class="date-provider">with <a href="team/brandon-hu">Brandon Hu</a></div>
+        </div>
+        <div class="date-card" data-date="2026-10-26">
+          <div class="date-weekday">Monday</div>
+          <div class="date-day">October 26</div>
+          <div class="date-provider">with <a href="team/nikkia-beech-moore">Nikkia &quot;Nik&quot; Beech-Moore</a></div>
+        </div>
+        <div class="date-card" data-date="2026-11-05">
+          <div class="date-weekday">Thursday</div>
+          <div class="date-day">November 5</div>
+          <div class="date-provider">with <a href="team/christine-link">Christine Link</a></div>
+        </div>
+        <div class="date-card" data-date="2026-11-17">
+          <div class="date-weekday">Tuesday</div>
+          <div class="date-day">November 17</div>
+          <div class="date-provider">with <a href="team/brandy-robertson">Brandy Robertson</a></div>
+        </div>
+        <div class="date-card" data-date="2026-12-01">
+          <div class="date-weekday">Tuesday</div>
+          <div class="date-day">December 1</div>
+          <div class="date-provider">with <a href="team/carissa-bovee">Carissa Bovee</a></div>
+        </div>
+        <div class="date-card" data-date="2026-12-14">
+          <div class="date-weekday">Monday</div>
+          <div class="date-day">December 14</div>
+          <div class="date-provider">with <a href="team/eri-pinto">Eri Pinto</a></div>
+        </div>
       </div>
-      <div class="date-card">
-        <div class="date-day">October 26</div>
-        <div class="date-provider">with Nikkia &quot;Nik&quot; Beech-Moore</div>
+    </div>
+    <div class="dates-year" data-year="2027">
+      <h3 class="dates-year-label">2027</h3>
+      <div class="dates-grid">
+        <div class="date-card" data-date="2027-01-13">
+          <div class="date-weekday">Wednesday</div>
+          <div class="date-day">January 13</div>
+          <div class="date-provider">with <a href="team/giules-colpo">Giules Colpo</a></div>
+        </div>
+        <div class="date-card" data-date="2027-02-04">
+          <div class="date-weekday">Thursday</div>
+          <div class="date-day">February 4</div>
+          <div class="date-provider">with <a href="team/hayley-yokoyama">Hayley Yokoyama</a></div>
+        </div>
+        <div class="date-card" data-date="2027-02-18">
+          <div class="date-weekday">Thursday</div>
+          <div class="date-day">February 18</div>
+          <div class="date-provider">with <a href="team/christine-link">Christine Link</a></div>
+        </div>
+        <div class="date-card" data-date="2027-03-03">
+          <div class="date-weekday">Wednesday</div>
+          <div class="date-day">March 3</div>
+          <div class="date-provider">with <a href="team/izzy-weiser">Izzy Weiser</a></div>
+        </div>
+        <div class="date-card" data-date="2027-03-20">
+          <div class="date-weekday">Saturday</div>
+          <div class="date-day">March 20</div>
+          <div class="date-provider">with <a href="team/carissa-bovee">Carissa Bovee</a></div>
+        </div>
+        <div class="date-card" data-date="2027-04-02">
+          <div class="date-weekday">Friday</div>
+          <div class="date-day">April 2</div>
+          <div class="date-provider">with <a href="team/jessmary-ramos">Jessmary Ramos</a></div>
+        </div>
+        <div class="date-card" data-date="2027-05-04">
+          <div class="date-weekday">Tuesday</div>
+          <div class="date-day">May 4</div>
+          <div class="date-provider">with <a href="team/jocelyn-glover">Jocelyn Glover</a></div>
+        </div>
+        <div class="date-card" data-date="2027-05-27">
+          <div class="date-weekday">Thursday</div>
+          <div class="date-day">May 27</div>
+          <div class="date-provider">with <a href="team/christine-link">Christine Link</a></div>
+        </div>
+        <div class="date-card" data-date="2027-06-09">
+          <div class="date-weekday">Wednesday</div>
+          <div class="date-day">June 9</div>
+          <div class="date-provider">with <a href="team/maya-freelon">Maya Freelon</a></div>
+        </div>
+        <div class="date-card" data-date="2027-06-22">
+          <div class="date-weekday">Tuesday</div>
+          <div class="date-day">June 22</div>
+          <div class="date-provider">with <a href="team/carissa-bovee">Carissa Bovee</a></div>
+        </div>
+        <div class="date-card" data-date="2027-09-16">
+          <div class="date-weekday">Thursday</div>
+          <div class="date-day">September 16</div>
+          <div class="date-provider">with <a href="team/christine-link">Christine Link</a></div>
+        </div>
+        <div class="date-card" data-date="2027-10-09">
+          <div class="date-weekday">Saturday</div>
+          <div class="date-day">October 9</div>
+          <div class="date-provider">with <a href="team/carissa-bovee">Carissa Bovee</a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -245,7 +358,7 @@
       <div class="how-step">
         <div class="step-num" aria-hidden="true">01</div>
         <h3>Find the next date</h3>
-        <p>PWYC days don't run on a fixed schedule, but happen about twice a month. Follow us on Instagram <a href="https://www.instagram.com/auroraflowmassage/" target="_blank">@auroraflowmassage</a>, or call or text us at <a href="tel:9192299555">(919) 229-9555</a>, to find out when the next one is.</p>
+        <p>Check the upcoming dates above (they can change), follow us on Instagram <a href="https://www.instagram.com/auroraflowmassage/" target="_blank">@auroraflowmassage</a>, or call or text us at <a href="tel:9192299555">(919) 229-9555</a> to confirm the next one.</p>
       </div>
       <div class="how-step">
         <div class="step-num" aria-hidden="true">02</div>
@@ -394,6 +507,14 @@
       hamburger.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+  // Hide PWYC dates that have passed (and any year left empty).
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+  document.querySelectorAll('.date-card[data-date]').forEach(card => {
+    if (card.dataset.date < today) card.remove();
+  });
+  document.querySelectorAll('.dates-year').forEach(y => {
+    if (!y.querySelector('.date-card')) y.remove();
   });
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {

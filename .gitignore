@@ -13,6 +13,9 @@
 !DESIGN-AUDIT-JOURNAL-BIOS-SERVICES.md
 !DESIGN-AUDIT-JOURNAL-BIOS-SERVICES-MOCKUP.html
 
+# Track GTM / Reddit Pixel setup checklist (repo root, never served)
+!GTM-REDDIT-SETUP-STATUS.md
+
 # Track Claude Code skills so they persist across sessions
 !.claude/
 !.claude/**

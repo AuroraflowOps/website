@@ -1,25 +1,9 @@
 /* Auroraflow — shared client-side enhancements */
 
-/* ── Google Analytics (GA4) ──
-   Loaded here so every page that includes shared.js is tracked with one
-   snippet. Update GA_ID to change the measurement ID. */
-(function () {
-  var GA_ID = 'G-XSD2W9D1GB';
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', GA_ID);
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-  document.head.appendChild(s);
-})();
-
 /* ── Google Tag Manager ──
-   Loads container GTM-WGB9SXR on every page that includes shared.js.
-   GA4 is still loaded directly above, so don't also add a GA4 tag for
-   G-XSD2W9D1GB inside GTM or pageviews will be counted twice. */
+   GTM-WGB9SXR is the single source for all site tags (GA4 included —
+   configure the GA4 tag inside GTM, not here). Loaded from shared.js so
+   every page gets it with one snippet. */
 (function (w, d, id) {
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -29,40 +13,45 @@
   d.head.appendChild(s);
 })(window, document, 'GTM-WGB9SXR');
 
-/* ── GA4 conversion / interaction event tracking ──
+/* ── Conversion / interaction events → GTM dataLayer ──
    One delegated listener tracks the key off-site CTAs (all are <a> tags):
    booking, gift cards, phone, email, memberships. GA4 recommended event
-   names are used where they exist so they map cleanly to Key Events. */
+   names are used where they exist so they map cleanly to Key Events; in
+   GTM, fire a GA4 Event tag on a Custom Event trigger for each name. */
 (function () {
+  function track(name, params) {
+    params = params || {};
+    params.event = name;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(params);
+  }
   function svcName() {
     var el = document.querySelector('h1.svc-name') || document.querySelector('h1');
     return (el ? el.textContent : document.title).trim();
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a || typeof window.gtag !== 'function') return;
+    if (!a) return;
     var href = a.getAttribute('href') || '';
 
     if (href.indexOf('booking.mangomint.com') > -1) {
-      gtag('event', 'generate_lead', {
+      track('generate_lead', {
         event_category: 'booking', service_name: svcName(), link_url: href
       });
     } else if (href.indexOf('gift-cards/814946') > -1) {
-      gtag('event', 'gift_card_click', { event_category: 'gift_card', link_url: href });
+      track('gift_card_click', { event_category: 'gift_card', link_url: href });
     } else if (href.indexOf('membership') > -1) {
-      gtag('event', 'begin_checkout', { event_category: 'membership', link_url: href });
+      track('begin_checkout', { event_category: 'membership', link_url: href });
     } else if (href.indexOf('tel:') === 0) {
-      gtag('event', 'phone_click', { event_category: 'contact', link_url: href });
+      track('phone_click', { event_category: 'contact', link_url: href });
     } else if (href.indexOf('mailto:') === 0) {
-      gtag('event', 'email_click', { event_category: 'contact', link_url: href });
+      track('email_click', { event_category: 'contact', link_url: href });
     }
   }, true);
 
   /* True conversion: Mangomint returns guests to booking-complete.html */
   if (location.pathname.indexOf('booking-complete') > -1) {
-    var fire = function () { if (typeof window.gtag === 'function') gtag('event', 'booking_complete', { event_category: 'booking' }); };
-    if (document.readyState !== 'loading') fire();
-    else document.addEventListener('DOMContentLoaded', fire);
+    track('booking_complete', { event_category: 'booking' });
   }
 })();
 

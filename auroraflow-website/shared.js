@@ -16,6 +16,19 @@
   document.head.appendChild(s);
 })();
 
+/* ── Google Tag Manager ──
+   Loads container GTM-WGB9SXR on every page that includes shared.js.
+   GA4 is still loaded directly above, so don't also add a GA4 tag for
+   G-XSD2W9D1GB inside GTM or pageviews will be counted twice. */
+(function (w, d, id) {
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  var s = d.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+  d.head.appendChild(s);
+})(window, document, 'GTM-WGB9SXR');
+
 /* ── GA4 conversion / interaction event tracking ──
    One delegated listener tracks the key off-site CTAs (all are <a> tags):
    booking, gift cards, phone, email, memberships. GA4 recommended event

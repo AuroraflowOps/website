@@ -3,7 +3,11 @@
 /* ── Google Tag Manager ──
    GTM-WGB9SXR is the single source for all site tags (GA4 included —
    configure the GA4 tag inside GTM, not here). Loaded from shared.js so
-   every page gets it with one snippet. */
+   every page gets it with one snippet.
+   Tags managed in the container:
+     - GA4 (Google tag)   G-XSD2W9D1GB
+     - Reddit Pixel       a2_jq9tr2wxpc4m  (PageVisit; Purchase on
+                          booking_complete; Lead on generate_lead) */
 (function (w, d, id) {
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });

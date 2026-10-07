@@ -38,6 +38,17 @@
   to = "/services/guided-energy-work"
   status = 301
 
+# Former team members' profile pages; send old links to the team page.
+[[redirects]]
+  from = "/team/cleo-hyzy"
+  to = "/team"
+  status = 301
+
+[[redirects]]
+  from = "/team/castle-frame"
+  to = "/team"
+  status = 301
+
 # Pages are still served from their .html files on disk (Netlify resolves
 # /page to page.html automatically), but every internal link now points at
 # the extensionless URL. This sends anyone hitting an old bookmarked or

@@ -6,8 +6,7 @@
    every page gets it with one snippet.
    Tags managed in the container:
      - GA4 (Google tag)   G-XSD2W9D1GB
-     - Reddit Pixel       a2_jq9tr2wxpc4m  (PageVisit; Purchase on
-                          booking_complete; Lead on generate_lead) */
+   The Reddit Pixel is installed directly below, not in GTM. */
 (function (w, d, id) {
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -16,6 +15,26 @@
   s.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
   d.head.appendChild(s);
 })(window, document, 'GTM-WGB9SXR');
+
+/* ── Reddit Pixel (a2_jq9tr2wxpc4m) ──
+   Installed directly (not through GTM) so Reddit Ads can attribute
+   bookings to campaigns. PageVisit on every page; Purchase fires on
+   booking-complete below. Don't also add Reddit tags in GTM or events
+   will be counted twice. */
+!function (w, d) {
+  if (!w.rdt) {
+    var p = w.rdt = function () {
+      p.sendEvent ? p.sendEvent.apply(p, arguments) : p.callQueue.push(arguments);
+    };
+    p.callQueue = [];
+    var t = d.createElement('script');
+    t.src = 'https://www.redditstatic.com/ads/pixel.js';
+    t.async = true;
+    d.head.appendChild(t);
+  }
+}(window, document);
+rdt('init', 'a2_jq9tr2wxpc4m');
+rdt('track', 'PageVisit');
 
 /* ── Conversion / interaction events → GTM dataLayer ──
    One delegated listener tracks the key off-site CTAs (all are <a> tags):
@@ -56,6 +75,7 @@
   /* True conversion: Mangomint returns guests to booking-complete.html */
   if (location.pathname.indexOf('booking-complete') > -1) {
     track('booking_complete', { event_category: 'booking' });
+    if (typeof window.rdt === 'function') rdt('track', 'Purchase');
   }
 })();
 

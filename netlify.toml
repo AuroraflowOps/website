@@ -51,3 +51,20 @@
   to = "/:splat"
   status = 301
   force = true
+
+# Departed staff (Oct 2026): their bio pages were removed; send old links and
+# search results to the team page instead of a 404.
+[[redirects]]
+  from = "/team/castle-frame"
+  to = "/team"
+  status = 301
+
+[[redirects]]
+  from = "/team/cleo-hyzy"
+  to = "/team"
+  status = 301
+
+[[redirects]]
+  from = "/team/jaylon-martin"
+  to = "/team"
+  status = 301

@@ -65,11 +65,6 @@
   status = 301
 
 [[redirects]]
-  from = "/team/sascha-de-la-sabia"
-  to = "/team"
-  status = 301
-
-[[redirects]]
   from = "/team/jaylon-martin"
   to = "/team"
   status = 301

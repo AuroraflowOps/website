@@ -63,7 +63,7 @@ or a services section, even if the site's shared CSS still defines those classes
   Providers** grid or the **Support Staff** grid to match, with the same title
   and pronoun pill.
 - Use an existing bio page as your template for the category: e.g.
-  `team/jaylon-martin.html` for a clean administrative example (no services, no
+  `team/elare-andre.html` for a clean administrative example (no services, no
   CTA), or `team/lydia-atkins.html` for a full service-provider example.
 
 ## 3. Preserve the provided bio text

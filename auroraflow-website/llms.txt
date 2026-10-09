@@ -1,6 +1,6 @@
 # Auroraflow
 
-> Auroraflow is an LGBTQ-owned massage and skincare spa in downtown Durham, NC. Founded by Castle Frame and Lauren McCullough, it offers inclusive, affirming massage, facial, and bodywork services built on the belief that wellness is a human right for every body.
+> Auroraflow is an LGBTQ-owned massage and skincare spa in downtown Durham, NC. Co-founded by Lauren McCullough, it offers inclusive, affirming massage, facial, and bodywork services built on the belief that wellness is a human right for every body.
 
 ## Basics
 
@@ -14,7 +14,7 @@
 ## Pages
 
 - [Home](https://www.auroraflow.com/): Overview of Auroraflow and its mission.
-- [About](https://www.auroraflow.com/about): Our story, founders, and mission.
+- [About](https://www.auroraflow.com/about): Our story and mission.
 - [Services](https://www.auroraflow.com/services): Full list of massage, facial, waxing, and bodywork services, with pricing.
 - [Team](https://www.auroraflow.com/team): Licensed massage therapists and estheticians, with individual bios.
 - [Memberships](https://www.auroraflow.com/memberships): Monthly membership plans for individuals and businesses.

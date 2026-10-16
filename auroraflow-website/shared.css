@@ -638,6 +638,12 @@ button:focus-visible,
   transition: background 0.2s;
 }
 .weekday-promo-banner .wp-link-btn:hover { background: rgba(250,247,242,0.28); }
+.weekday-promo-banner .wp-thumb {
+  display: block; width: 34px; height: 34px; flex-shrink: 0;
+  border-radius: 50%; overflow: hidden;
+  border: 1.5px solid rgba(250,247,242,0.55);
+}
+.weekday-promo-banner .wp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .weekday-promo-banner .wp-close {
   position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
   width: 28px; height: 28px; border-radius: 50%; border: none;
@@ -647,6 +653,7 @@ button:focus-visible,
 .weekday-promo-banner .wp-close:hover { opacity: 1; }
 @media (max-width: 640px) {
   .weekday-promo-banner { padding: 9px 42px; font-size: 12.5px; }
+  .weekday-promo-banner .wp-thumb { display: none; }
 }
 
 /* ── Weekday promo details modal (injected by shared.js) ── */

@@ -280,10 +280,11 @@
   }
 })();
 
-/* ── Express Massage promo banner ──
-   Site-wide bar above the nav (home page only): announces the new 30
-   Minute Express Massage. Formerly the Weekday Massage + Skin Care banner
-   (then briefly the Hormonal Facials banner) — repurposed in place so the
+/* ── Seasonal Fresh Orchard Facial promo banner ──
+   Site-wide bar above the nav (home page only): announces the
+   limited-time Seasonal Fresh Orchard Facial (fall special). Formerly the
+   Express Massage banner, and before that the Weekday Massage + Skin Care
+   and Hormonal Facials banners — repurposed in place so the
    slide-down/dismiss/nav-offset mechanics stay untouched. Slides down 5s
    after the page loads so it doesn't compete with the hero on first paint,
    and stays up until dismissed (remembered for the browsing session). The
@@ -292,7 +293,7 @@
 (function () {
   if (!/^\/(index\.html)?$/.test(location.pathname)) return; /* home page only */
 
-  var DISMISS_KEY = 'wp-express-massage-promo-dismissed';
+  var DISMISS_KEY = 'wp-orchard-facial-promo-dismissed';
   var BOOK_URL = 'https://booking.mangomint.com/814946';
 
   function sessionDismissed() {
@@ -364,18 +365,21 @@
     if (trigger) openModal();
   });
 
-  function addExpressMassagePromo() {
+  function addOrchardFacialPromo() {
     if (document.querySelector('.weekday-promo-banner')) return;
 
     var banner = document.createElement('div');
     banner.className = 'weekday-promo-banner';
     banner.setAttribute('role', 'region');
-    banner.setAttribute('aria-label', 'Express massage promotion');
+    banner.setAttribute('aria-label', 'Seasonal Fresh Orchard Facial promotion');
     banner.innerHTML =
-      '<strong>New: 30 Minute Express Massage</strong>' +
-      '<span>A quick, clothes-on reset for your head, scalp &amp; feet, $75</span>' +
-      '<a class="wp-link-btn" href="/services/express-massage">See the Details →</a>' +
-      '<button type="button" class="wp-close" aria-label="Dismiss express massage promotion">×</button>';
+      '<a class="wp-thumb" href="/services/seasonal-fresh-orchard-facial" tabindex="-1" aria-hidden="true">' +
+        '<img src="/assets/img/seasonal-fresh-orchard-facial-square.webp" width="900" height="900" alt="">' +
+      '</a>' +
+      '<strong>Limited Time: Seasonal Fresh Orchard Facial</strong>' +
+      '<span>Apple enzyme &amp; vanilla clove hydrating mask to carry your glow into fall</span>' +
+      '<a class="wp-link-btn" href="/services/seasonal-fresh-orchard-facial">See the Details →</a>' +
+      '<button type="button" class="wp-close" aria-label="Dismiss seasonal facial promotion">×</button>';
     document.body.insertBefore(banner, document.body.firstChild);
 
     var root = document.documentElement;
@@ -403,9 +407,9 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addExpressMassagePromo);
+    document.addEventListener('DOMContentLoaded', addOrchardFacialPromo);
   } else {
-    addExpressMassagePromo();
+    addOrchardFacialPromo();
   }
 })();
 

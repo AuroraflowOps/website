@@ -32,7 +32,7 @@
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; font-size: 17px; -webkit-font-smoothing: antialiased; }
+body { background: var(--cream); color: var(--dark); font-family: var(--sans); font-weight: 300; font-size: 1.0625rem; -webkit-font-smoothing: antialiased; }
 
 /* ── NAV ── */
 /* mobile-first: links hidden, hamburger + book pill shown; desktop layers up at 901px */
@@ -40,10 +40,13 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 var(--space-page-x); height: var(--nav-h);
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
+  /* translucent material: page content scrolls visibly beneath the bar */
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  /* soft scroll-edge instead of a hard 1px divider */
+  border-bottom: 1px solid rgba(28,24,22,0.04);
+  box-shadow: 0 10px 24px -14px rgba(28,24,22,0.14);
 }
 
 /* ── PROMO BANNER NAV OFFSET ──
@@ -79,7 +82,7 @@ html.has-promo nav {
   .nav-links { display: flex; }
 }
 .nav-links a {
-  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
   letter-spacing: 0.09em; text-transform: uppercase;
   color: var(--mid); text-decoration: none; transition: color 0.2s;
 }
@@ -118,7 +121,7 @@ html.has-promo nav {
 }
 .nav-dropdown-menu li a {
   display: block; padding: 10px 20px;
-  font-family: var(--sans); font-size: 11px; font-weight: 400;
+  font-family: var(--sans); font-size: 0.6875rem; font-weight: 400;
   letter-spacing: 0.09em; text-transform: uppercase;
   color: var(--mid); text-decoration: none; white-space: nowrap;
   transition: color 0.15s, background 0.15s;
@@ -143,7 +146,7 @@ button:focus-visible,
   padding: 10px 22px; border-radius: 100px;
   background: rgba(12,14,29,0.92); color: #faf7f2 !important;
   border: 1px solid rgba(255,255,255,0.12);
-  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 700;
   letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
   transition: background 0.25s; white-space: nowrap;
 }
@@ -193,7 +196,7 @@ button:focus-visible,
   display: inline-flex; align-items: center; gap: 7px;
   padding: 10px 20px; border-radius: 100px;
   border: 1.5px solid var(--space); color: var(--space);
-  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
   white-space: nowrap;
   transition: background 0.25s, color 0.25s;
@@ -252,22 +255,24 @@ button:focus-visible,
     #0c0e1d;
   flex-direction: column;
   padding: 44px 32px 40px; gap: 0; overflow-y: auto;
-  opacity: 0; visibility: hidden; transform: translateY(10px);
+  /* grows out of the hamburger (top-right) and returns to it on close */
+  transform-origin: calc(100% - 28px) 0;
+  opacity: 0; visibility: hidden; transform: translateY(-8px) scale(0.97);
   transition:
-    opacity 0.55s var(--ease-calm),
-    transform 0.55s var(--ease-calm),
-    visibility 0s linear 0.55s;
+    opacity 0.3s var(--ease-calm),
+    transform 0.3s var(--ease-calm),
+    visibility 0s linear 0.3s;
 }
 .nav-mobile-menu.open {
-  opacity: 1; visibility: visible; transform: translateY(0);
+  opacity: 1; visibility: visible; transform: none;
   transition:
-    opacity 0.55s var(--ease-calm),
-    transform 0.55s var(--ease-calm),
+    opacity 0.3s var(--ease-calm),
+    transform 0.3s var(--ease-calm),
     visibility 0s;
 }
 .nav-mobile-menu a {
   position: relative; z-index: 1;
-  font-family: var(--serif); font-size: clamp(28px, 7.5vw, 34px); font-weight: 300;
+  font-family: var(--serif); font-size: clamp(1.75rem, 7.5vw, 2.125rem); font-weight: 300;
   color: var(--cream); text-decoration: none; padding: 15px 0;
   border-bottom: 1px solid rgba(250,247,242,0.10); letter-spacing: 0.01em;
   transition: color 0.3s, padding-left 0.4s var(--ease-calm);
@@ -277,32 +282,32 @@ button:focus-visible,
 /* nested program links injected by shared.js */
 .nav-mobile-menu .nav-mobile-group-label {
   position: relative; z-index: 1;
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--accent); padding: 26px 0 6px;
 }
 .nav-mobile-menu a.nav-mobile-sub {
-  font-size: clamp(21px, 5.5vw, 25px);
+  font-size: clamp(1.3125rem, 5.5vw, 1.5625rem);
   padding: 12px 0 12px 16px;
   color: rgba(250,247,242,0.82);
 }
 /* staggered rise — each link arrives a beat after the last */
-.nav-mobile-menu > * { opacity: 0; transform: translateY(14px); }
+.nav-mobile-menu > * { opacity: 0; transform: translateY(8px); }
 .nav-mobile-menu.open > * {
-  animation: menuLinkRise 0.7s var(--ease-calm) forwards;
+  animation: menuLinkRise 0.26s var(--ease-calm) forwards;
 }
-.nav-mobile-menu.open > *:nth-child(1)  { animation-delay: 0.08s; }
-.nav-mobile-menu.open > *:nth-child(2)  { animation-delay: 0.14s; }
-.nav-mobile-menu.open > *:nth-child(3)  { animation-delay: 0.20s; }
-.nav-mobile-menu.open > *:nth-child(4)  { animation-delay: 0.26s; }
-.nav-mobile-menu.open > *:nth-child(5)  { animation-delay: 0.32s; }
-.nav-mobile-menu.open > *:nth-child(6)  { animation-delay: 0.38s; }
-.nav-mobile-menu.open > *:nth-child(7)  { animation-delay: 0.44s; }
-.nav-mobile-menu.open > *:nth-child(8)  { animation-delay: 0.50s; }
-.nav-mobile-menu.open > *:nth-child(9)  { animation-delay: 0.56s; }
-.nav-mobile-menu.open > *:nth-child(10) { animation-delay: 0.62s; }
-.nav-mobile-menu.open > *:nth-child(11) { animation-delay: 0.68s; }
-.nav-mobile-menu.open > *:nth-child(12) { animation-delay: 0.74s; }
+.nav-mobile-menu.open > *:nth-child(1)  { animation-delay: 0.015s; }
+.nav-mobile-menu.open > *:nth-child(2)  { animation-delay: 0.03s; }
+.nav-mobile-menu.open > *:nth-child(3)  { animation-delay: 0.045s; }
+.nav-mobile-menu.open > *:nth-child(4)  { animation-delay: 0.06s; }
+.nav-mobile-menu.open > *:nth-child(5)  { animation-delay: 0.075s; }
+.nav-mobile-menu.open > *:nth-child(6)  { animation-delay: 0.09s; }
+.nav-mobile-menu.open > *:nth-child(7)  { animation-delay: 0.105s; }
+.nav-mobile-menu.open > *:nth-child(8)  { animation-delay: 0.12s; }
+.nav-mobile-menu.open > *:nth-child(9)  { animation-delay: 0.135s; }
+.nav-mobile-menu.open > *:nth-child(10) { animation-delay: 0.15s; }
+.nav-mobile-menu.open > *:nth-child(11) { animation-delay: 0.165s; }
+.nav-mobile-menu.open > *:nth-child(12) { animation-delay: 0.18s; }
 @keyframes menuLinkRise {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -317,7 +322,7 @@ button:focus-visible,
   padding: 18px 36px; border-radius: 100px;
   background: rgba(12,14,29,0.92); color: var(--cream) !important;
   border: 1px solid rgba(255,255,255,0.18);
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.8125rem; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
   border-bottom: 1px solid rgba(255,255,255,0.18);
 }
@@ -350,12 +355,12 @@ button:focus-visible,
   text-align: center;
 }
 .page-header h1 {
-  font-family: var(--serif); font-size: clamp(42px, 6vw, 80px);
+  font-family: var(--serif); font-size: clamp(2.625rem, 6vw, 5rem);
   font-weight: 300; letter-spacing: -0.01em; line-height: 1.1;
   margin-bottom: 16px;
 }
 .page-header p {
-  font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 580px; margin: 0 auto;
+  font-size: 1.0625rem; color: var(--muted); line-height: 1.65; max-width: 580px; margin: 0 auto;
 }
 
 /* ── PAGE HERO (background-image header for sub-pages) ── */
@@ -533,7 +538,7 @@ button:focus-visible,
 /* unified eyebrow — same class used across every hero */
 .page-hero-content .section-label {
   display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 24px;
@@ -545,14 +550,14 @@ button:focus-visible,
   background: var(--accent); opacity: 0.55;
 }
 .page-hero-content h1 {
-  font-family: var(--serif); font-size: clamp(40px, 6vw, 80px);
+  font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 300; color: var(--cream); line-height: 1.06;
   letter-spacing: -0.01em; margin-bottom: 24px;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
 }
 .page-hero-content h1 em { font-style: italic; }
 .page-hero-content p {
-  font-size: clamp(16px, 1.6vw, 19px); color: rgba(250, 247, 242, 0.92);
+  font-size: clamp(1rem, 1.6vw, 1.1875rem); color: rgba(250, 247, 242, 0.92);
   line-height: 1.65; max-width: 600px; margin: 0 auto;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
 }
@@ -566,7 +571,7 @@ button:focus-visible,
   display: inline-flex; align-items: center;
   padding: 15px 32px; border-radius: 100px;
   background: var(--cream); color: var(--dark);
-  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
   transition: opacity 0.2s, transform 0.2s;
 }
@@ -575,7 +580,7 @@ button:focus-visible,
   display: inline-flex; align-items: center;
   padding: 15px 32px; border-radius: 100px;
   border: 1.5px solid rgba(250,247,242,0.4); color: var(--cream);
-  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
   transition: border-color 0.2s, background 0.2s;
 }
@@ -590,7 +595,7 @@ button:focus-visible,
   padding: 10px 18px; border-radius: 100px;
   background: rgba(250,247,242,0.10);
   border: 1px solid rgba(250,247,242,0.20);
-  font-family: var(--sans); font-size: 13px; color: rgba(250,247,242,0.9);
+  font-family: var(--sans); font-size: 0.8125rem; color: rgba(250,247,242,0.9);
 }
 .page-hero-badge svg { color: var(--accent); }
 .page-hero-badge strong { color: var(--cream); font-weight: 500; }
@@ -612,17 +617,17 @@ button:focus-visible,
   gap: 4px 14px; padding: 10px 56px; box-sizing: border-box;
   background: linear-gradient(100deg, var(--space), var(--accent2));
   color: var(--cream); text-align: center;
-  font-family: var(--sans); font-size: 13.5px; font-weight: 400; line-height: 1.35;
+  font-family: var(--sans); font-size: 0.8438rem; font-weight: 400; line-height: 1.35;
   transform: translateY(-100%);
   transition: transform 0.6s var(--ease-calm);
 }
 .weekday-promo-banner.wp-visible { transform: translateY(0); }
 .weekday-promo-banner strong {
   font-weight: 700; color: var(--accent);
-  letter-spacing: 0.04em; text-transform: uppercase; font-size: 12.5px;
+  letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.7812rem;
 }
 .weekday-promo-banner .wp-details-btn {
-  font-family: var(--sans); font-size: 12.5px; font-weight: 700;
+  font-family: var(--sans); font-size: 0.7812rem; font-weight: 700;
   color: var(--cream); background: rgba(250,247,242,0.16);
   border: 1px solid rgba(250,247,242,0.4); border-radius: 100px;
   padding: 5px 16px; cursor: pointer; white-space: nowrap;
@@ -630,7 +635,7 @@ button:focus-visible,
 }
 .weekday-promo-banner .wp-details-btn:hover { background: rgba(250,247,242,0.28); }
 .weekday-promo-banner .wp-link-btn {
-  font-family: var(--sans); font-size: 12.5px; font-weight: 700;
+  font-family: var(--sans); font-size: 0.7812rem; font-weight: 700;
   color: var(--cream); background: rgba(250,247,242,0.16);
   border: 1px solid rgba(250,247,242,0.4); border-radius: 100px;
   padding: 5px 16px; cursor: pointer; white-space: nowrap;
@@ -648,11 +653,11 @@ button:focus-visible,
   position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
   width: 28px; height: 28px; border-radius: 50%; border: none;
   background: transparent; color: var(--cream); opacity: 0.75;
-  font-size: 19px; line-height: 1; cursor: pointer;
+  font-size: 1.1875rem; line-height: 1; cursor: pointer;
 }
 .weekday-promo-banner .wp-close:hover { opacity: 1; }
 @media (max-width: 640px) {
-  .weekday-promo-banner { padding: 9px 42px; font-size: 12.5px; }
+  .weekday-promo-banner { padding: 9px 42px; font-size: 0.7812rem; }
   .weekday-promo-banner .wp-thumb { display: none; }
 }
 
@@ -684,18 +689,18 @@ button:focus-visible,
 .wp-modal-close {
   position: absolute; top: 12px; right: 12px; z-index: 2;
   width: 32px; height: 32px; border-radius: 50%; border: none;
-  background: rgba(12,14,29,0.55); color: #fff; font-size: 17px; line-height: 1;
+  background: rgba(12,14,29,0.55); color: #fff; font-size: 1.0625rem; line-height: 1;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
 .wp-modal-close:hover { background: rgba(12,14,29,0.75); }
 .wp-modal-body { padding: 18px 24px 22px; }
 .wp-modal-eyebrow {
-  display: inline-block; font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+  display: inline-block; font-family: var(--sans); font-size: 0.6562rem; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2);
   margin-bottom: 6px;
 }
 .wp-modal-body h2 {
-  font-family: var(--serif); font-size: clamp(20px, 2.6vw, 24px); font-weight: 400;
+  font-family: var(--serif); font-size: clamp(1.25rem, 2.6vw, 1.5rem); font-weight: 400;
   line-height: 1.15; margin-bottom: 12px; color: var(--dark);
 }
 .wp-modal-code {
@@ -703,22 +708,22 @@ button:focus-visible,
   background: rgba(18,115,109,0.08); border: 1.5px dashed var(--accent2);
   border-radius: var(--radius-sm); padding: 9px 14px; margin-bottom: 12px;
 }
-.wp-modal-code span:first-child { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-.wp-modal-code strong { font-family: var(--sans); font-size: 16px; letter-spacing: 0.06em; color: var(--accent2); }
-.wp-modal-body > p { font-size: 14.5px; line-height: 1.55; color: var(--mid); margin-bottom: 14px; }
+.wp-modal-code span:first-child { font-size: 0.6562rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.wp-modal-code strong { font-family: var(--sans); font-size: 1rem; letter-spacing: 0.06em; color: var(--accent2); }
+.wp-modal-body > p { font-size: 0.9062rem; line-height: 1.55; color: var(--mid); margin-bottom: 14px; }
 .wp-modal-tags { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .wp-modal-tags li {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; font-weight: 500; color: var(--dark);
+  font-size: 0.75rem; font-weight: 500; color: var(--dark);
   background: rgba(18,115,109,0.08); border-radius: 100px; padding: 6px 12px 6px 8px;
 }
 .wp-modal-tags svg { flex-shrink: 0; color: var(--accent2); width: 13px; height: 13px; }
-.wp-modal-expiry { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+.wp-modal-expiry { font-size: 0.75rem; color: var(--muted); margin-bottom: 16px; }
 .wp-modal-cta {
   display: inline-flex; align-items: center; justify-content: center; width: 100%;
   padding: 14px 28px; border-radius: 100px;
   background: var(--accent2); color: var(--cream);
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.8125rem; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
   transition: background 0.2s;
 }
@@ -733,7 +738,7 @@ button:focus-visible,
 section { padding: var(--space-section-y) var(--space-page-x); }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 .section-label {
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
   margin-bottom: 40px;
 }
@@ -743,7 +748,7 @@ section { padding: var(--space-section-y) var(--space-page-x); }
   display: inline-flex; align-items: center;
   padding: 12px 28px; border-radius: 100px;
   border: 1.5px solid var(--dark); color: var(--dark);
-  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
   transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
 }
@@ -763,15 +768,15 @@ footer {
   display: grid; grid-template-columns: 1fr auto;
   gap: 40px; margin-bottom: 48px; align-items: start;
 }
-.footer-logo { font-family: var(--serif); font-size: 26px; font-weight: 400; margin-bottom: 20px; }
+.footer-logo { font-family: var(--serif); font-size: 1.625rem; font-weight: 400; margin-bottom: 20px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; margin-bottom: 20px; }
 .footer-links a {
   display: inline-block; padding: 6px 0; /* comfortable tap target */
-  font-size: 13px; font-weight: 400; letter-spacing: 0.05em;
+  font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.05em;
   color: var(--mid); text-decoration: none; transition: color 0.2s;
 }
 .footer-links a:hover { color: var(--dark); }
-.footer-address { font-size: 13px; line-height: 1.8; color: var(--muted); font-style: normal; }
+.footer-address { font-size: 0.8125rem; line-height: 1.8; color: var(--muted); font-style: normal; }
 .footer-address a { color: var(--muted); text-decoration: none; }
 .footer-social { display: flex; gap: 10px; align-items: flex-start; }
 .footer-social a {
@@ -789,11 +794,11 @@ footer {
   border-top: 1px solid var(--border); padding-top: 24px;
   display: flex; justify-content: space-between; align-items: center;
 }
-.footer-copy { font-size: 12px; color: var(--muted); }
+.footer-copy { font-size: 0.75rem; color: var(--muted); }
 
 /* ── SERVICE DESCRIPTION LISTS ── */
 .svc-desc-list {
-  font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.7);
+  font-size: 1.0625rem; line-height: 1.82; color: rgba(250,247,242,0.7);
   margin: 0 0 24px 20px; padding: 0;
 }
 .svc-desc-list li { margin-bottom: 4px; }
@@ -807,7 +812,7 @@ footer {
   display: flex; align-items: center; justify-content: center;
 }
 .img-placeholder span {
-  font-family: monospace; font-size: 11px; color: #7a6f6a;
+  font-family: monospace; font-size: 0.6875rem; color: #7a6f6a;
   background: rgba(250,247,242,0.75); padding: 5px 10px;
   border-radius: 3px; text-align: center;
 }
@@ -866,12 +871,12 @@ footer {
    Nudge the smallest shared text up on phones so secondary copy and the
    footer stay comfortably readable. Stylistic nav/buttons left untouched. */
 @media (max-width: 600px) {
-  .section-label { font-size: 12px; }
-  .footer-links a { font-size: 14px; }
-  .footer-address, .footer-address a { font-size: 14px; }
-  .footer-copy { font-size: 12.5px; }
+  .section-label { font-size: 0.75rem; }
+  .footer-links a { font-size: 0.875rem; }
+  .footer-address, .footer-address a { font-size: 0.875rem; }
+  .footer-copy { font-size: 0.7812rem; }
   /* bio service-card duration chips stay readable on phones */
-  .bio-svc .svc-meta-dur { font-size: 11px; }
+  .bio-svc .svc-meta-dur { font-size: 0.6875rem; }
 }
 
 /* ── TINTED CHIP FAMILY (design audit X1) ──
@@ -880,7 +885,7 @@ footer {
 .chip {
   display: inline-flex; align-items: center; gap: 5px;
   padding: 4px 12px; border-radius: 100px;
-  font-family: var(--sans); font-size: 10.5px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.6562rem; font-weight: 500;
   letter-spacing: 0.09em; text-transform: uppercase; line-height: 1.4;
   text-decoration: none;
 }
@@ -903,24 +908,24 @@ a.chip:hover { filter: brightness(0.92); }
 .pronoun-pill {
   display: inline-block; padding: 2px 10px; border-radius: 100px;
   border: 1px solid var(--border); color: var(--muted);
-  font-family: var(--sans); font-size: 10px; font-weight: 400;
+  font-family: var(--sans); font-size: 0.625rem; font-weight: 400;
   letter-spacing: 0.07em;
 }
 
 /* ── PRICE / DURATION META ROW (design audit S1/X4) ── */
 .svc-meta { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-bottom: 12px; }
-.svc-meta-from { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-.svc-meta-price { font-family: var(--serif); font-size: 20px; color: var(--dark); line-height: 1; }
+.svc-meta-from { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.svc-meta-price { font-family: var(--serif); font-size: 1.25rem; color: var(--dark); line-height: 1; }
 .svc-meta-dur {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; color: var(--mid); background: rgba(28,24,22,0.06);
+  font-size: 0.6875rem; color: var(--mid); background: rgba(28,24,22,0.06);
   padding: 4px 11px; border-radius: 100px; letter-spacing: 0.02em;
 }
 .svc-meta-dur svg { width: 11px; height: 11px; opacity: 0.7; }
 /* compact variant for bio service cards */
 .bio-svc-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.bio-svc-meta .svc-meta-price { font-size: 17px; }
-.bio-svc-meta .svc-meta-dur { font-size: 10px; padding: 3px 9px; }
+.bio-svc-meta .svc-meta-price { font-size: 1.0625rem; }
+.bio-svc-meta .svc-meta-dur { font-size: 0.625rem; padding: 3px 9px; }
 
 /* ── SOFT FILTER TRANSITION (design audit X2) ── */
 .softfilter > * {
@@ -965,7 +970,7 @@ html.js-reveal .reveal-grid > .revealed {
 
 /* ── PULLQUOTE (design audit JD2) ── */
 .article-body .pullquote {
-  font-family: var(--serif); font-size: clamp(20px, 2.4vw, 26px);
+  font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.625rem);
   font-style: italic; line-height: 1.45; color: var(--dark);
   border-left: 3px solid;
   border-image: linear-gradient(to bottom, #ADCD52, #12736D, #6E3F8D) 1;
@@ -985,12 +990,12 @@ html.js-reveal .reveal-grid > .revealed {
 .article-page-hero.hero-is-headshot { min-height: 620px; }
 .article-page-hero.hero-is-headshot .page-hero-img img { object-position: center 12%; }
 .article-page-hero .page-hero-content h1 {
-  font-size: clamp(26px, 4vw, 44px); max-width: 760px; margin-left: auto; margin-right: auto;
+  font-size: clamp(1.625rem, 4vw, 2.75rem); max-width: 760px; margin-left: auto; margin-right: auto;
 }
 .article-page-hero .page-hero-content p { font-style: italic; }
 .article-hero-back {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--sans); font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.08em;
   text-transform: uppercase; color: rgba(250,247,242,0.75); text-decoration: none;
   transition: color 0.2s;
 }
@@ -998,7 +1003,7 @@ html.js-reveal .reveal-grid > .revealed {
 .article-hero-tag { margin-bottom: 4px; }
 .article-hero-meta {
   display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
-  font-family: var(--sans); font-size: 13px; color: rgba(250,247,242,0.75);
+  font-family: var(--sans); font-size: 0.8125rem; color: rgba(250,247,242,0.75);
 }
 .article-hero-meta .dot { opacity: 0.5; }
 .article-hero-meta .meta-date { color: var(--accent); font-weight: 500; }
@@ -1007,4 +1012,52 @@ html.js-reveal .reveal-grid > .revealed {
 .page-hero-content > .article-hero-meta { animation-delay: 0.9s; }
 @media (max-width: 720px) {
   .article-page-hero { min-height: 420px; }
+}
+
+/* ── PRESS FEEDBACK ──
+   Respond the instant a finger or mouse goes down, not on release. Uses the
+   standalone `scale` property so it composes with existing hover transforms
+   (e.g. cards lifting with translateY) instead of overriding them. Large
+   surfaces shrink less than small pills so the effect reads as the same
+   physical "give" at every size. */
+a[class*="btn"]:active,
+a[class*="cta"]:active,
+button:active,
+.nav-book-mobile:active,
+.nav-gift-mobile:active,
+.chip:active,
+.contact-chip:active,
+.faq-item summary:active,
+.fit-card:active { scale: 0.97; }
+.svc-card-link:active,
+.team-card-link:active,
+.svc-provider-link:active,
+.svc-related-card:active { scale: 0.985; }
+
+/* ── REDUCED TRANSPARENCY ──
+   Visitors who ask the OS for less transparency get solid surfaces. */
+@media (prefers-reduced-transparency: reduce) {
+  nav {
+    background: #fff;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    border-bottom-color: var(--border);
+    box-shadow: none;
+  }
+  .wp-modal-overlay { background: rgba(12,14,29,0.92); }
+}
+
+/* ── INCREASED CONTRAST ──
+   Near-solid surfaces with defined edges for visitors who ask for more contrast. */
+@media (prefers-contrast: more) {
+  nav {
+    background: #fff;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    border-bottom: 1px solid var(--dark);
+    box-shadow: none;
+  }
+  .nav-links a { color: var(--dark); }
+  .nav-mobile-menu { background: #0c0e1d; }
+  .nav-mobile-menu a:not(.btn-book-mobile) { color: #fff; border-bottom-color: rgba(250,247,242,0.45); }
+  .wp-modal-overlay { background: rgba(12,14,29,0.92); }
+  .wp-modal { box-shadow: 0 0 0 2px #fff, var(--shadow-lift); }
 }

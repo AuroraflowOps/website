@@ -25,7 +25,7 @@
     .bio-lifestyle img { width: 100%; aspect-ratio: 1/1; height: auto; object-fit: cover; border-radius: var(--radius-sm); display: block; align-self: start; }
     .bio-back {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--muted); text-decoration: none;
       margin-bottom: 28px; transition: color 0.2s;
     }
@@ -33,44 +33,44 @@
     .bio-badge {
       display: inline-block; padding: 4px 14px; border-radius: 100px;
       background: var(--dark); color: var(--cream);
-      font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
+      font-size: 0.625rem; font-weight: 400; letter-spacing: 0.12em;
       text-transform: uppercase; margin-bottom: 18px;
     }
     .bio-pronoun {
       display: inline-block; padding: 4px 14px; border-radius: 100px;
       border: 1px solid var(--border); color: var(--muted);
-      font-size: 10px; font-weight: 400; letter-spacing: 0.1em;
+      font-size: 0.625rem; font-weight: 400; letter-spacing: 0.1em;
       text-transform: uppercase; margin-bottom: 18px; margin-left: 6px;
     }
     .bio-name {
-      font-family: var(--serif); font-size: clamp(34px, 4vw, 58px);
+      font-family: var(--serif); font-size: clamp(2.125rem, 4vw, 3.625rem);
       font-weight: 400; line-height: 1.1; margin-bottom: 6px; letter-spacing: -0.01em;
     }
     .bio-title {
-      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 14px;
     }
     .bio-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .cred-chip {
       display: inline-flex; align-items: center; gap: 5px; padding: 3px 11px;
-      border-radius: 100px; font-size: 10px; font-weight: 500;
+      border-radius: 100px; font-size: 0.625rem; font-weight: 500;
       letter-spacing: 0.08em; text-transform: uppercase;
     }
     .cred-license { background: rgba(18,115,109,0.12); color: #0e5f5a; }
     .cred-award { background: rgba(173,205,82,0.22); color: #566b12; }
     .bio-specialties { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .bio-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
-    .bio-body p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
+    .bio-body p { font-size: 1rem; line-height: 1.85; color: var(--mid); margin-bottom: 18px; }
     .bio-body p:last-child { margin-bottom: 0; }
     .bio-body a { color: var(--dark); }
     .bio-body strong { font-weight: 500; color: var(--dark); }
     .bio-services-section { background: var(--cream); padding: 72px 40px; }
     .bio-services-inner { max-width: 1200px; margin: 0 auto; }
     .bio-services-inner h2 {
-      font-family: var(--serif); font-size: 34px; font-weight: 400;
+      font-family: var(--serif); font-size: 2.125rem; font-weight: 400;
       margin-bottom: 8px; letter-spacing: -0.01em;
     }
-    .bio-services-inner > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .bio-services-inner > p { font-size: 0.875rem; color: var(--muted); margin-bottom: 28px; }
     .bio-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 280px)); justify-content: start; gap: 14px; }
     .bio-svc {
       display: block; padding: 20px 22px; border-radius: var(--radius-sm);
@@ -82,8 +82,8 @@
       border-color: var(--dark); box-shadow: 0 4px 16px rgba(28,24,22,0.07);
       transform: translateY(-3px);
     }
-    .bio-svc-name { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 4px; }
-    .bio-svc-price { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+    .bio-svc-name { font-family: var(--serif); font-size: 1.125rem; font-weight: 400; margin-bottom: 4px; }
+    .bio-svc-price { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; }
     .bio-cta {
       background: var(--dark); padding: 90px 40px; text-align: center;
       position: relative; overflow: hidden; z-index: 0;
@@ -96,7 +96,7 @@
         radial-gradient(ellipse 45% 60% at 10% 90%, rgba(173,205,82,0.10) 0%, transparent 55%);
     }
     .bio-cta h3 {
-      font-family: var(--serif); font-size: clamp(26px,3.5vw,46px);
+      font-family: var(--serif); font-size: clamp(1.625rem,3.5vw,2.875rem);
       font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.2;
       letter-spacing: -0.01em;
     }
@@ -107,12 +107,12 @@
       background-clip: text;
       color: transparent;
     }
-    .bio-cta p { font-size: 16px; color: rgba(250,247,242,0.65); margin-bottom: 32px; line-height: 1.6; }
+    .bio-cta p { font-size: 1rem; color: rgba(250,247,242,0.65); margin-bottom: 32px; line-height: 1.6; }
     .btn-cta {
       display: inline-flex; align-items: center;
       padding: 15px 38px; border-radius: 100px;
       background: var(--cream); color: var(--dark);
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      font-family: var(--sans); font-size: 0.8125rem; font-weight: 400;
       letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
     }

@@ -241,9 +241,9 @@
       'gap:4px 10px;padding:9px var(--space-page-x);box-sizing:border-box;' +
       'background:linear-gradient(100deg,var(--deep),var(--accent2));' +
       'color:var(--cream);text-decoration:none;text-align:center;' +
-      'font-family:var(--sans);font-size:13.5px;font-weight:400;line-height:1.35;}' +
+      'font-family:var(--sans);font-size:0.8438rem;font-weight:400;line-height:1.35;}' +
       '.promo-banner strong{font-weight:700;color:var(--accent);' +
-      'letter-spacing:0.04em;text-transform:uppercase;font-size:12.5px;}' +
+      'letter-spacing:0.04em;text-transform:uppercase;font-size:0.7812rem;}' +
       '.promo-banner .promo-cta{font-weight:700;text-decoration:underline;' +
       'text-underline-offset:3px;white-space:nowrap;}' +
       '.promo-banner:hover .promo-cta{color:var(--accent);}' +
@@ -558,3 +558,9 @@
     spawnSparkle(e.clientX, e.clientY);
   });
 })();
+
+/* ── Press feedback on iOS ──
+   Mobile Safari only applies :active while a touchstart listener exists on
+   the page; this empty passive listener lets the CSS press states fire on
+   finger-down (see PRESS FEEDBACK in shared.css). */
+document.addEventListener('touchstart', function () {}, { passive: true });

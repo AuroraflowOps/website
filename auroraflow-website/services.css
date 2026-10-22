@@ -43,19 +43,19 @@
 
 .svc-back {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.08em;
   text-transform: uppercase; color: rgba(250,247,242,0.72); text-decoration: none;
   margin-bottom: 28px; transition: color 0.2s;
 }
 .svc-back:hover { color: rgba(250,247,242,0.85); }
 
 .svc-cat {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
+  font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em;
   text-transform: uppercase; color: #52BCA3; margin-bottom: 14px;
 }
 
 .svc-name {
-  font-family: var(--serif); font-size: clamp(30px, 4vw, 56px);
+  font-family: var(--serif); font-size: clamp(1.875rem, 4vw, 3.5rem);
   font-weight: 400; line-height: 1.1; margin-bottom: 10px; letter-spacing: -0.01em;
   color: #faf7f2;
 }
@@ -64,17 +64,17 @@
   display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; align-items: center;
 }
 .svc-price {
-  font-size: 20px; font-weight: 400; color: #ADCD52; letter-spacing: -0.01em;
+  font-size: 1.25rem; font-weight: 400; color: #ADCD52; letter-spacing: -0.01em;
 }
 .svc-duration {
-  font-size: 13px; color: rgba(250,247,242,0.6); letter-spacing: 0.04em;
+  font-size: 0.8125rem; color: rgba(250,247,242,0.6); letter-spacing: 0.04em;
   padding: 5px 14px; border-radius: 100px;
   border: 1px solid rgba(255,255,255,0.15);
   background: rgba(255,255,255,0.06);
 }
 
 .svc-divider { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 28px; }
-.svc-desc { font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.7); margin-bottom: 28px; }
+.svc-desc { font-size: 1.0625rem; line-height: 1.82; color: rgba(250,247,242,0.7); margin-bottom: 28px; }
 .svc-desc a { color: var(--spark); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
 .svc-desc a:hover { color: var(--cream); }
 
@@ -82,7 +82,7 @@
   display: inline-flex; align-items: center;
   padding: 15px 36px; border-radius: 100px;
   background: #12736D; color: #faf7f2;
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.8125rem; font-weight: 500;
   letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
   transition: background 0.25s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
   margin-bottom: 12px;
@@ -93,7 +93,7 @@
   box-shadow: 0 14px 32px -10px rgba(173,205,82,0.55);
 }
 
-.svc-consult { display: block; font-size: 13px; color: rgba(250,247,242,0.4); }
+.svc-consult { display: block; font-size: 0.8125rem; color: rgba(250,247,242,0.4); }
 .svc-consult a { color: rgba(250,247,242,0.7); text-decoration: underline; }
 
 /* DETAIL BLOCKS */
@@ -122,20 +122,20 @@
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(255,255,255,0.05);
 }
 .svc-detail-block h2 {
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase; color: #ADCD52;
   margin-bottom: 20px;
 }
 .svc-detail-block ul { list-style: none; padding: 0; }
 .svc-detail-block li {
-  font-size: 17px; line-height: 1.75; color: rgba(250,247,242,0.72);
+  font-size: 1.0625rem; line-height: 1.75; color: rgba(250,247,242,0.72);
   padding: 10px 0 10px 24px; border-bottom: 1px solid rgba(255,255,255,0.07);
   position: relative;
 }
 .svc-detail-block li:last-child { border-bottom: none; }
 .svc-detail-block li::before {
   content: "→"; position: absolute; left: 0;
-  color: #12736D; font-size: 12px;
+  color: #12736D; font-size: 0.75rem;
 }
 
 /* PROVIDERS */
@@ -148,7 +148,7 @@
 }
 .svc-providers-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 .svc-providers-inner h3 {
-  font-family: var(--serif); font-size: 34px; font-weight: 400;
+  font-family: var(--serif); font-size: 2.125rem; font-weight: 400;
   margin-bottom: 32px; letter-spacing: -0.01em; color: #faf7f2;
 }
 /* flex + wrap + justify-center (not a fixed grid) so an incomplete last row of
@@ -181,11 +181,11 @@
 }
 .svc-provider-card:hover .svc-provider-photo img { transform: scale(1.05); }
 .svc-provider-name {
-  font-family: var(--serif); font-size: 18px; font-weight: 400;
+  font-family: var(--serif); font-size: 1.125rem; font-weight: 400;
   margin-bottom: 4px; color: #faf7f2;
 }
 .svc-provider-role {
-  font-size: 11px; color: rgba(250,247,242,0.72);
+  font-size: 0.6875rem; color: rgba(250,247,242,0.72);
   letter-spacing: 0.06em; text-transform: uppercase;
 }
 
@@ -199,7 +199,7 @@
 }
 .svc-related-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 .svc-related-inner h3 {
-  font-family: var(--serif); font-size: 34px; font-weight: 400;
+  font-family: var(--serif); font-size: 2.125rem; font-weight: 400;
   margin-bottom: 32px; letter-spacing: -0.01em; color: #faf7f2;
 }
 .svc-related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
@@ -235,10 +235,10 @@
 .svc-related-card:hover .svc-related-img img { transform: scale(1.05); }
 .svc-related-body { padding: 20px 24px 24px; }
 .svc-related-name {
-  font-family: var(--serif); font-size: 20px; font-weight: 400;
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
   margin-bottom: 6px; color: #faf7f2;
 }
-.svc-related-price { font-size: 12px; color: #ADCD52; letter-spacing: 0.04em; }
+.svc-related-price { font-size: 0.75rem; color: #ADCD52; letter-spacing: 0.04em; }
 
 /* RESPONSIVE (legacy 3-block sections; still used by not-yet-converted pages) */
 @media (max-width: 960px) {
@@ -255,15 +255,15 @@
 /* ── MOBILE TYPE LEGIBILITY ──
    Bump the smallest captions on service pages so they read comfortably. */
 @media (max-width: 600px) {
-  .svc-related-price { font-size: 13px; }
-  .svc-provider-role { font-size: 12px; }
+  .svc-related-price { font-size: 0.8125rem; }
+  .svc-provider-role { font-size: 0.75rem; }
 }
 
 /* ── DESIGN AUDIT ADDITIONS ── */
 
 /* SD5: "Benefits of…" promoted from bold paragraph to a scannable subheading */
 .svc-subhead {
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  font-family: var(--sans); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase; color: #ADCD52;
   margin: 0 0 16px;
 }
@@ -274,7 +274,7 @@
   display: inline-flex; align-items: center; margin-top: 12px;
   padding: 7px 18px; border-radius: 100px;
   border: 1px solid rgba(255,255,255,0.28); color: rgba(250,247,242,0.85);
-  font-family: var(--sans); font-size: 10px; font-weight: 400;
+  font-family: var(--sans); font-size: 0.625rem; font-weight: 400;
   letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
@@ -283,14 +283,14 @@
 /* SD4: related-card meta — price leads, duration chip, chips for oddballs */
 .svc-related-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .svc-related-meta .svc-meta-from {
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(250,247,242,0.55);
+  font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(250,247,242,0.55);
 }
 .svc-related-meta .svc-meta-price {
-  font-family: var(--serif); font-size: 18px; color: #ADCD52; line-height: 1;
+  font-family: var(--serif); font-size: 1.125rem; color: #ADCD52; line-height: 1;
 }
 .svc-related-meta .svc-meta-dur {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 10.5px; color: rgba(250,247,242,0.75); background: rgba(255,255,255,0.08);
+  font-size: 0.6562rem; color: rgba(250,247,242,0.75); background: rgba(255,255,255,0.08);
   padding: 3px 10px; border-radius: 100px; letter-spacing: 0.02em;
 }
 
@@ -307,9 +307,9 @@
 @media (min-width: 960px) { .svc-block { padding: 52px 40px; } }
 .svc-block-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 .svc-block-inner.left { text-align: left; }
-.svc-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #ADCD52; margin-bottom: 14px; text-align: center; }
+.svc-eyebrow { font-family: var(--sans); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #ADCD52; margin-bottom: 14px; text-align: center; }
 .svc-block-inner.left .svc-eyebrow { text-align: left; }
-.svc-h2 { font-family: var(--serif); font-size: clamp(28px, 3.4vw, 42px); font-weight: 400; letter-spacing: -0.01em; color: #faf7f2; margin-bottom: 12px; text-align: center; }
+.svc-h2 { font-family: var(--serif); font-size: clamp(1.75rem, 3.4vw, 2.625rem); font-weight: 400; letter-spacing: -0.01em; color: #faf7f2; margin-bottom: 12px; text-align: center; }
 .svc-block-inner.left .svc-h2 { text-align: left; }
 
 /* is this right for you: compact pill chips. flex-wrap + justify-center
@@ -328,25 +328,25 @@
 .fit-card:nth-child(5n+4) .fit-icon svg { color: #8f92da; }
 .fit-card:nth-child(5n+5) .fit-icon { background: rgba(217,228,147,0.2); }
 .fit-card:nth-child(5n+5) .fit-icon svg { color: #D9E493; }
-.fit-label { font-size: 13.5px; line-height: 1.3; color: rgba(250,247,242,0.88); white-space: nowrap; }
+.fit-label { font-size: 0.8438rem; line-height: 1.3; color: rgba(250,247,242,0.88); white-space: nowrap; }
 
 /* what to expect / how to prepare: compact 2-col bullet cards */
 .compact-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 700px) { .compact-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
 .compact-card { background: rgba(255,255,255,0.04); border-radius: var(--radius-lg); padding: 26px 28px; box-shadow: 0 0 0 1px rgba(255,255,255,0.13); }
-.compact-card h3 { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #ADCD52; margin-bottom: 14px; }
+.compact-card h3 { font-family: var(--sans); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #ADCD52; margin-bottom: 14px; }
 .compact-card ul { list-style: none; padding: 0; }
-.compact-card li { font-size: 14.5px; line-height: 1.6; color: rgba(250,247,242,0.75); padding: 7px 0 7px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+.compact-card li { font-size: 0.9062rem; line-height: 1.6; color: rgba(250,247,242,0.75); padding: 7px 0 7px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
 .compact-card li:last-child { border-bottom: none; }
-.compact-card li::before { content: "\2192"; position: absolute; left: 0; color: #12736D; font-size: 11px; }
+.compact-card li::before { content: "\2192"; position: absolute; left: 0; color: #12736D; font-size: 0.6875rem; }
 
 /* review section: used only when a genuine service-specific review exists */
 .review-wrap { max-width: 640px; margin: 0 auto; background: rgba(255,255,255,0.045); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: 0 0 0 1px rgba(255,255,255,0.13); text-align: center; }
 @media (min-width: 640px) { .review-wrap { padding: 40px 44px; } }
-.review-stars { color: #FBBC04; letter-spacing: 3px; font-size: 14px; margin-bottom: 18px; }
-.review-quote { font-family: var(--serif); font-size: 20px; line-height: 1.55; color: #faf7f2; font-weight: 300; margin-bottom: 22px; }
-.review-byline { font-size: 12px; letter-spacing: 0.06em; color: rgba(250,247,242,0.55); text-transform: uppercase; }
-.review-google { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,247,242,0.55); text-decoration: none; }
+.review-stars { color: #FBBC04; letter-spacing: 3px; font-size: 0.875rem; margin-bottom: 18px; }
+.review-quote { font-family: var(--serif); font-size: 1.25rem; line-height: 1.55; color: #faf7f2; font-weight: 300; margin-bottom: 22px; }
+.review-byline { font-size: 0.75rem; letter-spacing: 0.06em; color: rgba(250,247,242,0.55); text-transform: uppercase; }
+.review-google { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,247,242,0.55); text-decoration: none; }
 
 /* provider grid density modifiers, applied on top of the base .svc-providers-grid
    (both are flex + wrap + justify-center already, so incomplete rows always center) */
@@ -354,47 +354,47 @@
 .svc-providers-grid.single .svc-provider-card { flex: 0 1 190px; }
 .svc-providers-grid.many { gap: 16px; }
 .svc-providers-grid.many .svc-provider-card { flex: 0 1 130px; max-width: 150px; }
-.svc-providers-grid.many .svc-provider-name { font-size: 14px; }
-.svc-providers-grid.many .svc-provider-role { font-size: 9px; margin-bottom: 8px; }
-.svc-provider-nobook { display: block; font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(250,247,242,0.35); }
+.svc-providers-grid.many .svc-provider-name { font-size: 0.875rem; }
+.svc-providers-grid.many .svc-provider-role { font-size: 0.5625rem; margin-bottom: 8px; }
+.svc-provider-nobook { display: block; font-size: 0.5312rem; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(250,247,242,0.35); }
 
 /* FAQ accordion, CSS-only via <details>/<summary> */
 .faq-list { display: flex; flex-direction: column; gap: 12px; }
 .faq-item { background: rgba(255,255,255,0.04); border-radius: var(--radius); box-shadow: 0 0 0 1px rgba(255,255,255,0.1); overflow: hidden; }
-.faq-item summary { list-style: none; cursor: pointer; padding: 20px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--sans); font-size: 15.5px; color: #faf7f2; font-weight: 400; }
+.faq-item summary { list-style: none; cursor: pointer; padding: 20px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--sans); font-size: 0.9688rem; color: #faf7f2; font-weight: 400; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-plus { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); position: relative; }
 .faq-plus::before, .faq-plus::after { content: ""; position: absolute; background: rgba(250,247,242,0.75); transition: transform 0.25s; }
 .faq-plus::before { left: 6px; right: 6px; top: 50%; height: 1px; transform: translateY(-50%); }
 .faq-plus::after { top: 6px; bottom: 6px; left: 50%; width: 1px; transform: translateX(-50%); }
 .faq-item[open] .faq-plus::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
-.faq-answer { padding: 0 26px 22px; font-size: 14.5px; line-height: 1.75; color: rgba(250,247,242,0.65); }
+.faq-answer { padding: 0 26px 22px; font-size: 0.9062rem; line-height: 1.75; color: rgba(250,247,242,0.65); }
 .faq-answer li { padding: 4px 0 4px 20px; position: relative; }
-.faq-answer li::before { content: "\2192"; position: absolute; left: 0; color: #12736D; font-size: 11px; }
+.faq-answer li::before { content: "\2192"; position: absolute; left: 0; color: #12736D; font-size: 0.6875rem; }
 
 /* final booking CTA band, closes the page */
 .final-cta { background: #0c0e1d; padding: 40px var(--space-page-x); text-align: center; position: relative; overflow: hidden; }
 @media (min-width: 960px) { .final-cta { padding: 56px 40px; } }
 .final-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 50% 0%, rgba(110,63,141,0.22) 0%, transparent 60%); }
 .final-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-.final-cta h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); color: #faf7f2; margin-bottom: 14px; }
-.final-cta p { font-size: 15px; color: rgba(250,247,242,0.65); margin-bottom: 32px; }
+.final-cta h2 { font-family: var(--serif); font-size: clamp(1.875rem, 4vw, 2.875rem); color: #faf7f2; margin-bottom: 14px; }
+.final-cta p { font-size: 0.9375rem; color: rgba(250,247,242,0.65); margin-bottom: 32px; }
 .final-cta-price { display: flex; gap: 14px; justify-content: center; align-items: center; margin-bottom: 28px; }
 
 /* pricing menu (used by pages whose price list is too long for hero bullets, e.g. waxing) */
 .price-detail-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
 @media (min-width: 700px) { .price-detail-grid { grid-template-columns: 1fr 1fr; } }
 .price-detail-card { background: rgba(255,255,255,0.04); border-radius: var(--radius); padding: 18px 20px; box-shadow: 0 0 0 1px rgba(255,255,255,0.1); }
-.price-detail-card h4 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: #faf7f2; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-.price-detail-card .pd-price { color: #ADCD52; font-size: 14px; font-family: var(--serif); flex-shrink: 0; white-space: nowrap; }
-.price-detail-card p { font-size: 13px; line-height: 1.6; color: rgba(250,247,242,0.65); }
-.price-list-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #ADCD52; margin: 8px 0 10px; }
+.price-detail-card h4 { font-family: var(--serif); font-size: 1rem; font-weight: 400; color: #faf7f2; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.price-detail-card .pd-price { color: #ADCD52; font-size: 0.875rem; font-family: var(--serif); flex-shrink: 0; white-space: nowrap; }
+.price-detail-card p { font-size: 0.8125rem; line-height: 1.6; color: rgba(250,247,242,0.65); }
+.price-list-label { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #ADCD52; margin: 8px 0 10px; }
 .price-list { display: grid; grid-template-columns: 1fr; gap: 0 24px; }
 @media (min-width: 560px) { .price-list { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 860px) { .price-list { grid-template-columns: 1fr 1fr 1fr; } }
-.price-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 2px; font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.price-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 2px; font-size: 0.8438rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .price-row .pr-name { color: rgba(250,247,242,0.8); }
 .price-row .pr-price { color: #ADCD52; font-family: var(--serif); flex-shrink: 0; }
-.price-note { font-size: 12.5px; line-height: 1.65; color: rgba(250,247,242,0.55); margin-top: 16px; }
+.price-note { font-size: 0.7812rem; line-height: 1.65; color: rgba(250,247,242,0.55); margin-top: 16px; }
 .chip-addon-d   { background: rgba(173,205,82,0.18); color: #cfe393; }
 .chip-inquire-d { background: rgba(88,91,167,0.30);  color: #c3c5ee; }

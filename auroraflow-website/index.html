@@ -73,8 +73,8 @@
       font-family: var(--sans); color: #faf7f2;
       text-shadow: 0 1px 6px rgba(5,3,12,0.8);
     }
-    .hero-fsa-badge-text strong { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
-    .hero-fsa-badge-text span { font-size: 13px; font-weight: 400; color: rgba(250,247,242,0.9); }
+    .hero-fsa-badge-text strong { font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; }
+    .hero-fsa-badge-text span { font-size: 0.8125rem; font-weight: 400; color: rgba(250,247,242,0.9); }
     @media (max-width: 900px) {
       .hero-fsa-badge { position: static; display: flex; justify-content: flex-end; margin-bottom: 16px; filter: none; }
     }
@@ -95,7 +95,7 @@
     }
     .hero-chip {
       display: inline-block;
-      font-family: var(--sans); font-size: 11.5px; font-weight: 500;
+      font-family: var(--sans); font-size: 0.7188rem; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: rgba(250,247,242,0.9);
       background: rgba(250,247,242,0.09);
@@ -105,7 +105,7 @@
     }
     .hero-content h1 {
       font-family: var(--serif);
-      font-size: clamp(44px, 5.6vw, 84px);
+      font-size: clamp(2.75rem, 5.6vw, 5.25rem);
       font-weight: 400; color: #ffffff; line-height: 1.06;
       letter-spacing: -0.02em; margin-bottom: 18px;
     }
@@ -119,7 +119,7 @@
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
     .hero-content p {
-      font-size: clamp(16px, 1.5vw, 18px); font-weight: 300;
+      font-size: clamp(1rem, 1.5vw, 1.125rem); font-weight: 300;
       color: rgba(250,247,242,0.78); line-height: 1.7;
       margin-bottom: 26px; max-width: 460px;
     }
@@ -132,7 +132,7 @@
       display: inline-flex; align-items: center;
       padding: 16px 36px; border-radius: 100px;
       background: #12736D; color: #faf7f2;
-      font-family: var(--sans); font-size: 13px;
+      font-family: var(--sans); font-size: 0.8125rem;
       font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
       text-decoration: none;
       transition: background 0.25s, transform 0.25s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.25s;
@@ -191,9 +191,9 @@
       border: 1px solid rgba(250,247,242,0.18);
       border-radius: 14px;
       box-shadow: 0 18px 44px rgba(5,3,12,0.55);
-      font-family: var(--sans); font-size: 13px; color: rgba(250,247,242,0.85);
+      font-family: var(--sans); font-size: 0.8125rem; color: rgba(250,247,242,0.85);
     }
-    .hg-proof .hg-stars { color: #FBBC04; font-size: 12px; letter-spacing: 2.5px; }
+    .hg-proof .hg-stars { color: #FBBC04; font-size: 0.75rem; letter-spacing: 2.5px; }
     .hg-proof .hg-divider { width: 1px; height: 16px; background: rgba(250,247,242,0.25); }
 
     /* ── HERO — MOBILE (≤900px) ──
@@ -213,7 +213,7 @@
       .hg-badge { top: 12px; right: 12px; height: 56px; }
       .hg-proof {
         left: 16px; bottom: -20px;
-        padding: 11px 16px; font-size: 12px; gap: 9px;
+        padding: 11px 16px; font-size: 0.75rem; gap: 9px;
       }
     }
 
@@ -287,12 +287,12 @@
     }
     .about-eyebrow {
       display: block;
-      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      font-family: var(--sans); font-size: 0.6875rem; font-weight: 500;
       letter-spacing: 0.22em; text-transform: uppercase;
       color: #ADCD52; margin-bottom: 20px;
     }
     .about-text h2 {
-      font-family: var(--serif); font-size: clamp(30px, 3.5vw, 52px);
+      font-family: var(--serif); font-size: clamp(1.875rem, 3.5vw, 3.25rem);
       font-weight: 400; line-height: 1.2; margin-bottom: 28px;
       letter-spacing: -0.01em;
       color: #faf7f2;
@@ -306,7 +306,7 @@
       display: block; margin-top: 6px;
     }
     .about-text p {
-      font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
+      font-size: 1.0625rem; line-height: 1.82; color: rgba(250,247,242,0.65); margin-bottom: 20px;
     }
     .about-text p a { color: #ADCD52 !important; }
     .about-text p:last-of-type { margin-bottom: 36px; }
@@ -329,7 +329,7 @@
     }
     .new-faces-head .section-label { color: rgba(250,247,242,0.72); margin: 0; }
     .new-faces-head h2 {
-      font-family: var(--serif); font-size: clamp(24px, 2.8vw, 36px);
+      font-family: var(--serif); font-size: clamp(1.5rem, 2.8vw, 2.25rem);
       font-weight: 400; line-height: 1.2; letter-spacing: -0.01em;
       color: #faf7f2; margin: 0;
     }
@@ -350,10 +350,10 @@
     .new-face:hover .new-face-photo { transform: translateY(-4px); box-shadow: 0 0 0 5px var(--new-face-ring, var(--accent)); }
     .new-face-photo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
     .new-face-name {
-      font-family: var(--serif); font-size: 20px; font-weight: 400; color: #faf7f2;
+      font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: #faf7f2;
     }
     .new-face-role {
-      font-family: var(--sans); font-size: 11.5px; font-weight: 500;
+      font-family: var(--sans); font-size: 0.7188rem; font-weight: 500;
       letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,247,242,0.5);
     }
     @media (max-width: 640px) {
@@ -377,7 +377,7 @@
       margin-bottom: clamp(28px, 4.5vw, 40px); position: relative; z-index: 1;
     }
     .updates-head h2 {
-      font-family: var(--serif); font-size: clamp(28px, 3.2vw, 42px);
+      font-family: var(--serif); font-size: clamp(1.75rem, 3.2vw, 2.625rem);
       font-weight: 400; line-height: 1.15; letter-spacing: -0.01em;
       color: #faf7f2; margin-bottom: 0;
     }
@@ -397,7 +397,7 @@
     .update-card-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
     .announcement-eyebrow {
       display: inline-block; align-self: flex-start;
-      font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+      font-family: var(--sans); font-size: 0.6562rem; font-weight: 600;
       letter-spacing: 0.09em; text-transform: uppercase;
       color: #DCD3F8;
       background: rgba(110,63,141,0.22);
@@ -406,18 +406,18 @@
       margin-bottom: 14px;
     }
     .update-card h3 {
-      font-family: var(--serif); font-size: clamp(21px, 2vw, 26px);
+      font-family: var(--serif); font-size: clamp(1.3125rem, 2vw, 1.625rem);
       font-weight: 400; line-height: 1.25; margin-bottom: 12px;
       letter-spacing: -0.01em; color: #faf7f2;
     }
     .update-card p {
-      font-size: 15px; line-height: 1.7; color: rgba(250,247,242,0.65);
+      font-size: 0.9375rem; line-height: 1.7; color: rgba(250,247,242,0.65);
       margin-bottom: 18px; flex: 1;
     }
     .announcement-link {
       display: inline-flex; align-items: center; gap: 8px;
       align-self: flex-start;
-      font-family: var(--sans); font-size: 12px; font-weight: 500;
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
       color: #ADCD52;
       transition: color 0.2s;
@@ -446,7 +446,7 @@
     }
     .updates-follow-cta .ig-mark svg { width: 17px; height: 17px; }
     .updates-follow-cta span:last-child {
-      font-family: var(--sans); font-size: 12.5px; font-weight: 500;
+      font-family: var(--sans); font-size: 0.7812rem; font-weight: 500;
       letter-spacing: 0.06em; color: #faf7f2; white-space: nowrap;
     }
     @media (max-width: 900px) {
@@ -517,7 +517,7 @@
       background: linear-gradient(to top, rgba(5,3,12,0.9) 0%, transparent 75%);
     }
     .service-tile-label h3 {
-      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      font-family: var(--serif); font-size: 1.125rem; font-weight: 400;
       color: #faf7f2; margin-bottom: 4px; line-height: 1.2;
     }
     .service-tile-label .service-price { margin-bottom: 0; }
@@ -560,18 +560,18 @@
     .service-card:hover .service-thumb img { transform: scale(1.05); }
     .service-info { padding: 24px 28px 28px; }
     .service-info h3 {
-      font-family: var(--serif); font-size: 22px; font-weight: 400;
+      font-family: var(--serif); font-size: 1.375rem; font-weight: 400;
       margin-bottom: 8px; line-height: 1.2; letter-spacing: -0.01em; color: #faf7f2;
     }
     .service-price {
-      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      font-family: var(--sans); font-size: 0.8125rem; font-weight: 500;
       color: #ADCD52; letter-spacing: 0.04em;
       margin-bottom: 10px; display: block;
     }
-    .service-info p { font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.72); }
+    .service-info p { font-size: 0.9375rem; line-height: 1.75; color: rgba(250,247,242,0.72); }
     .service-link {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 16px; font-size: 12px; font-weight: 500;
+      margin-top: 16px; font-size: 0.75rem; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: #ADCD52; text-decoration: none;
     }
@@ -585,13 +585,13 @@
       margin-bottom: clamp(32px, 5vw, 48px);
     }
     .services-preview-title {
-      font-family: var(--serif); font-size: clamp(28px, 3.2vw, 42px);
+      font-family: var(--serif); font-size: clamp(1.75rem, 3.2vw, 2.625rem);
       font-weight: 400; line-height: 1.15; letter-spacing: -0.01em;
       color: #faf7f2; margin: 0;
     }
     .services-preview .btn-outline {
       border-color: rgba(250,247,242,0.4); color: #faf7f2;
-      padding: 13px 28px; font-size: 12.5px; flex-shrink: 0;
+      padding: 13px 28px; font-size: 0.7812rem; flex-shrink: 0;
     }
     .services-preview .btn-outline:hover {
       background: #faf7f2; color: #0e0a1e; border-color: #faf7f2;
@@ -638,7 +638,7 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.7);
     }
     .space-peek-content h2 {
-      font-family: var(--serif); font-size: clamp(32px, 4vw, 58px);
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.625rem);
       font-weight: 300; color: #faf7f2; line-height: 1.1; margin-bottom: 20px;
       letter-spacing: -0.01em;
       text-shadow: 0 4px 24px rgba(0,0,0,0.65);
@@ -649,7 +649,7 @@
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
     .space-peek-content p {
-      font-size: 16px; color: rgba(250,247,242,0.88); line-height: 1.72;
+      font-size: 1rem; color: rgba(250,247,242,0.88); line-height: 1.72;
       max-width: 480px; margin: 0 auto 32px;
       text-shadow: 0 2px 12px rgba(0,0,0,0.6);
     }
@@ -694,23 +694,23 @@
     .testimonials-header { max-width: 640px; margin: 0 auto clamp(36px, 5vw, 52px); text-align: center; }
     .testimonials-header .section-label { color: rgba(250,247,242,0.72); margin-bottom: 16px; }
     .testimonials-header h2 {
-      font-family: var(--serif); font-size: clamp(32px, 4vw, 56px);
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 400; line-height: 1.1; color: #faf7f2;
       letter-spacing: -0.02em; margin-bottom: 20px;
     }
     .testimonials-header h2 em { font-style: italic; color: var(--accent); }
     .testimonials-header p {
-      font-size: 15px; line-height: 1.75; color: rgba(250,247,242,0.72);
+      font-size: 0.9375rem; line-height: 1.75; color: rgba(250,247,242,0.72);
       margin-bottom: 20px;
     }
     .reviews-google-link {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
+      font-size: 0.75rem; letter-spacing: 0.09em; text-transform: uppercase;
       color: rgba(250,247,242,0.72); text-decoration: none; transition: color 0.25s;
     }
     .reviews-google-link:hover { color: rgba(250,247,242,0.8); }
     .reviews-google-link::before {
-      content: '★★★★★'; color: #FBBC04; font-size: 11px; letter-spacing: 2px;
+      content: '★★★★★'; color: #FBBC04; font-size: 0.6875rem; letter-spacing: 2px;
       filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
     }
     /* ── SLOW CONTINUOUS MARQUEE ──
@@ -753,7 +753,7 @@
     .testimonial-card::before {
       content: "\201C";
       position: absolute; top: -8px; right: 14px;
-      font-family: var(--serif); font-size: 110px; line-height: 1;
+      font-family: var(--serif); font-size: 6.875rem; line-height: 1;
       color: rgba(173,205,82,0.14);
       pointer-events: none;
     }
@@ -761,11 +761,11 @@
        the review itself should be the whole card */
     .tc-stars {
       display: block; margin-bottom: 14px;
-      color: #FBBC04; font-size: 13px; letter-spacing: 3px;
+      color: #FBBC04; font-size: 0.8125rem; letter-spacing: 3px;
       filter: drop-shadow(0 0 4px rgba(251,188,4,0.35));
     }
     .tc-quote {
-      font-family: var(--serif); font-size: 16px;
+      font-family: var(--serif); font-size: 1rem;
       font-weight: 300; font-style: italic; line-height: 1.65;
       color: rgba(250,247,242,0.88); margin: 0;
       display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical;
@@ -801,7 +801,7 @@
     }
 
     .hero-link {
-      font-family: var(--sans); font-size: 12px; font-weight: 400;
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: rgba(250,247,242,0.72); text-decoration: none;
       transition: color 0.2s; white-space: nowrap;
@@ -810,7 +810,7 @@
 
     @media (max-width: 540px) {
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
-      .btn-hero { width: 100%; max-width: 320px; justify-content: center; font-size: 14px; padding: 18px 24px; }
+      .btn-hero { width: 100%; max-width: 320px; justify-content: center; font-size: 0.875rem; padding: 18px 24px; }
     }
 
     /* ── DRIFTING AURORA MESH ──
@@ -826,16 +826,16 @@
        Bump secondary/body copy on phones so nothing reads too small.
        Headlines and buttons are already fluid, so they're left as-is. */
     @media (max-width: 600px) {
-      .hero-content p        { font-size: 16.5px; }
-      .service-info p        { font-size: 16px; }
-      .service-info h3       { font-size: 21px; }
-      .service-price         { font-size: 14px; }
-      .testimonials-header p { font-size: 16px; }
-      .tc-quote              { font-size: 16px; }
+      .hero-content p        { font-size: 1.0312rem; }
+      .service-info p        { font-size: 1rem; }
+      .service-info h3       { font-size: 1.3125rem; }
+      .service-price         { font-size: 0.875rem; }
+      .testimonials-header p { font-size: 1rem; }
+      .tc-quote              { font-size: 1rem; }
       .announcement-eyebrow,
       .announcements .section-label,
       .services-preview .section-label,
-      .space-peek-content .section-label { font-size: 12px; }
+      .space-peek-content .section-label { font-size: 0.75rem; }
     }
   </style>
 <script>window.Mangomint = window.Mangomint || {}; window.Mangomint.CompanyId = 814946;</script><script src="https://booking.mangomint.com/app.js" async></script>

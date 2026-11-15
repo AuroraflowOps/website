@@ -79,6 +79,9 @@
 .svc-desc a:hover { color: var(--cream); }
 .faq-answer a { color: var(--spark); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
 .faq-answer a:hover { color: var(--cream); }
+.svc-cta-note { font-size: 13px; color: rgba(250,247,242,0.6); margin: 4px 0 0; }
+.final-cta p a { color: var(--spark); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.final-cta p a:hover { color: var(--cream); }
 
 .svc-book-btn {
   display: inline-flex; align-items: center;

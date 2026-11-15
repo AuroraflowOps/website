@@ -77,6 +77,8 @@
 .svc-desc { font-size: 17px; line-height: 1.82; color: rgba(250,247,242,0.7); margin-bottom: 28px; }
 .svc-desc a { color: var(--spark); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
 .svc-desc a:hover { color: var(--cream); }
+.faq-answer a { color: var(--spark); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.faq-answer a:hover { color: var(--cream); }
 
 .svc-book-btn {
   display: inline-flex; align-items: center;

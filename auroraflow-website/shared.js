@@ -280,11 +280,13 @@
   }
 })();
 
-/* ── Seasonal Fresh Orchard Facial promo banner ──
-   Site-wide bar above the nav (home page only): announces the
-   limited-time Seasonal Fresh Orchard Facial (fall special). Formerly the
-   Express Massage banner, and before that the Weekday Massage + Skin Care
-   and Hormonal Facials banners — repurposed in place so the
+/* ── Holiday gift card special promo banner ──
+   Site-wide bar above the nav (home page only): announces the annual
+   Holiday Gift Card Special ($250 card for $225, $500 card for $450),
+   which begins Nov 27, 2026. The headline says "begins November 27th"
+   until that date and "is here" from then on. Formerly the Seasonal Fresh
+   Orchard Facial banner, and before that the Express Massage, Weekday
+   Massage + Skin Care and Hormonal Facials banners — repurposed in place so the
    slide-down/dismiss/nav-offset mechanics stay untouched. Slides down 5s
    after the page loads so it doesn't compete with the hero on first paint,
    and stays up until dismissed (remembered for the browsing session). The
@@ -293,7 +295,9 @@
 (function () {
   if (!/^\/(index\.html)?$/.test(location.pathname)) return; /* home page only */
 
-  var DISMISS_KEY = 'wp-orchard-facial-promo-dismissed';
+  var DISMISS_KEY = 'wp-holiday-gift-card-promo-dismissed';
+  var GIFT_URL = 'https://clients.mangomint.com/gift-cards/814946';
+  var STARTS_ON = new Date(2026, 10, 27); /* midnight Nov 27, 2026 local */
   var BOOK_URL = 'https://booking.mangomint.com/814946';
 
   function sessionDismissed() {
@@ -302,7 +306,6 @@
   function rememberDismissed() {
     try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
   }
-  if (sessionDismissed()) return;
 
   function tagItem(text) {
     return '<li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>' + text + '</span></li>';
@@ -322,9 +325,8 @@
     modal.classList.remove('wp-open');
     document.removeEventListener('keydown', onKey);
   }
-  /* Kept for the old weekday skincare+massage offer (ADDSKIN20) — still
-     honored on request, it's just no longer wired to a visible trigger now
-     that the banner and "What's New" card promote the new special instead. */
+  /* Weekday skincare+massage offer (ADDSKIN20) — opened from the
+     "Weekday Special" card in the home page's "What's New" section. */
   function buildModal() {
     var overlay = document.createElement('div');
     overlay.className = 'wp-modal-overlay';
@@ -344,7 +346,6 @@
             tagItem('Skincare service only') +
             tagItem('Same-day booking') +
           '</ul>' +
-          '<p class="wp-modal-expiry">Ends October 31, 2026.</p>' +
           '<a class="wp-modal-cta" href="' + BOOK_URL + '" target="_blank" rel="noopener">Book Now</a>' +
         '</div>' +
       '</div>';
@@ -356,30 +357,29 @@
     return overlay;
   }
 
-  /* delegated so any element anywhere on the page can open the old weekday
-     offer's modal by carrying this class — nothing currently does, since
-     the banner and "What's New" card link straight to their own pages now,
-     but the hook stays live in case the old offer needs surfacing again */
+  /* delegated so any element anywhere on the page can open the weekday
+     offer's modal by carrying this class */
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('.wp-details-btn');
     if (trigger) openModal();
   });
 
-  function addOrchardFacialPromo() {
-    if (document.querySelector('.weekday-promo-banner')) return;
+  function addHolidayGiftCardPromo() {
+    if (sessionDismissed() || document.querySelector('.weekday-promo-banner')) return;
 
     var banner = document.createElement('div');
     banner.className = 'weekday-promo-banner';
     banner.setAttribute('role', 'region');
-    banner.setAttribute('aria-label', 'Seasonal Fresh Orchard Facial promotion');
+    banner.setAttribute('aria-label', 'Holiday gift card special');
+    var started = new Date() >= STARTS_ON;
     banner.innerHTML =
-      '<a class="wp-thumb" href="/services/seasonal-fresh-orchard-facial" tabindex="-1" aria-hidden="true">' +
-        '<img src="/assets/img/seasonal-fresh-orchard-facial-square.webp" width="900" height="900" alt="">' +
-      '</a>' +
-      '<strong>Limited Time: Seasonal Fresh Orchard Facial</strong>' +
-      '<span>Apple enzyme &amp; vanilla clove hydrating mask to carry your glow into fall</span>' +
-      '<a class="wp-link-btn" href="/services/seasonal-fresh-orchard-facial">See the Details →</a>' +
-      '<button type="button" class="wp-close" aria-label="Dismiss seasonal facial promotion">×</button>';
+      '<strong>' + (started
+        ? 'Our annual Holiday Gift Card Special is here!'
+        : 'Our annual Holiday Gift Card Special begins November 27th!') + '</strong>' +
+      '<span>$250 gift card for $225 · $500 gift card for $450</span>' +
+      '<a class="wp-link-btn" href="' + GIFT_URL + '" target="_blank" rel="noopener">' +
+        (started ? 'Buy a Gift Card →' : 'Gift Cards →') + '</a>' +
+      '<button type="button" class="wp-close" aria-label="Dismiss holiday gift card special">×</button>';
     document.body.insertBefore(banner, document.body.firstChild);
 
     var root = document.documentElement;
@@ -407,9 +407,9 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addOrchardFacialPromo);
+    document.addEventListener('DOMContentLoaded', addHolidayGiftCardPromo);
   } else {
-    addOrchardFacialPromo();
+    addHolidayGiftCardPromo();
   }
 })();
 

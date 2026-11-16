@@ -382,7 +382,7 @@
       color: #faf7f2; margin-bottom: 0;
     }
     .updates-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px;
       position: relative; z-index: 1;
     }
     .update-card {
@@ -392,7 +392,11 @@
       box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
       position: relative; overflow: hidden;
     }
+    /* five cards: two featured on the first row, three below */
+    .update-card { grid-column: span 2; }
+    .update-card:nth-child(-n+2) { grid-column: span 3; }
     .update-photo { aspect-ratio: 16 / 10; overflow: hidden; }
+    .update-card:nth-child(-n+2) .update-photo { aspect-ratio: 16 / 7; }
     .update-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .update-card-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
     .announcement-eyebrow {
@@ -414,6 +418,10 @@
       font-size: 15px; line-height: 1.7; color: rgba(250,247,242,0.65);
       margin-bottom: 18px; flex: 1;
     }
+    .pwyc-upcoming { list-style: none; padding: 0; margin: 0 0 14px; }
+    .pwyc-upcoming li { font-size: 15px; line-height: 1.5; color: rgba(250,247,242,0.65); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .pwyc-upcoming li strong { color: #faf7f2; font-weight: 500; }
+    .pwyc-upcoming li a { color: inherit; }
     .announcement-link {
       display: inline-flex; align-items: center; gap: 8px;
       align-self: flex-start;
@@ -451,6 +459,8 @@
     }
     @media (max-width: 900px) {
       .updates-grid { grid-template-columns: 1fr; }
+      .update-card, .update-card:nth-child(-n+2) { grid-column: auto; }
+      .update-card:nth-child(-n+2) .update-photo { aspect-ratio: 16 / 10; }
     }
     @media (max-width: 560px) {
       .updates-head { display: block; }
@@ -1224,13 +1234,46 @@
     <div class="updates-grid">
       <div class="update-card">
         <div class="update-photo">
-          <img loading="lazy" src="assets/img/hormonal-facial-perimenopause.webp" width="1200" height="900" alt="Hormonal facial treatment at Auroraflow" />
+          <img loading="lazy" src="assets/img/maya-freelon-lifestyle-2026-2.webp" width="1200" height="1200" alt="Maya Freelon working with a client on the massage table" style="object-position:center top" />
         </div>
         <div class="update-card-body">
-          <span class="announcement-eyebrow">New Special</span>
-          <h3>$20 Off All Clinical Facials</h3>
-          <p>Introducing Hormonal Facials: two new consultation-based facials joining our Clinical Facial family. Save $20 on all four through Oct 31, 2026.</p>
-          <a class="announcement-link" href="clinical-facials">See Details →</a>
+          <span class="announcement-eyebrow">New Add-On</span>
+          <h3>Sound Therapy with Maya</h3>
+          <p>Deepen relaxation and encourage energy flow by adding sound therapy to any session with Maya. Sound therapy tools include tuning forks, chimes, and more.</p>
+          <a class="announcement-link" href="team/maya-freelon">Meet Maya →</a>
+        </div>
+      </div>
+      <div class="update-card">
+        <div class="update-photo">
+          <img loading="lazy" src="assets/img/space-reception.webp" width="900" height="506" alt="Auroraflow reception space" />
+        </div>
+        <div class="update-card-body">
+          <span class="announcement-eyebrow">Pay What You Can</span>
+          <h3>Upcoming PWYC Days</h3>
+          <!-- Mirrors the dates on pay-what-you-can.html. Past dates hide themselves and only the next three show (script at bottom). -->
+          <ul class="pwyc-upcoming">
+            <li data-date="2026-11-17"><strong>Tue, Nov 17</strong> with <a href="team/brandy-robertson">Brandy Robertson</a></li>
+            <li data-date="2026-12-01"><strong>Tue, Dec 1</strong> with <a href="team/carissa-bovee">Carissa Bovee</a></li>
+            <li data-date="2026-12-14"><strong>Mon, Dec 14</strong> with <a href="team/eri-pinto">Eri Pinto</a></li>
+            <li data-date="2027-01-13"><strong>Wed, Jan 13</strong> with <a href="team/giules-colpo">Giules Colpo</a></li>
+            <li data-date="2027-02-04"><strong>Thu, Feb 4</strong> with <a href="team/hayley-yokoyama">Hayley Yokoyama</a></li>
+            <li data-date="2027-02-18"><strong>Thu, Feb 18</strong> with <a href="team/christine-link">Christine Link</a></li>
+            <li data-date="2027-03-03"><strong>Wed, Mar 3</strong> with <a href="team/izzy-weiser">Izzy Weiser</a></li>
+            <li data-date="2027-03-20"><strong>Sat, Mar 20</strong> with <a href="team/carissa-bovee">Carissa Bovee</a></li>
+          </ul>
+          <p>Spots are limited. Dates and providers are subject to change.</p>
+          <a class="announcement-link" href="pay-what-you-can">See All Dates &amp; How To Book →</a>
+        </div>
+      </div>
+      <div class="update-card">
+        <div class="update-photo">
+          <img loading="lazy" src="assets/img/svc-facial-treatments.webp" width="900" height="900" alt="Relaxing facial treatment at Auroraflow" />
+        </div>
+        <div class="update-card-body">
+          <span class="announcement-eyebrow">Weekday Special</span>
+          <h3>20% Off Skin Care with a Massage</h3>
+          <p>Receive 20% off any skin care service when you book for the same day as a massage. Valid only on weekdays.</p>
+          <button type="button" class="announcement-link wp-details-btn">See Details →</button>
         </div>
       </div>
       <div class="update-card">
@@ -1253,17 +1296,6 @@
           <h3>Dementia &amp; cognitive conditions policy</h3>
           <p>To protect client safety, practitioner safety, and ensure clear consent, we've added a new policy for clients with dementia, Alzheimer's, or other cognitive conditions.</p>
           <a class="announcement-link" href="policies">View Policies →</a>
-        </div>
-      </div>
-      <div class="update-card">
-        <div class="update-photo">
-          <img loading="lazy" src="assets/img/space-reception.webp" width="900" height="506" alt="Auroraflow reception space" />
-        </div>
-        <div class="update-card-body">
-          <span class="announcement-eyebrow">Pay What You Can</span>
-          <h3>October PWYC Days</h3>
-          <p>October 10th with Brandon Hu, and October 26th with Nikkia &quot;Nik&quot; Beech-Moore. Spots are limited, see how to book below.</p>
-          <a class="announcement-link" href="pay-what-you-can#how-it-works">How To Book →</a>
         </div>
       </div>
     </div>
@@ -1429,6 +1461,16 @@
       resumeTimer = setTimeout(() => { paused = false; start(); }, 4000);
     }, { passive: true });
     start();
+  })();
+
+  // "Upcoming PWYC Days" card: drop dates that have passed, show the next three
+  (() => {
+    const list = document.querySelector('.pwyc-upcoming');
+    if (!list) return;
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    Array.from(list.children).filter(li => li.dataset.date < today).forEach(li => li.remove());
+    Array.from(list.children).slice(3).forEach(li => li.remove());
+    if (!list.children.length) list.insertAdjacentHTML('beforeend', '<li>New dates coming soon.</li>');
   })();
 
   // Mobile "What's New" gallery — swipeable dot indicators (no auto-advance;

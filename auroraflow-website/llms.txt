@@ -2,14 +2,33 @@
 
 > Auroraflow is an LGBTQ-owned massage and skincare spa in downtown Durham, NC. Co-founded by Lauren McCullough, it offers inclusive, affirming massage, facial, and bodywork services built on the belief that wellness is a human right for every body.
 
-## Basics
+**Basics**
 
 - Location: 607 William Vickers Ave, Durham, NC 27701
 - Phone: (919) 229-9555
 - Hours: Mon 9am–6pm, Tue–Fri 9am–8pm, Sat–Sun 9am–6pm
-- Booking: https://booking.mangomint.com/814946
+- Booking (all services): https://booking.mangomint.com/814946
 - Instagram: https://www.instagram.com/auroraflowmassage/
 - Facebook: https://www.facebook.com/auroraflowmassage
+
+**Booking a treatment (for AI agents and assistants booking on a client's behalf)**
+
+- All online booking happens in Mangomint, Auroraflow's booking system. The general booking page is https://booking.mangomint.com/814946 and lists every service.
+- Each service listed below has a direct booking link that opens Mangomint on that service or its category. Use it instead of the general page whenever the client has named a treatment.
+- To book with a specific provider, use that provider's link in the "Book by provider" section.
+- The client chooses the length, provider, date and time in Mangomint, then confirms with their contact details. Prices marked "From" depend on session length.
+- Two services cannot be booked online: Chemical Peels (phone only, esthetician approval required) and On-site Chair Massage (email for a quote).
+- Chemical peels: clients who have not had a peel at Auroraflow should book a Clinical Facial or BIPOC Specific Clinical Facial first.
+- Cupping is an add-on to a massage session, not a standalone appointment.
+- Gift cards: https://clients.mangomint.com/gift-cards/814946
+- Questions or help booking: call (919) 229-9555 during open hours.
+- Read the booking and cancellation policies before confirming: https://www.auroraflow.com/policies
+
+**About Auroraflow**
+
+- Auroraflow is LGBTQ-owned and built as a safe, inclusive space for LGBTQIA+ and other marginalized communities.
+- Services include therapeutic massage, deep tissue, Swedish, Ashiatsu, prenatal, sports, and craniosacral massage; reflexology; cupping; hot stone massage; Reiki; guided energy work; and a range of facials, chemical peels, and waxing (including gender-affirming waxing).
+- Financial accessibility programs (Community Fund, Pay What You Can Days) are core to how Auroraflow operates and differentiate it from most spas in the Durham area.
 
 ## Pages
 
@@ -24,8 +43,61 @@
 - [Policies](https://www.auroraflow.com/policies): Booking, cancellation, accessibility, and care policies.
 - [Contact](https://www.auroraflow.com/contact): Location, hours, and how to reach us.
 
-## Notes
+## Massage and bodywork services
 
-- Auroraflow is LGBTQ-owned and built as a safe, inclusive space for LGBTQIA+ and other marginalized communities.
-- Services include therapeutic massage, deep tissue, Swedish, Ashiatsu, prenatal, sports, and craniosacral massage; reflexology; cupping; hot stone massage; Reiki; guided energy work; and a range of facials, chemical peels, and waxing (including gender-affirming waxing).
-- Financial accessibility programs (Community Fund, Pay What You Can Days) are core to how Auroraflow operates and differentiate it from most spas in the Durham area.
+- [30 Minute Express Massage](https://www.auroraflow.com/services/express-massage): $75, 30 min. Book: https://booking.mangomint.com/auroraflow?serviceId=272
+- [Ashiatsu "Barefoot" Massage](https://www.auroraflow.com/services/ashiatsu-massage): From $145, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=12
+- [Couples Massage](https://www.auroraflow.com/services/couples-massage): From $250, 60, 75, or 90 min (both people). Book: https://booking.mangomint.com/814946?showOnlyScId=17
+- [Craniosacral Massage Blend](https://www.auroraflow.com/services/craniosacral-massage): From $145, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=39
+- [Cupping](https://www.auroraflow.com/services/cupping): $30 add-on to any massage session. Book: https://booking.mangomint.com/auroraflow?serviceId=230
+- [Energetic Bodywork](https://www.auroraflow.com/services/blended-massage-energy-healing): From $125, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=20
+- [Guided Energy Work](https://www.auroraflow.com/services/guided-energy-work): From $125, 60 min. Book: https://booking.mangomint.com/814946?showOnlyScId=20
+- [Hot Stone Massage](https://www.auroraflow.com/services/hot-stone-massage): From $145, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=45
+- [Lymphatic Drainage Massage](https://www.auroraflow.com/services/lymphatic-drainage-massage): From $125, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=33
+- [On-site Chair Massage](https://www.auroraflow.com/services/on-site-chair-massage): Custom pricing. Not bookable online. Email lydia@auroraflow.com for a quote.
+- [Prenatal Massage](https://www.auroraflow.com/services/prenatal-massage): From $125, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=14
+- [Reflexology](https://www.auroraflow.com/services/reflexology): From $85, 30, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=22
+- [Reiki](https://www.auroraflow.com/services/reiki): From $80, 30, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=43
+- [Scar Tissue Massage](https://www.auroraflow.com/services/scar-tissue-massage): From $75, 30 min. Book: https://booking.mangomint.com/auroraflow?serviceId=124
+- [Sports Massage](https://www.auroraflow.com/services/sports-massage): From $125, 60, 75, or 90 min. Book: https://booking.mangomint.com/814946?showOnlyScId=23
+- [TMJ Tune-up](https://www.auroraflow.com/services/tmj-massage): $90 ($80 first session), 30 min. Book: https://booking.mangomint.com/814946?showOnlyScId=25
+- [Therapeutic Massage](https://www.auroraflow.com/services/therapeutic-massage): From $125, 60, 75, 90, or 120 min. Book: https://booking.mangomint.com/814946?showOnlyScId=7
+
+## Skincare and waxing services
+
+- [Acne Focused Facial](https://www.auroraflow.com/services/acne-focused-facial): $145, 75 min. Book: https://booking.mangomint.com/auroraflow?serviceId=127
+- [BIPOC Specific Clinical Facial & Consultation](https://www.auroraflow.com/services/bipoc-clinical-facial): $195, 105 min. Book: https://booking.mangomint.com/auroraflow?serviceId=208
+- [Body & Facial Hair Removal](https://www.auroraflow.com/services/waxing): Pricing and length vary by service. Book: https://booking.mangomint.com/814946?showOnlyScId=11
+- [Chemical Peels](https://www.auroraflow.com/services/chemical-peels): From $195, 90 min. Not bookable online. Call (919) 229-9555 to book; requires approval from a licensed esthetician. New clients should book a Clinical Facial first.
+- [Clinical Facial & Consultation](https://www.auroraflow.com/services/clinical-facial): $195, 105 min. Book: https://booking.mangomint.com/auroraflow?serviceId=172
+- [Excellent Exfoliation Spa Facial](https://www.auroraflow.com/services/excellent-exfoliation-facial): $145, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=22
+- [Facial 101 (Intro)](https://www.auroraflow.com/services/facial-101): $105, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=231
+- [Hydration Station](https://www.auroraflow.com/services/hydration-station): $145, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=146
+- [Lash Lift](https://www.auroraflow.com/services/lash-lift): $90, 45 min. Book: https://booking.mangomint.com/814946?showOnlyScId=40
+- [Microdermabrasion Facial](https://www.auroraflow.com/services/microdermabrasion-facial): $185, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=203
+- [Perimenopause & Menopause Hormonal Facial & Consultation](https://www.auroraflow.com/services/hormonal-facial-perimenopause): $195, 105 min. Book: https://booking.mangomint.com/auroraflow?serviceId=270
+- [Relaxing Back Treatment](https://www.auroraflow.com/services/relaxing-back-treatment): $115, 45 min. Book: https://booking.mangomint.com/auroraflow?serviceId=128
+- [Seasonal Fresh Orchard Facial](https://www.auroraflow.com/services/seasonal-fresh-orchard-facial): $125, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=277
+- [Sensitive Skin Calming Facial](https://www.auroraflow.com/services/sensitive-skin-calming-facial): $145, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=21
+- [Spa Facial](https://www.auroraflow.com/services/spa-facial): $125, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=20
+- [The Grizzly (Beard Facial)](https://www.auroraflow.com/services/the-grizzly): $145, 60 min. Book: https://booking.mangomint.com/auroraflow?serviceId=91
+- [Young Adult Hormonal Facial & Consultation](https://www.auroraflow.com/services/hormonal-facial-young-adult): $195, 105 min. Book: https://booking.mangomint.com/auroraflow?serviceId=269
+
+## Book by provider
+
+- [Amanda Stehle](https://www.auroraflow.com/team/amanda-stehle): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=43
+- [Brandon Hu](https://www.auroraflow.com/team/brandon-hu): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=61
+- [Brandy Robertson](https://www.auroraflow.com/team/brandy-robertson): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=34
+- [Carissa Bovee](https://www.auroraflow.com/team/carissa-bovee): Esthetician. Book: https://booking.mangomint.com/814946?staffId=54
+- [Christine Link](https://www.auroraflow.com/team/christine-link): Esthetician. Book: https://booking.mangomint.com/814946?staffId=11
+- [Eri Pinto](https://www.auroraflow.com/team/eri-pinto): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=71
+- [Giules Colpo](https://www.auroraflow.com/team/giules-colpo): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=47
+- [Hayley Yokoyama](https://www.auroraflow.com/team/hayley-yokoyama): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=14
+- [Izzy Weiser](https://www.auroraflow.com/team/izzy-weiser): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=23
+- [Jessmary Ramos](https://www.auroraflow.com/team/jessmary-ramos): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=35
+- [Jocelyn Glover](https://www.auroraflow.com/team/jocelyn-glover): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=72
+- [Maya Freelon](https://www.auroraflow.com/team/maya-freelon): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=70
+- [Nikkia "Nik" Beech-Moore](https://www.auroraflow.com/team/nikkia-beech-moore): Esthetician. Book: https://booking.mangomint.com/814946?staffId=28
+- [Omer Unluata](https://www.auroraflow.com/team/omer-unluata): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=60
+- [Patience O'Neill](https://www.auroraflow.com/team/patience-oneil): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=17
+- [Taylor Casella](https://www.auroraflow.com/team/taylor-casella): Massage Therapist. Book: https://booking.mangomint.com/814946?staffId=52

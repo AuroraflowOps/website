@@ -31,7 +31,7 @@
     .letter ul { margin: 22px 0 0 0; padding-left: 0; list-style: none; }
     .letter li { position: relative; padding-left: 26px; }
     .letter li + li { margin-top: 14px; }
-    .letter li::before { content: "✦"; position: absolute; left: 0; top: 1px; font-size: 12px; color: var(--waves); }
+    .letter li::before { content: ""; position: absolute; left: 6px; top: 0.8em; width: 6px; height: 6px; border-radius: 50%; background: var(--waves); }
     .letter-divider { text-align: center; color: var(--waves); letter-spacing: 0.6em; font-size: 13px; margin: 72px 0 0; }
     .letter-divider + h2 { margin-top: 40px; }
     .pull {
@@ -69,7 +69,8 @@
     .impact-total .impact-type { color: rgba(250,247,242,0.8); }
     .impact-foot { text-align: center; margin-top: 20px; font-size: 13px; color: var(--muted); }
 
-    .closing { text-align: left; }
+    .signoff { margin-top: 32px !important; }
+    .signoff span { font-family: var(--serif); font-size: 26px; color: var(--dark); line-height: 1.6; }
 
     @media (max-width: 860px) {
       .impact-grid { grid-template-columns: 1fr 1fr; }
@@ -143,9 +144,9 @@
     <img src="assets/img/auroraflow-hallway-entryway.webp" width="792" height="1056" alt="Inside Auroraflow, a colorful entryway with pride flag bunting, a reading bench, and a bookshelf" />
   </div>
   <div class="page-hero-content">
-    <p class="section-label">Our Values</p>
-    <h1>People, planet,<br><em>&amp; profit.</em></h1>
-    <p>A letter to our community about the choices we make, why we make them, and where we're still learning and growing.</p>
+    <p class="section-label">A letter to our community</p>
+    <h1>Our <em>Values</em></h1>
+    <p>Queer-owned and rooted in Durham, NC on Lumbee land.</p>
   </div>
 </div>
 <div class="rainbow-bar"></div>
@@ -195,11 +196,11 @@
     <p>We see AI as a tool, and like any tool, it is only as good as the choices behind it. Behind the scenes, our management team uses tools that sometimes leverage generative AI for project management, keeping our website up to date, reporting, accounting, and some editing on our marketing. It takes admin work off our team's plates so they can put more of themselves into caring for you.</p>
     <p>What matters most is that we don't and won't use it to replace human connection, which is the foundation of everything this business stands for. Here's what that looks like in practice:</p>
     <ul>
-      <li><strong>Your care is guided by human judgment.</strong> Your provider is fully responsible for your care. Every recommendation comes from their own training, experience, and what they learn from you in the room, never from software alone.</li>
-      <li><strong>You'll talk to people, not bots.</strong> When you call, text, or walk through our door, you're talking to a real person on our team. We don't use AI chatbots or automated receptionists, because care starts with a real human hello.</li>
-      <li><strong>People own every decision.</strong> AI tools can help us pull a report or find information faster, but real people weigh the options and make the decisions about Auroraflow and its growth. A tool can inform a choice; it never makes one for us.</li>
+      <li><strong>Your care is guided by human judgment.</strong> Your provider is fully responsible for your care. Every recommendation comes from their own training, experience, and judgment, never from software alone.</li>
+      <li><strong>You'll talk to people, not bots.</strong> When you call, text, or walk through our door, you're talking to a real person on our team. We don't use AI chatbots or automated receptionists.</li>
+      <li><strong>People own every decision.</strong> AI tools can help us pull a report or find information faster, but real people make the decisions about Auroraflow and its growth.</li>
       <li><strong>Your privacy matters.</strong> Whenever we can, we choose software that meets HIPAA standards, even though we aren't legally required to. We turn off AI training settings wherever our tools allow, so your information isn't used to train AI models. We do our best to keep your information confidential, especially the private health details you share with your provider.</li>
-      <li><strong>Our content comes from people.</strong> Much of AI was built on writers' and artists' work without their permission or pay, and we don't want to contribute to that. Everything we share, from photos and artwork to our posts and newsletters, comes from our team, our clients, or the local artists we pay to create with us.</li>
+      <li><strong>Our content comes from people.</strong> Much of AI was built on writers' and artists' work without their permission or pay, and we don't want to contribute to that. Everything we share comes from our team, our clients, or the local artists we pay to create with us.</li>
       <li><strong>A person stands behind it.</strong> Whenever we use AI, someone on our team reviews the work and is responsible for the result. If something goes wrong, we'll own it, fix it, and let you know what we changed.</li>
     </ul>
 
@@ -214,29 +215,25 @@
 <section class="impact">
   <div class="impact-inner">
     <div class="impact-head">
-      <span class="soon">2026 so far</span>
-      <h2>Measuring our <em>impact.</em></h2>
-      <p class="impact-sub">What we've given back to our community so far in 2026. A fuller impact report is coming soon.</p>
+      <h2>Measuring our impact</h2>
+      <p class="impact-sub">Here's what we've given back to our community so far in 2026. A fuller impact report is coming soon.</p>
     </div>
     <div class="impact-grid">
       <div class="impact-tile">
         <div class="impact-amt">$2,305</div>
         <div class="impact-type">Pay What You Can Day discounts</div>
-        <span class="status ok">✓ Confirmed</span>
       </div>
       <div class="impact-tile">
         <div class="impact-amt">$364</div>
-        <div class="impact-type"><b>NEW</b>Community Fund withdrawals</div>
-        <span class="status ok">✓ Confirmed</span>
+        <div class="impact-type">Community Fund withdrawals (new this year)</div>
       </div>
       <div class="impact-tile">
         <div class="impact-amt">$725</div>
         <div class="impact-type">Gift card donations</div>
-        <span class="status ok">✓ Confirmed</span>
       </div>
       <div class="impact-tile impact-total">
         <div class="impact-amt">$3,394</div>
-        <div class="impact-type">Total given in 2026 so far</div>
+        <div class="impact-type">Total so far</div>
       </div>
     </div>
     <p class="impact-foot">January 1 – November 24, 2026 &nbsp;·&nbsp; Last updated <time datetime="2026-11-24">November 24, 2026</time></p>
@@ -250,7 +247,8 @@
     <p>Auroraflow was built from the heart of every team member who has been part of this journey and every client who has walked through our door. But even the strongest values don't mean we'll always get it right. We'll make mistakes. We'll have blind spots.</p>
     <p>When we fall short, we want to listen, take accountability, and keep moving toward something better.</p>
     <p>To everyone who has supported us, challenged us, and trusted us with your care: thank you.</p>
-    <p class="pull">We are a work in progress.</p>
+    <p>We are a work in progress.</p>
+    <p class="signoff">With gratitude,<br><span>The Auroraflow team</span></p>
 
     <h2 id="support">How to support us and our clients</h2>
     <ul>

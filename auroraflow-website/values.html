@@ -43,19 +43,6 @@
     .letter-img img { width: 100%; height: auto; display: block; }
     .letter-img figcaption { font-size: 13px; color: var(--muted); padding-top: 10px; }
 
-    /* owner's note: a quiet letter within the letter */
-    .owner-note {
-      margin: 36px 0 8px; padding: 36px 36px 32px; border-radius: var(--radius);
-      background: var(--cream); border: 1px solid var(--border);
-    }
-    .owner-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-    .owner-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
-    .owner-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .owner-kicker { font-size: 11px !important; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted) !important; line-height: 1.4 !important; }
-    .owner-note h3 { margin-top: 28px; font-size: 22px; }
-    .sig { margin-top: 24px !important; font-family: var(--serif); font-size: 24px !important; color: var(--dark) !important; line-height: 1.3 !important; }
-    .sig small { display: block; font-family: var(--sans); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
-
     /* ── IMPACT ── */
     .impact { background: var(--cream); padding: 88px var(--space-page-x); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .impact-inner { max-width: 1000px; margin: 0 auto; }
@@ -86,7 +73,6 @@
 
     @media (max-width: 860px) {
       .impact-grid { grid-template-columns: 1fr 1fr; }
-      .owner-note { padding: 28px 22px; }
       .letter { padding: 64px var(--space-page-x) 72px; }
       .letter h2 { margin-top: 56px; }
     }
@@ -203,27 +189,18 @@
 
     <h2 id="ai">Maintaining Responsible Usage of AI</h2>
     <p>As a small business, we always have to find ways to make the most of every dollar and every hour of our team's time. Generative AI tools, including large language models like ChatGPT and Claude, have opened up real opportunities to improve how we operate as a small, scrappy team. In fact, generative AI is baked directly into almost every industry software, and we are aware it's behind many of the new features our technology vendors are building.</p>
+    <p>Deciding how Auroraflow uses AI hasn't been simple. Our owner, Lauren McCullough, works with this technology every day across her businesses and has seen how much it can help a small team. She believes that, used with intention, it can even help us connect more as humans. But she also knows what it costs: our planet, creative work, and the people whose jobs it can change overnight.</p>
 
-    <div class="owner-note">
-      <div class="owner-head">
-        <div class="owner-photo"><img src="assets/img/6510eddc753332fbbf45bae8_Lauren.webp" width="400" height="400" alt="Lauren McCullough" loading="lazy" /></div>
-        <p class="owner-kicker">A note from our owner,<br>Lauren McCullough</p>
-      </div>
-      <p>Deciding how Auroraflow uses AI hasn't been simple. Running my businesses, I work with this technology every day, and I've seen how much it can help a small team. I believe used with intention, it can even help us connect more as humans. But I also know what it costs: our planet, creative work, and the people whose jobs it can change overnight.</p>
-      <h3>Here's where I've landed (as of the time of writing this)</h3>
-      <p>I see AI as a tool. And like any tool, it is only as good as the choices behind it. Behind the scenes our management team uses tools that sometimes leverage generative AI for project management, keeping our website up to date, reporting, accounting, and some editing on our marketing. It takes admin work off our team's plates so they can put more of themselves into caring for you.</p>
-      <p>What is most important is we don't and won't use it to replace human connection, which is the foundation of everything this business stands for.</p>
-      <p class="sig">Lauren McCullough<small>Owner, Auroraflow</small></p>
-    </div>
-
-    <h3>Here's what that looks like in practice:</h3>
+    <h3>Where we've landed (for now)</h3>
+    <p>We see AI as a tool, and like any tool, it is only as good as the choices behind it. Behind the scenes, our management team uses tools that sometimes leverage generative AI for project management, keeping our website up to date, reporting, accounting, and some editing on our marketing. It takes admin work off our team's plates so they can put more of themselves into caring for you.</p>
+    <p>What matters most is that we don't and won't use it to replace human connection, which is the foundation of everything this business stands for. Here's what that looks like in practice:</p>
     <ul>
-      <li><strong>Your care uses human judgment.</strong> Your provider is fully responsible for your care. Every recommendation comes from their own training and judgment, never from software alone.</li>
-      <li><strong>You'll interact with people, not bots.</strong> When you call, text, or walk through our door, you're talking to a real person on our team. We don't use AI chatbots or automated receptionists.</li>
-      <li><strong>People still own all decisions.</strong> AI tools can help us pull a report or find information faster, but real people make the decisions about Auroraflow and its growth.</li>
+      <li><strong>Your care is guided by human judgment.</strong> Your provider is fully responsible for your care. Every recommendation comes from their own training, experience, and what they learn from you in the room, never from software alone.</li>
+      <li><strong>You'll talk to people, not bots.</strong> When you call, text, or walk through our door, you're talking to a real person on our team. We don't use AI chatbots or automated receptionists, because care starts with a real human hello.</li>
+      <li><strong>People own every decision.</strong> AI tools can help us pull a report or find information faster, but real people weigh the options and make the decisions about Auroraflow and its growth. A tool can inform a choice; it never makes one for us.</li>
       <li><strong>Your privacy matters.</strong> Whenever we can, we choose software that meets HIPAA standards, even though we aren't legally required to. We turn off AI training settings wherever our tools allow, so your information isn't used to train AI models. We do our best to keep your information confidential, especially the private health details you share with your provider.</li>
-      <li><strong>Our content comes from people.</strong> Much of AI was built on writers' and artists' work without their permission or pay, and we don't want to contribute to that. Everything we share comes from our team, our clients, or the local artists we pay to create with us.</li>
-      <li><strong>A person stands behind it.</strong> Whenever we use AI, someone on our team is responsible for the result. If something goes wrong, we'll own it, fix it, and let you know what we changed.</li>
+      <li><strong>Our content comes from people.</strong> Much of AI was built on writers' and artists' work without their permission or pay, and we don't want to contribute to that. Everything we share, from photos and artwork to our posts and newsletters, comes from our team, our clients, or the local artists we pay to create with us.</li>
+      <li><strong>A person stands behind it.</strong> Whenever we use AI, someone on our team reviews the work and is responsible for the result. If something goes wrong, we'll own it, fix it, and let you know what we changed.</li>
     </ul>
 
     <h3>We'll keep checking in</h3>
